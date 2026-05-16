@@ -14,38 +14,4 @@ const pages = {
     unlock:
     "https://www.mediafire.com/file/2ylxdv8p8vn7i3d/Menu_Mod_Skin_%255B_64_Bit_%255D.apk/file"
 
-  },
-
-  nakroth:{
-
-    sub:
-    "https://youtube.com/@nakroth",
-
-    like:
-    "https://youtu.be/nak456",
-
-    tele:
-    "https://t.me/nakroth",
-
-    unlock:
-    "https://www.mediafire.com/file/nak"
-
-  },
-
-  allain:{
-
-    sub:
-    "https://youtube.com/@allain",
-
-    like:
-    "https://youtu.be/allain789",
-
-    tele:
-    "https://t.me/allain",
-
-    unlock:
-    "https://www.mediafire.com/file/allain"
-
-  }
-
-};
+  };
