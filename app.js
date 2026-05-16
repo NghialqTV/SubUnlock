@@ -1,161 +1,146 @@
 // GET PARAM
+const params = new URLSearchParams(window.location.search);
 
-const params =
-new URLSearchParams(location.search);
+const id = params.get("id");
 
-const id =
-params.get('id');
+// CHECK PARAM
+if (!id) {
+  alert("Thiếu ID");
+  throw new Error("Missing ID");
+}
+
+// CHECK PAGES
+if (typeof pages === "undefined") {
+  alert("Không tìm thấy dữ liệu pages");
+  throw new Error("Pages Undefined");
+}
 
 // LOAD DATA
-
-const data =
-pages[id];
+const data = pages[id];
 
 // CHECK DATA
+if (!data) {
 
-if(!data){
+  alert("Không tìm thấy nhiệm vụ: " + id);
 
-  alert("Không tìm thấy nhiệm vụ");
-
-  throw new Error();
+  throw new Error("Invalid ID");
 }
 
 // STATUS
-
 let done1 = false;
 let done2 = false;
 let done3 = false;
 
 // UPDATE PROGRESS
-
-function updateProgress(){
+function updateProgress() {
 
   let total = 0;
 
-  if(done1) total += 33;
+  if (done1) total += 33;
+  if (done2) total += 33;
+  if (done3) total += 34;
 
-  if(done2) total += 33;
+  document.getElementById("progress").style.width =
+    total + "%";
+}
 
-  if(done3) total += 34;
+// OPEN LINK
+function openTask(link) {
 
-  document.getElementById(
-    'progress'
-  ).style.width =
-  total + "%";
+  window.open(link, "_blank");
 }
 
 // SUBSCRIBE
-
-function subscribeYoutube(){
+function subscribeYoutube() {
 
   done1 = true;
 
   updateProgress();
 
-  location.href =
-  data.sub;
+  openTask(data.sub);
 }
 
 // LIKE VIDEO
-
-function likeVideo(){
+function likeVideo() {
 
   done2 = true;
 
   updateProgress();
 
-  location.href =
-  data.like;
+  openTask(data.like);
 }
 
 // JOIN TELEGRAM
-
-function joinTelegram(){
+function joinTelegram() {
 
   done3 = true;
 
   updateProgress();
 
-  location.href =
-  data.tele;
+  openTask(data.tele);
 }
 
 // VERIFY TASKS
+function verifyTasks() {
 
-function verifyTasks(){
+  if (!done1 || !done2 || !done3) {
 
-  if(
-    !done1 ||
-    !done2 ||
-    !done3
-  ){
-
-    alert(
-      "Hoàn thành nhiệm vụ trước"
-    );
+    alert("Hoàn thành nhiệm vụ trước");
 
     return;
   }
 
   const btn =
-  document.getElementById(
-    'verifyBtn'
-  );
+    document.getElementById("verifyBtn");
 
   let time = 5;
 
   btn.disabled = true;
 
   btn.innerHTML =
-  "Đang xác minh 5s";
+    "Đang xác minh 5s";
 
-  const timer =
-  setInterval(()=>{
+  const timer = setInterval(() => {
 
     time--;
 
     btn.innerHTML =
-    "Đang xác minh " +
-    time + "s";
+      "Đang xác minh " + time + "s";
 
-    if(time <= 0){
+    if (time <= 0) {
 
       clearInterval(timer);
 
       btn.innerHTML =
-      "Hoàn Thành";
+        "Hoàn Thành";
 
       document.getElementById(
-        'unlockBox'
-      ).style.display =
-      'block';
+        "unlockBox"
+      ).style.display = "block";
     }
 
-  },1000);
+  }, 1000);
 }
 
-// OPEN UNLOCK LINK
+// OPEN UNLOCK
+function openUnlock() {
 
-function openUnlock(){
-
-  location.href =
-  data.unlock;
+  window.location.href =
+    data.unlock;
 }
 
 // DISABLE RIGHT CLICK
-
 window.addEventListener(
-  'contextmenu',
+  "contextmenu",
   e => e.preventDefault()
 );
 
 // DISABLE F12
-
 window.addEventListener(
-  'keydown',
-  e =>{
+  "keydown",
+  e => {
 
-    if(e.keyCode == 123){
+    if (e.key === "F12") {
 
       e.preventDefault();
     }
