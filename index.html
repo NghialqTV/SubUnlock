@@ -1,116 +1,153 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
 
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
+  <title>Task Unlock</title>
 
-<title>Task Unlock</title>
-
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 
 </head>
-
 <body>
+
+<div class="bg"></div>
 
 <div class="container">
 
-<div class="card">
+  <div class="top-box">
 
-<div class="title">
-Thực Hiện Các Bước
-</div>
+    <div class="logo">
+      🔓
+    </div>
 
-<div class="progressBox">
-<div class="progress" id="progress"></div>
-</div>
+    <h1>
+      HOÀN THÀNH NHIỆM VỤ
+    </h1>
 
-<!-- SUBSCRIBE -->
+    <p>
+      Thực hiện đầy đủ nhiệm vụ để mở khóa liên kết tải xuống.
+    </p>
 
-<div class="task">
+    <div class="progress-area">
 
-<h3>
-1. Đăng ký kênh YouTube
-</h3>
+      <div class="progress-bar">
+        <div id="progress"></div>
+      </div>
 
-<button onclick="subscribeYoutube()">
-Subscribe
-</button>
+      <span id="percent">0%</span>
 
-</div>
+    </div>
 
-<!-- LIKE -->
+  </div>
 
-<div class="task">
 
-<h3>
-2. Like video YouTube
-</h3>
+  <div class="task-card">
 
-<button onclick="likeVideo()">
-Like Video
-</button>
+    <div class="task-left">
+      <div class="icon red">
+        ▶
+      </div>
 
-</div>
+      <div>
+        <h2>Đăng ký kênh</h2>
+        <p>YouTube Subscribe</p>
+      </div>
+    </div>
 
-<!-- TELEGRAM -->
+    <button onclick="subscribeYoutube()">
+      Subscribe
+    </button>
 
-<div class="task">
+  </div>
 
-<h3>
-3. Tham gia Telegram
-</h3>
 
-<button onclick="joinTelegram()">
-Join Telegram
-</button>
+  <div class="task-card">
 
-</div>
+    <div class="task-left">
+      <div class="icon blue">
+        👍
+      </div>
 
-<!-- VERIFY -->
+      <div>
+        <h2>Like Video</h2>
+        <p>Thả tim video YouTube</p>
+      </div>
+    </div>
 
-<div class="task">
+    <button onclick="likeVideo()">
+      Like Video
+    </button>
 
-<h3>
-4. Xác Minh
-</h3>
+  </div>
 
-<button
-id="verifyBtn"
-onclick="verifyTasks()">
 
-Mở Khoá Link
+  <div class="task-card">
 
-</button>
+    <div class="task-left">
+      <div class="icon sky">
+        ✈
+      </div>
 
-</div>
+      <div>
+        <h2>Telegram</h2>
+        <p>Tham gia nhóm Telegram</p>
+      </div>
+    </div>
 
-<!-- SUCCESS -->
+    <button onclick="joinTelegram()">
+      Join Group
+    </button>
 
-<div id="unlockBox">
+  </div>
 
-<div class="success">
-✅ HOÀN THÀNH
-</div>
 
-<button onclick="openUnlock()">
-MỞ LINK
-</button>
+  <div class="verify-box">
 
-</div>
+    <button
+    class="verify-btn"
+    id="verifyBtn"
+    onclick="verifyTasks()">
 
-</div>
+      Xác Minh Nhiệm Vụ
+
+    </button>
+
+  </div>
+
+
+  <div class="unlock-box"
+  id="unlockBox">
+
+    <h2>
+      🎉 Hoàn thành nhiệm vụ
+    </h2>
+
+    <p>
+      Nhấn nút bên dưới để mở khóa liên kết.
+    </p>
+
+    <button
+    class="unlock-btn"
+    onclick="openUnlock()">
+
+      MỞ KHÓA LINK
+
+    </button>
+
+  </div>
+
+
+  <div class="footer">
+    Powered by NghiaLQTV
+  </div>
 
 </div>
 
 <script src="data.js"></script>
-
 <script src="app.js"></script>
 
 </body>
-
 </html>
