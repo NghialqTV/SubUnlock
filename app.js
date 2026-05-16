@@ -39,9 +39,15 @@ function updateProgress(){
   if(done3) total += 34;
 
   document.getElementById(
-    'progress'
-  ).style.width =
-  total + "%";
+  'progress'
+).style.width =
+total + "%";
+
+
+document.getElementById(
+  'percent'
+).innerHTML =
+total + "%";
 }
 
 // SUBSCRIBE
