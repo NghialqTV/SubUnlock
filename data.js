@@ -1,6 +1,6 @@
 const pages = {
 
-  Menu:{
+  menu:{
 
     sub:
     "https://youtube.com/@nghiaxtv",
