@@ -1,40 +1,119 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
 
-  <meta charset="UTF-8">
-  <meta name="viewport"
-  content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-  <title>Task Unlock</title>
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css">
+<title>Task Unlock</title>
+
+<link rel="stylesheet" href="style.css">
 
 </head>
-<body>
 
-<div class="bg"></div>
+<body>
 
 <div class="container">
 
-  <div class="top-box">
+<div class="card">
 
-    <div class="logo">
-      🔓
-    </div>
+<div class="title">
+HOÀN THÀNH NHIỆM VỤ
+</div>
 
-    <h1>
-      HOÀN THÀNH NHIỆM VỤ
-    </h1>
+<div class="progressBox">
+<div class="progress" id="progress"></div>
+</div>
 
-    <p>
-      Thực hiện đầy đủ nhiệm vụ để mở khóa liên kết tải xuống.
-    </p>
+<!-- SUBSCRIBE -->
 
-    <div class="progress-area">
+<div class="task">
 
-      <div class="progress-bar">
-        <div id="progress"></div>
+<h3>
+1. Đăng ký kênh YouTube
+</h3>
+
+<button onclick="subscribeYoutube()">
+Subscribe
+</button>
+
+</div>
+
+<!-- LIKE -->
+
+<div class="task">
+
+<h3>
+2. Like video YouTube
+</h3>
+
+<button onclick="likeVideo()">
+Like Video
+</button>
+
+</div>
+
+<!-- TELEGRAM -->
+
+<div class="task">
+
+<h3>
+3. Tham gia Telegram
+</h3>
+
+<button onclick="joinTelegram()">
+Join Telegram
+</button>
+
+</div>
+
+<!-- VERIFY -->
+
+<div class="task">
+
+<h3>
+4. Xác minh nhiệm vụ
+</h3>
+
+<button
+id="verifyBtn"
+onclick="verifyTasks()">
+
+Verify
+
+</button>
+
+</div>
+
+<!-- SUCCESS -->
+
+<div id="unlockBox">
+
+<div class="success">
+✅ HOÀN THÀNH
+</div>
+
+<button onclick="openUnlock()">
+MỞ LINK
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="data.js"></script>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>        <div id="progress"></div>
       </div>
 
       <span id="percent">0%</span>
