@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Task Unlock</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<div class="title">
+HOÀN THÀNH NHIỆM VỤ
+</div>
+
+<div class="progressBox">
+<div class="progress" id="progress"></div>
+</div>
+
+<!-- SUBSCRIBE -->
+
+<div class="task">
+
+<h3>
+1. Đăng ký kênh YouTube
+</h3>
+
+<button onclick="subscribeYoutube()">
+Subscribe
+</button>
+
+</div>
+
+<!-- LIKE -->
+
+<div class="task">
+
+<h3>
+2. Like video YouTube
+</h3>
+
+<button onclick="likeVideo()">
+Like Video
+</button>
+
+</div>
+
+<!-- TELEGRAM -->
+
+<div class="task">
+
+<h3>
+3. Tham gia Telegram
+</h3>
+
+<button onclick="joinTelegram()">
+Join Telegram
+</button>
+
+</div>
+
+<!-- VERIFY -->
+
+<div class="task">
+
+<h3>
+4. Xác minh nhiệm vụ
+</h3>
+
+<button
+id="verifyBtn"
+onclick="verifyTasks()">
+
+Verify
+
+</button>
+
+</div>
+
+<!-- SUCCESS -->
+
+<div id="unlockBox">
+
+<div class="success">
+✅ HOÀN THÀNH
+</div>
+
+<button onclick="openUnlock()">
+MỞ LINK
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="data.js"></script>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
