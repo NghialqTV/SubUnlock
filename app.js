@@ -1,4 +1,4 @@
-// GET ID
+// GET PARAM
 
 const params =
 new URLSearchParams(location.search);
@@ -11,7 +11,7 @@ params.get('id');
 const data =
 pages[id];
 
-// CHECK
+// CHECK DATA
 
 if(!data){
 
@@ -26,7 +26,7 @@ let done1 = false;
 let done2 = false;
 let done3 = false;
 
-// UPDATE BAR
+// UPDATE PROGRESS
 
 function updateProgress(){
 
@@ -40,52 +40,47 @@ function updateProgress(){
 
   document.getElementById(
     'progress'
-  ).style.width = total + "%";
+  ).style.width =
+  total + "%";
 }
 
 // SUBSCRIBE
 
 function subscribeYoutube(){
 
-  window.open(
-    data.sub,
-    '_blank'
-  );
-
   done1 = true;
 
   updateProgress();
+
+  location.href =
+  data.sub;
 }
 
-// LIKE
+// LIKE VIDEO
 
 function likeVideo(){
-
-  window.open(
-    data.like,
-    '_blank'
-  );
 
   done2 = true;
 
   updateProgress();
+
+  location.href =
+  data.like;
 }
 
-// TELEGRAM
+// JOIN TELEGRAM
 
 function joinTelegram(){
-
-  window.open(
-    data.tele,
-    '_blank'
-  );
 
   done3 = true;
 
   updateProgress();
+
+  location.href =
+  data.tele;
 }
 
-// VERIFY
+// VERIFY TASKS
 
 function verifyTasks(){
 
@@ -132,30 +127,29 @@ function verifyTasks(){
 
       document.getElementById(
         'unlockBox'
-      ).style.display = 'block';
+      ).style.display =
+      'block';
     }
 
   },1000);
 }
 
-// OPEN LINK
+// OPEN UNLOCK LINK
 
 function openUnlock(){
 
-  window.open(
-    data.unlock,
-    '_blank'
-  );
+  location.href =
+  data.unlock;
 }
 
-// ANTI RIGHT CLICK
+// DISABLE RIGHT CLICK
 
 window.addEventListener(
   'contextmenu',
   e => e.preventDefault()
 );
 
-// ANTI F12
+// DISABLE F12
 
 window.addEventListener(
   'keydown',
