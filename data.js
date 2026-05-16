@@ -1,6 +1,6 @@
 const pages = {
 
-  menu:{
+  menu: {
 
     sub:
     "https://youtube.com/@nghiaxtv",
@@ -13,4 +13,7 @@ const pages = {
 
     unlock:
     "https://www.mediafire.com/file/2ylxdv8p8v"
+
+  }
+
 };
