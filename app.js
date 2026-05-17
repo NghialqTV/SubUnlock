@@ -1,163 +1,67 @@
-const params =
-new URLSearchParams(location.search);
-
-const id =
-params.get("id");
-
-const data =
-pages[id];
+const params = new URLSearchParams(location.search);
+const id = params.get("id");
+const data = pages[id];
 
 if(!data){
-
-  alert(
-  "Không tìm thấy nhiệm vụ: "
-  + id
-  );
-
+  alert("Không tìm thấy nhiệm vụ: " + id);
   throw new Error();
-
 }
 
 /* LOAD */
-
-let done1 =
-localStorage.getItem(id + "_1")
-=== "true";
-
-let done2 =
-localStorage.getItem(id + "_2")
-=== "true";
-
-let done3 =
-localStorage.getItem(id + "_3")
-=== "true";
+let done1 = localStorage.getItem(id + "_1") === "true";
+let done2 = localStorage.getItem(id + "_2") === "true";
+let done3 = localStorage.getItem(id + "_3") === "true";
 
 /* SAVE */
-
 function saveTasks(){
-
-  localStorage.setItem(
-    id + "_1",
-    done1
-  );
-
-  localStorage.setItem(
-    id + "_2",
-    done2
-  );
-
-  localStorage.setItem(
-    id + "_3",
-    done3
-  );
-
+  localStorage.setItem(id + "_1", done1);
+  localStorage.setItem(id + "_2", done2);
+  localStorage.setItem(id + "_3", done3);
 }
 
 /* UPDATE UI */
-
 function updateProgress(){
-
   let total = 0;
-
   if(done1) total += 33;
-
   if(done2) total += 33;
-
   if(done3) total += 34;
 
-  document.getElementById(
-    "progress"
-  ).style.width =
-  total + "%";
+  document.getElementById("progress").style.width = total + "%";
 
   /* HIỆN TRẠNG THÁI */
-
-  const subBtn =
-  document.getElementById(
-    "subBtn"
-  );
-
-  const likeBtn =
-  document.getElementById(
-    "likeBtn"
-  );
-
-  const teleBtn =
-  document.getElementById(
-    "teleBtn"
-  );
+  const subBtn = document.getElementById("subBtn");
+  const likeBtn = document.getElementById("likeBtn");
+  const teleBtn = document.getElementById("teleBtn");
 
   if(subBtn){
-
-    subBtn.innerHTML =
-    done1
-    ? "✓ Đã đăng ký"
-    : "Đăng ký kênh";
-
+    subBtn.innerHTML = done1 ? "✓ Đã đăng ký" : "Đăng ký kênh";
+    if(done1) subBtn.style.background = "#28a745";
   }
-
   if(likeBtn){
-
-    likeBtn.innerHTML =
-    done2
-    ? "✓ Đã like video"
-    : "Like video";
-
+    likeBtn.innerHTML = done2 ? "✓ Đã like video" : "Like video";
+    if(done2) likeBtn.style.background = "#28a745";
   }
-
   if(teleBtn){
-
-    teleBtn.innerHTML =
-    done3
-    ? "✓ Đã tham gia"
-    : "Tham gia Telegram";
-
+    teleBtn.innerHTML = done3 ? "✓ Đã tham gia" : "Tham gia Telegram";
+    if(done3) teleBtn.style.background = "#28a745";
   }
-
 }
 
 /* VERIFY */
+function fakeVerify(step, link){
+  window.open(link, "_blank");
 
-function fakeVerify(
-  step,
-  link
-){
-
-  window.open(
-    link,
-    "_blank"
-  );
-
-  const box =
-  document.createElement("div");
-
-  box.style.position =
-  "fixed";
-
+  const box = document.createElement("div");
+  box.style.position = "fixed";
   box.style.top = "0";
-
   box.style.left = "0";
-
-  box.style.width =
-  "100%";
-
-  box.style.height =
-  "100%";
-
-  box.style.background =
-  "rgba(0,0,0,0.7)";
-
-  box.style.display =
-  "flex";
-
-  box.style.alignItems =
-  "center";
-
-  box.style.justifyContent =
-  "center";
-
-  box.style.zIndex =
-  "9999";
+  box.style.width = "100%";
+  box.style.height = "100%";
+  box.style.background = "rgba(0,0,0,0.7)";
+  box.style.display = "flex";
+  box.style.alignItems = "center";
+  box.style.justifyContent = "center";
+  box.style.zIndex = "9999";
 
   box.innerHTML = `
   <div style="
@@ -170,197 +74,92 @@ function fakeVerify(
     font-family:sans-serif;
   ">
     <h2>Đang xác minh</h2>
-
-    <p id="verifyText">
-    Vui lòng chờ 5 giây...
-    </p>
+    <p id="verifyText">Vui lòng chờ 5 giây...</p>
   </div>
   `;
 
-  document.body.appendChild(
-    box
-  );
-
+  document.body.appendChild(box);
   let time = 5;
 
-  const timer =
-  setInterval(()=>{
-
+  const timer = setInterval(()=>{
     time--;
-
-    document.getElementById(
-      "verifyText"
-    ).innerHTML =
-    "Vui lòng chờ "
-    + time +
-    " giây...";
+    document.getElementById("verifyText").innerHTML = "Vui lòng chờ " + time + " giây...";
 
     if(time <= 0){
-
       clearInterval(timer);
-
-      if(step === 1)
-      done1 = true;
-
-      if(step === 2)
-      done2 = true;
-
-      if(step === 3)
-      done3 = true;
+      if(step === 1) done1 = true;
+      if(step === 2) done2 = true;
+      if(step === 3) done3 = true;
 
       saveTasks();
-
       updateProgress();
-
       box.remove();
-
-      alert(
-      "Xác minh thành công!"
-      );
-
+      alert("Xác minh thành công!");
     }
-
-  },1000);
-
+  }, 1000);
 }
 
 /* TASK */
-
 function subscribeYoutube(){
-
   if(done1){
-
-    alert(
-    "Đã hoàn thành bước này"
-    );
-
+    alert("Đã hoàn thành bước này");
     return;
-
   }
-
-  fakeVerify(
-    1,
-    data.sub
-  );
-
+  fakeVerify(1, data.sub);
 }
 
 function likeVideo(){
-
   if(done2){
-
-    alert(
-    "Đã hoàn thành bước này"
-    );
-
+    alert("Đã hoàn thành bước này");
     return;
-
   }
-
-  fakeVerify(
-    2,
-    data.like
-  );
-
+  fakeVerify(2, data.like);
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    // Đoạn code kiểm tra phần tử an toàn
+});
+
 function joinTelegram(){
-
   if(done3){
-
-    alert(
-    "Đã hoàn thành bước này"
-    );
-
+    alert("Đã hoàn thành bước này");
     return;
-
   }
-
-  fakeVerify(
-    3,
-    data.tele
-  );
-
+  fakeVerify(3, data.tele);
 }
 
 /* FINAL VERIFY */
-
 function verifyTasks(){
-
-  if(
-    !done1 ||
-    !done2 ||
-    !done3
-  ){
-
-    alert(
-    "Hoàn thành đủ nhiệm vụ trước"
-    );
-
+  if(!done1 || !done2 || !done3){
+    alert("Hoàn thành đủ nhiệm vụ trước");
     return;
-
   }
 
-  const btn =
-  document.getElementById(
-    "verifyBtn"
-  );
-
+  const btn = document.getElementById("verifyBtn");
   btn.disabled = true;
-
   let time = 5;
+  btn.innerHTML = "Đang mở khóa 5s";
 
-  btn.innerHTML =
-  "Đang mở khóa 5s";
-
-  const timer =
-  setInterval(()=>{
-
+  const timer = setInterval(()=>{
     time--;
-
-    btn.innerHTML =
-    "Đang mở khóa "
-    + time + "s";
+    btn.innerHTML = "Đang mở khóa " + time + "s";
 
     if(time <= 0){
-
       clearInterval(timer);
-
-      btn.innerHTML =
-      "Hoàn Thành";
-
-      document.getElementById(
-        "unlockBox"
-      ).style.display =
-      "block";
-
+      btn.innerHTML = "Hoàn Thành";
+      btn.style.background = "#28a745";
+      document.getElementById("unlockBox").style.display = "block";
     }
-
-  },1000);
-
+  }, 1000);
 }
 
 /* OPEN */
-
 function openUnlock(){
-
-  localStorage.removeItem(
-    id + "_1"
-  );
-
-  localStorage.removeItem(
-    id + "_2"
-  );
-
-  localStorage.removeItem(
-    id + "_3"
-  );
-
-  window.location.href =
-  data.unlock;
-
+  localStorage.removeItem(id + "_1");
+  localStorage.removeItem(id + "_2");
+  localStorage.removeItem(id + "_3");
+  window.location.href = data.unlock;
 }
 
 /* START */
-
 updateProgress();
