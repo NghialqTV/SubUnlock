@@ -2,140 +2,237 @@
 <html lang="vi">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>Task Unlock</title>
 
-<style>
-body{
-font-family:Arial;
-background:#0f172a;
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-margin:0;
-}
-
-.card{
-background:#111827;
-padding:25px;
-border-radius:12px;
-width:320px;
-text-align:center;
-}
-
-button{
-padding:10px;
-margin-top:10px;
-width:100%;
-border:none;
-border-radius:6px;
-background:#22c55e;
-color:white;
-font-weight:bold;
-cursor:pointer;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
+<div class="container">
+
 <div class="card">
 
-<h2>HOÀN THÀNH NHIỆM VỤ</h2>
+<div class="title">
+HOÀN THÀNH NHIỆM VỤ
+</div>
 
-<button onclick="subscribeYoutube()">1. Subscribe</button>
-<button onclick="likeVideo()">2. Like Video</button>
-<button onclick="joinTelegram()">3. Join Telegram</button>
+<div class="progressBox">
+<div class="progress" id="progress"></div>
+</div>
 
-<br><br>
+<!-- SUBSCRIBE -->
 
-<button id="verifyBtn" onclick="startVerify()">
-XÁC MINH
+<div class="task">
+
+<h3>
+1. Đăng ký kênh YouTube
+</h3>
+
+<button onclick="subscribeYoutube()">
+Subscribe
 </button>
 
-<div id="loadingText" style="display:none;margin-top:10px;">
-⏳ Đang xác minh...
 </div>
 
-<div id="unlockBox" style="display:none;margin-top:20px;">
+<!-- LIKE -->
+
+<div class="task">
+
+<h3>
+2. Like video YouTube
+</h3>
+
+<button onclick="likeVideo()">
+Like Video
+</button>
+
+</div>
+
+<!-- TELEGRAM -->
+
+<div class="task">
+
+<h3>
+3. Tham gia Telegram
+</h3>
+
+<button onclick="joinTelegram()">
+Join Telegram
+</button>
+
+</div>
+
+<!-- VERIFY -->
+
+<div class="task">
+
+<h3>
+4. Xác minh nhiệm vụ
+</h3>
+
+<button
+class="btn"
+id="verifyBtn"
+onclick="startVerify()">
+
+Thực hiện
+
+</button>
+
+<div
+id="loadingText"
+style="display:none; margin-top:10px;">
+
+⏳ Đang xác minh nhiệm vụ...
+
+</div>
+
+</div>
+
+<!-- SUCCESS -->
+
+<div
+id="unlockBox"
+style="display:none; margin-top:20px;">
+
+<div class="success">
 ✅ HOÀN THÀNH
-<button onclick="openAdsStep2()">MỞ LINK</button>
+</div>
+
+<button
+class="btn"
+id="openBtn"
+onclick="openAdsStep2()">
+
+MỞ LINK
+
+</button>
+
 </div>
 
 </div>
+
+</div>
+
+<!-- DATA -->
 
 <script src="data.js"></script>
 
 <script>
 
-// ===== LOAD PAGE =====
+// lấy page hiện tại
 const params =
 new URLSearchParams(window.location.search);
 
 const currentPage =
 params.get("page") || "hackmenuios";
 
+
+// kiểm tra page tồn tại
 if (!pages[currentPage]) {
-alert("Page không tồn tại");
-throw new Error("Invalid page");
+
+  alert("Page không tồn tại");
+
 }
 
-// ===== TASK BUTTON =====
-function subscribeYoutube(){
-window.open(pages[currentPage].sub,"_blank","noopener");
+
+// SUBSCRIBE
+function subscribeYoutube() {
+
+  window.open(
+    pages[currentPage].sub,
+    "_blank"
+  );
+
 }
 
-function likeVideo(){
-window.open(pages[currentPage].like,"_blank","noopener");
+
+// LIKE VIDEO
+function likeVideo() {
+
+  window.open(
+    pages[currentPage].like,
+    "_blank"
+  );
+
 }
 
-function joinTelegram(){
-window.open(pages[currentPage].tele,"_blank","noopener");
+
+// JOIN TELEGRAM
+function joinTelegram() {
+
+  window.open(
+    pages[currentPage].tele,
+    "_blank"
+  );
+
 }
 
-// ===== VERIFY =====
-function startVerify(){
 
-const verifyBtn =
-document.getElementById("verifyBtn");
+// VERIFY
+function startVerify() {
 
-if(verifyBtn.disabled) return;
+  const verifyBtn =
+  document.getElementById("verifyBtn");
 
-const loadingText =
-document.getElementById("loadingText");
+  verifyBtn.disabled = true;
 
-const unlockBox =
-document.getElementById("unlockBox");
+  document.getElementById(
+    "loadingText"
+  ).style.display = "block";
 
-verifyBtn.disabled=true;
-loadingText.style.display="block";
+  // quảng cáo 1
+  window.open(
+    "https://vt.tiktok.com/ZS9YR7qcbCb1Y-ngGkg/",
+    "_blank"
+  );
 
-// SERVER ADS 1
-window.open(pages[currentPage].sub,"_blank","noopener");
+  // loading
+  setTimeout(() => {
 
-// SERVER ADS 2
-setTimeout(()=>{
-window.open(pages[currentPage].like,"_blank","noopener");
-},2000);
+    document.getElementById(
+      "loadingText"
+    ).style.display = "none";
 
-// SUCCESS
-setTimeout(()=>{
-loadingText.style.display="none";
-unlockBox.style.display="block";
-},5000);
+    document.getElementById(
+      "unlockBox"
+    ).style.display = "block";
+
+  }, 5000);
+
 }
 
-// ===== OPEN UNLOCK =====
-function openAdsStep2(){
 
-window.open(
-pages[currentPage].unlock,
-"_self"
-);
+// ADS STEP 2
+function openAdsStep2() {
+
+  const openBtn =
+  document.getElementById("openBtn");
+
+  openBtn.disabled = true;
+
+  // quảng cáo 2
+  window.open(
+    "https://vt.tiktok.com/ZS9YRTCTBKE3B-Pnxqj/",
+    "_blank"
+  );
+
+  // đợi rồi mở unlock
+  setTimeout(() => {
+
+    window.location.href =
+    pages[currentPage].unlock;
+
+  }, 5000);
 
 }
 
