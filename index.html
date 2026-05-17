@@ -73,21 +73,25 @@ Join Telegram
 
 <!-- VERIFY -->
 
+<!-- STEP 4 -->
+
 <div class="task">
 
   <span>Bước 4 - Xác Minh Nhiệm Vụ</span>
 
+  <!-- nút bước 1 -->
   <button class="btn" id="verifyBtn" onclick="startVerify()">
     Thực hiện
   </button>
 
+  <!-- loading -->
   <div id="loadingText" style="display:none; margin-top:10px;">
     ⏳ Đang xác minh nhiệm vụ...
   </div>
 
 </div>
 
-<!-- SUCCESS -->
+<!-- hoàn thành -->
 
 <div id="unlockBox" style="display:none; margin-top:20px;">
 
@@ -95,7 +99,8 @@ Join Telegram
     ✅ HOÀN THÀNH
   </div>
 
-  <button class="btn" onclick="openUnlock()">
+  <!-- nút mở link -->
+  <button class="btn" id="openBtn" onclick="openAdsStep2()">
     MỞ LINK
   </button>
 
@@ -103,31 +108,22 @@ Join Telegram
 
 <script>
 
+// bước 1
 function startVerify() {
 
-  // khóa nút tránh spam
+  // khóa nút
   document.getElementById("verifyBtn").disabled = true;
 
   // hiện loading
   document.getElementById("loadingText").style.display = "block";
 
-  // quảng cáo 1
+  // quảng cáo đầu
   window.open(
     "https://vt.tiktok.com/ZS9YR7qcbCb1Y-ngGkg/",
     "_blank"
   );
 
-  // quảng cáo 2
-  setTimeout(() => {
-
-    window.open(
-      "https://vt.tiktok.com/ZS9YRTCTBKE3B-Pnxqj/",
-      "_blank"
-    );
-
-  }, 1500);
-
-  // unlock sau 5 giây
+  // sau 5 giây hiện hoàn thành
   setTimeout(() => {
 
     document.getElementById("loadingText").style.display = "none";
@@ -135,16 +131,30 @@ function startVerify() {
     document.getElementById("unlockBox").style.display = "block";
 
   }, 5000);
-
 }
 
-// mở link gốc
-function openUnlock() {
 
+// bước 2 khi bấm mở link
+function openAdsStep2() {
+
+  // khóa nút
+  document.getElementById("openBtn").disabled = true;
+
+  // quảng cáo thứ 2
   window.open(
-    "LINK_GOC_CUA_BAN",
+    "https://vt.tiktok.com/ZS9YRTCTBKE3B-Pnxqj/",
     "_blank"
   );
+
+  // đợi quay lại rồi mở link gốc
+  setTimeout(() => {
+
+    window.open(
+      "LINK_GOC_CUA_BAN",
+      "_blank"
+    );
+
+  }, 5000);
 
 }
 
