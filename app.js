@@ -92,10 +92,44 @@ function verifyTasks(){
 
   }
 
+  const btn =
   document.getElementById(
-    "unlockBox"
-  ).style.display =
-  "block";
+    "verifyBtn"
+  );
+
+  let time = 5;
+
+  btn.disabled = true;
+
+  btn.innerHTML =
+  "Đang xác minh 5s";
+
+  const timer =
+  setInterval(()=>{
+
+    time--;
+
+    btn.innerHTML =
+    "Đang xác minh "
+    + time + "s";
+
+    if(time <= 0){
+
+      clearInterval(
+      timer
+      );
+
+      btn.innerHTML =
+      "Hoàn Thành";
+
+      document.getElementById(
+        "unlockBox"
+      ).style.display =
+      "block";
+
+    }
+
+  },1000);
 
 }
 
