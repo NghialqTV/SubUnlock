@@ -14,8 +14,9 @@ const pages = {
     unlock:
     "https://ipas.cc/82k69h"
 
-  }
-   modmenuios: {
+  },
+
+  modmenuios: {
 
     sub:
     "https://youtube.com/@nghiaxtv",
@@ -29,6 +30,6 @@ const pages = {
     unlock:
     "https://ipas.cc/anoq8i"
 
-}
+  }
 
 };
