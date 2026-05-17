@@ -47,7 +47,7 @@ function updateProgress(){
   }
 }
 
-/* VERIFY */
+/* VERIFY BƯỚC NHỎ */
 function fakeVerify(step, link){
   window.open(link, "_blank");
 
@@ -94,7 +94,7 @@ function fakeVerify(step, link){
       saveTasks();
       updateProgress();
       box.remove();
-      alert("Xác minh thành công!");
+      // ĐÃ XÓA BỎ BẢNG ALERT THÔNG BÁO Ở ĐÂY ĐỂ USER ĐỠ PHẢI BẤM OK
     }
   }, 1000);
 }
@@ -116,10 +116,6 @@ function likeVideo(){
   fakeVerify(2, data.like);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Đoạn code kiểm tra phần tử an toàn
-});
-
 function joinTelegram(){
   if(done3){
     alert("Đã hoàn thành bước này");
@@ -128,15 +124,19 @@ function joinTelegram(){
   fakeVerify(3, data.tele);
 }
 
-/* FINAL VERIFY */
+/* FINAL VERIFY (BƯỚC 4 - CÓ QUẢNG CÁO TIKTOK 1) */
 function verifyTasks(){
   if(!done1 || !done2 || !done3){
-    alert("Hoàn thành đủ nhiệm vụ trước");
+    alert("Bạn phải hoàn thành tất cả các bước 1, 2, 3 trước khi xác minh!");
     return;
   }
 
   const btn = document.getElementById("verifyBtn");
   btn.disabled = true;
+  
+  // Mở quảng cáo TikTok 1
+  window.open("https://vt.tiktok.com/ZS9YR7qcbCb1Y-ngGkg/", "_blank");
+
   let time = 5;
   btn.innerHTML = "Đang mở khóa 5s";
 
@@ -153,12 +153,23 @@ function verifyTasks(){
   }, 1000);
 }
 
-/* OPEN */
+/* OPEN (BƯỚC CUỐI - CÓ QUẢNG CÁO TIKTOK 2) */
 function openUnlock(){
+  const openBtn = document.getElementById("openBtn");
+  openBtn.disabled = true;
+
+  // Mở quảng cáo TikTok 2
+  window.open("https://vt.tiktok.com/ZS9YRTCTBKE3B-Pnxqj/", "_blank");
+
+  // Xóa lịch sử nhiệm vụ cũ để lần sau bấm link khác vẫn làm lại được
   localStorage.removeItem(id + "_1");
   localStorage.removeItem(id + "_2");
   localStorage.removeItem(id + "_3");
-  window.location.href = data.unlock;
+
+  // Đợi 5 giây rồi mới chuyển hướng đến link tải file
+  setTimeout(() => {
+    window.location.href = data.unlock;
+  }, 5000);
 }
 
 /* START */
