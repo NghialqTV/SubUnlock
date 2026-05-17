@@ -1,5 +1,26 @@
 const pages = {
 
+  modmenuandroid64: {
+    sub: "https://youtube.com/@nghiaxtv",
+    like: "https://youtu.be/MZLKU7WZbRA?si=dOVVzrNKDbmWbHJz",
+    tele: "https://t.me/+gI22PHmUi5xhMDA9",
+    unlock: "https://www.mediafire.com/file/2ylxdv8p8vn7i3d/Menu_Mod_Skin_%255B_64_Bit_%255D.apk/file"
+  },
+  
+  modmenuandroid32: {
+    sub: "https://youtube.com/@nghiaxtv",
+    like: "https://youtu.be/MZLKU7WZbRA?si=dOVVzrNKDbmWbHJz",
+    tele: "https://t.me/+gI22PHmUi5xhMDA9",
+    unlock: "https://www.mediafire.com/file/j21h804l6ojsn44/Menu_Mod_Skin_32_Bit_Fix.apk/file"
+  },
+  
+  hackmenuandroid64: {
+    sub: "https://youtube.com/@nghiaxtv",
+    like: "https://youtu.be/MZLKU7WZbRA?si=dOVVzrNKDbmWbHJz",
+    tele: "https://t.me/+gI22PHmUi5xhMDA9",
+    unlock: "https://www.mediafire.com/file/l54f3cq8798eo6d/Menu_Hack_Map_%255B_64_Bit_%255D.apk/file"
+  },
+  
   ipaios: {
     sub: "https://youtube.com/@nghiaxtv",
     like: "https://youtu.be/QxU_WqDb11E?si=62Fn0AM8CzZN2qn2",
