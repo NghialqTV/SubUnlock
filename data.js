@@ -1,5 +1,12 @@
 const pages = {
 
+  ipaios: {
+    sub: "https://youtube.com/@nghiaxtv",
+    like: "https://youtu.be/QxU_WqDb11E?si=62Fn0AM8CzZN2qn2",
+    tele: "https://t.me/+gI22PHmUi5xhMDA9",
+    unlock: "https://www.mediafire.com/file/l3cg6df68x7rsum/AovMod_1.62.11625414.ipa/file"
+  },
+  
   hackmenuios: {
     sub: "https://youtube.com/@nghiaxtv",
     like: "https://youtu.be/8e_VkmBs5Yk?si=C_xDgPkr9-7XoVu3",
