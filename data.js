@@ -53,7 +53,7 @@ const pages = {
     "https://youtube.com/@nghiaxtv",
 
     like:
-    "https://youtu.be/8e_VkmBs5Yk?si=C_xDgPkr9-7XoVu3",
+    "https://youtu.be/hcb2ZsVcQ1E?si=dcW7h64IvZre1C1N",
 
     tele:
     "https://t.me/+gI22PHmUi5xhMDA9",
