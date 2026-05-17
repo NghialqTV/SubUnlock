@@ -88,8 +88,23 @@ app.get("/api/stats",(req,res)=>{
 
 });
 
-app.get("/",(req,res)=>{
-    res.sendFile(path.join(__dirname,"public/admin.html"));
+app.get("/", (req,res)=>{
+
+    const pass = req.query.pass;
+
+    if(pass !== "NghialqTV2026"){
+        return res.send(`
+        <h2>❌ Sai mật khẩu admin</h2>
+        `);
+    }
+
+    res.sendFile(
+        path.join(
+            __dirname,
+            "public/admin.html"
+        )
+    );
+
 });
 
 app.listen(3000,()=>{
