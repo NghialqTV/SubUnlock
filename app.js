@@ -18,9 +18,42 @@ if(!data){
 
 }
 
-let done1 = false;
-let done2 = false;
-let done3 = false;
+/* LOAD SAVE */
+
+let done1 =
+localStorage.getItem(id + "_1")
+=== "true";
+
+let done2 =
+localStorage.getItem(id + "_2")
+=== "true";
+
+let done3 =
+localStorage.getItem(id + "_3")
+=== "true";
+
+/* SAVE */
+
+function saveTasks(){
+
+  localStorage.setItem(
+    id + "_1",
+    done1
+  );
+
+  localStorage.setItem(
+    id + "_2",
+    done2
+  );
+
+  localStorage.setItem(
+    id + "_3",
+    done3
+  );
+
+}
+
+/* PROGRESS */
 
 function updateProgress(){
 
@@ -39,42 +72,174 @@ function updateProgress(){
 
 }
 
-function openTask(link){
+/* FAKE VERIFY */
 
-  window.location.href =
-  link;
+function fakeVerify(
+  step,
+  link
+){
+
+  window.open(
+    link,
+    "_blank"
+  );
+
+  const box =
+  document.createElement("div");
+
+  box.style.position =
+  "fixed";
+
+  box.style.top = "0";
+
+  box.style.left = "0";
+
+  box.style.width =
+  "100%";
+
+  box.style.height =
+  "100%";
+
+  box.style.background =
+  "rgba(0,0,0,0.7)";
+
+  box.style.display =
+  "flex";
+
+  box.style.alignItems =
+  "center";
+
+  box.style.justifyContent =
+  "center";
+
+  box.style.zIndex =
+  "9999";
+
+  box.innerHTML = `
+  <div style="
+    background:#111;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    color:white;
+    width:280px;
+    font-family:sans-serif;
+  ">
+    <h2>Đang xác minh</h2>
+
+    <p id="verifyText">
+    Vui lòng chờ 5 giây...
+    </p>
+  </div>
+  `;
+
+  document.body.appendChild(
+    box
+  );
+
+  let time = 5;
+
+  const timer =
+  setInterval(()=>{
+
+    time--;
+
+    document.getElementById(
+      "verifyText"
+    ).innerHTML =
+    "Vui lòng chờ "
+    + time +
+    " giây...";
+
+    if(time <= 0){
+
+      clearInterval(timer);
+
+      if(step === 1)
+      done1 = true;
+
+      if(step === 2)
+      done2 = true;
+
+      if(step === 3)
+      done3 = true;
+
+      saveTasks();
+
+      updateProgress();
+
+      box.remove();
+
+      alert(
+      "Xác minh thành công!"
+      );
+
+    }
+
+  },1000);
 
 }
 
+/* TASK */
+
 function subscribeYoutube(){
 
-  done1 = true;
+  if(done1){
 
-  updateProgress();
+    alert(
+    "Đã hoàn thành bước này"
+    );
 
-  openTask(data.sub);
+    return;
+
+  }
+
+  fakeVerify(
+    1,
+    data.sub
+  );
 
 }
 
 function likeVideo(){
 
-  done2 = true;
+  if(done2){
 
-  updateProgress();
+    alert(
+    "Đã hoàn thành bước này"
+    );
 
-  openTask(data.like);
+    return;
+
+  }
+
+  fakeVerify(
+    2,
+    data.like
+  );
 
 }
 
 function joinTelegram(){
 
-  done3 = true;
+  if(done3){
 
-  updateProgress();
+    alert(
+    "Đã hoàn thành bước này"
+    );
 
-  openTask(data.tele);
+    return;
+
+  }
+
+  fakeVerify(
+    3,
+    data.tele
+  );
 
 }
+
+/* VERIFY */
 
 function verifyTasks(){
 
@@ -85,7 +250,7 @@ function verifyTasks(){
   ){
 
     alert(
-    "Hoàn thành nhiệm vụ trước"
+    "Hoàn thành đủ nhiệm vụ trước"
     );
 
     return;
@@ -97,12 +262,12 @@ function verifyTasks(){
     "verifyBtn"
   );
 
-  let time = 5;
-
   btn.disabled = true;
 
+  let time = 5;
+
   btn.innerHTML =
-  "Đang xác minh 5s";
+  "Đang mở khóa 5s";
 
   const timer =
   setInterval(()=>{
@@ -110,14 +275,12 @@ function verifyTasks(){
     time--;
 
     btn.innerHTML =
-    "Đang xác minh "
+    "Đang mở khóa "
     + time + "s";
 
     if(time <= 0){
 
-      clearInterval(
-      timer
-      );
+      clearInterval(timer);
 
       btn.innerHTML =
       "Hoàn Thành";
@@ -133,9 +296,27 @@ function verifyTasks(){
 
 }
 
+/* OPEN */
+
 function openUnlock(){
+
+  localStorage.removeItem(
+    id + "_1"
+  );
+
+  localStorage.removeItem(
+    id + "_2"
+  );
+
+  localStorage.removeItem(
+    id + "_3"
+  );
 
   window.location.href =
   data.unlock;
 
 }
+
+/* INIT */
+
+updateProgress();
