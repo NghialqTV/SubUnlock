@@ -1,19 +1,34 @@
 const pages = {
 
-  menu: {
+  hackmenuios: {
 
     sub:
     "https://youtube.com/@nghiaxtv",
 
     like:
-    "https://youtu.be/MZLKU7WZbRA",
+    "https://youtu.be/8e_VkmBs5Yk?si=C_xDgPkr9-7XoVu3",
 
     tele:
     "https://t.me/+gI22PHmUi5xhMDA9",
 
     unlock:
-    "https://www.mediafire.com/file/2ylxdv8p8v"
+    "https://ipas.cc/82k69h"
 
-  }
+  },
+  Modmenuios: {
+
+    sub:
+    "https://youtube.com/@nghiaxtv",
+
+    like:
+    "https://youtu.be/8e_VkmBs5Yk?si=C_xDgPkr9-7XoVu3",
+
+    tele:
+    "https://t.me/+gI22PHmUi5xhMDA9",
+
+    unlock:
+    "https://ipas.cc/82k69h"
+
+}
 
 };
