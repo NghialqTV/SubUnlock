@@ -18,7 +18,7 @@ if(!data){
 
 }
 
-/* LOAD SAVE */
+/* LOAD */
 
 let done1 =
 localStorage.getItem(id + "_1")
@@ -53,7 +53,7 @@ function saveTasks(){
 
 }
 
-/* PROGRESS */
+/* UPDATE UI */
 
 function updateProgress(){
 
@@ -70,9 +70,53 @@ function updateProgress(){
   ).style.width =
   total + "%";
 
+  /* HIỆN TRẠNG THÁI */
+
+  const subBtn =
+  document.getElementById(
+    "subBtn"
+  );
+
+  const likeBtn =
+  document.getElementById(
+    "likeBtn"
+  );
+
+  const teleBtn =
+  document.getElementById(
+    "teleBtn"
+  );
+
+  if(subBtn){
+
+    subBtn.innerHTML =
+    done1
+    ? "✓ Đã đăng ký"
+    : "Đăng ký kênh";
+
+  }
+
+  if(likeBtn){
+
+    likeBtn.innerHTML =
+    done2
+    ? "✓ Đã like video"
+    : "Like video";
+
+  }
+
+  if(teleBtn){
+
+    teleBtn.innerHTML =
+    done3
+    ? "✓ Đã tham gia"
+    : "Tham gia Telegram";
+
+  }
+
 }
 
-/* FAKE VERIFY */
+/* VERIFY */
 
 function fakeVerify(
   step,
@@ -239,7 +283,7 @@ function joinTelegram(){
 
 }
 
-/* VERIFY */
+/* FINAL VERIFY */
 
 function verifyTasks(){
 
@@ -317,6 +361,6 @@ function openUnlock(){
 
 }
 
-/* INIT */
+/* START */
 
 updateProgress();
