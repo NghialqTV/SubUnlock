@@ -1,0 +1,269 @@
+<!-- admin.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SubUnlock Admin Dashboard</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+    font-family:Arial;
+    padding:20px;
+}
+
+.title{
+    font-size:32px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#1e293b;
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0 0 20px rgba(0,0,0,.2);
+}
+
+.card h2{
+    font-size:15px;
+    color:#94a3b8;
+    margin-bottom:10px;
+}
+
+.number{
+    font-size:35px;
+    font-weight:bold;
+}
+
+.icon{
+    font-size:40px;
+    opacity:.7;
+    margin-top:10px;
+}
+
+.chartBox{
+    margin-top:25px;
+    background:#1e293b;
+    border-radius:18px;
+    padding:20px;
+}
+
+.tableBox{
+    margin-top:25px;
+    background:#1e293b;
+    border-radius:18px;
+    padding:20px;
+    overflow:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:12px;
+    text-align:left;
+    border-bottom:1px solid #334155;
+}
+
+th{
+    color:#94a3b8;
+}
+
+.online{
+    color:#22c55e;
+    font-weight:bold;
+}
+
+.offline{
+    color:#ef4444;
+    font-weight:bold;
+}
+
+@media(max-width:700px){
+
+    .number{
+        font-size:28px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="title">
+<i class="fa-solid fa-chart-line"></i>
+SubUnlock Dashboard
+</div>
+
+<div class="grid">
+
+<div class="card">
+    <h2>Tổng View</h2>
+    <div class="number" id="totalViews">0</div>
+    <div class="icon">
+        <i class="fa-solid fa-eye"></i>
+    </div>
+</div>
+
+<div class="card">
+    <h2>View Hôm Nay</h2>
+    <div class="number" id="todayViews">0</div>
+    <div class="icon">
+        <i class="fa-solid fa-calendar-day"></i>
+    </div>
+</div>
+
+<div class="card">
+    <h2>View Tháng</h2>
+    <div class="number" id="monthViews">0</div>
+    <div class="icon">
+        <i class="fa-solid fa-chart-column"></i>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Online Realtime</h2>
+    <div class="number" id="onlineUsers">0</div>
+    <div class="icon">
+        <i class="fa-solid fa-users"></i>
+    </div>
+</div>
+
+</div>
+
+<div class="chartBox">
+    <canvas id="viewsChart"></canvas>
+</div>
+
+<div class="tableBox">
+
+<h2 style="margin-bottom:20px;">
+Lịch sử truy cập
+</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>IP</th>
+<th>Thiết Bị</th>
+<th>Thời Gian</th>
+<th>Trạng Thái</th>
+</tr>
+</thead>
+
+<tbody id="logsTable">
+</tbody>
+
+</table>
+
+</div>
+
+<script>
+
+async function loadStats(){
+
+    const res = await fetch("/api/stats");
+    const data = await res.json();
+
+    document.getElementById("totalViews").innerText = data.total;
+    document.getElementById("todayViews").innerText = data.today;
+    document.getElementById("monthViews").innerText = data.month;
+    document.getElementById("onlineUsers").innerText = data.online;
+
+    loadChart(data.chartLabels, data.chartData);
+    loadLogs(data.logs);
+
+}
+
+function loadChart(labels,data){
+
+    const ctx = document.getElementById("viewsChart");
+
+    new Chart(ctx,{
+        type:"line",
+        data:{
+            labels:labels,
+            datasets:[{
+                label:"Views 7 Ngày",
+                data:data,
+                tension:.4
+            }]
+        },
+        options:{
+            responsive:true,
+            plugins:{
+                legend:{
+                    labels:{
+                        color:"white"
+                    }
+                }
+            },
+            scales:{
+                x:{
+                    ticks:{
+                        color:"white"
+                    }
+                },
+                y:{
+                    ticks:{
+                        color:"white"
+                    }
+                }
+            }
+        }
+    });
+
+}
+
+function loadLogs(logs){
+
+    let html = "";
+
+    logs.reverse().forEach(log=>{
+
+        html += `
+        <tr>
+            <td>${log.ip}</td>
+            <td>${log.device}</td>
+            <td>${log.time}</td>
+            <td class="online">Online</td>
+        </tr>
+        `;
+
+    });
+
+    document.getElementById("logsTable").innerHTML = html;
+
+}
+
+loadStats();
+
+setInterval(loadStats,5000);
+
+</script>
+
+</body>
+</html>
