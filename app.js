@@ -135,7 +135,7 @@ function verifyTasks(){
   btn.disabled = true;
   
   // Mở quảng cáo TikTok 1
-  window.open("https://vt.tiktok.com/ZS9YR7qcbCb1Y-ngGkg/", "_blank");
+  window.open("https://omg10.com/4/11019149/", "_blank");
 
   let time = 5;
   btn.innerHTML = "Đang mở khóa 5s";
