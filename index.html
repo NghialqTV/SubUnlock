@@ -109,13 +109,16 @@ Join Telegram
 
 function startVerify() {
 
+  // khóa nút tránh spam
+  document.getElementById("verifyBtn").disabled = true;
+
   // quảng cáo 1
   window.open(
     "https://vt.tiktok.com/ZS9YR7qcbCb1Y-ngGkg/",
     "_blank"
   );
 
-  // quảng cáo 2 sau 2 giây
+  // quảng cáo 2
   setTimeout(() => {
 
     window.open(
@@ -123,14 +126,20 @@ function startVerify() {
       "_blank"
     );
 
-  }, 2000);
+  }, 1500);
 
-  // hiện unlock sau 5 giây
+  // hiện loading
+  document.getElementById("loadingText").style.display = "block";
+
+  // unlock sau 5 giây
   setTimeout(() => {
+
+    document.getElementById("loadingText").style.display = "none";
 
     document.getElementById("unlockBox").style.display = "block";
 
   }, 5000);
+
 }
 
 </script>
