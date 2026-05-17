@@ -1,5 +1,12 @@
 const pages = {
 
+  keyandroid: {
+    sub: "https://youtube.com/@nghiaxtv",
+    like: "https://youtu.be/MZLKU7WZbRA?si=c1h8WBMYh6eD_ZDK",
+    tele: "https://t.me/+gI22PHmUi5xhMDA9",
+    unlock: "https://duymmo.io.vn/ctvkey/3fun.php"
+  },
+  
   modmenuandroid64: {
     sub: "https://youtube.com/@nghiaxtv",
     like: "https://youtu.be/MZLKU7WZbRA?si=dOVVzrNKDbmWbHJz",
