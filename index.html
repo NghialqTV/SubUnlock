@@ -71,52 +71,124 @@ Join Telegram
 
 </div>
 
-<!-- STEP 4 -->
+<!-- VERIFY -->
 
 <div class="task">
 
-<span>Bước 4 - Xác Minh Nhiệm Vụ</span>
+<h3>
+4. Xác minh nhiệm vụ
+</h3>
 
-<button class="btn" id="verifyBtn" onclick="startVerify()">
+<button
+class="btn"
+id="verifyBtn"
+onclick="startVerify()">
+
 Thực hiện
+
 </button>
 
-<div id="loadingText" style="display:none; margin-top:10px;">
+<div
+id="loadingText"
+style="display:none; margin-top:10px;">
+
 ⏳ Đang xác minh nhiệm vụ...
-</div>
 
 </div>
 
-<!-- hoàn thành -->
+</div>
 
-<div id="unlockBox" style="display:none; margin-top:20px;">
+<!-- SUCCESS -->
+
+<div
+id="unlockBox"
+style="display:none; margin-top:20px;">
 
 <div class="success">
 ✅ HOÀN THÀNH
 </div>
 
-<button class="btn" id="openBtn" onclick="openAdsStep2()">
+<button
+class="btn"
+id="openBtn"
+onclick="openAdsStep2()">
+
 MỞ LINK
+
 </button>
 
 </div>
+
+</div>
+
+</div>
+
+<!-- DATA -->
 
 <script src="data.js"></script>
 
 <script>
 
-// lấy page hiện tại từ URL
-const params = new URLSearchParams(window.location.search);
+// lấy page hiện tại
+const params =
+new URLSearchParams(window.location.search);
 
 const currentPage =
 params.get("page") || "hackmenuios";
 
-// bước 1
+
+// kiểm tra page tồn tại
+if (!pages[currentPage]) {
+
+  alert("Page không tồn tại");
+
+}
+
+
+// SUBSCRIBE
+function subscribeYoutube() {
+
+  window.open(
+    pages[currentPage].sub,
+    "_blank"
+  );
+
+}
+
+
+// LIKE VIDEO
+function likeVideo() {
+
+  window.open(
+    pages[currentPage].like,
+    "_blank"
+  );
+
+}
+
+
+// JOIN TELEGRAM
+function joinTelegram() {
+
+  window.open(
+    pages[currentPage].tele,
+    "_blank"
+  );
+
+}
+
+
+// VERIFY
 function startVerify() {
 
-  document.getElementById("verifyBtn").disabled = true;
+  const verifyBtn =
+  document.getElementById("verifyBtn");
 
-  document.getElementById("loadingText").style.display = "block";
+  verifyBtn.disabled = true;
+
+  document.getElementById(
+    "loadingText"
+  ).style.display = "block";
 
   // quảng cáo 1
   window.open(
@@ -124,21 +196,29 @@ function startVerify() {
     "_blank"
   );
 
-  // loading 5s
+  // loading
   setTimeout(() => {
 
-    document.getElementById("loadingText").style.display = "none";
+    document.getElementById(
+      "loadingText"
+    ).style.display = "none";
 
-    document.getElementById("unlockBox").style.display = "block";
+    document.getElementById(
+      "unlockBox"
+    ).style.display = "block";
 
   }, 5000);
+
 }
 
 
-// bước 2
+// ADS STEP 2
 function openAdsStep2() {
 
-  document.getElementById("openBtn").disabled = true;
+  const openBtn =
+  document.getElementById("openBtn");
+
+  openBtn.disabled = true;
 
   // quảng cáo 2
   window.open(
@@ -146,24 +226,17 @@ function openAdsStep2() {
     "_blank"
   );
 
-  // đợi user quay lại
+  // đợi rồi mở unlock
   setTimeout(() => {
 
-    // mở link unlock đúng page
-    if (pages[currentPage]) {
-
-      window.location.href =
-      pages[currentPage].unlock;
-
-    }
+    window.location.href =
+    pages[currentPage].unlock;
 
   }, 5000);
 
 }
 
 </script>
-
-<script src="app.js"></script>
 
 </body>
 </html>
