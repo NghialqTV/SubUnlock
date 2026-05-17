@@ -87,9 +87,25 @@ Join Telegram
 
 </div>
 
+<!-- VERIFY -->
+
+<div class="task">
+
+  <span>Bước 4 - Xác Minh Nhiệm Vụ</span>
+
+  <button class="btn" id="verifyBtn" onclick="startVerify()">
+    Thực hiện
+  </button>
+
+  <div id="loadingText" style="display:none; margin-top:10px;">
+    ⏳ Đang xác minh nhiệm vụ...
+  </div>
+
+</div>
+
 <!-- SUCCESS -->
 
-<div id="unlockBox" style="display:none;">
+<div id="unlockBox" style="display:none; margin-top:20px;">
 
   <div class="success">
     ✅ HOÀN THÀNH
@@ -101,16 +117,15 @@ Join Telegram
 
 </div>
 
-</div>
-
-</div>
-
 <script>
 
 function startVerify() {
 
   // khóa nút tránh spam
   document.getElementById("verifyBtn").disabled = true;
+
+  // hiện loading
+  document.getElementById("loadingText").style.display = "block";
 
   // quảng cáo 1
   window.open(
@@ -128,9 +143,6 @@ function startVerify() {
 
   }, 1500);
 
-  // hiện loading
-  document.getElementById("loadingText").style.display = "block";
-
   // unlock sau 5 giây
   setTimeout(() => {
 
@@ -142,4 +154,20 @@ function startVerify() {
 
 }
 
+// mở link gốc
+function openUnlock() {
+
+  window.open(
+    "LINK_GOC_CUA_BAN",
+    "_blank"
+  );
+
+}
+
 </script>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
