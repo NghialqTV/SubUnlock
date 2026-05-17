@@ -82,27 +82,70 @@ Join Telegram
   </a>
 </div>
 
+<!-- VERIFY -->
+
+<div class="task">
+
+  <span>Bước 4 - Xác Minh Nhiệm Vụ</span>
+
+  <button class="btn" id="verifyBtn" onclick="startVerify()">
+    Thực hiện
+  </button>
+
+  <div id="loadingText" style="display:none; margin-top:10px;">
+    ⏳ Đang xác minh nhiệm vụ...
+  </div>
+
+</div>
+
 <!-- SUCCESS -->
 
-<div id="unlockBox">
+<div id="unlockBox" style="display:none;">
 
-<div class="success">
-✅ HOÀN THÀNH
-</div>
+  <div class="success">
+    ✅ HOÀN THÀNH
+  </div>
 
-<button onclick="openUnlock()">
-MỞ LINK
-</button>
-
-</div>
+  <button class="btn" onclick="openUnlock()">
+    MỞ LINK
+  </button>
 
 </div>
 
 </div>
+
+</div>
+
+<script>
+
+function startVerify() {
+
+  // mở quảng cáo TikTok
+  window.open(
+    "https://vt.tiktok.com/ZS9YR7qcbCb1Y-ngGkg/",
+    "_blank"
+  );
+
+  // khóa nút
+  document.getElementById("verifyBtn").disabled = true;
+
+  // hiện loading
+  document.getElementById("loadingText").style.display = "block";
+
+  // đợi 5 giây rồi mở khóa
+  setTimeout(() => {
+
+    document.getElementById("loadingText").style.display = "none";
+
+    document.getElementById("unlockBox").style.display = "block";
+
+  }, 5000);
+}
+
+</script>
 
 <script src="data.js"></script>
 <script src="app.js"></script>
 
 </body>
-
 </html>
