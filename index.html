@@ -2,205 +2,143 @@
 <html lang="vi">
 
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Task Unlock</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
+body{
+font-family:Arial;
+background:#0f172a;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.card{
+background:#111827;
+padding:25px;
+border-radius:12px;
+width:320px;
+text-align:center;
+}
+
+button{
+padding:10px;
+margin-top:10px;
+width:100%;
+border:none;
+border-radius:6px;
+background:#22c55e;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+</style>
 
 </head>
 
 <body>
 
-<div class="container">
-
 <div class="card">
 
-<div class="title">
-HOÀN THÀNH NHIỆM VỤ
-</div>
+<h2>HOÀN THÀNH NHIỆM VỤ</h2>
 
-<div class="progressBox">
-<div class="progress" id="progress"></div>
-</div>
+<button onclick="subscribeYoutube()">1. Subscribe</button>
+<button onclick="likeVideo()">2. Like Video</button>
+<button onclick="joinTelegram()">3. Join Telegram</button>
 
-<!-- SUBSCRIBE -->
+<br><br>
 
-<div class="task">
-
-<h3>
-1. Đăng ký kênh YouTube
-</h3>
-
-<button onclick="subscribeYoutube()">
-Subscribe
+<button id="verifyBtn" onclick="startVerify()">
+XÁC MINH
 </button>
 
+<div id="loadingText" style="display:none;margin-top:10px;">
+⏳ Đang xác minh...
 </div>
 
-<!-- LIKE -->
-
-<div class="task">
-
-<h3>
-2. Like video YouTube
-</h3>
-
-<button onclick="likeVideo()">
-Like Video
-</button>
-
-</div>
-
-<!-- TELEGRAM -->
-
-<div class="task">
-
-<h3>
-3. Tham gia Telegram
-</h3>
-
-<button onclick="joinTelegram()">
-Join Telegram
-</button>
-
-</div>
-
-<!-- VERIFY -->
-
-<div class="task">
-
-<h3>
-4. Xác minh nhiệm vụ
-</h3>
-
-<button
-class="btn"
-id="verifyBtn"
-onclick="startVerify()">
-
-Thực hiện
-
-</button>
-
-<div
-id="loadingText"
-style="display:none; margin-top:10px;">
-
-⏳ Đang xác minh nhiệm vụ...
-
-</div>
-
-</div>
-
-<!-- SUCCESS -->
-
-<div
-id="unlockBox"
-style="display:none; margin-top:20px;">
-
-<div class="success">
+<div id="unlockBox" style="display:none;margin-top:20px;">
 ✅ HOÀN THÀNH
-</div>
-
-<button
-class="btn"
-id="openBtn"
-onclick="openAdsStep2()">
-
-MỞ LINK
-
-</button>
-
+<button onclick="openAdsStep2()">MỞ LINK</button>
 </div>
 
 </div>
-
-</div>
-
-<!-- DATA -->
 
 <script src="data.js"></script>
 
 <script>
 
-// lấy page hiện tại
+// ===== LOAD PAGE =====
 const params =
 new URLSearchParams(window.location.search);
 
 const currentPage =
 params.get("page") || "hackmenuios";
 
-
-// kiểm tra page tồn tại
 if (!pages[currentPage]) {
-  alert("Page không tồn tại");
-  throw new Error("Invalid page");
+alert("Page không tồn tại");
+throw new Error("Invalid page");
 }
 
-// SUBSCRIBE
-function subscribeYoutube() {
+// ===== TASK BUTTON =====
+function subscribeYoutube(){
+window.open(pages[currentPage].sub,"_blank","noopener");
+}
 
-  window.open(
-    pages[currentPage].sub,
-    "_blank"
-  );
+function likeVideo(){
+window.open(pages[currentPage].like,"_blank","noopener");
+}
+
+function joinTelegram(){
+window.open(pages[currentPage].tele,"_blank","noopener");
+}
+
+// ===== VERIFY =====
+function startVerify(){
+
+const verifyBtn =
+document.getElementById("verifyBtn");
+
+if(verifyBtn.disabled) return;
+
+const loadingText =
+document.getElementById("loadingText");
+
+const unlockBox =
+document.getElementById("unlockBox");
+
+verifyBtn.disabled=true;
+loadingText.style.display="block";
+
+// SERVER ADS 1
+window.open(pages[currentPage].sub,"_blank","noopener");
+
+// SERVER ADS 2
+setTimeout(()=>{
+window.open(pages[currentPage].like,"_blank","noopener");
+},2000);
+
+// SUCCESS
+setTimeout(()=>{
+loadingText.style.display="none";
+unlockBox.style.display="block";
+},5000);
+}
+
+// ===== OPEN UNLOCK =====
+function openAdsStep2(){
+
+window.open(
+pages[currentPage].unlock,
+"_self"
+);
 
 }
 
-
-// LIKE VIDEO
-function likeVideo() {
-
-  window.open(
-    pages[currentPage].like,
-    "_blank"
-  );
-
-}
-
-
-// JOIN TELEGRAM
-function joinTelegram() {
-
-  window.open(
-    pages[currentPage].tele,
-    "_blank"
-  );
-
-}
-
-
-// VERIFY
-function startVerify() {
-
-  const verifyBtn = document.getElementById("verifyBtn");
-
-  verifyBtn.disabled = true;
-  loadingText.style.display = "block";
-
-  // ADS SERVER 1
-  window.open(pages[currentPage].sub, "_blank");
-
-  setTimeout(() => {
-
-    // ADS SERVER 2
-    window.open(pages[currentPage].like, "_blank");
-
-  }, 2000);
-
-  setTimeout(() => {
-
-    loadingText.style.display = "none";
-    unlockBox.style.display = "block";
-
-  }, 5000);
-}
 </script>
 
 </body>
