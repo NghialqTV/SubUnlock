@@ -71,23 +71,19 @@ Join Telegram
 
 </div>
 
-<!-- VERIFY -->
-
 <!-- STEP 4 -->
 
 <div class="task">
 
-  <span>Bước 4 - Xác Minh Nhiệm Vụ</span>
+<span>Bước 4 - Xác Minh Nhiệm Vụ</span>
 
-  <!-- nút bước 1 -->
-  <button class="btn" id="verifyBtn" onclick="startVerify()">
-    Thực hiện
-  </button>
+<button class="btn" id="verifyBtn" onclick="startVerify()">
+Thực hiện
+</button>
 
-  <!-- loading -->
-  <div id="loadingText" style="display:none; margin-top:10px;">
-    ⏳ Đang xác minh nhiệm vụ...
-  </div>
+<div id="loadingText" style="display:none; margin-top:10px;">
+⏳ Đang xác minh nhiệm vụ...
+</div>
 
 </div>
 
@@ -95,35 +91,40 @@ Join Telegram
 
 <div id="unlockBox" style="display:none; margin-top:20px;">
 
-  <div class="success">
-    ✅ HOÀN THÀNH
-  </div>
+<div class="success">
+✅ HOÀN THÀNH
+</div>
 
-  <!-- nút mở link -->
-  <button class="btn" id="openBtn" onclick="openAdsStep2()">
-    MỞ LINK
-  </button>
+<button class="btn" id="openBtn" onclick="openAdsStep2()">
+MỞ LINK
+</button>
 
 </div>
 
+<script src="data.js"></script>
+
 <script>
+
+// lấy page hiện tại từ URL
+const params = new URLSearchParams(window.location.search);
+
+const currentPage =
+params.get("page") || "hackmenuios";
 
 // bước 1
 function startVerify() {
 
-  // khóa nút
   document.getElementById("verifyBtn").disabled = true;
 
-  // hiện loading
   document.getElementById("loadingText").style.display = "block";
 
-  // quảng cáo đầu
+  // quảng cáo 1
   window.open(
     "https://vt.tiktok.com/ZS9YR7qcbCb1Y-ngGkg/",
     "_blank"
   );
 
-  // sau 5 giây hiện hoàn thành
+  // loading 5s
   setTimeout(() => {
 
     document.getElementById("loadingText").style.display = "none";
@@ -134,25 +135,27 @@ function startVerify() {
 }
 
 
-// bước 2 khi bấm mở link
+// bước 2
 function openAdsStep2() {
 
-  // khóa nút
   document.getElementById("openBtn").disabled = true;
 
-  // quảng cáo thứ 2
+  // quảng cáo 2
   window.open(
     "https://vt.tiktok.com/ZS9YRTCTBKE3B-Pnxqj/",
     "_blank"
   );
 
-  // đợi quay lại rồi mở link gốc
+  // đợi user quay lại
   setTimeout(() => {
 
-    window.open(
-      "LINK_GOC_CUA_BAN",
-      "_blank"
-    );
+    // mở link unlock đúng page
+    if (pages[currentPage]) {
+
+      window.location.href =
+      pages[currentPage].unlock;
+
+    }
 
   }, 5000);
 
@@ -160,7 +163,6 @@ function openAdsStep2() {
 
 </script>
 
-<script src="data.js"></script>
 <script src="app.js"></script>
 
 </body>
