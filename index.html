@@ -179,61 +179,28 @@ function joinTelegram() {
 // VERIFY
 function startVerify() {
 
-  const verifyBtn =
-  document.getElementById("verifyBtn");
+  const verifyBtn = document.getElementById("verifyBtn");
 
   verifyBtn.disabled = true;
+  loadingText.style.display = "block";
 
-  document.getElementById(
-    "loadingText"
-  ).style.display = "block";
+  // ADS SERVER 1
+  window.open(pages[currentPage].sub, "_blank");
 
-  // quảng cáo 1
-  window.open(
-    "https://vt.tiktok.com/ZS9YR7qcbCb1Y-ngGkg/",
-    "_blank"
-  );
-
-  // loading
   setTimeout(() => {
 
-    document.getElementById(
-      "loadingText"
-    ).style.display = "none";
+    // ADS SERVER 2
+    window.open(pages[currentPage].like, "_blank");
 
-    document.getElementById(
-      "unlockBox"
-    ).style.display = "block";
+  }, 2000);
 
-  }, 5000);
-
-}
-
-
-// ADS STEP 2
-function openAdsStep2() {
-
-  const openBtn =
-  document.getElementById("openBtn");
-
-  openBtn.disabled = true;
-
-  // quảng cáo 2
-  window.open(
-    "https://vt.tiktok.com/ZS9YRTCTBKE3B-Pnxqj/",
-    "_blank"
-  );
-
-  // đợi rồi mở unlock
   setTimeout(() => {
 
-    window.location.href =
-    pages[currentPage].unlock;
+    loadingText.style.display = "none";
+    unlockBox.style.display = "block";
 
   }, 5000);
-
 }
-
 </script>
 
 </body>
