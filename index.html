@@ -139,11 +139,9 @@ params.get("page") || "hackmenuios";
 
 // kiểm tra page tồn tại
 if (!pages[currentPage]) {
-
   alert("Page không tồn tại");
-
+  throw new Error("Invalid page");
 }
-
 
 // SUBSCRIBE
 function subscribeYoutube() {
