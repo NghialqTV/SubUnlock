@@ -1,6 +1,6 @@
 const pages = {
 
-  85skin2005: {
+  "85skin2005": {
     sub: "https://youtube.com/@nghiaxtv",
     like: "https://youtu.be/4p4ymxUvD6Q?si=A65CN-syZQ95eI0D",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
