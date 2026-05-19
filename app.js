@@ -135,7 +135,7 @@ function verifyTasks(){
   btn.disabled = true;
   
   // Mở quảng cáo TikTok 1
-  window.open("https://vt.tiktok.com/ZS9YR7qcbCb1Y-ngGkg/", "_blank");
+  window.open("https://vt.tiktok.com/ZS9YhEgqSYAbH-PqBKZ/", "_blank");
 
   let time = 5;
   btn.innerHTML = "Đang mở khóa 5s";
@@ -159,7 +159,7 @@ function openUnlock(){
   openBtn.disabled = true;
 
   // Mở quảng cáo TikTok 2
-  window.open("https://vt.tiktok.com/ZS9YLXeC1C5Fb-PPwhL/", "_blank");
+  window.open("https://vt.tiktok.com/ZS9YhE74P5dhh-m0DJY/", "_blank");
 
   // Xóa lịch sử nhiệm vụ cũ để lần sau bấm link khác vẫn làm lại được
   localStorage.removeItem(id + "_1");
