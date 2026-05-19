@@ -1,5 +1,12 @@
 const pages = {
 
+  85skin2005: {
+    sub: "https://youtube.com/@nghiaxtv",
+    like: "https://youtu.be/4p4ymxUvD6Q?si=A65CN-syZQ95eI0D",
+    tele: "https://t.me/+gI22PHmUi5xhMDA9",
+    unlock: "https://www.mediafire.com/file/bkiuyzip8rdjqq2/Mod_85_Skin_Full_Hi%25E1%25BB%2587u_%25E1%25BB%25A8ng_M%25E1%25BB%259Bi_Nh%25E1%25BA%25A5t_Update.zip/file"
+  },
+  
   keyandroid: {
     sub: "https://youtube.com/@nghiaxtv",
     like: "https://youtu.be/MZLKU7WZbRA?si=c1h8WBMYh6eD_ZDK",
