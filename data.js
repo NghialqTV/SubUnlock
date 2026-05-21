@@ -9,7 +9,7 @@ const pages = {
   
   resources: {
     sub: "https://youtube.com/@nghiaxtv",
-    like: "https://youtu.be/h3wMFJSIK3g?si=NiL6_mn6PmPW9X_P",
+    like: "https://youtu.be/qad5-ztp8QA?si=SO7YZzXIwJ03fOEj",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/6q1evlk9hwfjni8/Resources_S2_%255B_Update_21_Th%25C3%25A1ng5_%255D.zip/file"
   },
