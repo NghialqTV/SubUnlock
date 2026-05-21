@@ -4,9 +4,16 @@ const pages = {
     sub: "https://youtube.com/@nghiaxtv",
     like: "https://youtu.be/4p4ymxUvD6Q?si=A65CN-syZQ95eI0D",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://www.mediafire.com/file/bkiuyzip8rdjqq2/Mod_85_Skin_Full_Hi%25E1%25BB%2587u_%25E1%25BB%25A8ng_M%25E1%25BB%259Bi_Nh%25E1%25BA%25A5t_Update.zip/file"
+    unlock: "https://nghialqtv.github.io/mod/file-le.htmlate.zip/file"
   },
 
+  filele: {
+    sub: "https://youtube.com/@nghiaxtv",
+    like: "https://youtu.be/qad5-ztp8QA?si=SO7YZzXIwJ03fOEj",
+    tele: "https://t.me/+gI22PHmUi5xhMDA9",
+    unlock: "https://www.mediafire.com/file/csnsh3fwcuf9sv8/Cam_Xa_S2_%255B_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_21_Th%25C3%25A1ng_5%255D.zip/file"
+  },
+  
   camxa: {
     sub: "https://youtube.com/@nghiaxtv",
     like: "https://youtu.be/qad5-ztp8QA?si=SO7YZzXIwJ03fOEj",
