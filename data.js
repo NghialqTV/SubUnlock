@@ -89,6 +89,13 @@ const pages = {
     like: "https://youtu.be/hcb2ZsVcQ1E?si=dcW7h64IvZre1C1N",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/6flzvt1eklfzagd/Pack_40_Skin_By_Ngh%25C4%25A9aLq_TV_%255B_Android_-_IOS_%255D.zip/file"
+  },
+
+  pack56skin2205: {
+    sub: "https://youtube.com/@nghiaxtv",
+    like: "https://youtu.be/UcnKpaGXFIM?si=tzV7bl4IOSrj2254",
+    tele: "https://t.me/+gI22PHmUi5xhMDA9",
+    unlock: "https://www.mediafire.com/file/06clfhfpsl1d0ry/Pack_56_Skin_Android_-_IOS_Sau_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_22_Th%25C3%25A1ng_5.zip/file"
   }
 
 };
