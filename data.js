@@ -65,21 +65,21 @@ const pages = {
   
   hackmenuios: {
     sub: "https://youtube.com/@nghiaxtv",
-    like: "https://youtu.be/8e_VkmBs5Yk?si=C_xDgPkr9-7XoVu3",
+    like: "https://youtu.be/f4OB08TciwY?si=jsoYiRMvHKnzOloJ",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://ipas.cc/ahe15n"
   },
 
   modmenuios: {
     sub: "https://youtube.com/@nghiaxtv",
-    like: "https://youtu.be/8e_VkmBs5Yk?si=C_xDgPkr9-7XoVu3",
+    like: "https://youtu.be/f4OB08TciwY?si=jsoYiRMvHKnzOloJ",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://ipas.cc/lwlmyy"
   },
 
   keymenuios: {
     sub: "https://youtube.com/@nghiaxtv",
-    like: "https://youtu.be/8e_VkmBs5Yk?si=C_xDgPkr9-7XoVu3",
+    like: "https://youtu.be/f4OB08TciwY?si=jsoYiRMvHKnzOloJ",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://funlink.io/Puev89R"
   },
