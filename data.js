@@ -67,14 +67,14 @@ const pages = {
     sub: "https://youtube.com/@nghiaxtv",
     like: "https://youtu.be/f4OB08TciwY?si=jsoYiRMvHKnzOloJ",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://ipas.cc/ahe15n"
+    unlock: "https://ipas.cc/3eo9i6"
   },
 
   modmenuios: {
     sub: "https://youtube.com/@nghiaxtv",
     like: "https://youtu.be/f4OB08TciwY?si=jsoYiRMvHKnzOloJ",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://ipas.cc/lwlmyy"
+    unlock: "https://ipas.cc/3eo9i6"
   },
 
   keymenuios: {
