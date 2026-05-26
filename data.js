@@ -30,7 +30,7 @@ const pages = {
   
   keyandroid: {
     sub: "https://youtube.com/@nghiaxtv",
-    like: "https://youtu.be/MZLKU7WZbRA?si=c1h8WBMYh6eD_ZDK",
+    like: "https://youtu.be/QhV7ZN5uEPM?si=4aCO2I1TKlIQorpD",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://duymmo.io.vn/ctvkey/3fun.php"
   },
