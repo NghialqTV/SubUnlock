@@ -67,7 +67,7 @@ const pages = {
     sub: "https://youtube.com/@nghiaxtv",
     like: "https://youtu.be/f4OB08TciwY?si=jsoYiRMvHKnzOloJ",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://ipas.cc/3eo9i6"
+    unlock: "https://ipas.cc/l2fg9k"
   },
 
   modmenuios: {
