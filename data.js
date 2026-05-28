@@ -103,6 +103,12 @@ const pages = {
     like: "https://youtu.be/UcnKpaGXFIM?si=tzV7bl4IOSrj2254",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/06clfhfpsl1d0ry/Pack_56_Skin_Android_-_IOS_Sau_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_22_Th%25C3%25A1ng_5.zip/file"
+  },
+  pack41skin2805: {
+    sub: "https://youtube.com/@nghiaxtv",
+    like: "https://youtu.be/928kxGy229A?si=v1yOdqcJZtr_lCJD",
+    tele: "https://t.me/+gI22PHmUi5xhMDA9",
+    unlock: "https://www.mediafire.com/file/utd48wxb9bjoz4d/Pack_41_Skin_Android_-_IOS.zip/file"
   }
 
 };
