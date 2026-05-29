@@ -159,7 +159,7 @@ function openUnlock(){
   openBtn.disabled = true;
 
   // Mở quảng cáo TikTok 2
-  window.open("https://vt.tiktok.com/ZS92J8Kpnw5ka-3dayL/", "_blank");
+  window.open("https://vt.tiktok.com/ZS9285w5ypGbD-rr3Jr/", "_blank");
 
   // Xóa lịch sử nhiệm vụ cũ để lần sau bấm link khác vẫn làm lại được
   localStorage.removeItem(id + "_1");
