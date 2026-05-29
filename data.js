@@ -25,7 +25,7 @@ const pages = {
     sub: "https://youtube.com/@nghiaxtv",
     like: "https://youtu.be/qad5-ztp8QA?si=SO7YZzXIwJ03fOEj",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://www.mediafire.com/file/qp428s1qodu88bq/Resources_S2_%255B_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_22_Th%25C3%25A1ng_5%255D_.zip/file"
+    unlock: "https://www.mediafire.com/file/6yhybry0ns6id2d/Resources_C%25E1%25BA%25ADp_Nh%25C3%25A2t_30_Th%25C3%25A1ng_5.zip/file"
   },
   
   keyandroid: {
