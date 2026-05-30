@@ -97,6 +97,12 @@ const pages = {
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/m4ac0mkbeojusn3/Mod_Pack_60_Skin_Li%25C3%25AAn_Qu%25C3%25A2n_M%25E1%25BB%259Bi_Nh%25E1%25BA%25A5t_By_NghialqTV.zip/file"
   },
+  pack120skin3005: {
+    sub: "https://youtube.com/@nghiaxtv",
+    like: "https://youtu.be/IIz_gOtzjPs?si=3PbC2BntrO31FWyq",
+    tele: "https://t.me/+gI22PHmUi5xhMDA9",
+    unlock: "https://www.mediafire.com/file/qo94y5ub6wcdx9s/Pack_121_Skin_Android_-_IOS.zip/file"
+  },
 
   pack56skin2205: {
     sub: "https://youtube.com/@nghiaxtv",
