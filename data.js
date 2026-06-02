@@ -30,7 +30,7 @@ const pages = {
   
   keyandroid: {
     sub: "https://youtube.com/@nghiaxtv",
-    like: "https://youtu.be/-KChHODv5yM?si=_9JEp3vWqCLXKR_k",
+    like: "https://youtu.be/QhV7ZN5uEPM?si=hSnxddRY17XEyEii",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://duymmo.io.vn/ctvkey/3fun.php"
   },
@@ -99,7 +99,7 @@ const pages = {
   },
   pack120skin3005: {
     sub: "https://youtube.com/@nghiaxtv",
-    like: "https://youtu.be/IIz_gOtzjPs?si=3PbC2BntrO31FWyq",
+    like: "https://youtu.be/-KChHODv5yM?si=woDJQX209jtky9gV",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/qo94y5ub6wcdx9s/Pack_121_Skin_Android_-_IOS.zip/file"
   },
