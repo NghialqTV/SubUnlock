@@ -39,7 +39,7 @@ const pages = {
     sub: "https://youtube.com/@nghiaxtv",
     like: "https://youtu.be/QhV7ZN5uEPM?si=4aCO2I1TKlIQorpD",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://www.mediafire.com/file/2ylxdv8p8vn7i3d/Menu_Mod_Skin_%255B_64_Bit_%255D.apk/file"
+    unlock: "https://www.mediafire.com/file/ck8cfrapf1ptqj2/Menu_Li%25C3%25AAn_Qu%25C3%25A2n_ModSkin_.apk/file"
   },
   
   modmenuandroid32: {
