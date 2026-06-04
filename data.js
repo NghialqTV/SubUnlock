@@ -18,7 +18,7 @@ const pages = {
     sub: "https://www.youtube.com/@CyberMod_04",
     like: "https://youtu.be/oMtOiTVCNVw?si=zRmRlMtJPSzc2P2F",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://www.mediafire.com/file/6yhybry0ns6id2d/Resources_C%25E1%25BA%25ADp_Nh%25C3%25A2t_30_Th%25C3%25A1ng_5.zip/file"
+    unlock: "https://www.mediafire.com/file/fmg9hcixqsb3cwh/Resources_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_4_th%25C3%25A1ng_6.zip/file"
   },
   
   keyandroid: {
