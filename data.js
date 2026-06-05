@@ -81,6 +81,6 @@ const pages = {
     sub: "https://www.youtube.com/@CyberMod_04",
     like: "https://youtu.be/oMtOiTVCNVw?si=zRmRlMtJPSzc2P2F",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://funlink.io/Puev89R"
+    unlock: "https://funlink.io/PwQB1jV"
   }
 };
