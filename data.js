@@ -60,14 +60,14 @@ const pages = {
     sub: "https://www.youtube.com/@CyberMod_04",
     like: "https://youtu.be/f4OB08TciwY?si=jsoYiRMvHKnzOloJ",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://ipas.cc/l2fg9k"
+    unlock: "https://ipas.cc/byem9u"
   },
 
   modmenuios: {
     sub: "https://www.youtube.com/@CyberMod_04",
     like: "https://youtu.be/f4OB08TciwY?si=jsoYiRMvHKnzOloJ",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://ipas.cc/3eo9i6"
+    unlock: "https://ipas.cc/pyev1a"
   },
 
   keymenuios: {
