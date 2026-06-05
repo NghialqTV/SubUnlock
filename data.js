@@ -1,11 +1,6 @@
 const pages = {
 
-  45skin0606: {
-    sub: "https://www.youtube.com/@CyberMod_04",
-    like: "https://youtu.be/Zxy1adX0CJY?si=5v3gBNYYw0ulj3yM",
-    tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://linkx.me/jUdf8f0"
-  },
+
   filele: {
     sub: "https://www.youtube.com/@CyberMod_04",
     like: "https://youtu.be/oMtOiTVCNVw?si=zRmRlMtJPSzc2P2F",
