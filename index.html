@@ -1,153 +1,46 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyber TV Unlock</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Unlock</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="container">
-
     <div class="card">
+        <div class="title">HOÀN THÀNH NHIỆM VỤ</div>
 
-        <div class="top-box">
-
-            <div class="logo">⚡</div>
-
-            <h1>Cyber TV</h1>
-
-            <p>
-                Hoàn thành nhiệm vụ để mở khóa file tải xuống
-            </p>
-
-            <div class="progress-area">
-
-                <div class="progress-bar">
-                    <div id="progress"></div>
-                </div>
-
-                <span id="percent">0%</span>
-
-            </div>
-
+        <div class="progressBox">
+            <div class="progress" id="progress"></div>
         </div>
 
-        <!-- TASK 1 -->
-
-        <div class="task-card">
-
-            <div class="task-left">
-
-                <div class="icon red">▶</div>
-
-                <div>
-                    <h2>Đăng ký kênh</h2>
-                    <p>YouTube Channel</p>
-                </div>
-
-            </div>
-
-            <button id="subBtn"
-            onclick="subscribeYoutube()">
-                Mở
-            </button>
-
+        <div class="task">
+            <h3>1. Đăng ký kênh YouTube</h3>
+            <button id="subBtn" onclick="subscribeYoutube()">Đăng ký kênh</button>
         </div>
 
-        <!-- TASK 2 -->
-
-        <div class="task-card">
-
-            <div class="task-left">
-
-                <div class="icon blue">👍</div>
-
-                <div>
-                    <h2>Like Video</h2>
-                    <p>Like & Bình luận</p>
-                </div>
-
-            </div>
-
-            <button id="likeBtn"
-            onclick="likeVideo()">
-                Mở
-            </button>
-
+        <div class="task">
+            <h3>2. Like - Bình Luận</h3>
+            <button id="likeBtn" onclick="likeVideo()">Like video</button>
         </div>
 
-        <!-- TASK 3 -->
-
-        <div class="task-card">
-
-            <div class="task-left">
-
-                <div class="icon sky">✈</div>
-
-                <div>
-                    <h2>Telegram</h2>
-                    <p>Tham gia nhóm</p>
-                </div>
-
-            </div>
-
-            <button id="teleBtn"
-            onclick="joinTelegram()">
-                Mở
-            </button>
-
+        <div class="task">
+            <h3>3. Tham gia Telegram</h3>
+            <button id="teleBtn" onclick="joinTelegram()">Tham gia Telegram</button>
         </div>
 
-        <!-- VERIFY -->
-
-        <div class="verify-box">
-
-            <button
-            class="verify-btn"
-            id="verifyBtn"
-            onclick="verifyTasks()">
-
-                XÁC MINH NHIỆM VỤ
-
-            </button>
-
+        <div class="task">
+            <h3>4. Xác minh nhiệm vụ</h3>
+            <button class="btn" id="verifyBtn" onclick="verifyTasks()">Xác minh nhiệm vụ</button>
         </div>
 
-        <!-- UNLOCK -->
-
-        <div
-        class="unlock-box"
-        id="unlockBox">
-
-            <h2>🎉 Thành Công</h2>
-
-            <p>
-                Bạn đã hoàn thành tất cả nhiệm vụ.
-            </p>
-
-            <button
-            class="unlock-btn"
-            onclick="openUnlock()">
-
-                MỞ LINK TẢI FILE
-
-            </button>
-
+        <div id="unlockBox" style="display:none; margin-top:20px;">
+            <div class="success">✅ HOÀN THÀNH</div>
+            <button class="btn" id="openBtn" style="background: linear-gradient(135deg, #16a34a, #22c55e);" onclick="openUnlock()">MỞ LINK LẤY FILE</button>
         </div>
-
-        <div class="footer">
-            © 2026 Cyber TV
-        </div>
-
     </div>
-
 </div>
 
 <script src="data.js"></script>
