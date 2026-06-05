@@ -8,24 +8,17 @@ if(!data){
 }
 
 /* LOAD */
-let done1 = sessionStorage.getItem(id + "_1") === "true";
-let done2 = sessionStorage.getItem(id + "_2") === "true";
-let done3 = sessionStorage.getItem(id + "_3") === "true";
+let done1 = localStorage.getItem(id + "_1") === "true";
+let done2 = localStorage.getItem(id + "_2") === "true";
+let done3 = localStorage.getItem(id + "_3") === "true";
 
 /* SAVE */
 function saveTasks(){
-  sessionStorage.setItem(id + "_1", done1);
-  sessionStorage.setItem(id + "_2", done2);
-  sessionStorage.setItem(id + "_3", done3);
+  localStorage.setItem(id + "_1", done1);
+  localStorage.setItem(id + "_2", done2);
+  localStorage.setItem(id + "_3", done3);
 }
 
-/* RESET KHI THOÁT */
-window.addEventListener("beforeunload", () => {
-  sessionStorage.clear();
-});
-window.addEventListener("beforeunload", () => {
-  sessionStorage.clear();
-});
 /* UPDATE UI */
 function updateProgress(){
   let total = 0;
@@ -169,23 +162,16 @@ function openUnlock(){
   window.open("https://vt.tiktok.com/ZS9285w5ypGbD-rr3Jr/", "_blank");
 
   // Xóa lịch sử nhiệm vụ cũ để lần sau bấm link khác vẫn làm lại được
-  sessionStorage.clear();
+  localStorage.removeItem(id + "_1");
+  localStorage.removeItem(id + "_2");
+  localStorage.removeItem(id + "_3");
 
   // Đợi 5 giây rồi mới chuyển hướng đến link tải file
-  window.addEventListener("load", () => {
-  const loader = document.getElementById("loader");
-
   setTimeout(() => {
-    if(loader){
-      loader.style.opacity = "0";
-      loader.style.transition = "0.5s";
+    window.location.href = data.unlock;
+  }, 5000);
+}
 
-      setTimeout(() => {
-        loader.remove();
-      }, 500);
-    }
-  }, 1200);
-});
-}, 1500);
 /* START */
 updateProgress();
+    
