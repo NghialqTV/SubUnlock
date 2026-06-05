@@ -158,16 +158,21 @@ function openUnlock(){
   const openBtn = document.getElementById("openBtn");
   openBtn.disabled = true;
 
-  // Mở quảng cáo TikTok 2
+  // Mở quảng cáo
   window.open("https://vt.tiktok.com/ZS9285w5ypGbD-rr3Jr/", "_blank");
 
-  // Reset đăng ký + like sau 3 phút (180000ms)
-  setTimeout(() => {
-    localStorage.removeItem(id + "_1");
-    localStorage.removeItem(id + "_2");
-  }, 180000);
+  // Reset nhiệm vụ
+  done1 = false;
+  done2 = false;
+  done3 = false;
 
-  // Đợi 5 giây rồi mới chuyển hướng đến link tải file
+  localStorage.removeItem(id + "_1");
+  localStorage.removeItem(id + "_2");
+  localStorage.removeItem(id + "_3");
+
+  updateProgress();
+
+  // Chuyển hướng tải file sau 5 giây
   setTimeout(() => {
     window.location.href = data.unlock;
   }, 5000);
