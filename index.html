@@ -1,46 +1,97 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Unlock</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cyber TV Unlock</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
 <div class="container">
-    <div class="card">
-        <div class="title">HOÀN THÀNH NHIỆM VỤ</div>
 
-        <div class="progressBox">
-            <div class="progress" id="progress"></div>
-        </div>
+<div class="card">
 
-        <div class="task">
-            <h3>1. Đăng ký kênh YouTube</h3>
-            <button id="subBtn" onclick="subscribeYoutube()">Đăng ký kênh</button>
-        </div>
+<div class="logo">
+⚡
+</div>
 
-        <div class="task">
-            <h3>2. Like - Bình Luận</h3>
-            <button id="likeBtn" onclick="likeVideo()">Like video</button>
-        </div>
+<h1>Cyber TV</h1>
 
-        <div class="task">
-            <h3>3. Tham gia Telegram</h3>
-            <button id="teleBtn" onclick="joinTelegram()">Tham gia Telegram</button>
-        </div>
+<p class="subtitle">
+Hoàn thành nhiệm vụ để nhận file miễn phí
+</p>
 
-        <div class="task">
-            <h3>4. Xác minh nhiệm vụ</h3>
-            <button class="btn" id="verifyBtn" onclick="verifyTasks()">Xác minh nhiệm vụ</button>
-        </div>
+<div class="progressBox">
+<div class="progress" id="progress"></div>
+</div>
 
-        <div id="unlockBox" style="display:none; margin-top:20px;">
-            <div class="success">✅ HOÀN THÀNH</div>
-            <button class="btn" id="openBtn" style="background: linear-gradient(135deg, #16a34a, #22c55e);" onclick="openUnlock()">MỞ LINK LẤY FILE</button>
-        </div>
-    </div>
+<div class="task">
+<div>
+<h3>📺 Đăng ký kênh Youtube</h3>
+<span>Theo dõi Cyber TV</span>
+</div>
+<button id="subBtn" onclick="subscribeYoutube()">
+Đăng ký
+</button>
+</div>
+
+<div class="task">
+<div>
+<h3>❤️ Like Video</h3>
+<span>Ủng hộ creator</span>
+</div>
+<button id="likeBtn" onclick="likeVideo()">
+Like
+</button>
+</div>
+
+<div class="task">
+<div>
+<h3>🚀 Telegram</h3>
+<span>Nhận thông báo mới nhất</span>
+</div>
+<button id="teleBtn" onclick="joinTelegram()">
+Tham gia
+</button>
+</div>
+
+<button
+class="verifyBtn"
+id="verifyBtn"
+onclick="verifyTasks()">
+XÁC MINH NHIỆM VỤ
+</button>
+
+<div id="unlockBox">
+
+<div class="success">
+✅ NHIỆM VỤ HOÀN THÀNH
+</div>
+
+<button
+class="unlockBtn"
+id="openBtn"
+onclick="openUnlock()">
+
+MỞ FILE NGAY
+
+</button>
+
+</div>
+
+<div class="footer">
+Cyber TV © 2026
+</div>
+
+</div>
+
 </div>
 
 <script src="data.js"></script>
