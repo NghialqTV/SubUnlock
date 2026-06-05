@@ -49,7 +49,7 @@ function updateProgress(){
 
 /* VERIFY BƯỚC NHỎ */
 function fakeVerify(step, link){
-  window.open(link, "_blank");
+  window.open(link, "_self");
 
   const box = document.createElement("div");
   box.style.position = "fixed";
