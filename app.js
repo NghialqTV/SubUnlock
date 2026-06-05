@@ -344,6 +344,11 @@ function verifyTasks(){
 
 function openUnlock(){
 
+  alert(
+    "ID: " + id +
+    "\nLINK: " + data.unlock
+  );
+
   window.location.href =
   data.unlock;
 
