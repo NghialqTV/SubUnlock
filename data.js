@@ -1,6 +1,12 @@
 const pages = {
-
-
+  
+  mod45skin0606: {
+    sub: "https://www.youtube.com/@CyberMod_04",
+    like: "https://youtu.be/Zxy1adX0CJY?si=8lpxfy_Uax13ncm0",
+    tele: "https://t.me/+gI22PHmUi5xhMDA9",
+    unlock: "https://linkx.me/jUdf8f0"
+  },
+    
   filele: {
     sub: "https://www.youtube.com/@CyberMod_04",
     like: "https://youtu.be/oMtOiTVCNVw?si=zRmRlMtJPSzc2P2F",
@@ -24,28 +30,28 @@ const pages = {
   
   keyandroid: {
     sub: "https://www.youtube.com/@CyberMod_04",
-    like: "https://youtu.be/oMtOiTVCNVw?si=zRmRlMtJPSzc2P2F",
+    like: "https://youtu.be/eMhfdpLHPq0?si=xttj9CEgEyw7rNYk",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://duymmo.io.vn/ctvkey/3fun.php"
   },
   
   modmenuandroid64: {
     sub: "https://www.youtube.com/@CyberMod_04",
-    like: "https://youtu.be/oMtOiTVCNVw?si=zRmRlMtJPSzc2P2F",
+    like: "https://youtu.be/eMhfdpLHPq0?si=xttj9CEgEyw7rNYk",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/ck8cfrapf1ptqj2/Menu_Li%25C3%25AAn_Qu%25C3%25A2n_ModSkin_.apk/file"
   },
   
   modmenuandroid32: {
     sub: "https://www.youtube.com/@CyberMod_04",
-    like: "https://youtu.be/QhV7ZN5uEPM?si=4aCO2I1TKlIQorpD",
+    like: "https://youtu.be/eMhfdpLHPq0?si=xttj9CEgEyw7rNYk",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/j21h804l6ojsn44/Menu_Mod_Skin_32_Bit_Fix.apk/file"
   },
   
   hackmenuandroid64: {
     sub: "https://www.youtube.com/@CyberMod_04",
-    like: "https://youtu.be/MZLKU7WZbRA?si=dOVVzrNKDbmWbHJz",
+    like: "https://youtu.be/eMhfdpLHPq0?si=xttj9CEgEyw7rNYk",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/l54f3cq8798eo6d/Menu_Hack_Map_%255B_64_Bit_%255D.apk/file"
   },
