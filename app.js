@@ -161,10 +161,11 @@ function openUnlock(){
   // Mở quảng cáo TikTok 2
   window.open("https://vt.tiktok.com/ZS9285w5ypGbD-rr3Jr/", "_blank");
 
-  // Xóa lịch sử nhiệm vụ cũ để lần sau bấm link khác vẫn làm lại được
-  localStorage.removeItem(id + "_1");
-  localStorage.removeItem(id + "_2");
-  localStorage.removeItem(id + "_3");
+  // Reset đăng ký + like sau 3 phút (180000ms)
+  setTimeout(() => {
+    localStorage.removeItem(id + "_1");
+    localStorage.removeItem(id + "_2");
+  }, 180000);
 
   // Đợi 5 giây rồi mới chuyển hướng đến link tải file
   setTimeout(() => {
@@ -174,7 +175,3 @@ function openUnlock(){
 
 /* START */
 updateProgress();
-
-
-// Auto reset đăng ký + like sau 3 phút
-setTimeout(()=>{try{localStorage.removeItem(id+'_1');localStorage.removeItem(id+'_2');}catch(e){}},180000);
