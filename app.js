@@ -2,6 +2,18 @@ const params = new URLSearchParams(location.search);
 const id = params.get("id");
 const data = pages[id];
 
+/* RESET SAU 5 PHÚT */
+const resetKey = id + "_reset";
+const now = Date.now();
+const last = localStorage.getItem(resetKey);
+
+if (!last || now - Number(last) > 30 * 60 * 1000) {
+  localStorage.removeItem(id + "_1");
+  localStorage.removeItem(id + "_2");
+  localStorage.removeItem(id + "_3");
+  localStorage.setItem(resetKey, now);
+}
+
 if(!data){
   alert("Không tìm thấy nhiệm vụ: " + id);
   throw new Error();
