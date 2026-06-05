@@ -8,9 +8,13 @@ if(!data){
 }
 
 /* LOAD */
-let done1 = localStorage.getItem(id + "_1") === "true";
-let done2 = localStorage.getItem(id + "_2") === "true";
-let done3 = localStorage.getItem(id + "_3") === "true";
+localStorage.removeItem(id + "_1");
+localStorage.removeItem(id + "_2");
+localStorage.removeItem(id + "_3");
+
+done1 = false;
+done2 = false;
+done3 = false;
 
 /* SAVE */
 function saveTasks(){
