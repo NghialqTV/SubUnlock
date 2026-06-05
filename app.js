@@ -364,4 +364,3 @@ function openUnlock(){
 /* START */
 
 updateProgress();
-    
