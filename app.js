@@ -161,9 +161,7 @@ function openUnlock(){
   window.open("https://vt.tiktok.com/ZS9285w5ypGbD-rr3Jr/", "_blank");
 
   // Xóa lịch sử nhiệm vụ cũ để lần sau bấm link khác vẫn làm lại được
-  localStorage.removeItem(id + "_1");
-  localStorage.removeItem(id + "_2");
-  localStorage.removeItem(id + "_3");
+  sessionStorage.clear();
 
   // Đợi 5 giây rồi mới chuyển hướng đến link tải file
   setTimeout(() => {
