@@ -2,16 +2,28 @@ const params = new URLSearchParams(location.search);
 const id = params.get("id");
 const data = pages[id];
 
-/* RESET SAU 5 PHÚT */
-const resetKey = id + "_reset";
-const now = Date.now();
-const last = localStorage.getItem(resetKey);
+/* RESET SAU 30 PHÚT */
 
-if (!last || now - Number(last) > 30 * 60 * 1000) {
-  localStorage.removeItem(id + "_1");
-  localStorage.removeItem(id + "_2");
-  localStorage.removeItem(id + "_3");
-  localStorage.setItem(resetKey, now);
+const resetKey = id + "_reset";
+
+const lastVisit =
+localStorage.getItem(resetKey);
+
+if(
+!lastVisit ||
+Date.now() - Number(lastVisit) >
+1800000
+){
+
+localStorage.removeItem(id+"_1");
+localStorage.removeItem(id+"_2");
+localStorage.removeItem(id+"_3");
+
+localStorage.setItem(
+resetKey,
+Date.now()
+);
+
 }
 
 if(!data){
@@ -167,8 +179,24 @@ function verifyTasks(){
 
 /* OPEN (BƯỚC CUỐI - CÓ QUẢNG CÁO TIKTOK 2) */
 function openUnlock(){
-  const openBtn = document.getElementById("openBtn");
-  openBtn.disabled = true;
+
+localStorage.removeItem(id+"_1");
+localStorage.removeItem(id+"_2");
+localStorage.removeItem(id+"_3");
+
+window.open(
+"https://vt.tiktok.com/ZS9285w5ypGbD-rr3Jr/",
+"_blank"
+);
+
+setTimeout(()=>{
+
+window.location.href =
+data.unlock;
+
+},5000);
+
+}
 
   // Mở quảng cáo TikTok 2
   window.open("https://vt.tiktok.com/ZS9285w5ypGbD-rr3Jr/", "_blank");
