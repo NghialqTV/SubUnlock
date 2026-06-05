@@ -14,10 +14,9 @@ let done3 = localStorage.getItem(id + "_3") === "true";
 
 /* SAVE */
 function saveTasks(){
-  localStorage.setItem(id + "_1", done1);
-  localStorage.setItem(id + "_2", done2);
-  localStorage.setItem(id + "_3", done3);
-}
+  window.addEventListener("beforeunload", () => {
+    sessionStorage.clear();
+});
 
 /* UPDATE UI */
 function updateProgress(){
