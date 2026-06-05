@@ -1,7 +1,6 @@
 const params = new URLSearchParams(location.search);
 const id = params.get("id");
 const data = pages[id];
-
 /* RESET SAU 30 PHÚT */
 
 const resetKey = id + "_reset";
@@ -198,20 +197,5 @@ data.unlock;
 
 }
 
-  // Mở quảng cáo TikTok 2
-  window.open("https://vt.tiktok.com/ZS9285w5ypGbD-rr3Jr/", "_blank");
-
-  // Xóa lịch sử nhiệm vụ cũ để lần sau bấm link khác vẫn làm lại được
-  localStorage.removeItem(id + "_1");
-  localStorage.removeItem(id + "_2");
-  localStorage.removeItem(id + "_3");
-
-  // Đợi 5 giây rồi mới chuyển hướng đến link tải file
-  setTimeout(() => {
-    window.location.href = data.unlock;
-  }, 5000);
-}
-
 /* START */
 updateProgress();
-    
