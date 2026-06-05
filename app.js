@@ -1,201 +1,374 @@
 const params = new URLSearchParams(location.search);
 const id = params.get("id");
-const data = pages[id];
-/* RESET SAU 30 PHÚT */
 
-const resetKey = id + "_reset";
-
-const lastVisit =
-localStorage.getItem(resetKey);
-
-if(
-!lastVisit ||
-Date.now() - Number(lastVisit) >
-1800000
-){
-
-localStorage.removeItem(id+"_1");
-localStorage.removeItem(id+"_2");
-localStorage.removeItem(id+"_3");
-
-localStorage.setItem(
-resetKey,
-Date.now()
-);
-
+if (!id) {
+  alert("Thiếu ID nhiệm vụ");
+  throw new Error();
 }
 
-if(!data){
+const data = pages[id];
+
+if (!data) {
   alert("Không tìm thấy nhiệm vụ: " + id);
   throw new Error();
 }
 
-/* LOAD */
-let done1 = localStorage.getItem(id + "_1") === "true";
-let done2 = localStorage.getItem(id + "_2") === "true";
-let done3 = localStorage.getItem(id + "_3") === "true";
+/* =========================
+   RESET SAU 30 PHÚT
+========================= */
 
-/* SAVE */
-function saveTasks(){
+const resetKey = id + "_reset";
+const lastVisit = localStorage.getItem(resetKey);
+
+if (
+  !lastVisit ||
+  Date.now() - Number(lastVisit) > 60000
+)
+  localStorage.removeItem(id + "_1");
+  localStorage.removeItem(id + "_2");
+  localStorage.removeItem(id + "_3");
+
+  localStorage.setItem(
+    resetKey,
+    Date.now()
+  );
+}
+
+/* =========================
+   LOAD DATA
+========================= */
+
+let done1 =
+  localStorage.getItem(id + "_1") === "true";
+
+let done2 =
+  localStorage.getItem(id + "_2") === "true";
+
+let done3 =
+  localStorage.getItem(id + "_3") === "true";
+
+/* =========================
+   SAVE
+========================= */
+
+function saveTasks() {
   localStorage.setItem(id + "_1", done1);
   localStorage.setItem(id + "_2", done2);
   localStorage.setItem(id + "_3", done3);
 }
 
-/* UPDATE UI */
-function updateProgress(){
-  let total = 0;
-  if(done1) total += 33;
-  if(done2) total += 33;
-  if(done3) total += 34;
+/* =========================
+   UPDATE UI
+========================= */
 
-  document.getElementById("progress").style.width = total + "%";
+function updateProgress() {
 
-  /* HIỆN TRẠNG THÁI */
-  const subBtn = document.getElementById("subBtn");
-  const likeBtn = document.getElementById("likeBtn");
-  const teleBtn = document.getElementById("teleBtn");
+  let done = 0;
 
-  if(subBtn){
-    subBtn.innerHTML = done1 ? "✓ Đã đăng ký" : "Đăng ký kênh";
-    if(done1) subBtn.style.background = "#28a745";
+  if (done1) done++;
+  if (done2) done++;
+  if (done3) done++;
+
+  const percent =
+    Math.round((done / 3) * 100);
+
+  const progress =
+    document.getElementById("progress");
+
+  if (progress) {
+    progress.style.width =
+      percent + "%";
   }
-  if(likeBtn){
-    likeBtn.innerHTML = done2 ? "✓ Đã like video" : "Like video";
-    if(done2) likeBtn.style.background = "#28a745";
+
+  const percentText =
+    document.getElementById("percent");
+
+  if (percentText) {
+    percentText.innerText =
+      percent + "%";
   }
-  if(teleBtn){
-    teleBtn.innerHTML = done3 ? "✓ Đã tham gia" : "Tham gia Telegram";
-    if(done3) teleBtn.style.background = "#28a745";
+
+  const subBtn =
+    document.getElementById("subBtn");
+
+  const likeBtn =
+    document.getElementById("likeBtn");
+
+  const teleBtn =
+    document.getElementById("teleBtn");
+
+  if (subBtn && done1) {
+    subBtn.innerHTML =
+      "✓ Hoàn Thành";
+    subBtn.disabled = true;
+    subBtn.style.background =
+      "#22c55e";
+  }
+
+  if (likeBtn && done2) {
+    likeBtn.innerHTML =
+      "✓ Hoàn Thành";
+    likeBtn.disabled = true;
+    likeBtn.style.background =
+      "#22c55e";
+  }
+
+  if (teleBtn && done3) {
+    teleBtn.innerHTML =
+      "✓ Hoàn Thành";
+    teleBtn.disabled = true;
+    teleBtn.style.background =
+      "#22c55e";
   }
 }
 
-/* VERIFY BƯỚC NHỎ */
-function fakeVerify(step, link){
+/* =========================
+   POPUP VERIFY
+========================= */
+
+function fakeVerify(step, link) {
+
   window.open(link, "_blank");
 
-  const box = document.createElement("div");
-  box.style.position = "fixed";
-  box.style.top = "0";
-  box.style.left = "0";
-  box.style.width = "100%";
-  box.style.height = "100%";
-  box.style.background = "rgba(0,0,0,0.7)";
-  box.style.display = "flex";
-  box.style.alignItems = "center";
-  box.style.justifyContent = "center";
-  box.style.zIndex = "9999";
+  const box =
+    document.createElement("div");
+
+  box.style.cssText = `
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  `;
 
   box.innerHTML = `
   <div style="
-    background:#111;
-    padding:20px;
-    border-radius:15px;
+    background:rgba(15,23,42,.95);
+    border:1px solid rgba(124,58,237,.4);
+    box-shadow:0 0 30px rgba(124,58,237,.4);
+    backdrop-filter:blur(15px);
+    padding:25px;
+    border-radius:20px;
     text-align:center;
     color:white;
-    width:280px;
-    font-family:sans-serif;
+    width:300px;
   ">
-    <h2>Đang xác minh</h2>
-    <p id="verifyText">Vui lòng chờ 5 giây...</p>
+      <h2>⚡ Cyber TV</h2>
+      <p id="verifyText">
+      Đang xác minh 5 giây...
+      </p>
   </div>
   `;
 
   document.body.appendChild(box);
+
   let time = 5;
 
-  const timer = setInterval(()=>{
-    time--;
-    document.getElementById("verifyText").innerHTML = "Vui lòng chờ " + time + " giây...";
+  const timer = setInterval(() => {
 
-    if(time <= 0){
+    time--;
+
+    const text =
+      document.getElementById(
+        "verifyText"
+      );
+
+    if (text) {
+      text.innerHTML =
+        "Đang xác minh " +
+        time +
+        " giây...";
+    }
+
+    if (time <= 0) {
+
       clearInterval(timer);
-      if(step === 1) done1 = true;
-      if(step === 2) done2 = true;
-      if(step === 3) done3 = true;
+
+      if (step === 1)
+        done1 = true;
+
+      if (step === 2)
+        done2 = true;
+
+      if (step === 3)
+        done3 = true;
 
       saveTasks();
       updateProgress();
+
       box.remove();
-      // ĐÃ XÓA BỎ BẢNG ALERT THÔNG BÁO Ở ĐÂY ĐỂ USER ĐỠ PHẢI BẤM OK
     }
+
   }, 1000);
 }
 
-/* TASK */
-function subscribeYoutube(){
-  if(done1){
-    alert("Đã hoàn thành bước này");
-    return;
-  }
+/* =========================
+   TASKS
+========================= */
+
+function subscribeYoutube() {
+
+  if (done1) return;
+
   fakeVerify(1, data.sub);
 }
 
-function likeVideo(){
-  if(done2){
-    alert("Đã hoàn thành bước này");
-    return;
-  }
+function likeVideo() {
+
+  if (done2) return;
+
   fakeVerify(2, data.like);
 }
 
-function joinTelegram(){
-  if(done3){
-    alert("Đã hoàn thành bước này");
-    return;
-  }
+function joinTelegram() {
+
+  if (done3) return;
+
   fakeVerify(3, data.tele);
 }
 
-/* FINAL VERIFY (BƯỚC 4 - CÓ QUẢNG CÁO TIKTOK 1) */
-function verifyTasks(){
-  if(!done1 || !done2 || !done3){
-    alert("Bạn phải hoàn thành tất cả các bước 1, 2, 3 trước khi xác minh!");
+/* =========================
+   VERIFY
+========================= */
+
+function verifyTasks() {
+
+  if (
+    !done1 ||
+    !done2 ||
+    !done3
+  ) {
+    alert(
+      "Bạn chưa hoàn thành tất cả nhiệm vụ!"
+    );
     return;
   }
 
-  const btn = document.getElementById("verifyBtn");
+  const btn =
+    document.getElementById(
+      "verifyBtn"
+    );
+
+  if (btn.dataset.done)
+    return;
+
   btn.disabled = true;
-  
-  // Mở quảng cáo TikTok 1
-  window.open("https://vt.tiktok.com/ZS92J8oEgKyLn-Iwhaj/", "_blank");
+
+  window.open(
+    "https://vt.tiktok.com/ZS92J8oEgKyLn-Iwhaj/",
+    "_blank"
+  );
 
   let time = 5;
-  btn.innerHTML = "Đang mở khóa 5s";
 
-  const timer = setInterval(()=>{
+  btn.innerHTML =
+    "Đang mở khóa 5s";
+
+  const timer = setInterval(() => {
+
     time--;
-    btn.innerHTML = "Đang mở khóa " + time + "s";
 
-    if(time <= 0){
+    btn.innerHTML =
+      "Đang mở khóa " +
+      time +
+      "s";
+
+    if (time <= 0) {
+
       clearInterval(timer);
-      btn.innerHTML = "Hoàn Thành";
-      btn.style.background = "#28a745";
-      document.getElementById("unlockBox").style.display = "block";
+
+      btn.innerHTML =
+        "✓ Hoàn Thành";
+
+      btn.style.background =
+        "#22c55e";
+
+      btn.dataset.done =
+        "true";
+
+      const unlock =
+        document.getElementById(
+          "unlockBox"
+        );
+
+      unlock.style.display =
+        "block";
+
+      unlock.animate(
+        [
+          {
+            opacity: 0,
+            transform:
+              "translateY(30px)"
+          },
+          {
+            opacity: 1,
+            transform:
+              "translateY(0)"
+          }
+        ],
+        {
+          duration: 500
+        }
+      );
     }
+
   }, 1000);
 }
 
-/* OPEN (BƯỚC CUỐI - CÓ QUẢNG CÁO TIKTOK 2) */
-function openUnlock(){
+/* =========================
+   OPEN FILE
+========================= */
 
-localStorage.removeItem(id+"_1");
-localStorage.removeItem(id+"_2");
-localStorage.removeItem(id+"_3");
+function openUnlock() {
 
-window.open(
-"https://vt.tiktok.com/ZS9285w5ypGbD-rr3Jr/",
-"_blank"
-);
+  localStorage.removeItem(
+    id + "_1"
+  );
 
-setTimeout(()=>{
+  localStorage.removeItem(
+    id + "_2"
+  );
 
-window.location.href =
-data.unlock;
+  localStorage.removeItem(
+    id + "_3"
+  );
 
-},5000);
+  localStorage.removeItem(
+    id + "_reset"
+  );
 
+  const btn =
+    document.getElementById(
+      "openBtn"
+    );
+
+  if (btn) {
+    btn.innerHTML =
+      "Đang chuyển hướng...";
+    btn.disabled = true;
+  }
+
+  window.open(
+    "https://vt.tiktok.com/ZS9285w5ypGbD-rr3Jr/",
+    "_blank"
+  );
+
+  setTimeout(() => {
+
+    location.href =
+      data.unlock;
+
+  }, 5000);
 }
 
-/* START */
+/* =========================
+   START
+========================= */
+
 updateProgress();
