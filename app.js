@@ -168,6 +168,17 @@ function openUnlock(){
     window.location.href = data.unlock;
   }, 5000);
 }
-
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        const loader = document.getElementById("loader");
+        if(loader){
+            loader.style.opacity = "0";
+            loader.style.transition = "0.5s";
+            setTimeout(() => {
+                loader.remove();
+            }, 500);
+        }
+    }, 1200);
+});
 /* START */
 updateProgress();
