@@ -49,31 +49,51 @@ function updateProgress(){
 
 /* VERIFY BƯỚC NHỎ */
 function fakeVerify(step, link){
+  window.open(link, "_blank");
 
   const box = document.createElement("div");
-  ...
-  
+  box.style.position = "fixed";
+  box.style.top = "0";
+  box.style.left = "0";
+  box.style.width = "100%";
+  box.style.height = "100%";
+  box.style.background = "rgba(0,0,0,0.7)";
+  box.style.display = "flex";
+  box.style.alignItems = "center";
+  box.style.justifyContent = "center";
+  box.style.zIndex = "9999";
+
+  box.innerHTML = `
+  <div style="
+    background:#111;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    color:white;
+    width:280px;
+    font-family:sans-serif;
+  ">
+    <h2>Đang xác minh</h2>
+    <p id="verifyText">Vui lòng chờ 5 giây...</p>
+  </div>
+  `;
+
+  document.body.appendChild(box);
   let time = 5;
 
   const timer = setInterval(()=>{
     time--;
+    document.getElementById("verifyText").innerHTML = "Vui lòng chờ " + time + " giây...";
 
     if(time <= 0){
       clearInterval(timer);
-
       if(step === 1) done1 = true;
       if(step === 2) done2 = true;
       if(step === 3) done3 = true;
 
       saveTasks();
       updateProgress();
-
-      window.open(link, "_blank");
-
       box.remove();
-    }
-  },1000);
-}
       // ĐÃ XÓA BỎ BẢNG ALERT THÔNG BÁO Ở ĐÂY ĐỂ USER ĐỠ PHẢI BẤM OK
     }
   }, 1000);
