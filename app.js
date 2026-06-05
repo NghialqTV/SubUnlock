@@ -344,18 +344,6 @@ function verifyTasks(){
 
 function openUnlock(){
 
-  localStorage.removeItem(
-    id + "_1"
-  );
-
-  localStorage.removeItem(
-    id + "_2"
-  );
-
-  localStorage.removeItem(
-    id + "_3"
-  );
-
   window.location.href =
   data.unlock;
 
