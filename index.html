@@ -57,7 +57,7 @@
 <script>
 // Lấy page hiện tại
 const params = new URLSearchParams(window.location.search);
-const currentPage = params.get("page") || "hackmenuios";
+const currentPage = params.get("id");
 
 // Kiểm tra page tồn tại
 if (!pages[currentPage]) {
