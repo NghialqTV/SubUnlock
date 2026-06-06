@@ -1,4 +1,4 @@
-const pages = 
+const pages = {
     
   filele: {
     sub: "https://www.youtube.com/@CyberMod_04",
