@@ -344,9 +344,16 @@ function verifyTasks(){
 
 function openUnlock(){
 
-  alert(
-    "ID: " + id +
-    "\nLINK: " + data.unlock
+  localStorage.removeItem(
+    id + "_1"
+  );
+
+  localStorage.removeItem(
+    id + "_2"
+  );
+
+  localStorage.removeItem(
+    id + "_3"
   );
 
   window.location.href =
@@ -357,3 +364,4 @@ function openUnlock(){
 /* START */
 
 updateProgress();
+  
