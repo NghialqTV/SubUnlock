@@ -1,5 +1,12 @@
 const pages = {
-    
+
+  mod45skin0606: {
+    sub: "https://www.youtube.com/@CyberMod_04",
+    like: "https://youtu.be/Zxy1adX0CJY?si=0Ai-v3y0xWoE4_By",
+    tele: "https://t.me/+gI22PHmUi5xhMDA9",
+    unlock: "https://linkx.me/jUdf8f0"
+  },
+      
   filele: {
     sub: "https://www.youtube.com/@CyberMod_04",
     like: "https://youtu.be/oMtOiTVCNVw?si=zRmRlMtJPSzc2P2F",
