@@ -82,5 +82,11 @@ const pages = {
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://linkx.me/jUdf8f0"
   },
+  subriece: {
+    sub: "https://youtube.com/@cybertv_v2?si=6eBpBS8-aVn6E0VF",
+    like: "https://youtu.be/ZKuslIWq1gM?si=Inu9oENn-c6GPGIJ",
+    tele: "https://t.me/+gI22PHmUi5xhMDA9",
+    unlock: "https://www.mediafire.com/file/u88gdb21kj69vjl/Key_Vip_Subriece.txt/file"
+  },
       
 };
