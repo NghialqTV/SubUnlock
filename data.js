@@ -1,11 +1,4 @@
-const pages = {
-  
-  mod45skin0606: {
-    sub: "https://www.youtube.com/@CyberMod_04",
-    like: "https://youtu.be/Zxy1adX0CJY?si=8lpxfy_Uax13ncm0",
-    tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://linkx.me/jUdf8f0"
-  },
+const pages = 
     
   filele: {
     sub: "https://www.youtube.com/@CyberMod_04",
