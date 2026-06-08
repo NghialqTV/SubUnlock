@@ -9,9 +9,9 @@ const pages = {
 
   camxa: {
     sub: "https://youtube.com/@cybertv_v2?si=wTDp5vhgQBlGlq-J",
-    like: "https://youtu.be/94QS7vaI4I8?si=fbL_xfEkwDTiZjn4",
+    like: "https://youtu.be/94QS7vaI4I8?si=AkhFMaUzoLbjkF7_",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://www.mediafire.com/file/csnsh3fwcuf9sv8/Cam_Xa_S2_%255B_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_21_Th%25C3%25A1ng_5%255D.zip/file"
+    unlock: "https://www.mediafire.com/file/cj8rf3k2dnmt99z/Mod_Camxa_Li%25C3%25AAn_Qu%25C3%25A2n_Android_-_IOS.zip/file"
   },
   
   120fps: {
