@@ -84,9 +84,9 @@ const pages = {
   },
   subriece: {
     sub: "https://youtube.com/@cybertv_v2?si=6eBpBS8-aVn6E0VF",
-    like: "https://youtu.be/ZKuslIWq1gM?si=Inu9oENn-c6GPGIJ",
+    like: "https://youtu.be/ZKuslIWq1gM?si=vb33aLMBKxm0wkBU",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://www.mediafire.com/file/u88gdb21kj69vjl/Key_Vip_Subriece.txt/file"
+    unlock: "https://www.mediafire.com/file/os4d8kz5gh9r69l/Mod_Hayate_Th%25E1%25BB%25A9_Nguy%25C3%25AAn_V%25E1%25BB%2587_Th%25E1%25BA%25A7n.zip/file"
   },
       
 };
