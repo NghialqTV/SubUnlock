@@ -6,12 +6,19 @@ const pages = {
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://nghialqtv.github.io/mod/file-le.html"
   },
-  
+
   camxa: {
     sub: "https://youtube.com/@cybertv_v2?si=wTDp5vhgQBlGlq-J",
     like: "https://youtu.be/94QS7vaI4I8?si=fbL_xfEkwDTiZjn4",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/csnsh3fwcuf9sv8/Cam_Xa_S2_%255B_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_21_Th%25C3%25A1ng_5%255D.zip/file"
+  },
+  
+  120fps: {
+    sub: "https://youtube.com/@cybertv_v2?si=wTDp5vhgQBlGlq-J",
+    like: "https://youtu.be/OanRin_99vQ?si=0cORqKvN8W8ywHaP",
+    tele: "https://t.me/+gI22PHmUi5xhMDA9",
+    unlock: "https://www.mediafire.com/file/4gldcj37uk9ab2w/Mod_120_FPS_Cao_Li%25C3%25AAn_Qu%25C3%25A2n_Android.zip/file"
   },
   
   resources: {
