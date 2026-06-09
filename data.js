@@ -1,6 +1,6 @@
 const pages = {
 
-  Fps: {
+  fps: {
     sub: "https://youtube.com/@cybertv_v2?si=wTDp5vhgQBlGlq-J",
     like: "https://youtu.be/OanRin_99vQ?si=FWFIGxX9Fflyc59a",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
