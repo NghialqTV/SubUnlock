@@ -1,5 +1,11 @@
 const pages = {
 
+  tainguyen: {
+    sub: "https://youtube.com/@cybertv_v2?si=wTDp5vhgQBlGlq-J",
+    like: "https://youtu.be/6T5qfJAGP3c?si=LmHsl87UYi5OeAyM",
+    tele: "https://t.me/+gI22PHmUi5xhMDA9",
+    unlock: "https://gofile.io/d/jnHUzb"
+  },
   fps: {
     sub: "https://youtube.com/@cybertv_v2?si=wTDp5vhgQBlGlq-J",
     like: "https://youtu.be/OanRin_99vQ?si=FWFIGxX9Fflyc59a",
