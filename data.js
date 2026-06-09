@@ -14,13 +14,6 @@ const pages = {
     unlock: "https://www.mediafire.com/file/cj8rf3k2dnmt99z/Mod_Camxa_Li%25C3%25AAn_Qu%25C3%25A2n_Android_-_IOS.zip/file"
   },
   
-  120fps: {
-    sub: "https://youtube.com/@cybertv_v2?si=wTDp5vhgQBlGlq-J",
-    like: "https://youtu.be/OanRin_99vQ?si=0cORqKvN8W8ywHaP",
-    tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://www.mediafire.com/file/4gldcj37uk9ab2w/Mod_120_FPS_Cao_Li%25C3%25AAn_Qu%25C3%25A2n_Android.zip/file"
-  },
-  
   resources: {
     sub: "https://youtube.com/@cybertv_v2?si=wTDp5vhgQBlGlq-J",
     like: "https://youtu.be/6T5qfJAGP3c?si=YHUB9QWSicVfic3k",
