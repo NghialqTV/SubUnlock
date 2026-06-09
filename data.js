@@ -14,7 +14,7 @@ const pages = {
   },
   camxa: {
     sub: "https://youtube.com/@cybertv_v2?si=wTDp5vhgQBlGlq-J",
-    like: "https://youtu.be/94QS7vaI4I8?si=ruA9SQi-bb841zgO",
+    like: "https://youtu.be/94QS7vaI4I8?si=nkjNuf9NHgOVYHtb",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/cj8rf3k2dnmt99z/Mod_Camxa_Li%25C3%25AAn_Qu%25C3%25A2n_Android_-_IOS.zip/file"
   },
