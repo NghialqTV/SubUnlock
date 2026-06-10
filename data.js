@@ -1,7 +1,7 @@
 const pages = {
 
   tainguyen: {
-    sub: "https://youtube.com/@cybermodpro?si=B05p8uokNnZ-3rQL",
+    sub: "https://youtube.com/@cybermodpro",
     like: "https://youtu.be/6T5qfJAGP3c?si=LmHsl87UYi5OeAyM",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://gofile.io/d/jnHUzb"
@@ -25,13 +25,13 @@ const pages = {
     unlock: "https://www.mediafire.com/file/cj8rf3k2dnmt99z/Mod_Camxa_Li%25C3%25AAn_Qu%25C3%25A2n_Android_-_IOS.zip/file"
   },
   resources: {
-    sub: "https://youtube.com/@cybermodpro?si=B05p8uokNnZ-3rQL",
+    sub: "https://youtube.com/@cybermodpro",
     like: "https://youtu.be/GdMkWKfPMkQ?si=F7KPOXuwjP-gqV5Z",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/rdt6b8yoo3bbmeo/Resources_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_10_Th%25C3%25A1ng_6.zip/file"
   },
   keyandroid: {
-    sub: "https://youtube.com/@cybermodpro?si=B05p8uokNnZ-3rQL",
+    sub: "https://youtube.com/@cybermodpro",
     like: "https://youtu.be/u8Ua7v_Z5rg?si=0rc_EDvDWYAeYulr",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://duymmo.io.vn/ctvkey/3fun.php"
