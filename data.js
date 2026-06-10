@@ -88,7 +88,7 @@ const pages = {
     sub: "https://youtube.com/@cybertv_v2?si=wTDp5vhgQBlGlq-J",
     like: "https://youtu.be/_Jo7z-mUlwU?si=Q59dzeu1Onx2ZZmH",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
-    unlock: "https://gofile.io/d/jnHUzb"
+    unlock: "https://www.mediafire.com/file/v5bwknqjg6nk6wd/Pack_64_Skin.zip/file"
   },
   subriece: {
     sub: "https://youtube.com/@cybertv_v2?si=6eBpBS8-aVn6E0VF",
