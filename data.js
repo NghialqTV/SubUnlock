@@ -4,15 +4,15 @@ const DEFAULT_TELE = "https://t.me/+gI22PHmUi5xhMDA9";
 
 const pages = {
   fps: {
-    like: "https://youtu.be/OanRin_99vQ?si=FWFIGxX9Fflyc59a",
+    like: "https://youtu.be/X_u_4jzzRzk?si=Uu6FYW2kdUnDYgj-",
     unlock: "https://www.mediafire.com/file/4gldcj37uk9ab2w/Mod_120_FPS_Cao_Li%25C3%25AAn_Qu%25C3%25A2n_Android.zip/file"
   },
   filele: {
-    like: "https://youtu.be/6T5qfJAGP3c?si=P3KlCv9nNPgaO8CM",
+    like: "https://youtu.be/GdMkWKfPMkQ?si=lBZzR1BHun0knzkQ",
     unlock: "https://nghialqtv.github.io/mod/file-le.html"
   },
   camxa: {
-    like: "https://youtu.be/94QS7vaI4I8?si=nkjNuf9NHgOVYHtb",
+    like: "https://youtu.be/K5UU7sFOspo?si=6zcNrcNiXuYSyafH",
     unlock: "https://www.mediafire.com/file/cj8rf3k2dnmt99z/Mod_Camxa_Li%25C3%25AAn_Qu%25C3%25A2n_Android_-_IOS.zip/file"
   },
   resources: {
@@ -20,19 +20,19 @@ const pages = {
     unlock: "https://www.mediafire.com/file/fmg9hcixqsb3cwh/Resources_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_4_th%25C3%25A1ng_6.zip/file"
   },
   keyandroid: {
-    like: "https://youtu.be/u8Ua7v_Z5rg?si=0rc_EDvDWYAeYulr",
+    like: "https://youtu.be/2XH9WjIkQQs?si=KApKyYg2lmfT8vKo",
     unlock: "https://duymmo.io.vn/ctvkey/3fun.php"
   },
   modmenuandroid64: {
-    like: "https://youtu.be/u8Ua7v_Z5rg?si=0rc_EDvDWYAeYulr",
+    like: "https://youtu.be/2XH9WjIkQQs?si=KApKyYg2lmfT8vKo",
     unlock: "https://www.mediafire.com/file/ck8cfrapf1ptqj2/Menu_Li%25C3%25AAn_Qu%25C3%25A2n_ModSkin_.apk/file"
   },
   modmenuandroid32: {
-    like: "https://youtu.be/u8Ua7v_Z5rg?si=0rc_EDvDWYAeYulr",
+    like: "https://youtu.be/2XH9WjIkQQs?si=KApKyYg2lmfT8vKo",
     unlock: "https://www.mediafire.com/file/j21h804l6ojsn44/Menu_Mod_Skin_32_Bit_Fix.apk/file"
   },
   hackmenuandroid64: {
-    like: "https://youtu.be/u8Ua7v_Z5rg?si=0rc_EDvDWYAeYulr",
+    like: "https://youtu.be/2XH9WjIkQQs?si=KApKyYg2lmfT8vKo",
     unlock: "https://www.mediafire.com/file/l54f3cq8798eo6d/Menu_Hack_Map_%255B_64_Bit_%255D.apk/file"
   },
   ipaios: {
@@ -40,20 +40,20 @@ const pages = {
     unlock: "https://www.mediafire.com/file/l3cg6df68x7rsum/AovMod_1.62.11625414.ipa/file"
   },
   hackmenuios: {
-    like: "https://youtu.be/f4OB08TciwY?si=jsoYiRMvHKnzOloJ",
+    like: "https://youtu.be/90_IyzW8TC4?si=Em1st1RFnpCsax1N",
     unlock: "https://ipas.cc/byem9u"
   },
   modmenuios: {
-    like: "https://youtu.be/zfOV13NgRLI?si=YBnSeJkNJZj3Ae_h",
+    like: "https://youtu.be/90_IyzW8TC4?si=Em1st1RFnpCsax1N",
     unlock: "https://ipas.cc/pyev1a"
   },
   keymenuios: {
-    like: "https://youtu.be/zfOV13NgRLI?si=YBnSeJkNJZj3Ae_h",
+    like: "https://youtu.be/90_IyzW8TC4?si=Em1st1RFnpCsax1N",
     unlock: "https://funlink.io/PwQB1jV"
   },
-  mod45skin0606: {
-    like: "https://youtu.be/Zxy1adX0CJY?si=0Ai-v3y0xWoE4_By",
-    unlock: "https://linkx.me/jUdf8f0"
+  mod65skin1006: {
+    like: "https://youtu.be/jZwGXnvgQpo?si=6ZTA2xJhwzPVb3Jy",
+    unlock: "https://www.mediafire.com/file/v5bwknqjg6nk6wd/Pack_64_Skin.zip/file"
   },
 };
 
