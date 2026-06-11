@@ -2,55 +2,55 @@ const pages = {
 
   tainguyen: {
     sub: "https://youtube.com/@cybermodpro",
-    like: "https://youtu.be/6T5qfJAGP3c?si=LmHsl87UYi5OeAyM",
+    like: "https://youtu.be/bPZSoST8WKI?si=Zw6BCMo3SpBh2XWG",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://gofile.io/d/jnHUzb"
   },
   fps: {
     sub: "https://youtube.com/@cybermodpro?si=B05p8uokNnZ-3rQL",
-    like: "https://youtu.be/OanRin_99vQ?si=FWFIGxX9Fflyc59a",
+    like: "https://youtu.be/X_u_4jzzRzk?si=_pCSIfToI-fC8dGA",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/4gldcj37uk9ab2w/Mod_120_FPS_Cao_Li%25C3%25AAn_Qu%25C3%25A2n_Android.zip/file"
   },
   filele: {
     sub: "https://youtube.com/@cybermodpro?si=B05p8uokNnZ-3rQL",
-    like: "https://youtu.be/6T5qfJAGP3c?si=P3KlCv9nNPgaO8CM",
+    like: "https://youtu.be/GdMkWKfPMkQ?si=O95SP-N7w87CSZwM",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://nghialqtv.github.io/mod/file-le.html"
   },
   camxa: {
     sub: "https://youtube.com/@cybermodpro?si=B05p8uokNnZ-3rQL",
-    like: "https://youtu.be/94QS7vaI4I8?si=nkjNuf9NHgOVYHtb",
+    like: "https://youtu.be/K5UU7sFOspo?si=WmMQsa6l5ZBKFe81",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/cj8rf3k2dnmt99z/Mod_Camxa_Li%25C3%25AAn_Qu%25C3%25A2n_Android_-_IOS.zip/file"
   },
   resources: {
     sub: "https://youtube.com/@cybermodpro",
-    like: "https://youtu.be/GdMkWKfPMkQ?si=F7KPOXuwjP-gqV5Z",
+    like: "https://youtu.be/GdMkWKfPMkQ?si=rnY4lD8tBSbZp9fX",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/rdt6b8yoo3bbmeo/Resources_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_10_Th%25C3%25A1ng_6.zip/file"
   },
   keyandroid: {
     sub: "https://youtube.com/@cybermodpro",
-    like: "https://youtu.be/u8Ua7v_Z5rg?si=0rc_EDvDWYAeYulr",
+    like: "https://youtu.be/2XH9WjIkQQs?si=okJbMn9jMyXp1jN5",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://duymmo.io.vn/ctvkey/3fun.php"
   },
   modmenuandroid64: {
     sub: "https://youtube.com/@cybermodpro?si=B05p8uokNnZ-3rQL",
-    like: "https://youtu.be/u8Ua7v_Z5rg?si=0rc_EDvDWYAeYulr",
+    like: "https://youtu.be/2XH9WjIkQQs?si=okJbMn9jMyXp1jN5",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/ck8cfrapf1ptqj2/Menu_Li%25C3%25AAn_Qu%25C3%25A2n_ModSkin_.apk/file"
   },
   modmenuandroid32: {
     sub: "https://youtube.com/@cybermodpro?si=B05p8uokNnZ-3rQL",
-    like: "https://youtu.be/u8Ua7v_Z5rg?si=0rc_EDvDWYAeYulr",
+    like: "https://youtu.be/2XH9WjIkQQs?si=okJbMn9jMyXp1jN5",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/j21h804l6ojsn44/Menu_Mod_Skin_32_Bit_Fix.apk/file"
   },
   hackmenuandroid64: {
     sub: "https://youtube.com/@cybermodpro?si=B05p8uokNnZ-3rQL",
-    like: "https://youtu.be/u8Ua7v_Z5rg?si=0rc_EDvDWYAeYulr",
+    like: "https://youtu.be/2XH9WjIkQQs?si=okJbMn9jMyXp1jN5",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/l54f3cq8798eo6d/Menu_Hack_Map_%255B_64_Bit_%255D.apk/file"
   },
@@ -86,7 +86,7 @@ const pages = {
   },
   mod65skin1006: {
     sub: "https://youtube.com/@cybermodpro?si=B05p8uokNnZ-3rQL",
-    like: "https://youtu.be/_Jo7z-mUlwU?si=Q59dzeu1Onx2ZZmH",
+    like: "https://youtu.be/jZwGXnvgQpo?si=_0lv-yJfMN1W1SCY",
     tele: "https://t.me/+gI22PHmUi5xhMDA9",
     unlock: "https://www.mediafire.com/file/v5bwknqjg6nk6wd/Pack_64_Skin.zip/file"
   },
