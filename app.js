@@ -18,40 +18,10 @@ if(!data){
 
 }
 
-/* LOAD */
-
-let done1 =
-localStorage.getItem(id + "_1")
-=== "true";
-
-let done2 =
-localStorage.getItem(id + "_2")
-=== "true";
-
-let done3 =
-localStorage.getItem(id + "_3")
-=== "true";
-
-/* SAVE */
-
-function saveTasks(){
-
-  localStorage.setItem(
-    id + "_1",
-    done1
-  );
-
-  localStorage.setItem(
-    id + "_2",
-    done2
-  );
-
-  localStorage.setItem(
-    id + "_3",
-    done3
-  );
-
-}
+/* KHỞI TẠO TRẠNG THÁI BAN ĐẦU ĐỀU LÀ CHƯA LÀM (MỖI KHI F5 SẼ RESET VỀ FALSE) */
+let done1 = false;
+let done2 = false;
+let done3 = false;
 
 /* UPDATE UI */
 
@@ -95,6 +65,7 @@ function updateProgress(){
     : "Đăng ký kênh";
     
     if(done1) subBtn.classList.add("completed");
+    else subBtn.classList.remove("completed");
 
   }
 
@@ -106,6 +77,7 @@ function updateProgress(){
     : "Like video";
     
     if(done2) likeBtn.classList.add("completed");
+    else likeBtn.classList.remove("completed");
 
   }
 
@@ -117,6 +89,7 @@ function updateProgress(){
     : "Tham gia Telegram";
     
     if(done3) teleBtn.classList.add("completed");
+    else teleBtn.classList.remove("completed");
 
   }
 
@@ -213,8 +186,6 @@ function fakeVerify(
 
       if(step === 3)
       done3 = true;
-
-      saveTasks();
 
       updateProgress();
 
@@ -362,12 +333,8 @@ function openUnlock(){
     openBtn.innerHTML = "Đang chuyển hướng...";
   }
 
-  // Đợi 2 giây để quảng cáo bật lên hoàn tất, sau đó chuyển hướng trang hiện tại tới link tải file chính
+  // Đợi 2 giây để quảng cáo bật lên hoàn tất, sau đó chuyển hướng thẳng tới link tải file chính
   setTimeout(() => {
-    localStorage.removeItem(id + "_1");
-    localStorage.removeItem(id + "_2");
-    localStorage.removeItem(id + "_3");
-
     window.location.href = data.unlock;
   }, 2000);
 
