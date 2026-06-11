@@ -1,366 +1,190 @@
-const params =
-new URLSearchParams(location.search);
+const params = new URLSearchParams(location.search);
+const pageId = params.get("id");
 
-const id =
-params.get("id");
+const page = pages[pageId];
 
-const data =
-pages[id];
-
-if(!data){
-
-  alert(
-  "Không tìm thấy nhiệm vụ: "
-  + id
-  );
-
-  throw new Error();
-
+if (!page) {
+  document.body.innerHTML = "<h2>Page không tồn tại</h2>";
+  throw new Error("Invalid page");
 }
 
-/* LOAD */
+const STORAGE_KEY = `task_${pageId}`;
 
-let done1 =
-localStorage.getItem(id + "_1")
-=== "true";
+const state =
+JSON.parse(localStorage.getItem(STORAGE_KEY))
+|| {
+  sub:false,
+  like:false,
+  tele:false,
+  verified:false
+};
 
-let done2 =
-localStorage.getItem(id + "_2")
-=== "true";
-
-let done3 =
-localStorage.getItem(id + "_3")
-=== "true";
-
-/* SAVE */
-
-function saveTasks(){
-
+function save(){
   localStorage.setItem(
-    id + "_1",
-    done1
+    STORAGE_KEY,
+    JSON.stringify(state)
   );
-
-  localStorage.setItem(
-    id + "_2",
-    done2
-  );
-
-  localStorage.setItem(
-    id + "_3",
-    done3
-  );
-
 }
 
-/* UPDATE UI */
+function updateUI(){
 
-function updateProgress(){
+  updateButton(
+    "btnSub",
+    state.sub,
+    "✓ Đã Subscribe",
+    "Subscribe"
+  );
 
-  let total = 0;
+  updateButton(
+    "btnLike",
+    state.like,
+    "✓ Đã Like",
+    "Like Video"
+  );
 
-  if(done1) total += 33;
+  updateButton(
+    "btnTele",
+    state.tele,
+    "✓ Đã Join",
+    "Join Telegram"
+  );
 
-  if(done2) total += 33;
-
-  if(done3) total += 34;
+  const percent =
+    (Number(state.sub)
+    + Number(state.like)
+    + Number(state.tele))
+    * 33.33;
 
   document.getElementById(
     "progress"
   ).style.width =
-  total + "%";
+  percent + "%";
 
-  /* HIỆN TRẠNG THÁI */
-
-  const subBtn =
-  document.getElementById(
-    "subBtn"
-  );
-
-  const likeBtn =
-  document.getElementById(
-    "likeBtn"
-  );
-
-  const teleBtn =
-  document.getElementById(
-    "teleBtn"
-  );
-
-  if(subBtn){
-
-    subBtn.innerHTML =
-    done1
-    ? "✓ Đã đăng ký"
-    : "Đăng ký kênh";
-
-  }
-
-  if(likeBtn){
-
-    likeBtn.innerHTML =
-    done2
-    ? "✓ Đã like video"
-    : "Like video";
-
-  }
-
-  if(teleBtn){
-
-    teleBtn.innerHTML =
-    done3
-    ? "✓ Đã tham gia"
-    : "Tham gia Telegram";
-
-  }
-
-}
-
-/* VERIFY */
-
-function fakeVerify(
-  step,
-  link
-){
-
-  window.open(
-    link,
-    "_blank"
-  );
-
-  const box =
-  document.createElement("div");
-
-  box.style.position =
-  "fixed";
-
-  box.style.top = "0";
-
-  box.style.left = "0";
-
-  box.style.width =
-  "100%";
-
-  box.style.height =
-  "100%";
-
-  box.style.background =
-  "rgba(0,0,0,0.7)";
-
-  box.style.display =
-  "flex";
-
-  box.style.alignItems =
-  "center";
-
-  box.style.justifyContent =
-  "center";
-
-  box.style.zIndex =
-  "9999";
-
-  box.innerHTML = `
-  <div style="
-    background:#111;
-    padding:20px;
-    border-radius:15px;
-    text-align:center;
-    color:white;
-    width:280px;
-    font-family:sans-serif;
-  ">
-    <h2>Đang xác minh</h2>
-
-    <p id="verifyText">
-    Vui lòng chờ 5 giây...
-    </p>
-  </div>
-  `;
-
-  document.body.appendChild(
-    box
-  );
-
-  let time = 5;
-
-  const timer =
-  setInterval(()=>{
-
-    time--;
-
+  if(state.verified){
     document.getElementById(
-      "verifyText"
-    ).innerHTML =
-    "Vui lòng chờ "
-    + time +
-    " giây...";
-
-    if(time <= 0){
-
-      clearInterval(timer);
-
-      if(step === 1)
-      done1 = true;
-
-      if(step === 2)
-      done2 = true;
-
-      if(step === 3)
-      done3 = true;
-
-      saveTasks();
-
-      updateProgress();
-
-      box.remove();
-
-      alert(
-      "Xác minh thành công!"
-      );
-
-    }
-
-  },1000);
-
+      "unlockBox"
+    ).style.display = "block";
+  }
 }
 
-/* TASK */
+function updateButton(
+  id,
+  done,
+  doneText,
+  normalText
+){
+  const btn =
+  document.getElementById(id);
+
+  btn.textContent =
+  done ? doneText : normalText;
+
+  btn.classList.toggle(
+    "completed",
+    done
+  );
+}
+
+function completeTask(
+  key,
+  url
+){
+  if(state[key]) return;
+
+  const tab =
+  window.open(url,"_blank");
+
+  if(!tab){
+    alert("Popup bị chặn");
+    return;
+  }
+
+  setTimeout(()=>{
+    state[key] = true;
+    save();
+    updateUI();
+  },3000);
+}
 
 function subscribeYoutube(){
-
-  if(done1){
-
-    alert(
-    "Đã hoàn thành bước này"
-    );
-
-    return;
-
-  }
-
-  fakeVerify(
-    1,
-    data.sub
+  completeTask(
+    "sub",
+    page.sub
   );
-
 }
 
 function likeVideo(){
 
-  if(done2){
-
+  if(!state.sub){
     alert(
-    "Đã hoàn thành bước này"
+      "Hãy Subscribe trước"
     );
-
     return;
-
   }
 
-  fakeVerify(
-    2,
-    data.like
+  completeTask(
+    "like",
+    page.like
   );
-
 }
 
 function joinTelegram(){
 
-  if(done3){
-
+  if(!state.like){
     alert(
-    "Đã hoàn thành bước này"
+      "Hãy Like Video trước"
     );
-
     return;
-
   }
 
-  fakeVerify(
-    3,
-    data.tele
+  completeTask(
+    "tele",
+    page.tele
   );
-
 }
 
-/* FINAL VERIFY */
-
-function verifyTasks(){
+function startVerify(){
 
   if(
-    !done1 ||
-    !done2 ||
-    !done3
+    !state.sub ||
+    !state.like ||
+    !state.tele
   ){
-
     alert(
-    "Hoàn thành đủ nhiệm vụ trước"
+      "Chưa hoàn thành đủ nhiệm vụ"
     );
-
     return;
-
   }
 
-  const btn =
   document.getElementById(
-    "verifyBtn"
-  );
+    "loadingText"
+  ).style.display =
+  "block";
 
-  btn.disabled = true;
+  setTimeout(()=>{
 
-  let time = 5;
+    state.verified = true;
 
-  btn.innerHTML =
-  "Đang mở khóa 5s";
+    save();
 
-  const timer =
-  setInterval(()=>{
+    document.getElementById(
+      "loadingText"
+    ).style.display =
+    "none";
 
-    time--;
+    updateUI();
 
-    btn.innerHTML =
-    "Đang mở khóa "
-    + time + "s";
-
-    if(time <= 0){
-
-      clearInterval(timer);
-
-      btn.innerHTML =
-      "Hoàn Thành";
-
-      document.getElementById(
-        "unlockBox"
-      ).style.display =
-      "block";
-
-    }
-
-  },1000);
-
+  },5000);
 }
 
-/* OPEN */
+function openAdsStep2(){
 
-function openUnlock(){
+  if(!state.verified){
+    return;
+  }
 
-  localStorage.removeItem(
-    id + "_1"
-  );
-
-  localStorage.removeItem(
-    id + "_2"
-  );
-
-  localStorage.removeItem(
-    id + "_3"
-  );
-
-  window.location.href =
-  data.unlock;
-
+  location.href =
+  page.unlock;
 }
 
-/* START */
-
-updateProgress();
+updateUI();
