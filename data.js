@@ -17,7 +17,7 @@ const pages = {
   },
   resources: {
     like: "https://youtu.be/GdMkWKfPMkQ?si=I6dnBi8lDE-I64Q2",
-    unlock: "https://www.mediafire.com/file/fmg9hcixqsb3cwh/Resources_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_4_th%25C3%25A1ng_6.zip/file"
+    unlock: "https://www.mediafire.com/file/rdt6b8yoo3bbmeo/Resources_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_10_Th%25C3%25A1ng_6.zip/file"
   },
   keyandroid: {
     like: "https://youtu.be/2XH9WjIkQQs?si=KApKyYg2lmfT8vKo",
