@@ -14,6 +14,8 @@
         }
     </style>
 </head>
+<script src="app.js"></script>
+<script src="data.js"></script>
 <body>
 
 <div class="container">
@@ -55,93 +57,7 @@
 <script src="data.js"></script>
 
 <script>
-// Lấy page hiện tại
-const params = new URLSearchParams(window.location.search);
-const currentPage = params.get("id");
 
-// Kiểm tra page tồn tại
-if (!pages[currentPage]) {
-    alert("Page không tồn tại");
-}
-
-// Biến kiểm tra trạng thái từng bước
-let step1_done = false;
-let step2_done = false;
-let step3_done = false;
-
-// Hàm cập nhật giao diện nút khi hoàn thành
-function markAsCompleted(buttonId, text) {
-    const btn = document.getElementById(buttonId);
-    btn.classList.add("completed");
-    btn.innerText = text + " (Đã làm)";
-}
-
-// SUBSCRIBE - BƯỚC 1
-function subscribeYoutube() {
-    window.open(pages[currentPage].sub, "_blank");
-    step1_done = true;
-    markAsCompleted("btnSub", "Subscribe");
-}
-
-// LIKE VIDEO - BƯỚC 2
-function likeVideo() {
-    if (!step1_done) {
-        alert("Vui lòng hoàn thành Bước 1: Đăng ký kênh trước!");
-        return;
-    }
-    window.open(pages[currentPage].like, "_blank");
-    step2_done = true;
-    markAsCompleted("btnLike", "Like Video");
-}
-
-// JOIN TELEGRAM - BƯỚC 3
-function joinTelegram() {
-    if (!step2_done) {
-        alert("Vui lòng hoàn thành Bước 2: Like video trước!");
-        return;
-    }
-    window.open(pages[currentPage].tele, "_blank");
-    step3_done = true;
-    markAsCompleted("btnTele", "Join Telegram");
-}
-
-// VERIFY - BƯỚC 4
-function startVerify() {
-    // Kiểm tra xem đã làm đủ 3 bước chưa
-    if (!step1_done || !step2_done || !step3_done) {
-        alert("Bạn phải hoàn thành tất cả các bước 1, 2, 3 trước khi xác minh!");
-        return;
-    }
-
-    const verifyBtn = document.getElementById("verifyBtn");
-    verifyBtn.disabled = true;
-    document.getElementById("loadingText").style.display = "block";
-
-    // Quảng cáo 1
-    window.open("https://vt.tiktok.com/ZS92oMn6oGY9P-CzJtv/", "_blank");
-
-    // Loading 5 giây
-    setTimeout(() => {
-        document.getElementById("loadingText").style.display = "none";
-        document.getElementById("unlockBox").style.display = "block";
-        markAsCompleted("verifyBtn", "Thực hiện");
-    }, 5000);
-}
-
-// ADS STEP 2
-function openAdsStep2() {
-    const openBtn = document.getElementById("openBtn");
-    openBtn.disabled = true;
-
-    // Quảng cáo 2
-    window.open("https://vt.tiktok.com/ZS92oME1X2Sry-m7aRY/", "_blank");
-
-    // Đợi 5 giây rồi mở link unlock
-    setTimeout(() => {
-        window.location.href = pages[currentPage].unlock;
-    }, 5000);
-}
-</script>
 
 </body>
 </html>
