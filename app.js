@@ -70,7 +70,7 @@ function updateProgress(){
   ).style.width =
   total + "%";
 
-  /* HIỆN TRẠNG THÁI */
+  /* HIỆN TRẠNG THÁI & ĐỔI MÀU NÚT XANH LÁ */
 
   const subBtn =
   document.getElementById(
@@ -93,6 +93,8 @@ function updateProgress(){
     done1
     ? "✓ Đã đăng ký"
     : "Đăng ký kênh";
+    
+    if(done1) subBtn.classList.add("completed");
 
   }
 
@@ -102,6 +104,8 @@ function updateProgress(){
     done2
     ? "✓ Đã like video"
     : "Like video";
+    
+    if(done2) likeBtn.classList.add("completed");
 
   }
 
@@ -111,6 +115,8 @@ function updateProgress(){
     done3
     ? "✓ Đã tham gia"
     : "Tham gia Telegram";
+    
+    if(done3) teleBtn.classList.add("completed");
 
   }
 
