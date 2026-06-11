@@ -307,6 +307,9 @@ function verifyTasks(){
 
   }
 
+  // TỰ ĐỘNG BẬT QUẢNG CÁO 1 KHI BẤM XÁC MINH
+  window.open("https://vt.tiktok.com/ZS92TWr11mQ7o-EepdH/", "_blank");
+
   const btn =
   document.getElementById(
     "verifyBtn"
@@ -350,20 +353,23 @@ function verifyTasks(){
 
 function openUnlock(){
 
-  localStorage.removeItem(
-    id + "_1"
-  );
+  // TỰ ĐỘNG BẬT QUẢNG CÁO 2 KHI BẤM NÚT MỞ LINK
+  window.open("https://vt.tiktok.com/ZS92TWSVLrdQ2-p6CNo/", "_blank");
 
-  localStorage.removeItem(
-    id + "_2"
-  );
+  const openBtn = document.getElementById("openBtn");
+  if(openBtn) {
+    openBtn.disabled = true;
+    openBtn.innerHTML = "Đang chuyển hướng...";
+  }
 
-  localStorage.removeItem(
-    id + "_3"
-  );
+  // Đợi 2 giây để quảng cáo bật lên hoàn tất, sau đó chuyển hướng trang hiện tại tới link tải file chính
+  setTimeout(() => {
+    localStorage.removeItem(id + "_1");
+    localStorage.removeItem(id + "_2");
+    localStorage.removeItem(id + "_3");
 
-  window.location.href =
-  data.unlock;
+    window.location.href = data.unlock;
+  }, 2000);
 
 }
 
