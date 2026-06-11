@@ -16,7 +16,7 @@ const pages = {
     unlock: "https://www.mediafire.com/file/cj8rf3k2dnmt99z/Mod_Camxa_Li%25C3%25AAn_Qu%25C3%25A2n_Android_-_IOS.zip/file"
   },
   resources: {
-    like: "https://youtu.be/6T5qfJAGP3c?si=i3QjRuq5TQ90Y3Ui",
+    like: "https://youtu.be/GdMkWKfPMkQ?si=I6dnBi8lDE-I64Q2",
     unlock: "https://www.mediafire.com/file/fmg9hcixqsb3cwh/Resources_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_4_th%25C3%25A1ng_6.zip/file"
   },
   keyandroid: {
