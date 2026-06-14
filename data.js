@@ -3,6 +3,10 @@ const DEFAULT_SUB = "https://www.youtube.com/@CyberModPro";
 const DEFAULT_TELE = "https://t.me/+gI22PHmUi5xhMDA9";
 
 const pages = {
+  tainguyen: {
+    like: "https://youtu.be/bPZSoST8WKI?si=kaLP0oWHq7P8WyKD",
+    unlock: "https://gofile.io/d/jnHUzb"
+  },
   fps: {
     like: "https://youtu.be/X_u_4jzzRzk?si=sXGjMFo_OF8-t93G",
     unlock: "https://www.mediafire.com/file/4gldcj37uk9ab2w/Mod_120_FPS_Cao_Li%25C3%25AAn_Qu%25C3%25A2n_Android.zip/file"
