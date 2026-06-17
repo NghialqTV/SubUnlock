@@ -40,7 +40,7 @@ const pages = {
     unlock: "https://www.mediafire.com/file/l54f3cq8798eo6d/Menu_Hack_Map_%255B_64_Bit_%255D.apk/file"
   },
   ipaios: {
-    like: "https://youtu.be/QxU_WqDb11E?si=62Fn0AM8CzZN2qn2",
+    like: "https://youtu.be/XvMaFr4lcA8?si=6jHdbxHgVEk7zRMm",
     unlock: "https://www.mediafire.com/file/l3cg6df68x7rsum/AovMod_1.62.11625414.ipa/file"
   },
   hackmenuios: {
