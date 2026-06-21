@@ -67,6 +67,10 @@ const pages = {
     like: "https://youtu.be/Ra_mVFbME98?si=jv3FyODlqs3FvnVy",
     unlock: "https://www.mediafire.com/file/byovvv3l8g00s3t/Mod_Pack_123_Skin_Android_-_IOS_By_Cyber_Mods.zip/file"
   },
+  mod35skin2106: {
+    like: "https://youtu.be/qXaXwoKc3ps?si=o33pS0xolpoof3Ii",
+    unlock: "https://www.mediafire.com/file/y8lp46ssvmdg3pi/Mod_Pack_35_Skin_Li%25C3%25AAn_Qu%25C3%25A2n_By_Cyber_Mods.zip/file"
+  },
 };
 
 // Tự động gán link mặc định cho các trang không cấu hình riêng biệt sub/tele
