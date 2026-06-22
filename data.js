@@ -45,11 +45,11 @@ const pages = {
   },
   hackmenuios: {
     like: "https://youtu.be/90_IyzW8TC4?si=Em1st1RFnpCsax1N",
-    unlock: "https://ipas.cc/byem9u"
+    unlock: "https://ipas.cc/0f2850"
   },
   modmenuios: {
     like: "https://youtu.be/90_IyzW8TC4?si=Em1st1RFnpCsax1N",
-    unlock: "https://ipas.cc/pyev1a"
+    unlock: "https://ipas.cc/3a4508"
   },
   keymenuios: {
     like: "https://youtu.be/90_IyzW8TC4?si=Em1st1RFnpCsax1N",
