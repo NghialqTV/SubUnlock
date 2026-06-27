@@ -73,7 +73,7 @@ const pages = {
   },
   mod56skin2506: {
     like: "https://youtu.be/rcuin9zADdI?si=TlGVUrlcntPpLFON",
-    unlock: "https://www.mediafire.com/file/y8lp46ssvmdg3pi/Mod_Pack_35_Skin_Li%25C3%25AAn_Qu%25C3%25A2n_By_Cyber_Mods.zip/file"
+    unlock: "https://www.mediafire.com/file/qnxy2ettj1tbdlp/Pack_56_Skin_Li%25C3%25AAn_Qu%25C3%25A2n_Android_-_IOS.zip/file"
   },
 };
 
