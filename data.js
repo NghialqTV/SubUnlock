@@ -1,5 +1,5 @@
 // Cấu hình các link mặc định dùng chung để tránh trùng lặp dữ liệu
-const DEFAULT_SUB = "https://www.youtube.com/@CyberModPro";
+const DEFAULT_SUB = "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg";
 const DEFAULT_TELE = "https://t.me/+gI22PHmUi5xhMDA9";
 
 const pages = {
