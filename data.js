@@ -79,6 +79,10 @@ const pages = {
     like: "https://youtu.be/Aik5e6BIpB8?si=DJP5jzRf5qtCCcqb",
     unlock: "https://www.mediafire.com/file/dpzl87jctfcm8km/Mod_Full_200_Skin_Max_IN_5_Skin_By_Ngh%25C4%25A9alq_TV.zip/file"
   },
+  mod100skin0507: {
+    like: "https://youtu.be/QtmDF2ftA-w?si=PJN0ebNq6s3_AF3E",
+    unlock: "https://www.mediafire.com/file/kae3ahqyczvj2af/Mod_Full_100_Skin_Li%25C3%25AAn_Qu%25C3%25A2n.zip/file"
+  },
 };
 
 // Tự động gán link mặc định cho các trang không cấu hình riêng biệt sub/tele
