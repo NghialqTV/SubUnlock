@@ -29,7 +29,7 @@ const pages = {
   },
   modmenuandroid64: {
     like: "https://youtu.be/2XH9WjIkQQs?si=KApKyYg2lmfT8vKo",
-    unlock: "https://www.mediafire.com/file/ck8cfrapf1ptqj2/Menu_Li%25C3%25AAn_Qu%25C3%25A2n_ModSkin_.apk/file"
+    unlock: "https://www.mediafire.com/file/f87v1gq03gli3fh/Menu_%255B_Mod_Skin_%255D_Android_S3.apk/file"
   },
   modmenuandroid32: {
     like: "https://youtu.be/2XH9WjIkQQs?si=KApKyYg2lmfT8vKo",
@@ -37,7 +37,7 @@ const pages = {
   },
   hackmenuandroid64: {
     like: "https://youtu.be/2XH9WjIkQQs?si=KApKyYg2lmfT8vKo",
-    unlock: "https://www.mediafire.com/file/l54f3cq8798eo6d/Menu_Hack_Map_%255B_64_Bit_%255D.apk/file"
+    unlock: "https://www.mediafire.com/file/cy5uk5y5v4dyaql/Menu_%255B_Hack_Map_%255D_Android_S3.apk/file"
   },
   ipaios: {
     like: "https://youtu.be/XvMaFr4lcA8?si=6jHdbxHgVEk7zRMm",
