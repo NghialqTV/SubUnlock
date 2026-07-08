@@ -20,8 +20,8 @@ const pages = {
     unlock: "https://www.mediafire.com/file/cj8rf3k2dnmt99z/Mod_Camxa_Li%25C3%25AAn_Qu%25C3%25A2n_Android_-_IOS.zip/file"
   },
   resources: {
-    like: "https://youtu.be/GdMkWKfPMkQ?si=I6dnBi8lDE-I64Q2",
-    unlock: "https://www.mediafire.com/file/rdt6b8yoo3bbmeo/Resources_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_10_Th%25C3%25A1ng_6.zip/file"
+    like: "https://youtu.be/SEVLK6skI7c?si=yqVHi_B8oczuNBQO",
+    unlock: "https://www.mediafire.com/file/2phivcrdkkx5fkt/Resources_S3_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_Ng%25C3%25A0y_08_Th%25C3%25A1ng_7.zip/file"
   },
   keyandroid: {
     like: "https://youtu.be/2XH9WjIkQQs?si=KApKyYg2lmfT8vKo",
