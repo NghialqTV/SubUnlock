@@ -12,7 +12,7 @@ const pages = {
     unlock: "https://www.mediafire.com/file/4gldcj37uk9ab2w/Mod_120_FPS_Cao_Li%25C3%25AAn_Qu%25C3%25A2n_Android.zip/file"
   },
   filele: {
-    like: "https://youtu.be/GdMkWKfPMkQ?si=lBZzR1BHun0knzkQ",
+    like: "https://youtu.be/SEVLK6skI7c?si=6P1n-_OlCjuzBvTy",
     unlock: "https://nghialqtv.github.io/mod/file-le.html"
   },
   camxa: {
@@ -20,39 +20,39 @@ const pages = {
     unlock: "https://www.mediafire.com/file/j7qapbspgapkvc6/Mod_Cam_Xa_%255BS3_2026%255D.zip/file"
   },
   resources: {
-    like: "https://youtu.be/SEVLK6skI7c?si=yqVHi_B8oczuNBQO",
+    like: "https://youtu.be/SEVLK6skI7c?si=6P1n-_OlCjuzBvTy",
     unlock: "https://www.mediafire.com/file/2phivcrdkkx5fkt/Resources_S3_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_Ng%25C3%25A0y_08_Th%25C3%25A1ng_7.zip/file"
   },
   keyandroid: {
-    like: "https://youtu.be/2XH9WjIkQQs?si=KApKyYg2lmfT8vKo",
+    like: "https://youtu.be/iGYxtDpFP70?si=c6kzC-qD6C-xjIx9",
     unlock: "https://duymmo.io.vn/ctvkey/3fun.php"
   },
   modmenuandroid64: {
-    like: "https://youtu.be/2XH9WjIkQQs?si=KApKyYg2lmfT8vKo",
+    like: "https://youtu.be/iGYxtDpFP70?si=c6kzC-qD6C-xjIx9",
     unlock: "https://www.mediafire.com/file/f87v1gq03gli3fh/Menu_%255B_Mod_Skin_%255D_Android_S3.apk/file"
   },
   modmenuandroid32: {
-    like: "https://youtu.be/2XH9WjIkQQs?si=KApKyYg2lmfT8vKo",
+    like: "https://youtu.be/iGYxtDpFP70?si=c6kzC-qD6C-xjIx9",
     unlock: "https://www.mediafire.com/file/j21h804l6ojsn44/Menu_Mod_Skin_32_Bit_Fix.apk/file"
   },
   hackmenuandroid64: {
-    like: "https://youtu.be/2XH9WjIkQQs?si=KApKyYg2lmfT8vKo",
+    like: "https://youtu.be/iGYxtDpFP70?si=c6kzC-qD6C-xjIx9",
     unlock: "https://www.mediafire.com/file/cy5uk5y5v4dyaql/Menu_%255B_Hack_Map_%255D_Android_S3.apk/file"
   },
   ipaios: {
     like: "https://youtu.be/XvMaFr4lcA8?si=6jHdbxHgVEk7zRMm",
-    unlock: "https://www.mediafire.com/file/l3cg6df68x7rsum/AovMod_1.62.11625414.ipa/file"
+    unlock: "https://linkx.me/1TXdi"
   },
   hackmenuios: {
-    like: "https://youtu.be/90_IyzW8TC4?si=Em1st1RFnpCsax1N",
+    like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
     unlock: "https://linkx.me/enSKC3w"
   },
   modmenuios: {
-    like: "https://youtu.be/90_IyzW8TC4?si=Em1st1RFnpCsax1N",
+    like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
     unlock: "https://linkx.me/o7jJK"
   },
   keymenuios: {
-    like: "https://youtu.be/90_IyzW8TC4?si=Em1st1RFnpCsax1N",
+    like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
     unlock: "https://funlink.io/Pz20MGW"
   },
   mod65skin1006: {
