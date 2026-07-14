@@ -49,7 +49,7 @@ const pages = {
   },
   modmenuios: {
     like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
-    unlock: "https://linkx.me/pAQHHZ2"
+    unlock: "https://linkx.me/xmRWm"
   },
   keymenuios: {
     like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
