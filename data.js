@@ -83,7 +83,6 @@ const pages = {
     like: "https://youtu.be/Aik5e6BIpB8?si=DJP5jzRf5qtCCcqb",
     unlock: "https://www.mediafire.com/file/dpzl87jctfcm8km/Mod_Full_200_Skin_Max_IN_5_Skin_By_Ngh%25C4%25A9alq_TV.zip/file"
   },
-  },
   mod500skin1507: {
     like: "https://youtu.be/Aik5e6BIpB8?si=DJP5jzRf5qtCCcqb",
     unlock: "https://www.mediafire.com/file/j3hyowds9ns7usp/Mod_Full_Skin_Max_IN_5_Skin.zip/file"
