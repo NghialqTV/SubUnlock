@@ -21,7 +21,7 @@ const pages = {
   },
   resources: {
     like: "https://youtu.be/SEVLK6skI7c?si=6P1n-_OlCjuzBvTy",
-    unlock: "https://www.mediafire.com/file/ootbtwgcrjp6fk6/Resources_Fix_Reset_Mod.zip/file"
+    unlock: "https://www.mediafire.com/file/u9mfxyot6ps5a5b/Resources_Fix_Reset_Mod_Update_16_Thang_7.zip/file"
   },
   keyandroid: {
     like: "https://youtu.be/iGYxtDpFP70?si=c6kzC-qD6C-xjIx9",
