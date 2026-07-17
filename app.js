@@ -279,7 +279,7 @@ function verifyTasks(){
   }
 
   // TỰ ĐỘNG BẬT QUẢNG CÁO 1 KHI BẤM XÁC MINH
-  window.open("https://vt.tiktok.com/ZS96aNu2cfnUs-pEa60/", "_blank");
+  window.open("https://vt.tiktok.com/ZS9rens8mRD7Y-7K5PX/", "_blank");
 
   const btn =
   document.getElementById(
@@ -325,7 +325,7 @@ function verifyTasks(){
 function openUnlock(){
 
   // TỰ ĐỘNG BẬT QUẢNG CÁO 2 KHI BẤM NÚT MỞ LINK
-  window.open("https://vt.tiktok.com/ZS96aNu2cfnUs-pEa60/", "_blank");
+  window.open("https://vt.tiktok.com/ZS9renCAPBdSp-WwAIq/", "_blank");
 
   const openBtn = document.getElementById("openBtn");
   if(openBtn) {
