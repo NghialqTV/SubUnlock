@@ -87,6 +87,10 @@ const pages = {
     like: "https://youtu.be/KAOAP4IaPhE?si=0vjsB30ljkAjjfgR",
     unlock: "https://www.mediafire.com/file/j3hyowds9ns7usp/Mod_Full_Skin_Max_IN_5_Skin.zip/file"
   },
+  mod80skin1807: {
+    like: "",
+    unlock: "https://www.mediafire.com/file/4zvrl2oy07a6y1b/Mod_Pack_80_Skin_Android_-_IOS_-_Fix_Reset.zip/file"
+ },
 };
 
 // Tự động gán link mặc định cho các trang không cấu hình riêng biệt sub/tele
