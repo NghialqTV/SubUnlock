@@ -49,11 +49,11 @@ const pages = {
   },
   hackmenuios: {
     like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
-    unlock: "https://linkx.me/rH2E9LG0"
+    unlock: "https://linkx.me/G5HqIrXF"
   },
   modmenuios: {
     like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
-    unlock: "https://linkx.me/1Z4MT"
+    unlock: "https://linkx.me/gQB2d"
   },
   keymenuios: {
     like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
