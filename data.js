@@ -24,7 +24,7 @@ const pages = {
     unlock: "https://www.mediafire.com/file/j7qapbspgapkvc6/Mod_Cam_Xa_%255BS3_2026%255D.zip/file"
   },
   resources: {
-    like: "https://youtu.be/SEVLK6skI7c?si=6P1n-_OlCjuzBvTy",
+    like: "https://youtu.be/rKJSqaRlKgs?si=kiUN92ZkRwYPwgqT",
     unlock: "https://www.mediafire.com/file/1c1yyuai98stnbi/Resources_Fix_Reset_Mod_By_Ngh%25C4%25A9aLq_TV.zip/file"
   },
   keyandroid: {
