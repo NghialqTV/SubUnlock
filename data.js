@@ -57,7 +57,7 @@ const pages = {
   },
   keymenuios: {
     like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
-    unlock: "https://funlink.io/Pz20MGW"
+    unlock: "https://ontops.link/VS_fPnJ"
   },
   mod65skin1006: {
     like: "https://youtu.be/jZwGXnvgQpo?si=6ZTA2xJhwzPVb3Jy",
