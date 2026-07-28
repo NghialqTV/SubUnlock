@@ -13,7 +13,7 @@ const pages = {
   },
   fps: {
     like: "https://youtu.be/X_u_4jzzRzk?si=sXGjMFo_OF8-t93G",
-    unlock: "https://www.mediafire.com/file/4gldcj37uk9ab2w/Mod_120_FPS_Cao_Li%25C3%25AAn_Qu%25C3%25A2n_Android.zip/file"
+    unlock: "https://www.mediafire.com/file/sjippxitj2gpn4l/120FPS.zip/file"
   },
   filele: {
     like: "https://youtu.be/SEVLK6skI7c?si=6P1n-_OlCjuzBvTy",
