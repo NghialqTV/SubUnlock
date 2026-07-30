@@ -57,7 +57,7 @@ const pages = {
   },
   keymenuios: {
     like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
-    unlock: "https://nhapma.com/v/keyios"
+    unlock: "https://ontops.link/z7onk_P"
   },
   mod65skin1006: {
     like: "https://youtu.be/jZwGXnvgQpo?si=6ZTA2xJhwzPVb3Jy",
