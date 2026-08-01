@@ -9,7 +9,7 @@ const pages = {
   },
   fullfilele: {
     like: "https://youtu.be/1nQrhNtpMYU?si=ihvptkE5dgDGq-HB",
-    unlock: "https://linkx.me/gtAZrHZ"
+    unlock: "https://linkx.me/MdYcJVWw"
   },
   fps: {
     like: "https://youtu.be/X_u_4jzzRzk?si=sXGjMFo_OF8-t93G",
@@ -24,15 +24,15 @@ const pages = {
     unlock: "https://www.mediafire.com/file/j7qapbspgapkvc6/Mod_Cam_Xa_%255BS3_2026%255D.zip/file"
   },
   resources: {
-    like: "https://youtu.be/rKJSqaRlKgs?si=kiUN92ZkRwYPwgqT",
+    like: "https://youtu.be/rgx3ybPLWRc?si=TIWiJKlrgp7CBnob",
     unlock: "https://www.mediafire.com/file/dvq2p1ggvesgh7k/Resources_Fix_Reset_Mod_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_30_Th%25C3%25A1ng_7_By_Ngh%25C4%25A9alq_TV.zip/file"
   },
   keyandroid: {
-    like: "https://youtu.be/iGYxtDpFP70?si=c6kzC-qD6C-xjIx9",
+    like: "https://youtu.be/3p24g966TL0?si=5Y64NAv8fZ3zn75e",
     unlock: "https://duymmo.io.vn/ctvkey/3fun.php"
   },
   modmenuandroid64: {
-    like: "https://youtu.be/iGYxtDpFP70?si=c6kzC-qD6C-xjIx9",
+    like: "https://youtu.be/3p24g966TL0?si=5Y64NAv8fZ3zn75e",
     unlock: "https://www.mediafire.com/file/f87v1gq03gli3fh/Menu_%255B_Mod_Skin_%255D_Android_S3.apk/file"
   },
   modmenuandroid32: {
@@ -40,7 +40,7 @@ const pages = {
     unlock: "https://www.mediafire.com/file/j21h804l6ojsn44/Menu_Mod_Skin_32_Bit_Fix.apk/file"
   },
   hackmenuandroid64: {
-    like: "https://youtu.be/iGYxtDpFP70?si=c6kzC-qD6C-xjIx9",
+    like: "https://youtu.be/3p24g966TL0?si=5Y64NAv8fZ3zn75e",
     unlock: "https://www.mediafire.com/file/cy5uk5y5v4dyaql/Menu_%255B_Hack_Map_%255D_Android_S3.apk/file"
   },
   ipaios: {
