@@ -47,13 +47,24 @@
 </div>
 <script src="data.js"></script>
 <script>
-// Lấy page hiện tại
+// Lấy id hoặc page từ URL (hỗ trợ cả ?id= và ?page=)
 const params = new URLSearchParams(window.location.search);
-const currentPage = params.get("page") || "hackmenuios";
+const currentPage =
+    params.get("id") ||
+    params.get("page") ||
+    "hackmenuios";
 
 // Kiểm tra page tồn tại
 if (!pages[currentPage]) {
-    alert("Page không tồn tại");
+    alert("Page không tồn tại!");
+
+    document.body.innerHTML = `
+        <div style="display:flex;justify-content:center;align-items:center;height:100vh;font-family:Arial,sans-serif;">
+            <h2>❌ Link không hợp lệ hoặc đã hết hạn.</h2>
+        </div>
+    `;
+
+    throw new Error("Invalid page: " + currentPage);
 }
 
 // Biến kiểm tra trạng thái từng bước
