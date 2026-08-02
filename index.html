@@ -1,50 +1,138 @@
 <!DOCTYPE html>
+
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Unlock</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Task Unlock</title>
+<link href="style.css" rel="stylesheet"/>
+<style>
+        /* Thêm hiệu ứng cho nút khi đã hoàn thành */
+        button.completed {
+            background-color: #28a745 !important; /* Đổi sang màu xanh lá */
+            color: #fff !important;
+            opacity: 0.9;
+        }
+    </style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet"/></head>
 <body>
-
 <div class="container">
-    <div class="card">
-        <div class="title">HOÀN THÀNH NHIỆM VỤ</div>
-
-        <div class="progressBox">
-            <div class="progress" id="progress"></div>
-        </div>
-
-        <div class="task">
-            <h3>1. Đăng ký kênh YouTube</h3>
-            <button id="subBtn" onclick="subscribeYoutube()">Đăng ký kênh</button>
-        </div>
-
-        <div class="task">
-            <h3>2. Like video YouTube</h3>
-            <button id="likeBtn" onclick="likeVideo()">Like video</button>
-        </div>
-
-        <div class="task">
-            <h3>3. Tham gia Telegram</h3>
-            <button id="teleBtn" onclick="joinTelegram()">Tham gia Telegram</button>
-        </div>
-
-        <div class="task">
-            <h3>4. Xác minh nhiệm vụ</h3>
-            <button class="btn" id="verifyBtn" onclick="verifyTasks()">Xác minh</button>
-        </div>
-
-        <div id="unlockBox" style="display:none; margin-top:20px;">
-            <div class="success">✅ HOÀN THÀNH</div>
-            <button class="btn" id="openBtn" onclick="openUnlock()">MỞ LINK</button>
-        </div>
-    </div>
+<div class="card">
+<div class="title">HOÀN THÀNH NHIỆM VỤ</div>
+<div class="progressBox">
+<div class="progress" id="progress"></div>
 </div>
-
+<div class="task">
+<h3><i class="fa-brands fa-youtube" style="color:#e11d48;margin-right:10px;"></i>1. Đăng ký kênh YouTube</h3>
+<button id="btnSub" onclick="subscribeYoutube()">Subscribe</button>
+</div>
+<div class="task">
+<h3><i class="fa-solid fa-heart" style="color:#2563eb;margin-right:10px;"></i>2. Like video YouTube</h3>
+<button id="btnLike" onclick="likeVideo()">Like Video</button>
+</div>
+<div class="task">
+<h3><i class="fa-brands fa-telegram" style="color:#0ea5e9;margin-right:10px;"></i>3. Tham gia Telegram</h3>
+<button id="btnTele" onclick="joinTelegram()">Join Telegram</button>
+</div>
+<div class="task">
+<h3><i class="fa-solid fa-circle-check" style="color:#22c55e;margin-right:10px;"></i>4. Xác minh nhiệm vụ</h3>
+<button class="btn" id="verifyBtn" onclick="startVerify()">Thực hiện</button>
+<div id="loadingText" style="display:none; margin-top:10px;">⏳ Đang xác minh nhiệm vụ...</div>
+</div>
+<div id="unlockBox" style="display:none; margin-top:20px;">
+<div class="success">✅ HOÀN THÀNH</div>
+<button class="btn" id="openBtn" onclick="openAdsStep2()">MỞ LINK</button>
+</div>
+</div>
+</div>
 <script src="data.js"></script>
-<script src="app.js"></script>
+<script>
+// Lấy page hiện tại
+const params = new URLSearchParams(window.location.search);
+const currentPage = params.get("page") || "hackmenuios";
 
+// Kiểm tra page tồn tại
+if (!pages[currentPage]) {
+    alert("Page không tồn tại");
+}
+
+// Biến kiểm tra trạng thái từng bước
+let step1_done = false;
+let step2_done = false;
+let step3_done = false;
+
+// Hàm cập nhật giao diện nút khi hoàn thành
+function markAsCompleted(buttonId, text) {
+    const btn = document.getElementById(buttonId);
+    btn.classList.add("completed");
+    btn.innerText = text + " (Đã làm)";
+}
+
+// SUBSCRIBE - BƯỚC 1
+function subscribeYoutube() {
+    window.open(pages[currentPage].sub, "_blank");
+    step1_done = true;
+    markAsCompleted("btnSub", "Subscribe");
+}
+
+// LIKE VIDEO - BƯỚC 2
+function likeVideo() {
+    if (!step1_done) {
+        alert("Vui lòng hoàn thành Bước 1: Đăng ký kênh trước!");
+        return;
+    }
+    window.open(pages[currentPage].like, "_blank");
+    step2_done = true;
+    markAsCompleted("btnLike", "Like Video");
+}
+
+// JOIN TELEGRAM - BƯỚC 3
+function joinTelegram() {
+    if (!step2_done) {
+        alert("Vui lòng hoàn thành Bước 2: Like video trước!");
+        return;
+    }
+    window.open(pages[currentPage].tele, "_blank");
+    step3_done = true;
+    markAsCompleted("btnTele", "Join Telegram");
+}
+
+// VERIFY - BƯỚC 4
+function startVerify() {
+    // Kiểm tra xem đã làm đủ 3 bước chưa
+    if (!step1_done || !step2_done || !step3_done) {
+        alert("Bạn phải hoàn thành tất cả các bước 1, 2, 3 trước khi xác minh!");
+        return;
+    }
+
+    const verifyBtn = document.getElementById("verifyBtn");
+    verifyBtn.disabled = true;
+    document.getElementById("loadingText").style.display = "block";
+
+    // Quảng cáo 1
+    window.open("https://vt.tiktok.com/ZS9YR7qcbCb1Y-ngGkg/", "_blank");
+
+    // Loading 5 giây
+    setTimeout(() => {
+        document.getElementById("loadingText").style.display = "none";
+        document.getElementById("unlockBox").style.display = "block";
+        markAsCompleted("verifyBtn", "Thực hiện");
+    }, 5000);
+}
+
+// ADS STEP 2
+function openAdsStep2() {
+    const openBtn = document.getElementById("openBtn");
+    openBtn.disabled = true;
+
+    // Quảng cáo 2
+    window.open("https://vt.tiktok.com/ZS9YRTCTBKE3B-Pnxqj/", "_blank");
+
+    // Đợi 5 giây rồi mở link unlock
+    setTimeout(() => {
+        window.location.href = pages[currentPage].unlock;
+    }, 5000);
+}
+</script>
 </body>
 </html>
