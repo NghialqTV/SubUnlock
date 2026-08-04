@@ -21,7 +21,7 @@ const pages = {
   },
   camxa: {
     like: "https://youtu.be/K5UU7sFOspo?si=6zcNrcNiXuYSyafH",
-    unlock: "https://www.mediafire.com/file/j7qapbspgapkvc6/Mod_Cam_Xa_%255BS3_2026%255D.zip/file"
+    unlock: "https://www.mediafire.com/file/m4fnljrx2iw5t0y/Mod_Camxa_Li%25C3%25AAn_Qu%25C3%25A2n.zip/file"
   },
   resources: {
     like: "https://youtu.be/rgx3ybPLWRc?si=TIWiJKlrgp7CBnob",
