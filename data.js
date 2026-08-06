@@ -12,8 +12,8 @@ const pages = {
     unlock: "https://linkx.me/MdYcJVWw"
   },
   fps: {
-    like: "https://youtu.be/X_u_4jzzRzk?si=sXGjMFo_OF8-t93G",
-    unlock: "https://www.mediafire.com/file/sjippxitj2gpn4l/120FPS.zip/file"
+    like: "https://youtu.be/DJgeoNOFq_E?si=OEHoTpMmK6oqS6Vc",
+    unlock: "https://www.mediafire.com/file/o9mwxdr41y14bxi/120_FPS.zip/file"
   },
   filele: {
     like: "https://youtu.be/SEVLK6skI7c?si=6P1n-_OlCjuzBvTy",
