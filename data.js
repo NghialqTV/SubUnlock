@@ -130,4 +130,5 @@ const pages = {
 Object.keys(pages).forEach(key => {
   if (!pages[key].sub) pages[key].sub = DEFAULT_SUB;
   if (!pages[key].tele) pages[key].tele = DEFAULT_TELE;
+  if (!pages[key].cyberSub) pages[key].cyberSub = CYBER_MOD_SUB;
 });
