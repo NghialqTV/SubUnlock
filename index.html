@@ -27,15 +27,19 @@
 <button id="btnSub" onclick="subscribeYoutube()">Subscribe</button>
 </div>
 <div class="task">
-<h3><i class="fa-solid fa-heart" style="color:#2563eb;margin-right:10px;"></i>2. Like video YouTube</h3>
+<h3><i class="fa-brands fa-youtube" style="color:#e11d48;margin-right:10px;"></i>2. Đăng ký kênh Cyber Mods</h3>
+<button id="btnCyberSub" onclick="subscribeCyberMod()">Đăng ký Cyber Mods</button>
+</div>
+<div class="task">
+<h3><i class="fa-solid fa-heart" style="color:#2563eb;margin-right:10px;"></i>3. Like video YouTube</h3>
 <button id="btnLike" onclick="likeVideo()">Like Video</button>
 </div>
 <div class="task">
-<h3><i class="fa-brands fa-telegram" style="color:#0ea5e9;margin-right:10px;"></i>3. Tham gia Telegram</h3>
+<h3><i class="fa-brands fa-telegram" style="color:#0ea5e9;margin-right:10px;"></i>4. Tham gia Telegram</h3>
 <button id="btnTele" onclick="joinTelegram()">Join Telegram</button>
 </div>
 <div class="task">
-<h3><i class="fa-solid fa-circle-check" style="color:#22c55e;margin-right:10px;"></i>4. Xác minh nhiệm vụ</h3>
+<h3><i class="fa-solid fa-circle-check" style="color:#22c55e;margin-right:10px;"></i>5. Xác minh nhiệm vụ</h3>
 <button class="btn" id="verifyBtn" onclick="startVerify()">Thực hiện</button>
 <div id="loadingText" style="display:none; margin-top:10px;">⏳ Đang xác minh nhiệm vụ...</div>
 </div>
@@ -71,6 +75,7 @@ if (!pages[currentPage]) {
 let step1_done = false;
 let step2_done = false;
 let step3_done = false;
+let step4_done = false;
 
 // Hàm cập nhật giao diện nút khi hoàn thành
 function markAsCompleted(buttonId, text) {
@@ -86,33 +91,44 @@ function subscribeYoutube() {
     markAsCompleted("btnSub", "Subscribe");
 }
 
-// LIKE VIDEO - BƯỚC 2
-function likeVideo() {
+// SUBSCRIBE CYBER MODS - BƯỚC 2
+function subscribeCyberMod() {
     if (!step1_done) {
-        alert("Vui lòng hoàn thành Bước 1: Đăng ký kênh trước!");
+        alert("Vui lòng hoàn thành Bước 1: Đăng ký kênh YouTube trước!");
+        return;
+    }
+    window.open(pages[currentPage].cyberSub, "_blank");
+    step2_done = true;
+    markAsCompleted("btnCyberSub", "Đăng ký Cyber Mods");
+}
+
+// LIKE VIDEO - BƯỚC 3
+function likeVideo() {
+    if (!step2_done) {
+        alert("Vui lòng hoàn thành Bước 2: Đăng ký kênh Cyber Mods trước!");
         return;
     }
     window.open(pages[currentPage].like, "_blank");
-    step2_done = true;
+    step3_done = true;
     markAsCompleted("btnLike", "Like Video");
 }
 
-// JOIN TELEGRAM - BƯỚC 3
+// JOIN TELEGRAM - BƯỚC 4
 function joinTelegram() {
-    if (!step2_done) {
-        alert("Vui lòng hoàn thành Bước 2: Like video trước!");
+    if (!step3_done) {
+        alert("Vui lòng hoàn thành Bước 3: Like video trước!");
         return;
     }
     window.open(pages[currentPage].tele, "_blank");
-    step3_done = true;
+    step4_done = true;
     markAsCompleted("btnTele", "Join Telegram");
 }
 
-// VERIFY - BƯỚC 4
+// VERIFY - BƯỚC 5
 function startVerify() {
-    // Kiểm tra xem đã làm đủ 3 bước chưa
-    if (!step1_done || !step2_done || !step3_done) {
-        alert("Bạn phải hoàn thành tất cả các bước 1, 2, 3 trước khi xác minh!");
+    // Kiểm tra xem đã làm đủ 4 bước chưa
+    if (!step1_done || !step2_done || !step3_done || !step4_done) {
+        alert("Bạn phải hoàn thành tất cả các bước 1, 2, 3, 4 trước khi xác minh!");
         return;
     }
 
@@ -121,7 +137,7 @@ function startVerify() {
     document.getElementById("loadingText").style.display = "block";
 
     // Quảng cáo 1
-    window.open("https://vt.tiktok.com/ZS9YR7qcbCb1Y-ngGkg/", "_blank");
+    window.open("https://vt.tiktok.com/ZS9h3gQA8qtcw-5DkY3/", "_blank");
 
     // Loading 5 giây
     setTimeout(() => {
@@ -137,7 +153,7 @@ function openAdsStep2() {
     openBtn.disabled = true;
 
     // Quảng cáo 2
-    window.open("https://vt.tiktok.com/ZS9YRTCTBKE3B-Pnxqj/", "_blank");
+    window.open("https://vt.tiktok.com/ZS9h3gAbafKqu-OVqcS/", "_blank");
 
     // Đợi 5 giây rồi mở link unlock
     setTimeout(() => {
