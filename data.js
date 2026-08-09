@@ -1,6 +1,7 @@
 // Cấu hình các link mặc định dùng chung để tránh trùng lặp dữ liệu
 const DEFAULT_SUB = "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg";
 const DEFAULT_TELE = "https://t.me/+gI22PHmUi5xhMDA9";
+const CYBER_MOD_SUB = "https://youtube.com/@cyber_aov?si=rPa3JdbJuRreQbVh";
 
 const pages = {
   tainguyen: {
