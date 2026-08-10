@@ -50,7 +50,7 @@ const pages = {
   },
   hackmenuios: {
     like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
-    unlock: "https://linkx.me/nwPwOyQ"
+    unlock: "https://linkx.me/3l0VjF"
   },
   modmenuios: {
     like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
