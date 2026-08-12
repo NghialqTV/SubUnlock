@@ -126,7 +126,7 @@ const pages = {
   },
   mod85skin1208: {
     like: "https://youtu.be/jkJLZLwWu9c?si=WIBxDvEwLYCuUN7U",
-    unlock: "https://www.mediafire.com/file/304uwy3uwdioz46/Mod_85_Skin_Full_Hi%25E1%25BB%2587u_%25E1%25BB%25A8ng_M%25E1%25BB%259Bi_Nh%25E1%25BA%25A5t_Update_%255BVer_12%255D.zip/file"
+    unlock: "https://www.mediafire.com/file/nkrudepcxx0qb69/Mod_Pack_85_Skin_C%25C3%25B3_n%25C3%259At_B%25E1%25BA%25A5m_By_Ngh%25C4%25A9alq_TV.zip/file"
   },
 };
 
