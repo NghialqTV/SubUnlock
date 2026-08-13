@@ -25,11 +25,11 @@ const pages = {
     unlock: "https://www.mediafire.com/file/m4fnljrx2iw5t0y/Mod_Camxa_Li%25C3%25AAn_Qu%25C3%25A2n.zip/file"
   },
   resources: {
-    like: "https://youtu.be/rgx3ybPLWRc?si=TIWiJKlrgp7CBnob",
-    unlock: "https://www.mediafire.com/file/dvq2p1ggvesgh7k/Resources_Fix_Reset_Mod_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_30_Th%25C3%25A1ng_7_By_Ngh%25C4%25A9alq_TV.zip/file"
+    like: "https://youtu.be/ce5_ie9fH5o?si=DD1n7I9xDyp0kPWG",
+    unlock: "https://www.mediafire.com/file/uelfojzbpfjrwmb/Resources_Fix_Reset_Mod_Update_13_Thang_8.zip/file"
   },
   keyandroid: {
-    like: "https://youtu.be/3p24g966TL0?si=5Y64NAv8fZ3zn75e",
+    like: "https://youtu.be/ce5_ie9fH5o?si=DD1n7I9xDyp0kPWG",
     unlock: "https://duymmo.io.vn/ctvkey/3fun.php"
   },
   modmenuandroid64: {
