@@ -128,6 +128,10 @@ const pages = {
     like: "https://youtu.be/jkJLZLwWu9c?si=WIBxDvEwLYCuUN7U",
     unlock: "https://www.mediafire.com/file/nkrudepcxx0qb69/Mod_Pack_85_Skin_C%25C3%25B3_n%25C3%259At_B%25E1%25BA%25A5m_By_Ngh%25C4%25A9alq_TV.zip/file"
   },
+  mod123skin1408: {
+    like: "https://youtu.be/zlR18CMlaIE?si=wOnQ-WXmNBHc_nDA",
+    unlock: "https://www.mediafire.com/file/k7hbcemjkoercr1/%255B_C%25C3%25B3_N%25C3%25BAt_%255D_Mod_Full_123_Skin_Li%25C3%25AAn_Qu%25C3%25A2n_By_Ngh%25C4%25A9alq_TV.zip/file"
+  },
 };
 
 // Tự động gán link mặc định cho các trang không cấu hình riêng biệt sub/tele
