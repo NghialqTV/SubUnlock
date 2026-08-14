@@ -10,7 +10,7 @@ const pages = {
   },
   fullfilele: {
     like: "https://youtu.be/1nQrhNtpMYU?si=ihvptkE5dgDGq-HB",
-    unlock: "https://linkx.me/MdYcJVWw"
+    unlock: "https://linkx.me/CVv0"
   },
   fps: {
     like: "https://youtu.be/DJgeoNOFq_E?si=OEHoTpMmK6oqS6Vc",
