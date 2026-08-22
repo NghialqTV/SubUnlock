@@ -1,165 +1,112 @@
 <!DOCTYPE html>
-
 <html lang="vi">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Task Unlock</title>
-<link href="style.css" rel="stylesheet"/>
-<style>
-        /* Thêm hiệu ứng cho nút khi đã hoàn thành */
-        button.completed {
-            background-color: #28a745 !important; /* Đổi sang màu xanh lá */
-            color: #fff !important;
-            opacity: 0.9;
-        }
-    </style>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet"/></head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0c100d">
+<title>Get Key LQM Android • NghĩaLQ TV</title>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
 <body>
-<div class="container">
-<div class="card">
-<div class="title">HOÀN THÀNH NHIỆM VỤ</div>
-<div class="progressBox">
-<div class="progress" id="progress"></div>
-</div>
-<div class="task">
-<h3><i class="fa-brands fa-youtube" style="color:#e11d48;margin-right:10px;"></i>1. Đăng ký kênh YouTube</h3>
-<button id="btnSub" onclick="subscribeYoutube()">Subscribe</button>
-</div>
-<div class="task">
-<h3><i class="fa-brands fa-youtube" style="color:#e11d48;margin-right:10px;"></i>2. Đăng ký kênh Cyber Mods</h3>
-<button id="btnCyberSub" onclick="subscribeCyberMod()">Đăng ký Cyber Mods</button>
-</div>
-<div class="task">
-<h3><i class="fa-solid fa-heart" style="color:#2563eb;margin-right:10px;"></i>3. Like video YouTube</h3>
-<button id="btnLike" onclick="likeVideo()">Like Video</button>
-</div>
-<div class="task">
-<h3><i class="fa-brands fa-telegram" style="color:#0ea5e9;margin-right:10px;"></i>4. Tham gia Telegram</h3>
-<button id="btnTele" onclick="joinTelegram()">Join Telegram</button>
-</div>
-<div class="task">
-<h3><i class="fa-solid fa-circle-check" style="color:#22c55e;margin-right:10px;"></i>5. Xác minh nhiệm vụ</h3>
-<button class="btn" id="verifyBtn" onclick="startVerify()">Thực hiện</button>
-<div id="loadingText" style="display:none; margin-top:10px;">⏳ Đang xác minh nhiệm vụ...</div>
-</div>
-<div id="unlockBox" style="display:none; margin-top:20px;">
-<div class="success">✅ HOÀN THÀNH</div>
-<button class="btn" id="openBtn" onclick="openAdsStep2()">MỞ LINK</button>
-</div>
-</div>
-</div>
+<main class="page">
+  <section class="hero">
+    <div class="theme-btn" onclick="toggleTheme()" aria-label="Đổi giao diện">
+      <i class="fa-solid fa-sun"></i>
+    </div>
+
+    <div class="time-pill">
+      <i class="fa-regular fa-clock"></i>
+      <span id="clock">12:49 AM</span>
+    </div>
+
+    <div class="brand-row">
+      <div class="brand-logo glow">
+        <img src="assets/logo-game-android.png" alt="Game Android">
+      </div>
+
+      <div class="title-wrap">
+        <h1>Get Key LQM<br>Android</h1>
+        <div class="brand-name">NGHĨALQ TV</div>
+      </div>
+
+      <div class="brand-logo glow">
+        <img src="assets/logo-android.png" alt="Android">
+      </div>
+    </div>
+  </section>
+
+  <section class="tasks-section">
+    <div class="section-title">Nhiệm vụ cần hoàn thành</div>
+
+    <button class="task" id="task1" onclick="subscribeYoutube()">
+      <span class="task-icon youtube"><i class="fa-brands fa-youtube"></i></span>
+      <span class="task-text">
+        <strong>Đăng ký kênh NghĩaLQ TV</strong>
+        <small>Nhấn để đăng ký kênh YouTube</small>
+      </span>
+      <span class="task-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    </button>
+
+    <button class="task" id="task2" onclick="subscribeCyber()">
+      <span class="task-icon youtube"><i class="fa-brands fa-youtube"></i></span>
+      <span class="task-text">
+        <strong>Đăng ký kênh Cyber TV</strong>
+        <small>Nhấn để đăng ký kênh YouTube</small>
+      </span>
+      <span class="task-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    </button>
+
+    <button class="task" id="task3" onclick="likeVideo()">
+      <span class="task-icon like"><i class="fa-solid fa-thumbs-up"></i></span>
+      <span class="task-text">
+        <strong>Like Video</strong>
+        <small>Mở video và bấm Like</small>
+      </span>
+      <span class="task-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    </button>
+
+    <button class="task" id="task4" onclick="joinTelegram()">
+      <span class="task-icon telegram"><i class="fa-brands fa-telegram"></i></span>
+      <span class="task-text">
+        <strong>Tham gia nhóm Telegram</strong>
+        <small>Nhấn để tham gia nhóm</small>
+      </span>
+      <span class="task-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    </button>
+  </section>
+
+  <section class="unlock-card">
+    <div class="status-line">
+      <span>Trạng thái mở khóa</span>
+      <b id="percent">0 / 4</b>
+    </div>
+
+    <div class="progress-track">
+      <div id="progress"></div>
+    </div>
+
+    <button class="verify-btn" id="verifyBtn" onclick="verifyTasks()">
+      <i class="fa-solid fa-lock"></i>
+      <span>Mở khóa Link Chính</span>
+    </button>
+
+    <div id="unlockBox" class="unlock-box">
+      <div class="success"><i class="fa-solid fa-circle-check"></i> Đã hoàn thành tất cả nhiệm vụ</div>
+      <button class="open-btn" id="openBtn" onclick="openUnlock()">MỞ LINK CHÍNH</button>
+    </div>
+  </section>
+
+  <button class="guide" onclick="openGuide()">
+    <i class="fa-solid fa-circle-play"></i>
+    Hướng dẫn link chính
+  </button>
+
+  <footer>NghĩaLQ TV • AOV UNLOCK</footer>
+</main>
+
 <script src="data.js"></script>
-<script>
-// Lấy id hoặc page từ URL (hỗ trợ cả ?id= và ?page=)
-const params = new URLSearchParams(window.location.search);
-const currentPage =
-    params.get("id") ||
-    params.get("page") ||
-    "hackmenuios";
-
-// Kiểm tra page tồn tại
-if (!pages[currentPage]) {
-    alert("Page không tồn tại!");
-
-    document.body.innerHTML = `
-        <div style="display:flex;justify-content:center;align-items:center;height:100vh;font-family:Arial,sans-serif;">
-            <h2>❌ Link không hợp lệ hoặc đã hết hạn.</h2>
-        </div>
-    `;
-
-    throw new Error("Invalid page: " + currentPage);
-}
-
-// Biến kiểm tra trạng thái từng bước
-let step1_done = false;
-let step2_done = false;
-let step3_done = false;
-let step4_done = false;
-
-// Hàm cập nhật giao diện nút khi hoàn thành
-function markAsCompleted(buttonId, text) {
-    const btn = document.getElementById(buttonId);
-    btn.classList.add("completed");
-    btn.innerText = text + " (Đã làm)";
-}
-
-// SUBSCRIBE - BƯỚC 1
-function subscribeYoutube() {
-    window.open(pages[currentPage].sub, "_blank");
-    step1_done = true;
-    markAsCompleted("btnSub", "Subscribe");
-}
-
-// SUBSCRIBE CYBER MODS - BƯỚC 2
-function subscribeCyberMod() {
-    if (!step1_done) {
-        alert("Vui lòng hoàn thành Bước 1: Đăng ký kênh YouTube trước!");
-        return;
-    }
-    window.open(pages[currentPage].cyberSub, "_blank");
-    step2_done = true;
-    markAsCompleted("btnCyberSub", "Đăng ký Cyber Mods");
-}
-
-// LIKE VIDEO - BƯỚC 3
-function likeVideo() {
-    if (!step2_done) {
-        alert("Vui lòng hoàn thành Bước 2: Đăng ký kênh Cyber Mods trước!");
-        return;
-    }
-    window.open(pages[currentPage].like, "_blank");
-    step3_done = true;
-    markAsCompleted("btnLike", "Like Video");
-}
-
-// JOIN TELEGRAM - BƯỚC 4
-function joinTelegram() {
-    if (!step3_done) {
-        alert("Vui lòng hoàn thành Bước 3: Like video trước!");
-        return;
-    }
-    window.open(pages[currentPage].tele, "_blank");
-    step4_done = true;
-    markAsCompleted("btnTele", "Join Telegram");
-}
-
-// VERIFY - BƯỚC 5
-function startVerify() {
-    // Kiểm tra xem đã làm đủ 4 bước chưa
-    if (!step1_done || !step2_done || !step3_done || !step4_done) {
-        alert("Bạn phải hoàn thành tất cả các bước 1, 2, 3, 4 trước khi xác minh!");
-        return;
-    }
-
-    const verifyBtn = document.getElementById("verifyBtn");
-    verifyBtn.disabled = true;
-    document.getElementById("loadingText").style.display = "block";
-
-    // Quảng cáo 1
-    window.open("https://vt.tiktok.com/ZS9h3gQA8qtcw-5DkY3/", "_blank");
-
-    // Loading 5 giây
-    setTimeout(() => {
-        document.getElementById("loadingText").style.display = "none";
-        document.getElementById("unlockBox").style.display = "block";
-        markAsCompleted("verifyBtn", "Thực hiện");
-    }, 5000);
-}
-
-// ADS STEP 2
-function openAdsStep2() {
-    const openBtn = document.getElementById("openBtn");
-    openBtn.disabled = true;
-
-    // Quảng cáo 2
-    window.open("https://vt.tiktok.com/ZS9h3gAbafKqu-OVqcS/", "_blank");
-
-    // Đợi 5 giây rồi mở link unlock
-    setTimeout(() => {
-        window.location.href = pages[currentPage].unlock;
-    }, 5000);
-}
-</script>
+<script src="app.js"></script>
 </body>
 </html>
