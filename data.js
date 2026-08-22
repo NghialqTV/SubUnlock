@@ -8,6 +8,18 @@ const pages = {
     like: "https://youtu.be/bPZSoST8WKI?si=kaLP0oWHq7P8WyKD",
     unlock: "https://gofile.io/d/jnHUzb"
   },
+  keyandroidv2: {
+    like: "https://youtu.be/sPBXNLncD5A?si=IWFdJ-zIcruHspt8",
+    unlock: "https://vn.modhack.uk/GETKEY/TrungNghia04"
+  },
+  hackv2goc: {
+    like: "https://youtu.be/sPBXNLncD5A?si=IWFdJ-zIcruHspt8",
+    unlock: "https://www.mediafire.com/file/o4l7x6ptlv55avt/%255B_Hack_Map_B%25E1%25BA%25A3n_%25C4%2590%25C3%25A8_G%25E1%25BB%2591c_%255D_By_Ngh%25C4%25A9alq_TV.apk/file"
+  },
+  hackv2tachgoc: {
+    like: "https://youtu.be/sPBXNLncD5A?si=IWFdJ-zIcruHspt8",
+    unlock: "https://www.mediafire.com/file/irh9pd36n0ilvdp/%255B_Hack_Map_B%25E1%25BA%25A3n_T%25C3%25A1ch_G%25E1%25BB%2591c_%255D_NghialqTV.apk/file"
+  },
   fullfilele: {
     like: "https://youtu.be/1nQrhNtpMYU?si=ihvptkE5dgDGq-HB",
     unlock: "https://linkx.me/CVv0"
