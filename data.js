@@ -6,7 +6,7 @@ const CYBER_MOD_SUB = "https://youtube.com/@cyber_aov?si=rPa3JdbJuRreQbVh";
 const pages = {
   tainguyen: {
     like: "https://youtu.be/bPZSoST8WKI?si=kaLP0oWHq7P8WyKD",
-    unlock: "https://gofile.io/d/jnHUzb"
+    unlock: "https://gofile.io/d/dqDr1WCQ"
   },
   keyandroidv2: {
     like: "https://youtu.be/sPBXNLncD5A?si=IWFdJ-zIcruHspt8",
