@@ -22,8 +22,8 @@ try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")}catch(e){saved={}}
 let done1=!!saved.done1,done2=!!saved.done2,done3=!!saved.done3,done4=!!saved.done4;
 
 const AD_LINKS=[
- "https://vt.tiktok.com/ZS9h3gQA8qtcw-5DkY3/",
- "https://vt.tiktok.com/ZS9g3gAbafKqu-OVqcS/"
+ "https://omg10.com/4/11023287",
+ "https://omg10.com/4/11019149"
 ];
 
 function saveState(){
@@ -137,7 +137,7 @@ function openUnlock(){
 
  // Giữ cơ chế quảng cáo trước link chính nhưng chỉ dùng
  // một lần window.open trong chính thao tác click.
- openAd("https://vt.tiktok.com/ZS9rjdWyymvK4-b2Bgs/");
+ openAd("https://omg10.com/4/11023287");
 
  setTimeout(()=>{
    location.href=data.unlock;
