@@ -16,8 +16,16 @@ if(!data){
  */
 const STORAGE_KEY="nghialqtv_unlock_"+id;
 
+const RESET_AFTER_MS = 2 * 60 * 1000; // Tự reset sau 2 phút
+
 let saved={};
 try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")}catch(e){saved={}}
+
+// Nếu quá 2 phút kể từ lần hoàn thành/lưu trạng thái cuối, bắt làm lại từ đầu.
+if(saved.updated && (Date.now() - Number(saved.updated) >= RESET_AFTER_MS)){
+  localStorage.removeItem(STORAGE_KEY);
+  saved={};
+}
 
 let done1=!!saved.done1,done2=!!saved.done2,done3=!!saved.done3,done4=!!saved.done4;
 
@@ -135,13 +143,19 @@ function openUnlock(){
  b.disabled=true;
  b.textContent="Đang chuyển hướng...";
 
- // Giữ cơ chế quảng cáo trước link chính nhưng chỉ dùng
- // một lần window.open trong chính thao tác click.
- openAd("https://omg10.com/4/11023287");
+ // Link mở khóa phải đi thẳng tới link đã cấu hình trong data.js.
+ // Không mở link quảng cáo ở bước này để tránh bị chuyển sang
+ // MediaFire/error.php hoặc một trang trung gian ngoài ý muốn.
+ const unlockUrl = String(data.unlock || "").trim();
 
- setTimeout(()=>{
-   location.href=data.unlock;
- },150);
+ if(!unlockUrl){
+   b.disabled=false;
+   b.textContent="Đã Mở Khoá";
+   alert("Link mở khóa chưa được cấu hình.");
+   return;
+ }
+
+ window.location.assign(unlockUrl);
 }
 
 function openGuide(){
@@ -162,3 +176,23 @@ function updateClock(){
 updateClock();
 setInterval(updateClock,30000);
 updateProgress();
+
+// Kiểm tra định kỳ: sau 2 phút trạng thái nhiệm vụ sẽ mất và phải
+// đăng ký kênh / like video / hoàn thành lại từ đầu.
+setInterval(()=>{
+  try{
+    const current=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}");
+    if(current.updated && (Date.now() - Number(current.updated) >= RESET_AFTER_MS)){
+      localStorage.removeItem(STORAGE_KEY);
+      done1=done2=done3=done4=false;
+      const box=document.getElementById("unlockBox");
+      if(box)box.style.display="none";
+      const btn=document.getElementById("verifyBtn");
+      if(btn){
+        btn.disabled=false;
+        btn.innerHTML='<i class="fa-solid fa-lock"></i> <span>Mở Khoá</span>';
+      }
+      updateProgress();
+    }
+  }catch(e){}
+},1000);
