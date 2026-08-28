@@ -1,4 +1,4 @@
-/* TikTok Ads Gate - stable mobile version */
+/* TikTok Ads Gate - stable mobile flow */
 (function(){
   'use strict';
 
@@ -7,50 +7,40 @@
     : [];
 
   let queue = [];
-
   function refill(){
     queue = ADS.slice();
-    for(let i = queue.length - 1; i > 0; i--){
-      const j = Math.floor(Math.random() * (i + 1));
-      [queue[i], queue[j]] = [queue[j], queue[i]];
+    for(let i=queue.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [queue[i],queue[j]]=[queue[j],queue[i]];
     }
   }
-
-  function pickAd(){
+  function pick(){
     if(!queue.length) refill();
     return queue.shift() || '';
   }
 
-  window.tiktokAdGate = function(destination){
+  window.tiktokAdGate=function(destination){
     if(!destination) return false;
+    if(!ADS.length){ window.location.href=destination; return true; }
 
-    const ad = pickAd();
+    const ad=pick();
+    let popup=null;
 
-    // Không có quảng cáo: đi thẳng link đích.
-    if(!ad){
-      window.location.href = destination;
-      return true;
-    }
-
-    let popup = null;
-
-    // Tạo popup ngay trong chính thao tác click để giảm lỗi popup blocker.
-    try {
-      popup = window.open('about:blank', '_blank');
+    // Mở quảng cáo trong chính thao tác click. Trang nhiệm vụ vẫn giữ nguyên.
+    try{
+      popup=window.open('about:blank','_blank');
       if(popup){
-        try { popup.opener = null; } catch(e) {}
-        popup.location.href = ad;
+        try{popup.opener=null;}catch(e){}
+        popup.location.replace(ad);
       }
-    } catch(e) {
-      popup = null;
-    }
+    }catch(e){ popup=null; }
 
-    // Cho tab quảng cáo thời gian bắt đầu redirect, sau đó mới đi link đích.
-    // Nếu popup bị chặn, vẫn chuyển link đích và không làm trang bị đơ.
+    // Không được phép chặn trang nếu popup bị trình duyệt chặn.
+    // Sau thời gian ngắn, tab nhiệm vụ đi tới link đích có sẵn trong data.js.
     window.setTimeout(function(){
-      try { window.location.href = destination; }
-      catch(e) { window.location.assign(destination); }
-    }, popup ? 1200 : 100);
+      try{ window.location.href=destination; }
+      catch(e){ window.location.assign(destination); }
+    }, popup ? 1800 : 250);
 
     return true;
   };
