@@ -16,60 +16,29 @@ if(!data){
  */
 const STORAGE_KEY="nghialqtv_unlock_"+id;
 
-const RESET_AFTER_MS = 2 * 60 * 1000; // Tự reset sau 2 phút
-
 let saved={};
 try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")}catch(e){saved={}}
 
-// Nếu quá 2 phút kể từ lần hoàn thành/lưu trạng thái cuối, bắt làm lại từ đầu.
-if(saved.updated && (Date.now() - Number(saved.updated) >= RESET_AFTER_MS)){
-  localStorage.removeItem(STORAGE_KEY);
-  saved={};
-}
-
 let done1=!!saved.done1,done2=!!saved.done2,done3=!!saved.done3,done4=!!saved.done4;
 
-const AD_LINKS=[
- "https://omg10.com/4/11023287",
- "https://omg10.com/4/11019149"
-];
-
-function saveState(){
- localStorage.setItem(STORAGE_KEY,JSON.stringify({
-   done1,done2,done3,done4,
-   updated:Date.now()
- }));
- updateProgress();
-}
-
-function openAd(adUrl){
- try{
-   const popup=window.open(adUrl,"_blank","noopener,noreferrer");
-   return !!popup;
- }catch(e){
-   return false;
- }
-}
-
-/*
- * YouTube/Telegram được điều hướng bằng chính click hiện tại.
- * Đây là phần quan trọng giúp hạn chế popup blocker.
- */
+// Mỗi lần bấm 1 trong 4 nhiệm vụ: mở đúng 1 quảng cáo TikTok ngẫu nhiên,
+// sau đó quay về tab này và chuyển tới link đích. Hàng đợi xáo trộn 5 link
+// nên 5 quảng cáo được dùng ngẫu nhiên trước khi lặp lại.
 function runTask(step,targetUrl){
- const adUrl=AD_LINKS[(step-1)%AD_LINKS.length];
+ const done = [done1,done2,done3,done4];
+ if(done[step-1] || !targetUrl) return;
 
- // Đánh dấu nhiệm vụ trước khi rời trang.
  if(step===1) done1=true;
  if(step===2) done2=true;
  if(step===3) done3=true;
  if(step===4) done4=true;
  saveState();
 
- // Quảng cáo ở tab mới.
- openAd(adUrl);
-
- // Tab hiện tại đi thẳng đến nhiệm vụ.
- window.location.assign(targetUrl);
+ if(typeof window.tiktokAdGate === "function"){
+   window.tiktokAdGate(targetUrl);
+ }else{
+   window.location.assign(targetUrl);
+ }
 }
 
 function subscribeYoutube(){
@@ -143,19 +112,8 @@ function openUnlock(){
  b.disabled=true;
  b.textContent="Đang chuyển hướng...";
 
- // Link mở khóa phải đi thẳng tới link đã cấu hình trong data.js.
- // Không mở link quảng cáo ở bước này để tránh bị chuyển sang
- // MediaFire/error.php hoặc một trang trung gian ngoài ý muốn.
- const unlockUrl = String(data.unlock || "").trim();
-
- if(!unlockUrl){
-   b.disabled=false;
-   b.textContent="Đã Mở Khoá";
-   alert("Link mở khóa chưa được cấu hình.");
-   return;
- }
-
- window.location.assign(unlockUrl);
+ // Bốn nhiệm vụ đã dùng quảng cáo. Nút này chỉ mở link đích.
+ location.href=data.unlock;
 }
 
 function openGuide(){
@@ -176,23 +134,3 @@ function updateClock(){
 updateClock();
 setInterval(updateClock,30000);
 updateProgress();
-
-// Kiểm tra định kỳ: sau 2 phút trạng thái nhiệm vụ sẽ mất và phải
-// đăng ký kênh / like video / hoàn thành lại từ đầu.
-setInterval(()=>{
-  try{
-    const current=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}");
-    if(current.updated && (Date.now() - Number(current.updated) >= RESET_AFTER_MS)){
-      localStorage.removeItem(STORAGE_KEY);
-      done1=done2=done3=done4=false;
-      const box=document.getElementById("unlockBox");
-      if(box)box.style.display="none";
-      const btn=document.getElementById("verifyBtn");
-      if(btn){
-        btn.disabled=false;
-        btn.innerHTML='<i class="fa-solid fa-lock"></i> <span>Mở Khoá</span>';
-      }
-      updateProgress();
-    }
-  }catch(e){}
-},1000);

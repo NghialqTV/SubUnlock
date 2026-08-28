@@ -30,12 +30,12 @@ body:before{
 }
 body.light{color:var(--text);background:#050807}
 button{font:inherit}
-.page{position:relative;width:min(100%,680px);margin:auto;padding:26px 20px 48px}
+.page{position:relative;width:min(100%,620px);margin:auto;padding:20px 16px 38px}
 .hero{position:relative;text-align:center;padding-bottom:8px}
 .theme-btn{
-  position:absolute;right:0;top:0;width:58px;height:58px;border-radius:50%;
+  position:absolute;right:0;top:0;width:48px;height:48px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  color:#ffe36a;font-size:23px;cursor:pointer;
+  color:#ffe36a;font-size:20px;cursor:pointer;
   background:linear-gradient(145deg,#17221c,#0c120f);
   border:1px solid #26352d;
   box-shadow:0 0 0 1px #000,0 8px 30px #000b,0 0 25px #ffe66a22;
@@ -50,9 +50,9 @@ button{font:inherit}
   margin:32px 0 25px;
 }
 .time-pill i{font-size:24px}
-.brand-row{display:grid;grid-template-columns:92px 1fr 92px;align-items:center;gap:18px}
+.brand-row{display:grid;grid-template-columns:78px 1fr 78px;align-items:center;gap:12px}
 .brand-logo{
-  width:82px;height:82px;border-radius:23px;overflow:hidden;margin:auto;
+  width:70px;height:70px;border-radius:20px;overflow:hidden;margin:auto;
   background:#0b100d;border:1px solid #35513f;
   box-shadow:0 0 0 4px #0a100d,0 0 18px #39ee7738,0 0 42px #39ee7717;
   animation:logoGlow 3s ease-in-out infinite;
@@ -63,22 +63,22 @@ button{font:inherit}
   50%{box-shadow:0 0 0 4px #0a100d,0 0 25px #39ee7750,0 0 52px #39ee7720}
 }
 .title-wrap h1{
-  font-size:39px;line-height:1.06;letter-spacing:-1.4px;
+  font-size:32px;line-height:1.06;letter-spacing:-1.4px;
   text-shadow:0 3px 22px #000;
 }
 .brand-name{
   font-size:12px;font-weight:900;letter-spacing:4px;color:#4ce477;
-  margin-top:12px;text-shadow:0 0 15px #39ee7755
+  margin-top:8px;text-shadow:0 0 15px #39ee7755
 }
-.tasks-section{margin-top:38px}
+.tasks-section{margin-top:28px}
 .section-title{
-  font-size:22px;font-weight:700;color:#9aa69f;margin:0 8px 17px;
+  font-size:19px;font-weight:700;color:#9aa69f;margin:0 8px 17px;
   letter-spacing:.1px;
 }
 .task{
   width:100%;border:1px solid #1b2921;text-align:left;
-  display:grid;grid-template-columns:64px 1fr 22px;align-items:center;gap:17px;
-  padding:18px 21px;margin:0 0 15px;border-radius:25px;
+  display:grid;grid-template-columns:54px 1fr 18px;align-items:center;gap:13px;
+  padding:14px 16px;margin:0 0 11px;border-radius:21px;
   background:linear-gradient(135deg,rgba(18,26,22,.98),rgba(9,14,11,.98));
   color:var(--text);box-shadow:0 13px 30px #0009, inset 0 1px #ffffff05;
   cursor:pointer;transition:.22s;position:relative;overflow:hidden;
@@ -92,8 +92,8 @@ button{font:inherit}
 .task:hover{transform:translateY(-2px);border-color:#2b4a37;box-shadow:0 15px 34px #000b,0 0 22px #31d9670b}
 .task:active{transform:scale(.985)}
 .task-icon{
-  width:58px;height:58px;border-radius:50%;display:flex;align-items:center;
-  justify-content:center;font-size:27px;color:#fff;position:relative;
+  width:48px;height:48px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:23px;color:#fff;position:relative;
   box-shadow:0 0 0 5px #09100c,0 0 22px rgba(255,255,255,.08);
 }
 .task-icon:after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1px solid #ffffff16}
@@ -101,29 +101,29 @@ button{font:inherit}
 .like{background:linear-gradient(145deg,#3296ff,#1c64c9);box-shadow:0 0 22px #2489ff2b}
 .telegram{background:linear-gradient(145deg,#25a9e6,#117bb0);box-shadow:0 0 22px #159ed12b}
 .task-text{min-width:0}
-.task-text strong{display:block;font-size:20px;line-height:1.25;color:#f0f4f1}
-.task-text small{display:block;color:#78857d;font-size:12px;margin-top:5px}
+.task-text strong{display:block;font-size:17px;line-height:1.25;color:#f0f4f1}
+.task-text small{display:block;color:#78857d;font-size:11px;margin-top:4px}
 .task-arrow{color:#59675f;font-size:18px;transition:.2s}
 .task:hover .task-arrow{color:#4de67a;transform:translateX(3px)}
 .task.completed{border-color:#2da857;background:linear-gradient(135deg,#102218,#0b1510)}
 .task.completed .task-arrow{color:#45e878}
 .task.completed .task-text strong:after{content:"  ✓";color:#49df76;font-size:15px}
 .unlock-card{
-  margin-top:28px;padding:24px 26px 27px;border-radius:27px;
+  margin-top:22px;padding:19px 20px 21px;border-radius:23px;
   background:linear-gradient(145deg,#111a15,#0a100d);
   border:1px solid #1d2b23;box-shadow:0 15px 34px #000a,inset 0 1px #ffffff04;
 }
-.status-line{display:flex;justify-content:space-between;align-items:center;font-size:20px;margin-bottom:18px;color:#dce4df}
-.status-line b{font-size:19px;color:#e8eee9}
-.progress-track{height:12px;border-radius:99px;background:#1c2922;overflow:hidden;margin-bottom:25px;box-shadow:inset 0 2px 5px #000}
+.status-line{display:flex;justify-content:space-between;align-items:center;font-size:17px;margin-bottom:14px;color:#dce4df}
+.status-line b{font-size:17px;color:#e8eee9}
+.progress-track{height:10px;border-radius:99px;background:#1c2922;overflow:hidden;margin-bottom:20px;box-shadow:inset 0 2px 5px #000}
 #progress{
   height:100%;width:0;border-radius:inherit;
   background:linear-gradient(90deg,#19a84b,#42ef78);
   box-shadow:0 0 16px #32e86c88;transition:.4s;
 }
 .verify-btn,.open-btn{
-  width:100%;border:1px solid #2a9e4c;border-radius:21px;padding:18px 16px;
-  font-size:20px;font-weight:800;color:#f6fff8;
+  width:100%;border:1px solid #2a9e4c;border-radius:18px;padding:14px 14px;
+  font-size:18px;font-weight:800;color:#f6fff8;
   background:linear-gradient(135deg,#12662b,#1c8a3d);
   box-shadow:0 9px 25px #0b451b66,0 0 20px #2bda5b12;
   cursor:pointer;transition:.2s;
@@ -134,11 +134,11 @@ button{font:inherit}
 .unlock-box{display:none;margin-top:15px}
 .success{text-align:center;color:#4bdd72;font-weight:700;margin-bottom:13px}
 .guide{
-  display:block;border:0;background:none;color:#44d66d;font-size:18px;font-weight:700;
-  margin:27px auto 0;cursor:pointer;text-shadow:0 0 14px #38d96833
+  display:block;border:0;background:none;color:#44d66d;font-size:16px;font-weight:700;
+  margin:22px auto 0;cursor:pointer;text-shadow:0 0 14px #38d96833
 }
 .guide i{margin-right:8px}
-footer{text-align:center;color:#3f4c44;font-size:11px;letter-spacing:2px;margin-top:30px}
+footer{text-align:center;color:#3f4c44;font-size:11px;letter-spacing:2px;margin-top:24px}
 @media(max-width:560px){
  .page{padding:23px 16px 40px}
  .theme-btn{width:53px;height:53px;font-size:21px}
@@ -157,4 +157,31 @@ footer{text-align:center;color:#3f4c44;font-size:11px;letter-spacing:2px;margin-
  .unlock-card{padding:21px 19px 23px;border-radius:24px}
  .status-line{font-size:17px}
  .verify-btn{font-size:18px}
+}
+
+/* Compact mobile layout */
+@media(max-width:560px){
+  .page{padding:16px 12px 30px}
+  .theme-btn{width:46px;height:46px;font-size:18px}
+  .brand-row{grid-template-columns:58px 1fr 58px;gap:7px}
+  .brand-logo{width:56px;height:60px;border-radius:17px}
+  .title-wrap h1{font-size:25px;letter-spacing:-1px}
+  .brand-name{font-size:9px;letter-spacing:2.7px;margin-top:6px}
+  .time-pill{font-size:16px;padding:8px 17px;margin-top:28px;margin-bottom:18px}
+  .time-pill i{font-size:18px}
+  .tasks-section{margin-top:24px}
+  .section-title{font-size:17px;margin:0 5px 12px}
+  .task{grid-template-columns:48px 1fr 16px;gap:11px;padding:12px 13px;margin-bottom:9px;border-radius:19px}
+  .task-icon{width:46px;height:46px;font-size:21px}
+  .task-text strong{font-size:15px}
+  .task-text small{font-size:10px;margin-top:3px}
+  .task-arrow{font-size:15px}
+  .unlock-card{margin-top:18px;padding:17px 15px 18px;border-radius:20px}
+  .status-line{font-size:15px;margin-bottom:12px}
+  .status-line b{font-size:15px}
+  .progress-track{height:8px;margin-bottom:16px}
+  .verify-btn,.open-btn{font-size:16px;padding:12px 12px;border-radius:16px}
+  .success{font-size:13px;margin-bottom:10px}
+  .guide{font-size:14px;margin-top:17px}
+  footer{font-size:9px;margin-top:20px}
 }
