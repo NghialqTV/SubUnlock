@@ -16,6 +16,17 @@ if(!data){
  */
 const STORAGE_KEY="nghialqtv_unlock_"+id;
 
+// Theme button on mobile/desktop. Kept local so it cannot break page loading.
+function toggleTheme(){
+  document.body.classList.toggle("light");
+  try {
+    localStorage.setItem("nghialqtv_theme", document.body.classList.contains("light") ? "light" : "dark");
+  } catch(e) {}
+}
+try {
+  if(localStorage.getItem("nghialqtv_theme")==="light") document.body.classList.add("light");
+} catch(e) {}
+
 let saved={};
 try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")}catch(e){saved={}}
 
