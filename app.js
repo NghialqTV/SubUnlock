@@ -32,6 +32,20 @@ try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")}catch(e){saved={}}
 
 let done1=!!saved.done1,done2=!!saved.done2,done3=!!saved.done3,done4=!!saved.done4;
 
+// Lưu trạng thái nhiệm vụ an toàn. Bản cũ gọi saveState() nhưng thiếu hàm này,
+// khiến lần bấm nhiệm vụ bị ReferenceError và trông như trang bị đơ.
+function saveState(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      done1: !!done1,
+      done2: !!done2,
+      done3: !!done3,
+      done4: !!done4
+    }));
+  }catch(e){}
+  updateProgress();
+}
+
 // Mỗi lần bấm 1 trong 4 nhiệm vụ: mở đúng 1 quảng cáo TikTok ngẫu nhiên,
 // sau đó quay về tab này và chuyển tới link đích. Hàng đợi xáo trộn 5 link
 // nên 5 quảng cáo được dùng ngẫu nhiên trước khi lặp lại.
