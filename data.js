@@ -38,7 +38,7 @@ const pages = {
   },
   resources: {
     like: "https://youtu.be/ce5_ie9fH5o?si=SMX3V7mRYyyjMGdF",
-    unlock: "https://www.mediafire.com/file/i6hvd9a2skp51cl/Resources_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_28_Thang_8.zip/file"
+    unlock: "https://www.mediafire.com/file/zxn75wdin22teut/Resources.zip/file"
   },
   keyandroid: {
     like: "https://youtu.be/sPBXNLncD5A?si=IWFdJ-zIcruHspt8",
