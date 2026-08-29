@@ -149,7 +149,7 @@ const pages = {
     unlock: "https://www.mediafire.com/file/nrp1xpv5cnr234s/Mod_250_Skin_Max_IN_1.zip/file"
   },
   mod60skin2908: {
-    like: "https://youtu.be/knGjZ_mRo_g?si=JLWh7lRVfiFQ4CYH",
+    like: "https://youtu.be/a-buucqnu6I?si=_kGpykhFCvuH8VqP",
     unlock: "https://www.mediafire.com/file/o8d2dswemu0okmj/Pack_60_Skin_C%25C3%25B3_N%25C3%25BAt_B%25E1%25BA%25A5m_By_Ngh%25C4%25A9alq_TV.zip/file"
   },
   
