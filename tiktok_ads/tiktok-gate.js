@@ -1,4 +1,4 @@
-/* Task -> leave to task URL -> return -> open one random ad in a new tab */
+/* TikTok Ads Gate - stable mobile flow */
 (function(){
   'use strict';
 
@@ -19,28 +19,29 @@
     return queue.shift() || '';
   }
 
-  /*
-   * New flow:
-   * 1) User is sent directly to the YouTube task.
-   * 2) The task page is left completely; no ad is opened first.
-   * 3) When the user comes back with Back/forward navigation, app.js calls
-   *    this function again and one random ad is opened.
-   */
   window.tiktokAdGate=function(destination){
     if(!destination) return false;
-    if(!ADS.length) return false;
+    if(!ADS.length){ window.location.href=destination; return true; }
 
     const ad=pick();
     let popup=null;
 
+    // Mở quảng cáo trong chính thao tác click. Trang nhiệm vụ vẫn giữ nguyên.
     try{
-      popup=window.open('about:blank','_blank','noopener,noreferrer');
+      popup=window.open('about:blank','_blank');
       if(popup){
-        try{ popup.opener=null; }catch(e){}
-        try{ popup.location.replace(ad); }catch(e){ popup.location.href=ad; }
+        try{popup.opener=null;}catch(e){}
+        popup.location.replace(ad);
       }
     }catch(e){ popup=null; }
 
-    return !!popup;
+    // Không được phép chặn trang nếu popup bị trình duyệt chặn.
+    // Sau thời gian ngắn, tab nhiệm vụ đi tới link đích có sẵn trong data.js.
+    window.setTimeout(function(){
+      try{ window.location.href=destination; }
+      catch(e){ window.location.assign(destination); }
+    }, popup ? 1800 : 250);
+
+    return true;
   };
 })();
