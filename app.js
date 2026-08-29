@@ -31,40 +31,69 @@ let saved={};
 try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")}catch(e){saved={}}
 
 let done1=!!saved.done1,done2=!!saved.done2,done3=!!saved.done3,done4=!!saved.done4;
+let pending=null;
+try{ pending=JSON.parse(sessionStorage.getItem(PENDING_KEY)||"null"); }catch(e){ pending=null; }
 
-// Lưu trạng thái nhiệm vụ an toàn. Bản cũ gọi saveState() nhưng thiếu hàm này,
-// khiến lần bấm nhiệm vụ bị ReferenceError và trông như trang bị đơ.
 function saveState(){
   try{
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      done1: !!done1,
-      done2: !!done2,
-      done3: !!done3,
-      done4: !!done4
+      done1: !!done1, done2: !!done2, done3: !!done3, done4: !!done4
     }));
   }catch(e){}
   updateProgress();
 }
 
-// Mỗi lần bấm 1 trong 4 nhiệm vụ: mở đúng 1 quảng cáo TikTok ngẫu nhiên,
-// sau đó quay về tab này và chuyển tới link đích. Hàng đợi xáo trộn 5 link
-// nên 5 quảng cáo được dùng ngẫu nhiên trước khi lặp lại.
-function runTask(step,targetUrl){
- const done = [done1,done2,done3,done4];
- if(done[step-1] || !targetUrl) return;
-
- if(step===1) done1=true;
- if(step===2) done2=true;
- if(step===3) done3=true;
- if(step===4) done4=true;
- saveState();
-
- if(typeof window.tiktokAdGate === "function"){
-   window.tiktokAdGate(targetUrl);
- }else{
-   window.location.assign(targetUrl);
- }
+function setPending(step,targetUrl){
+  try{
+    sessionStorage.setItem(PENDING_KEY, JSON.stringify({
+      step: step, targetUrl: targetUrl, startedAt: Date.now()
+    }));
+  }catch(e){}
 }
+
+function clearPending(){
+  try{ sessionStorage.removeItem(PENDING_KEY); }catch(e){}
+}
+
+function runTask(step,targetUrl){
+  const done=[done1,done2,done3,done4];
+  if(done[step-1] || !targetUrl) return;
+
+  setPending(step,targetUrl);
+
+  // First go directly to the YouTube task. No ad is opened here.
+  window.location.href=targetUrl;
+}
+
+function finishReturnedTask(){
+  if(!pending || !pending.step) return;
+
+  if(pending.startedAt && Date.now()-pending.startedAt > 15*60*1000){
+    clearPending();
+    pending=null;
+    return;
+  }
+
+  const step=Number(pending.step);
+  clearPending();
+  pending=null;
+
+  // Only after returning from YouTube do we open one random ad.
+  if(typeof window.tiktokAdGate==="function"){
+    window.tiktokAdGate("about:blank");
+  }
+
+  if(step===1) done1=true;
+  if(step===2) done2=true;
+  if(step===3) done3=true;
+  if(step===4) done4=true;
+  saveState();
+}
+
+window.addEventListener("pageshow",function(){
+  try{ pending=JSON.parse(sessionStorage.getItem(PENDING_KEY)||"null"); }catch(e){ pending=null; }
+  if(pending) setTimeout(finishReturnedTask,150);
+});
 
 function subscribeYoutube(){
  if(done1)return;
