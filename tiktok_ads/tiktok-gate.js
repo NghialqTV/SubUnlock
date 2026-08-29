@@ -1,4 +1,4 @@
-/* YouTube -> return -> random ad gate */
+/* Task -> leave to task URL -> return -> open one random ad in a new tab */
 (function(){
   'use strict';
 
