@@ -15,6 +15,8 @@ if(!data){
  * 4. Không dùng setTimeout để mở popup thứ hai, giảm khả năng Chrome chặn.
  */
 const STORAGE_KEY="nghialqtv_unlock_"+id;
+const PENDING_KEY="nghialqtv_pending_"+id;
+const RESET_AFTER_MS=2*60*1000;
 
 // Theme button on mobile/desktop. Kept local so it cannot break page loading.
 function toggleTheme(){
@@ -33,6 +35,28 @@ try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")}catch(e){saved={}}
 let done1=!!saved.done1,done2=!!saved.done2,done3=!!saved.done3,done4=!!saved.done4;
 let pending=null;
 try{ pending=JSON.parse(sessionStorage.getItem(PENDING_KEY)||"null"); }catch(e){ pending=null; }
+
+// Tự động reset tiến trình sau 2 phút kể từ lần hoạt động cuối.
+function resetWebState(){
+  try{
+    localStorage.removeItem(STORAGE_KEY);
+    sessionStorage.removeItem(PENDING_KEY);
+  }catch(e){}
+  done1=done2=done3=done4=false;
+  pending=null;
+  updateProgress();
+}
+
+let lastActivity=Date.now();
+function touchActivity(){ lastActivity=Date.now(); }
+['click','touchstart','keydown'].forEach(ev=>document.addEventListener(ev,touchActivity,{passive:true}));
+
+setInterval(function(){
+  if(Date.now()-lastActivity >= RESET_AFTER_MS){
+    resetWebState();
+    lastActivity=Date.now();
+  }
+},1000);
 
 function saveState(){
   try{
@@ -56,6 +80,7 @@ function clearPending(){
 }
 
 function runTask(step,targetUrl){
+  touchActivity();
   const done=[done1,done2,done3,done4];
   if(done[step-1] || !targetUrl) return;
 
@@ -66,6 +91,7 @@ function runTask(step,targetUrl){
 }
 
 function finishReturnedTask(){
+  touchActivity();
   if(!pending || !pending.step) return;
 
   if(pending.startedAt && Date.now()-pending.startedAt > 15*60*1000){
