@@ -1,4 +1,4 @@
-/* Ads Gate - mobile stable flow */
+/* Ads Gate - ad is triggered ONLY when the user presses "Xác nhận bước" */
 (function(){
   'use strict';
 
@@ -15,23 +15,17 @@
   }
   function pick(){if(!queue.length)refill();return queue.shift()||'';}
 
-  window.tiktokAdGate=function(destination){
-    if(!destination)return false;
-    if(!ADS.length){window.location.assign(destination);return true;}
-
+  // Open one random ad. Destination is intentionally NOT touched here.
+  // This function is called directly from the "Xác nhận bước" button,
+  // so the browser treats it as a user-initiated popup.
+  window.tiktokAdGate=function(){
+    if(!ADS.length)return false;
     const ad=pick();
-    let popup=null;
     try{
-      // Popup is opened directly from the user's click so Chrome is less likely to block it.
-      popup=window.open(ad,'_blank','noopener,noreferrer');
-    }catch(e){popup=null;}
-
-    // Never open another tab for the destination. The current task tab becomes YouTube/Telegram.
-    // This avoids the old flow where both the ad and destination competed for new tabs.
-    window.setTimeout(function(){
-      try{window.location.assign(destination);}catch(e){window.location.href=destination;}
-    },1200);
-
-    return true;
+      const popup=window.open(ad,'_blank','noopener,noreferrer');
+      return !!popup;
+    }catch(e){
+      return false;
+    }
   };
 })();
