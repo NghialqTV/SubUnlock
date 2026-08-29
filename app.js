@@ -15,8 +15,6 @@ if(!data){
  * 4. Không dùng setTimeout để mở popup thứ hai, giảm khả năng Chrome chặn.
  */
 const STORAGE_KEY="nghialqtv_unlock_"+id;
-const PENDING_KEY="nghialqtv_pending_"+id;
-const RESET_AFTER_MS=2*60*1000;
 
 // Theme button on mobile/desktop. Kept local so it cannot break page loading.
 function toggleTheme(){
@@ -33,106 +31,40 @@ let saved={};
 try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")}catch(e){saved={}}
 
 let done1=!!saved.done1,done2=!!saved.done2,done3=!!saved.done3,done4=!!saved.done4;
-let pending=null;
-try{ pending=JSON.parse(sessionStorage.getItem(PENDING_KEY)||"null"); }catch(e){ pending=null; }
 
-// Tự động reset tiến trình sau 2 phút kể từ lần hoạt động cuối.
-function resetWebState(){
-  try{
-    localStorage.removeItem(STORAGE_KEY);
-    sessionStorage.removeItem(PENDING_KEY);
-  }catch(e){}
-  done1=done2=done3=done4=false;
-  pending=null;
-  updateProgress();
-}
-
-let lastActivity=Date.now();
-function touchActivity(){ lastActivity=Date.now(); }
-['click','touchstart','keydown'].forEach(ev=>document.addEventListener(ev,touchActivity,{passive:true}));
-
-setInterval(function(){
-  if(Date.now()-lastActivity >= RESET_AFTER_MS){
-    resetWebState();
-    lastActivity=Date.now();
-  }
-},1000);
-
+// Lưu trạng thái nhiệm vụ an toàn. Bản cũ gọi saveState() nhưng thiếu hàm này,
+// khiến lần bấm nhiệm vụ bị ReferenceError và trông như trang bị đơ.
 function saveState(){
   try{
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      done1: !!done1, done2: !!done2, done3: !!done3, done4: !!done4
+      done1: !!done1,
+      done2: !!done2,
+      done3: !!done3,
+      done4: !!done4
     }));
   }catch(e){}
   updateProgress();
 }
 
-function setPending(step,targetUrl){
-  try{
-    sessionStorage.setItem(PENDING_KEY, JSON.stringify({
-      step: step, targetUrl: targetUrl, startedAt: Date.now()
-    }));
-  }catch(e){}
-}
-
-function clearPending(){
-  try{ sessionStorage.removeItem(PENDING_KEY); }catch(e){}
-}
-
+// Mỗi lần bấm 1 trong 4 nhiệm vụ: mở đúng 1 quảng cáo TikTok ngẫu nhiên,
+// sau đó quay về tab này và chuyển tới link đích. Hàng đợi xáo trộn 5 link
+// nên 5 quảng cáo được dùng ngẫu nhiên trước khi lặp lại.
 function runTask(step,targetUrl){
-  touchActivity();
-  const done=[done1,done2,done3,done4];
-  if(done[step-1] || !targetUrl) return;
+ const done = [done1,done2,done3,done4];
+ if(done[step-1] || !targetUrl) return;
 
-  setPending(step,targetUrl);
+ if(step===1) done1=true;
+ if(step===2) done2=true;
+ if(step===3) done3=true;
+ if(step===4) done4=true;
+ saveState();
 
-  // First go directly to the YouTube task. No ad is opened here.
-  window.location.href=targetUrl;
+ if(typeof window.tiktokAdGate === "function"){
+   window.tiktokAdGate(targetUrl);
+ }else{
+   window.location.assign(targetUrl);
+ }
 }
-
-function finishReturnedTask(){
-  touchActivity();
-  if(!pending || !pending.step) return;
-
-  if(pending.startedAt && Date.now()-pending.startedAt > 15*60*1000){
-    clearPending();
-    pending=null;
-    return;
-  }
-
-  const step=Number(pending.step);
-  clearPending();
-  pending=null;
-
-  // Only after returning from YouTube do we open one random ad.
-  if(typeof window.tiktokAdGate==="function"){
-    window.tiktokAdGate("about:blank");
-  }
-
-  if(step===1) done1=true;
-  if(step===2) done2=true;
-  if(step===3) done3=true;
-  if(step===4) done4=true;
-  saveState();
-}
-
-// Chỉ xử lý nhiệm vụ khi người dùng THỰC SỰ quay lại tab/web sau khi rời đi.
-let leftForTask=false;
-window.addEventListener("pagehide",function(){
-  if(pending) leftForTask=true;
-});
-window.addEventListener("pageshow",function(event){
-  try{ pending=JSON.parse(sessionStorage.getItem(PENDING_KEY)||"null"); }catch(e){ pending=null; }
-  // pageshow lần đầu không được tính là "quay lại".
-  if(pending && (leftForTask || event.persisted)){
-    finishReturnedTask();
-    leftForTask=false;
-  }
-});
-window.addEventListener("focus",function(){
-  // Khi YouTube mở cùng tab rồi người dùng bấm Back, pageshow xử lý.
-  // Không tự mở quảng cáo chỉ vì tab được focus.
-});
 
 function subscribeYoutube(){
  if(done1)return;
