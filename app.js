@@ -74,11 +74,9 @@ function runTask(step,targetUrl){
   pendingAt=Date.now();
   saveState();
 
-  if(typeof window.tiktokAdGate==="function"){
-    window.tiktokAdGate(targetUrl);
-  }else{
-    window.location.assign(targetUrl);
-  }
+  // Mở thẳng link nhiệm vụ. Quảng cáo KHÔNG chạy ở bước này.
+  // Quảng cáo chỉ được mở khi người dùng bấm "Xác nhận bước".
+  window.location.assign(targetUrl);
 }
 
 function subscribeYoutube(){runTask(1,data.sub)}
@@ -143,6 +141,13 @@ function confirmPending(){
   if(elapsed<CONFIRM_TIME*1000){updatePendingUI();return;}
 
   const step=pendingStep;
+
+  // Chỉ tại đây mới mở 1 quảng cáo random.
+  // Vì đây là thao tác click trực tiếp của người dùng nên popup ít bị trình duyệt chặn.
+  if(typeof window.tiktokAdGate==="function"){
+    window.tiktokAdGate();
+  }
+
   setDone(step,true);
   pendingStep=0;
   pendingAt=0;
@@ -191,6 +196,7 @@ function updateClock(){
 }
 
 // Khi quay lại từ YouTube/Telegram, cập nhật bộ đếm xác nhận.
+// Flow: Bấm nhiệm vụ -> đi thẳng link đích -> quay lại -> chờ -> Xác nhận -> quảng cáo.
 function onReturn(){
   if(sessionStarted && Date.now()-sessionStarted>SESSION_TTL){
     try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
