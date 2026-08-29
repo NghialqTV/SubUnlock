@@ -116,9 +116,22 @@ function finishReturnedTask(){
   saveState();
 }
 
-window.addEventListener("pageshow",function(){
+// Chỉ xử lý nhiệm vụ khi người dùng THỰC SỰ quay lại tab/web sau khi rời đi.
+let leftForTask=false;
+window.addEventListener("pagehide",function(){
+  if(pending) leftForTask=true;
+});
+window.addEventListener("pageshow",function(event){
   try{ pending=JSON.parse(sessionStorage.getItem(PENDING_KEY)||"null"); }catch(e){ pending=null; }
-  if(pending) setTimeout(finishReturnedTask,150);
+  // pageshow lần đầu không được tính là "quay lại".
+  if(pending && (leftForTask || event.persisted)){
+    finishReturnedTask();
+    leftForTask=false;
+  }
+});
+window.addEventListener("focus",function(){
+  // Khi YouTube mở cùng tab rồi người dùng bấm Back, pageshow xử lý.
+  // Không tự mở quảng cáo chỉ vì tab được focus.
 });
 
 function subscribeYoutube(){
