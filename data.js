@@ -57,8 +57,8 @@ const pages = {
     unlock: "https://www.mediafire.com/file/cy5uk5y5v4dyaql/Menu_%255B_Hack_Map_%255D_Android_S3.apk/file"
   },
   ipaios: {
-    like: "https://youtu.be/XvMaFr4lcA8?si=6jHdbxHgVEk7zRMm",
-    unlock: "https://linkx.me/1TXdi"
+    like: "https://youtu.be/3GFaSIbM9_w?si=Z0jrpcqVp3JVGOTl",
+    unlock: "https://linkx.me/JwbO075"
   },
   hackmenuios: {
     like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
