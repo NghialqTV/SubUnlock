@@ -17,6 +17,7 @@ if(!data){
  */
 const STORAGE_KEY="nghialqtv_unlock_"+id;
 const SESSION_TTL=2*60*1000;
+const APP_STATE_VERSION=2;
 const CONFIRM_TIME=5;
 
 function toggleTheme(){
@@ -28,8 +29,22 @@ try{if(localStorage.getItem("nghialqtv_theme")==="light")document.body.classList
 let saved={};
 try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")}catch(e){saved={};}
 
-// Tự reset nếu phiên cũ quá 2 phút.
-if(saved.sessionStarted && Date.now()-saved.sessionStarted>SESSION_TTL){
+function resetSession(){
+  done1=done2=done3=done4=false;
+  pendingStep=0;
+  pendingAt=0;
+  sessionStarted=0;
+  try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
+  updateProgress();
+  updatePendingUI();
+}
+
+// Reset chắc chắn theo thời gian hết hạn. Dùng cả expiresAt để tránh
+// trường hợp sessionStarted bị ghi lại/không còn đồng bộ khi người dùng reload.
+const savedStarted=Number(saved.sessionStarted||0);
+const savedExpires=Number(saved.expiresAt||0);
+if((saved.version===APP_STATE_VERSION || saved.version==null) &&
+   ((savedExpires && Date.now()>=savedExpires) || (!savedExpires && savedStarted && Date.now()-savedStarted>=SESSION_TTL))){
   try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
   saved={};
 }
@@ -41,7 +56,7 @@ let sessionStarted=Number(saved.sessionStarted||0);
 let confirmTimer=null;
 
 function stateObject(){
-  return {done1,done2,done3,done4,pendingStep,pendingAt,sessionStarted};
+  return {version:APP_STATE_VERSION,done1,done2,done3,done4,pendingStep,pendingAt,sessionStarted,expiresAt:sessionStarted?sessionStarted+SESSION_TTL:0};
 }
 
 function saveState(){
@@ -51,7 +66,10 @@ function saveState(){
 }
 
 function startSession(){
-  if(!sessionStarted) sessionStarted=Date.now();
+  if(!sessionStarted){
+    sessionStarted=Date.now();
+    saveState();
+  }
 }
 
 function taskIsDone(step){return [done1,done2,done3,done4][step-1];}
@@ -197,12 +215,18 @@ function updateClock(){
 
 // Khi quay lại từ YouTube/Telegram, cập nhật bộ đếm xác nhận.
 // Flow: Bấm nhiệm vụ -> đi thẳng link đích -> quay lại -> chờ -> Xác nhận -> quảng cáo.
-function onReturn(){
-  if(sessionStarted && Date.now()-sessionStarted>SESSION_TTL){
-    try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
-    location.reload();
-    return;
+function checkSessionExpiry(){
+  if(!sessionStarted)return false;
+  const expiresAt=sessionStarted+SESSION_TTL;
+  if(Date.now()>=expiresAt){
+    resetSession();
+    return true;
   }
+  return false;
+}
+
+function onReturn(){
+  if(checkSessionExpiry())return;
   updatePendingUI();
 }
 
@@ -211,6 +235,6 @@ document.addEventListener("visibilitychange",()=>{if(document.visibilityState===
 
 updateClock();
 setInterval(updateClock,30000);
-setInterval(updatePendingUI,1000);
+setInterval(()=>{ if(!checkSessionExpiry()) updatePendingUI(); },1000);
 updateProgress();
 updatePendingUI();
