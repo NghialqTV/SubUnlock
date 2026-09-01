@@ -152,6 +152,10 @@ const pages = {
     like: "https://youtu.be/a-buucqnu6I?si=hBKRn8PhzA14HpVe",
     unlock: "https://www.mediafire.com/file/o8d2dswemu0okmj/Pack_60_Skin_C%25C3%25B3_N%25C3%25BAt_B%25E1%25BA%25A5m_By_Ngh%25C4%25A9alq_TV.zip/file"
   },
+  mod500skin0109: {
+    like: "https://youtu.be/9XgcLymOUFs?si=G0Ts2S70q-jPpYsr",
+    unlock: "https://www.mediafire.com/file/mk6fyyskcwtxeyy/Mod_Full_500_Skin_IN_1.zip/file"
+  },
   
 };
 
