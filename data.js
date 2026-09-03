@@ -14,7 +14,7 @@ const pages = {
   },
   hackv2goc: {
     like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
-    unlock: "https://www.mediafire.com/file/qfzj2jkzrg65cbz/M%25C3%25A1p_S%25C3%25A1ng_V2.1_B%25E1%25BA%25A3n_Gop_G%25E1%25BB%2591c.apk/file"
+    unlock: "https://www.mediafire.com/file/hi0d7m0zkn0yh7k/M%25C3%25A1p_S%25C3%25A1ng_V2.1_Gop_G%25E1%25BB%2591c.apk/file"
   },
   hackv2tachgoc: {
     like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
