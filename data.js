@@ -9,16 +9,16 @@ const pages = {
     unlock: "https://gofile.io/d/dqDr1WCQ"
   },
   keyandroidv2: {
-    like: "https://youtu.be/sPBXNLncD5A?si=IWFdJ-zIcruHspt8",
+    like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
     unlock: "https://vn.modhack.uk/GETKEY/TrungNghia04"
   },
   hackv2goc: {
-    like: "https://youtu.be/sPBXNLncD5A?si=IWFdJ-zIcruHspt8",
-    unlock: "https://www.mediafire.com/file/o4l7x6ptlv55avt/%255B_Hack_Map_B%25E1%25BA%25A3n_%25C4%2590%25C3%25A8_G%25E1%25BB%2591c_%255D_By_Ngh%25C4%25A9alq_TV.apk/file"
+    like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
+    unlock: "https://www.mediafire.com/file/qfzj2jkzrg65cbz/M%25C3%25A1p_S%25C3%25A1ng_V2.1_B%25E1%25BA%25A3n_Gop_G%25E1%25BB%2591c.apk/file"
   },
   hackv2tachgoc: {
-    like: "https://youtu.be/sPBXNLncD5A?si=IWFdJ-zIcruHspt8",
-    unlock: "https://www.mediafire.com/file/irh9pd36n0ilvdp/%255B_Hack_Map_B%25E1%25BA%25A3n_T%25C3%25A1ch_G%25E1%25BB%2591c_%255D_NghialqTV.apk/file"
+    like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
+    unlock: "https://www.mediafire.com/file/mt6j3ooe0w8v2ol/Map_S%25C3%25A1ng_V2.1_._T%25C3%25A1ch_G%25E1%25BB%2591c.apk/file"
   },
   fullfilele: {
     like: "https://youtu.be/1nQrhNtpMYU?si=ihvptkE5dgDGq-HB",
