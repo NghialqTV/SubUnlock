@@ -48,9 +48,9 @@ const pages = {
     like: "https://youtu.be/sPBXNLncD5A?si=IWFdJ-zIcruHspt8",
     unlock: "https://www.mediafire.com/file/f87v1gq03gli3fh/Menu_%255B_Mod_Skin_%255D_Android_S3.apk/file"
   },
-  modmenuandroid32: {
-    like: "https://youtu.be/sPBXNLncD5A?si=IWFdJ-zIcruHspt8",
-    unlock: "https://www.mediafire.com/file/j21h804l6ojsn44/Menu_Mod_Skin_32_Bit_Fix.apk/file"
+  keymapios: {
+    like: "https://youtu.be/caXg4cYE7U8?si=6Gy7i0nFW4-qii1r",
+    unlock: "https://ontops.link/91xoQoX"
   },
   modmenuiosv2: {
     like: "https://youtu.be/caXg4cYE7U8?si=lM3SjFbB2I0g2jSR",
