@@ -52,9 +52,9 @@ const pages = {
     like: "https://youtu.be/sPBXNLncD5A?si=IWFdJ-zIcruHspt8",
     unlock: "https://www.mediafire.com/file/j21h804l6ojsn44/Menu_Mod_Skin_32_Bit_Fix.apk/file"
   },
-  hackmenuandroid64: {
-    like: "https://youtu.be/sPBXNLncD5A?si=IWFdJ-zIcruHspt8",
-    unlock: "https://www.mediafire.com/file/cy5uk5y5v4dyaql/Menu_%255B_Hack_Map_%255D_Android_S3.apk/file"
+  modmenuiosv2: {
+    like: "https://youtu.be/caXg4cYE7U8?si=lM3SjFbB2I0g2jSR",
+    unlock: "https://linkx.me/Wv9E9i"
   },
   ipaios: {
     like: "https://youtu.be/3GFaSIbM9_w?si=Z0jrpcqVp3JVGOTl",
