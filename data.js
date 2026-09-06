@@ -49,11 +49,11 @@ const pages = {
     unlock: "https://www.mediafire.com/file/f87v1gq03gli3fh/Menu_%255B_Mod_Skin_%255D_Android_S3.apk/file"
   },
   keymapios: {
-    like: "https://youtu.be/caXg4cYE7U8?si=6Gy7i0nFW4-qii1r",
+    like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
     unlock: "https://ontops.link/91xoQoX"
   },
   modmenuiosv2: {
-    like: "https://youtu.be/caXg4cYE7U8?si=lM3SjFbB2I0g2jSR",
+    like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
     unlock: "https://linkx.me/Wv9E9i"
   },
   ipaios: {
@@ -61,15 +61,15 @@ const pages = {
     unlock: "https://linkx.me/JwbO075"
   },
   hackmenuios: {
-    like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
+    like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
     unlock: "https://storeipa.com/ZHduf3"
   },
   modmenuios: {
-    like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
+    like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
     unlock: "https://linkx.me/r20x0l"
   },
   keymenuios: {
-    like: "https://youtu.be/zrCz3IJkNmM?si=eCRwcIFPEIzrNkxO",
+    like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
     unlock: "https://ontops.link/_P_H7-g"
   },
   mod65skin1006: {
