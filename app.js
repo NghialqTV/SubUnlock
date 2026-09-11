@@ -35,11 +35,7 @@ let pendingStep=Number(saved.pendingStep||0);
 let pendingAt=Number(saved.pendingAt||0);
 let sessionStarted=Number(saved.sessionStarted||0);
 let adTimer=null;
-let returnAdTimer=null;
 let taskWindow=null;
-let adWindow=null;
-let waitingForReturn=false;
-let leftForTask=false;
 
 function stateObject(){
   return {version:APP_STATE_VERSION,done1,done2,done3,done4,pendingStep,pendingAt,sessionStarted,expiresAt:sessionStarted?sessionStarted+SESSION_TTL:0};
@@ -82,25 +78,23 @@ function runTask(step,targetUrl){
   startSession();
   pendingStep=step;
   pendingAt=Date.now();
-  waitingForReturn=true;
-  leftForTask=true;
   saveState();
 
-  // Chỉ mở nhiệm vụ. Khi người dùng quay lại trang này, hệ thống
-  // sẽ đợi 3 giây rồi dùng chính tab nhiệm vụ đã mở để chuyển sang quảng cáo.
+  // Mở cửa sổ ngay từ thao tác bấm của người dùng. Sau 3 giây,
+  // dùng chính cửa sổ này để chuyển sang quảng cáo -> tránh popup blocker.
   try{
-    taskWindow=window.open(targetUrl,"_blank");
-    if(!taskWindow || taskWindow.closed){
-      // Nếu trình duyệt chặn popup, mở nhiệm vụ ngay trong tab hiện tại.
+    taskWindow=window.open("about:blank","_blank");
+    if(taskWindow){
+      taskWindow.location.href=targetUrl;
+    }else{
+      // Nếu trình duyệt chặn popup, vẫn mở nhiệm vụ trong tab hiện tại.
       window.location.href=targetUrl;
-      return;
     }
-    try{taskWindow.focus();}catch(ignore){}
   }catch(e){
     try{window.location.href=targetUrl;}catch(ignore){}
   }
 
-  updateTaskUI();
+  scheduleAutoComplete();
 }
 
 function subscribeYoutube(){runTask(1,data.sub)}
@@ -110,76 +104,49 @@ function joinTelegram(){runTask(4,data.tele)}
 
 function openAutoAd(){
   if(typeof window.tiktokAdGate!=="function")return false;
-  try{
-    const ad=window.tiktokAdGate();
-    if(!ad)return false;
+  let ad="";
+  try{ ad=window.tiktokAdGate()||""; }catch(e){ ad=""; }
+  if(!ad)return false;
 
-    // Quan trọng: taskWindow được mở trực tiếp từ thao tác click của người dùng,
-    // nên khi quay lại website ta có thể điều hướng tab đó sang quảng cáo mà
-    // không phụ thuộc vào popup mới sau setTimeout (thường bị Chrome chặn).
+  // Ưu tiên tab nhiệm vụ đã mở từ thao tác click.
+  // Khi người dùng quay lại trang SubUnlock, chuyển chính tab đó sang quảng cáo TikTok.
+  try{
     if(taskWindow && !taskWindow.closed){
       taskWindow.location.href=ad;
-      try{taskWindow.focus();}catch(ignore){}
-      adWindow=taskWindow;
       return true;
     }
+  }catch(e){}
 
-    // Fallback: thử mở quảng cáo nếu tab nhiệm vụ đã bị đóng.
-    adWindow=window.open(ad,"_blank");
-    if(adWindow){
-      try{adWindow.focus();}catch(ignore){}
-      return true;
-    }
+  // Nếu tab nhiệm vụ không còn khả dụng, mở quảng cáo bằng một popup.
+  try{
+    const w=window.open(ad,"_blank","noopener,noreferrer");
+    if(w){taskWindow=w;return true;}
   }catch(e){}
   return false;
 }
 
-function finishPendingAfterReturn(){
-  if(!pendingStep || !waitingForReturn)return;
-  waitingForReturn=false;
+function completePending(){
+  if(!pendingStep)return;
+  const step=pendingStep;
+  const elapsed=Date.now()-pendingAt;
+  if(elapsed<AD_DELAY){scheduleAutoComplete();return;}
 
-  if(returnAdTimer)clearTimeout(returnAdTimer);
-  returnAdTimer=setTimeout(()=>{
-    if(!pendingStep)return;
+  // Sau đúng 3 giây: chuyển tab nhiệm vụ sang quảng cáo TikTok.
+  // Trang SubUnlock chính vẫn được giữ nguyên để người dùng tiếp tục bước kế tiếp.
+  openAutoAd();
+  setDone(step,true);
+  pendingStep=0;
+  pendingAt=0;
+  saveState();
+}
 
-    // Quay lại web -> chờ 3 giây -> chuyển tab nhiệm vụ sang TikTok ad.
-    openAutoAd();
-    setDone(pendingStep,true);
-    pendingStep=0;
-    pendingAt=0;
-    leftForTask=false;
-    saveState();
-  },AD_DELAY);
+function scheduleAutoComplete(){
+  if(adTimer)clearTimeout(adTimer);
+  if(!pendingStep)return;
+  const remain=Math.max(0,AD_DELAY-(Date.now()-pendingAt));
+  adTimer=setTimeout(completePending,remain);
   updateTaskUI();
 }
-
-function onReturn(){
-  if(checkSessionExpiry())return;
-  if(pendingStep){
-    // Chỉ kích hoạt khi người dùng thực sự rời tab nhiệm vụ rồi quay lại.
-    if(leftForTask && document.visibilityState==="visible"){
-      finishPendingAfterReturn();
-    }
-  }
-  updateTaskUI();
-}
-
-function scheduleReturnAfterRestore(){
-  if(pendingStep && leftForTask && document.visibilityState==="visible"){
-    finishPendingAfterReturn();
-  }
-}
-
-window.addEventListener("pageshow",()=>{
-  // pageshow có thể xảy ra khi quay lại từ YouTube/TikTok hoặc bfcache.
-  setTimeout(scheduleReturnAfterRestore,80);
-});
-
-document.addEventListener("visibilitychange",()=>{
-  if(document.visibilityState==="visible"){
-    setTimeout(onReturn,80);
-  }
-});
 
 function updateProgress(){
   const count=[done1,done2,done3,done4].filter(Boolean).length;
@@ -212,7 +179,7 @@ function updateTaskUI(){
       small.textContent="Đã hoàn thành ✓";
     }else if(pendingStep===step){
       const remain=Math.max(0,Math.ceil((AD_DELAY-(Date.now()-pendingAt))/1000));
-      small.textContent=returnAdTimer ? (remain>0 ? "Đã quay lại • quảng cáo sau "+remain+"s" : "Đang mở quảng cáo...") : "Đã mở nhiệm vụ • quay lại trang này";
+      small.textContent=remain>0?"Đang xử lý • quảng cáo sau "+remain+"s":"Đang mở quảng cáo...";
     }else if(next===step){
       small.textContent=taskDescription(step);
     }else{
@@ -230,6 +197,16 @@ function openUnlock(){
 }
 
 function openGuide(){window.open("https://youtu.be/kQGxcf2Pdc4?si=te-oGDi81xcU6lLL","_blank");}
+
+function handleReturnFromTask(){
+  if(checkSessionExpiry())return;
+  if(pendingStep){
+    const elapsed=Date.now()-pendingAt;
+    if(elapsed>=AD_DELAY){ completePending(); return; }
+    scheduleAutoComplete();
+  }
+  updateTaskUI();
+}
 
 function updateClock(){
   const d=new Date();
@@ -260,8 +237,8 @@ function onReturn(){
   updateTaskUI();
 }
 
-window.addEventListener("pageshow",onReturn);
-document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")onReturn();});
+window.addEventListener("pageshow",handleReturnFromTask);
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")handleReturnFromTask();});
 
 updateClock();
 setInterval(updateClock,30000);
