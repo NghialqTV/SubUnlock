@@ -8,39 +8,20 @@ if(!data){
 }
 
 /*
- * FLOW NHIỆM VỤ:
- * 1. Bấm nhiệm vụ -> mở đúng 1 quảng cáo ở tab mới.
- * 2. Tab nhiệm vụ tự chuyển sang link YouTube/Telegram tương ứng.
- * 3. Khi người dùng quay lại trang nhiệm vụ -> phải chờ đủ thời gian xác nhận
- *    rồi bấm "Xác nhận bước". Không đánh dấu hoàn thành ngay khi vừa bấm nhiệm vụ.
- * 4. Phiên nhiệm vụ tự RESET sau 2 phút kể từ hoạt động đầu tiên.
+ * FLOW NHIỆM VỤ MỚI:
+ * - Không còn nút "Xác nhận bước".
+ * - Bấm một nhiệm vụ -> mở link nhiệm vụ ở tab mới.
+ * - Sau 3 giây tự động mở 1 quảng cáo và tự đánh dấu bước hoàn thành.
+ * - Sau khi bước trước hoàn thành mới được làm bước tiếp theo.
  */
 const STORAGE_KEY="nghialqtv_unlock_"+id;
 const SESSION_TTL=2*60*1000;
-const APP_STATE_VERSION=2;
-const CONFIRM_TIME=5;
-
-function toggleTheme(){
-  document.body.classList.toggle("light");
-  try{localStorage.setItem("nghialqtv_theme",document.body.classList.contains("light")?"light":"dark");}catch(e){}
-}
-try{if(localStorage.getItem("nghialqtv_theme")==="light")document.body.classList.add("light");}catch(e){}
+const APP_STATE_VERSION=3;
+const AD_DELAY=3*1000;
 
 let saved={};
 try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")}catch(e){saved={};}
 
-function resetSession(){
-  done1=done2=done3=done4=false;
-  pendingStep=0;
-  pendingAt=0;
-  sessionStarted=0;
-  try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
-  updateProgress();
-  updatePendingUI();
-}
-
-// Reset chắc chắn theo thời gian hết hạn. Dùng cả expiresAt để tránh
-// trường hợp sessionStarted bị ghi lại/không còn đồng bộ khi người dùng reload.
 const savedStarted=Number(saved.sessionStarted||0);
 const savedExpires=Number(saved.expiresAt||0);
 if((saved.version===APP_STATE_VERSION || saved.version==null) &&
@@ -53,25 +34,19 @@ let done1=!!saved.done1,done2=!!saved.done2,done3=!!saved.done3,done4=!!saved.do
 let pendingStep=Number(saved.pendingStep||0);
 let pendingAt=Number(saved.pendingAt||0);
 let sessionStarted=Number(saved.sessionStarted||0);
-let confirmTimer=null;
+let adTimer=null;
 
 function stateObject(){
   return {version:APP_STATE_VERSION,done1,done2,done3,done4,pendingStep,pendingAt,sessionStarted,expiresAt:sessionStarted?sessionStarted+SESSION_TTL:0};
 }
-
 function saveState(){
   try{localStorage.setItem(STORAGE_KEY,JSON.stringify(stateObject()));}catch(e){}
   updateProgress();
-  updatePendingUI();
+  updateTaskUI();
 }
-
 function startSession(){
-  if(!sessionStarted){
-    sessionStarted=Date.now();
-    saveState();
-  }
+  if(!sessionStarted){sessionStarted=Date.now();saveState();}
 }
-
 function taskIsDone(step){return [done1,done2,done3,done4][step-1];}
 function setDone(step,value){
   if(step===1)done1=value;
@@ -79,28 +54,69 @@ function setDone(step,value){
   if(step===3)done3=value;
   if(step===4)done4=value;
 }
-
 function taskLabel(step){
-  return step===1?"Đăng ký kênh NghĩaLQ TV":step===2?"Đăng ký kênh Cyber Mods":step===3?"Like Video":"Tham gia nhóm Telegram";
+  return step===1?"Đăng ký kênh NghĩaLQ TV":step===2?"Follow kênh TikTok":step===3?"Like Video":"Tham gia nhóm Telegram";
+}
+function taskDescription(step){
+  return step===1?"Nhấn để đăng ký kênh YouTube":step===2?"Nhấn để theo dõi kênh TikTok":step===3?"Mở video và bấm Like":"Nhấn để tham gia nhóm Telegram";
+}
+
+function getNextStep(){
+  if(!done1)return 1;
+  if(!done2)return 2;
+  if(!done3)return 3;
+  if(!done4)return 4;
+  return 0;
 }
 
 function runTask(step,targetUrl){
-  if(taskIsDone(step)||pendingStep||!targetUrl)return;
+  if(!targetUrl || taskIsDone(step))return;
+  const next=getNextStep();
+  if(next!==step || pendingStep)return;
 
   startSession();
   pendingStep=step;
   pendingAt=Date.now();
   saveState();
 
-  // Mở thẳng link nhiệm vụ. Quảng cáo KHÔNG chạy ở bước này.
-  // Quảng cáo chỉ được mở khi người dùng bấm "Xác nhận bước".
-  window.location.assign(targetUrl);
+  // Mở nhiệm vụ ngay trong tab mới, còn trang mở khóa vẫn ở đây để đếm 3 giây.
+  try{window.open(targetUrl,"_blank","noopener,noreferrer");}catch(e){}
+
+  scheduleAutoComplete();
 }
 
 function subscribeYoutube(){runTask(1,data.sub)}
-function subscribeCyber(){runTask(2,data.cyberSub)}
+function followTikTok(){runTask(2,data.tiktokFollow)}
 function likeVideo(){runTask(3,data.like)}
 function joinTelegram(){runTask(4,data.tele)}
+
+function openAutoAd(){
+  if(typeof window.tiktokAdGate==="function"){
+    try{window.tiktokAdGate();}catch(e){}
+  }
+}
+
+function completePending(){
+  if(!pendingStep)return;
+  const step=pendingStep;
+  const elapsed=Date.now()-pendingAt;
+  if(elapsed<AD_DELAY){scheduleAutoComplete();return;}
+
+  // Sau đúng 3 giây: mở quảng cáo rồi tự hoàn thành bước.
+  openAutoAd();
+  setDone(step,true);
+  pendingStep=0;
+  pendingAt=0;
+  saveState();
+}
+
+function scheduleAutoComplete(){
+  if(adTimer)clearTimeout(adTimer);
+  if(!pendingStep)return;
+  const remain=Math.max(0,AD_DELAY-(Date.now()-pendingAt));
+  adTimer=setTimeout(completePending,remain);
+  updateTaskUI();
+}
 
 function updateProgress(){
   const count=[done1,done2,done3,done4].filter(Boolean).length;
@@ -108,87 +124,51 @@ function updateProgress(){
   const percent=document.getElementById("percent");
   if(progress)progress.style.width=(count*25)+"%";
   if(percent)percent.textContent=count+" / 4";
-
-  const ids=[["task1",done1],["task2",done2],["task3",done3],["task4",done4]];
-  ids.forEach(([x,ok])=>{
+  [["task1",done1],["task2",done2],["task3",done3],["task4",done4]].forEach(([x,ok])=>{
     const el=document.getElementById(x);
     if(el)el.classList.toggle("completed",ok);
   });
 }
 
-function updatePendingUI(){
+function updateTaskUI(){
   const ids=[1,2,3,4];
   ids.forEach(step=>{
     const el=document.getElementById("task"+step);
     if(!el)return;
     const small=el.querySelector("small");
-    if(!small)return;
+    const done=taskIsDone(step);
+    const next=getNextStep();
 
-    if(done1&&step===1 || done2&&step===2 || done3&&step===3 || done4&&step===4){
-      small.textContent="Đã xác nhận ✓";
-      return;
-    }
-    if(pendingStep===step){
-      const remain=Math.max(0,CONFIRM_TIME-Math.floor((Date.now()-pendingAt)/1000));
-      small.textContent=remain>0?"Quay lại trang này • xác nhận sau "+remain+"s":"Đã đủ thời gian • bấm để xác nhận";
-      el.classList.add("pending");
+    el.disabled=done || (next!==step) || !!pendingStep;
+    el.classList.toggle("pending",pendingStep===step);
+    el.classList.toggle("locked",!done && next!==step && !pendingStep);
+
+    if(done){
+      small.textContent="Đã hoàn thành ✓";
+    }else if(pendingStep===step){
+      const remain=Math.max(0,Math.ceil((AD_DELAY-(Date.now()-pendingAt))/1000));
+      small.textContent=remain>0?"Đang xử lý • quảng cáo sau "+remain+"s":"Đang mở quảng cáo...";
+    }else if(next===step){
+      small.textContent=taskDescription(step);
     }else{
-      el.classList.remove("pending");
-      small.textContent=step===3?"Mở video và bấm Like":step===4?"Nhấn để tham gia nhóm":"Nhấn để đăng ký kênh YouTube";
+      small.textContent="Hoàn thành bước trước để tiếp tục";
     }
   });
-
-  // Nút xác nhận riêng, không cần tạo lại HTML.
-  const verifyStep=document.getElementById("stepConfirm");
-  if(!verifyStep)return;
-  if(!pendingStep){
-    verifyStep.style.display="none";
-    return;
-  }
-  const remain=Math.max(0,CONFIRM_TIME-Math.floor((Date.now()-pendingAt)/1000));
-  verifyStep.style.display="block";
-  verifyStep.disabled=remain>0;
-  verifyStep.innerHTML=remain>0
-    ? '<i class="fa-solid fa-hourglass-half"></i> Xác nhận '+taskLabel(pendingStep)+' sau '+remain+'s'
-    : '<i class="fa-solid fa-circle-check"></i> Xác nhận bước '+pendingStep;
-}
-
-function confirmPending(){
-  if(!pendingStep)return;
-  const elapsed=Date.now()-pendingAt;
-  if(elapsed<CONFIRM_TIME*1000){updatePendingUI();return;}
-
-  const step=pendingStep;
-
-  // Chỉ tại đây mới mở 1 quảng cáo random.
-  // Vì đây là thao tác click trực tiếp của người dùng nên popup ít bị trình duyệt chặn.
-  if(typeof window.tiktokAdGate==="function"){
-    window.tiktokAdGate();
-  }
-
-  setDone(step,true);
-  pendingStep=0;
-  pendingAt=0;
-  saveState();
 }
 
 function verifyTasks(){
   if(!(done1&&done2&&done3&&done4)){
-    alert("Vui lòng hoàn thành và xác nhận đủ 4 bước trước khi mở khóa!");
+    alert("Vui lòng hoàn thành lần lượt cả 4 nhiệm vụ trước khi mở khóa!");
     return;
   }
-
   const btn=document.getElementById("verifyBtn");
   if(!btn)return;
   btn.disabled=true;
-  let t=5;
+  let t=3;
   btn.innerHTML='<i class="fa-solid fa-shield-halved"></i> Đang xác minh '+t+'s';
-
   const timer=setInterval(()=>{
     t--;
-    btn.innerHTML=t>0
-      ?'<i class="fa-solid fa-shield-halved"></i> Đang xác minh '+t+'s'
-      :'<i class="fa-solid fa-circle-check"></i> Đã xác minh';
+    btn.innerHTML=t>0?'<i class="fa-solid fa-shield-halved"></i> Đang xác minh '+t+'s':'<i class="fa-solid fa-circle-check"></i> Đã xác minh';
     if(t<=0){
       clearInterval(timer);
       const box=document.getElementById("unlockBox");
@@ -213,13 +193,18 @@ function updateClock(){
   if(el)el.textContent=d.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"});
 }
 
-// Khi quay lại từ YouTube/Telegram, cập nhật bộ đếm xác nhận.
-// Flow: Bấm nhiệm vụ -> đi thẳng link đích -> quay lại -> chờ -> Xác nhận -> quảng cáo.
 function checkSessionExpiry(){
   if(!sessionStarted)return false;
   const expiresAt=sessionStarted+SESSION_TTL;
   if(Date.now()>=expiresAt){
-    resetSession();
+    done1=done2=done3=done4=false;
+    pendingStep=0;
+    pendingAt=0;
+    sessionStarted=0;
+    if(adTimer)clearTimeout(adTimer);
+    try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
+    updateProgress();
+    updateTaskUI();
     return true;
   }
   return false;
@@ -227,7 +212,8 @@ function checkSessionExpiry(){
 
 function onReturn(){
   if(checkSessionExpiry())return;
-  updatePendingUI();
+  if(pendingStep)scheduleAutoComplete();
+  updateTaskUI();
 }
 
 window.addEventListener("pageshow",onReturn);
@@ -235,6 +221,10 @@ document.addEventListener("visibilitychange",()=>{if(document.visibilityState===
 
 updateClock();
 setInterval(updateClock,30000);
-setInterval(()=>{ if(!checkSessionExpiry()) updatePendingUI(); },1000);
+setInterval(()=>{
+  if(checkSessionExpiry())return;
+  if(pendingStep)updateTaskUI();
+},1000);
 updateProgress();
-updatePendingUI();
+updateTaskUI();
+if(pendingStep)scheduleAutoComplete();
