@@ -16,7 +16,7 @@ if(!data){
  */
 const STORAGE_KEY="nghialqtv_unlock_"+id;
 const SESSION_TTL=2*60*1000;
-const APP_STATE_VERSION=3;
+const APP_STATE_VERSION=4;
 const AD_DELAY=3*1000;
 
 let saved={};
@@ -35,6 +35,7 @@ let pendingStep=Number(saved.pendingStep||0);
 let pendingAt=Number(saved.pendingAt||0);
 let sessionStarted=Number(saved.sessionStarted||0);
 let adTimer=null;
+let taskWindow=null;
 
 function stateObject(){
   return {version:APP_STATE_VERSION,done1,done2,done3,done4,pendingStep,pendingAt,sessionStarted,expiresAt:sessionStarted?sessionStarted+SESSION_TTL:0};
@@ -55,10 +56,10 @@ function setDone(step,value){
   if(step===4)done4=value;
 }
 function taskLabel(step){
-  return step===1?"Đăng ký kênh NghĩaLQ TV":step===2?"Follow kênh TikTok":step===3?"Like Video":"Tham gia nhóm Telegram";
+  return step===1?"Đăng ký kênh NghĩaLQ TV":step===2?"Đăng ký kênh Cyber Mods":step===3?"Like Video":"Tham gia nhóm Telegram";
 }
 function taskDescription(step){
-  return step===1?"Nhấn để đăng ký kênh YouTube":step===2?"Nhấn để theo dõi kênh TikTok":step===3?"Mở video và bấm Like":"Nhấn để tham gia nhóm Telegram";
+  return step===1?"Nhấn để đăng ký kênh YouTube":step===2?"Nhấn để đăng ký kênh YouTube":step===3?"Mở video và bấm Like":"Nhấn để tham gia nhóm Telegram";
 }
 
 function getNextStep(){
@@ -79,20 +80,36 @@ function runTask(step,targetUrl){
   pendingAt=Date.now();
   saveState();
 
-  // Mở nhiệm vụ ngay trong tab mới, còn trang mở khóa vẫn ở đây để đếm 3 giây.
-  try{window.open(targetUrl,"_blank","noopener,noreferrer");}catch(e){}
+  // Mở cửa sổ ngay từ thao tác bấm của người dùng. Sau 3 giây,
+  // dùng chính cửa sổ này để chuyển sang quảng cáo -> tránh popup blocker.
+  try{
+    taskWindow=window.open("about:blank","_blank");
+    if(taskWindow){
+      taskWindow.location.href=targetUrl;
+    }else{
+      // Nếu trình duyệt chặn popup, vẫn mở nhiệm vụ trong tab hiện tại.
+      window.location.href=targetUrl;
+    }
+  }catch(e){
+    try{window.location.href=targetUrl;}catch(ignore){}
+  }
 
   scheduleAutoComplete();
 }
 
 function subscribeYoutube(){runTask(1,data.sub)}
-function followTikTok(){runTask(2,data.tiktokFollow)}
+function subscribeCyberMods(){runTask(2,data.cyberMods)}
 function likeVideo(){runTask(3,data.like)}
 function joinTelegram(){runTask(4,data.tele)}
 
 function openAutoAd(){
   if(typeof window.tiktokAdGate==="function"){
-    try{window.tiktokAdGate();}catch(e){}
+    try{
+      const ad=window.tiktokAdGate();
+      if(ad && taskWindow && !taskWindow.closed){
+        taskWindow.location.href=ad;
+      }
+    }catch(e){}
   }
 }
 
@@ -128,6 +145,8 @@ function updateProgress(){
     const el=document.getElementById(x);
     if(el)el.classList.toggle("completed",ok);
   });
+  const box=document.getElementById("unlockBox");
+  if(box)box.style.display=(done1&&done2&&done3&&done4)?"block":"none";
 }
 
 function updateTaskUI(){
@@ -154,27 +173,6 @@ function updateTaskUI(){
       small.textContent="Hoàn thành bước trước để tiếp tục";
     }
   });
-}
-
-function verifyTasks(){
-  if(!(done1&&done2&&done3&&done4)){
-    alert("Vui lòng hoàn thành lần lượt cả 4 nhiệm vụ trước khi mở khóa!");
-    return;
-  }
-  const btn=document.getElementById("verifyBtn");
-  if(!btn)return;
-  btn.disabled=true;
-  let t=3;
-  btn.innerHTML='<i class="fa-solid fa-shield-halved"></i> Đang xác minh '+t+'s';
-  const timer=setInterval(()=>{
-    t--;
-    btn.innerHTML=t>0?'<i class="fa-solid fa-shield-halved"></i> Đang xác minh '+t+'s':'<i class="fa-solid fa-circle-check"></i> Đã xác minh';
-    if(t<=0){
-      clearInterval(timer);
-      const box=document.getElementById("unlockBox");
-      if(box)box.style.display="block";
-    }
-  },1000);
 }
 
 function openUnlock(){

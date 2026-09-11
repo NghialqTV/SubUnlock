@@ -1,7 +1,7 @@
 // Cấu hình các link mặc định dùng chung để tránh trùng lặp dữ liệu
 const DEFAULT_SUB = "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg";
 const DEFAULT_TELE = "https://t.me/+gI22PHmUi5xhMDA9";
-const TIKTOK_FOLLOW_URL = "https://www.tiktok.com/@trung.nghia.2001";
+const CYBER_MODS_URL = "https://www.youtube.com/@CyberMods";
 
 const pages = {
   tainguyen: {
@@ -175,5 +175,5 @@ const pages = {
 Object.keys(pages).forEach(key => {
   if (!pages[key].sub) pages[key].sub = DEFAULT_SUB;
   if (!pages[key].tele) pages[key].tele = DEFAULT_TELE;
-  if (!pages[key].tiktokFollow) pages[key].tiktokFollow = TIKTOK_FOLLOW_URL;
+  if (!pages[key].cyberMods) pages[key].cyberMods = CYBER_MODS_URL;
 });
