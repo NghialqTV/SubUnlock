@@ -70,7 +70,7 @@ const pages = {
   },
   keymenuios: {
     like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
-    unlock: "https://ontops.link/_P_H7-g"
+    unlock: "https://ontops.link/mOQ7cz2"
   },
   mod65skin1006: {
     like: "https://youtu.be/jZwGXnvgQpo?si=6ZTA2xJhwzPVb3Jy",
