@@ -50,7 +50,7 @@ const pages = {
   },
   keymapios: {
     like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
-    unlock: "https://ontops.link/4Q7UhN2"
+    unlock: "https://ontops.link/Gw8QLm2"
   },
   modmenuiosv2: {
     like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
