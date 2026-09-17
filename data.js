@@ -54,7 +54,7 @@ const pages = {
   },
   modmenuiosv2: {
     like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
-    unlock: "https://linkx.me/Wv9E9i"
+    unlock: "https://ontops.link/OSmHQ02"
   },
   ipaios: {
     like: "https://youtu.be/3GFaSIbM9_w?si=Z0jrpcqVp3JVGOTl",
