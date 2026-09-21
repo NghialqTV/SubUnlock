@@ -168,6 +168,10 @@ const pages = {
     like: "https://youtu.be/tVbAb1IzCMI?si=8iNV3p1pKgWnmEb1",
     unlock: "https://www.mediafire.com/file/wgm0c8j6b0pvhml/Pack_48_Skin_Li%25C3%25AAn_Qu%25C3%25A2n_By_Ngh%25C4%25A9a_Lq_TV.zip/file"
   },
+  mod80skin2109: {
+    like: "https://youtu.be/F0b88BcNF9c?si=WF-LcQDcERVcvVoV",
+    unlock: "https://www.mediafire.com/file/ddmj44gmc5gan98/Pack_80_Skin_Cu%25E1%25BB%2591i_M%25C3%25B9a_By_Ngh%25C4%25A9alq_TV.zip/file"
+  },
   
 };
 
