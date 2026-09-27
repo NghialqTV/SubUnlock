@@ -172,7 +172,6 @@ const pages = {
     like: "https://youtu.be/F0b88BcNF9c?si=WF-LcQDcERVcvVoV",
     unlock: "https://www.mediafire.com/file/ddmj44gmc5gan98/Pack_80_Skin_Cu%25E1%25BB%2591i_M%25C3%25B9a_By_Ngh%25C4%25A9alq_TV.zip/file"
   },
-  },
   mod123skin2709: {
     like: "https://youtu.be/XSu0ySBxQJU?si=heB8ZIteS8jd_a7z",
     unlock: "https://www.mediafire.com/file/ewrza6iiktxqsud/Pack_123_Skin_V2_Android_-_IOS.zip/file"
