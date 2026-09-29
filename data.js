@@ -54,10 +54,9 @@ const pages = {
   },
   mod80skin2909: {
     like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
-    unlock: "https://www.mediafire.com/file/15knju4gfarpvgf/Pack_80_Skin_By_Ngh%25C4%25A9alq_TV.zip/file"
+    unlock: "https://www.mediafire.com/file/15knju4gfarpvgf/Pack_80_Skin_By_Ngh%C4%A9alq_TV.zip/file"
   }
-  
-  };
+};
 
 // Tự động gán link mặc định cho các trang không cấu hình riêng biệt sub/tele
 Object.keys(pages).forEach(key => {

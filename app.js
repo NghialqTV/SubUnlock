@@ -1,5 +1,5 @@
 const params=new URLSearchParams(location.search);
-const id=params.get("id")||params.get("page")||"hackmenuios";
+const id=(params.get("id")||params.get("page")||"hackmenuios").trim();
 const data=pages[id];
 
 if(!data){
@@ -31,6 +31,10 @@ if(isRealReload){
   try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
   saved={};
 }
+
+// Đảm bảo state cũng được kiểm tra khi trình duyệt khôi phục trang từ bfcache
+// hoặc khi tab quay lại foreground trên điện thoại.
+let pageBooted=true;
 
 // Xóa state cũ từ các phiên bản trước hoặc state hoàn thành nhưng không có
 // sessionStarted (trạng thái cũ có thể khiến trang bị kẹt ở 4/4).
@@ -229,28 +233,58 @@ function updateClock(){
   if(el)el.textContent=d.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"});
 }
 
+function resetSessionAndReload(){
+  try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
+  try{sessionStorage.removeItem(STORAGE_KEY);}catch(e){}
+  done1=done2=done3=done4=false;
+  pendingStep=0;
+  pendingAt=0;
+  sessionStarted=0;
+  if(adTimer){clearTimeout(adTimer);adTimer=null;}
+  saved={};
+  updateProgress();
+  updateTaskUI();
+  // cache-busting giúp tránh trình duyệt giữ state/UI JS cũ.
+  window.location.reload();
+}
+
 function checkSessionExpiry(){
   const now=Date.now();
-  // Dùng state hiện tại thay vì biến `state` không tồn tại.
-  // Trước đây lỗi ReferenceError tại đây khiến bộ kiểm tra phiên chạy lỗi mỗi giây.
   const started=Number(sessionStarted||0);
   const expires=Number(started ? started+SESSION_TTL : 0);
 
   if(expires && now>=expires){
-    try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
-    try{sessionStorage.removeItem(STORAGE_KEY);}catch(e){}
-    done1=done2=done3=done4=false;
-    pendingStep=0;
-    pendingAt=0;
-    sessionStarted=0;
-    if(adTimer){clearTimeout(adTimer);adTimer=null;}
-    window.location.reload();
+    resetSessionAndReload();
     return true;
   }
   return false;
 }
 
+
 setInterval(checkSessionExpiry,1000);
+
+// Mobile Chrome có thể tạm dừng timer khi tab ở nền. Kiểm tra lại ngay
+// khi người dùng quay lại trang để không bị kẹt ở trạng thái cũ.
+window.addEventListener("pageshow",()=>{
+  if(checkSessionExpiry())return;
+  if(pendingStep){
+    const elapsed=Date.now()-pendingAt;
+    if(elapsed>=AD_DELAY) completePending();
+    else scheduleAutoComplete();
+  }
+  updateProgress();
+  updateTaskUI();
+});
+
+document.addEventListener("visibilitychange",()=>{
+  if(document.visibilityState==="visible") window.dispatchEvent(new Event("pageshow"));
+});
+
+window.addEventListener("focus",()=>{
+  if(checkSessionExpiry())return;
+  if(pendingStep)scheduleAutoComplete();
+  updateTaskUI();
+});
 
 function onReturn(){
   if(checkSessionExpiry())return;
@@ -258,8 +292,6 @@ function onReturn(){
   updateTaskUI();
 }
 
-window.addEventListener("pageshow",handleReturnFromTask);
-document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")handleReturnFromTask();});
 
 updateClock();
 setInterval(updateClock,30000);
