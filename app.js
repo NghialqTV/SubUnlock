@@ -15,20 +15,32 @@ if(!data){
  * - Sau khi bước trước hoàn thành mới được làm bước tiếp theo.
  */
 const STORAGE_KEY="nghialqtv_unlock_"+id;
-const APP_STATE_VERSION=7;
+const APP_STATE_VERSION=8;
 const SESSION_TTL=2*60*1000;
 const AD_DELAY=3*1000;
 
 let saved={};
 try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")}catch(e){saved={};}
 
-// Phiên làm nhiệm vụ chỉ tồn tại tối đa 2 phút.
-// Khi hết hạn, xóa state để viewer phải làm nhiệm vụ lại từ đầu.
+// Mỗi lần tải lại trang phải bắt đầu lại nhiệm vụ.
+// Không xóa khi chỉ quay lại từ tab nhiệm vụ/ quảng cáo, vì khi đó
+// trang chính không reload và vẫn giữ nguyên state trong tab hiện tại.
+const navigationEntry=(performance.getEntriesByType&&performance.getEntriesByType("navigation")[0])||null;
+const isRealReload=navigationEntry ? navigationEntry.type==="reload" : false;
+if(isRealReload){
+  try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
+  saved={};
+}
+
+// Xóa state cũ từ các phiên bản trước hoặc state hoàn thành nhưng không có
+// sessionStarted (trạng thái cũ có thể khiến trang bị kẹt ở 4/4).
 const savedStarted=Number(saved.sessionStarted||0);
 const savedExpires=Number(saved.expiresAt||0);
-if((saved.version===APP_STATE_VERSION || saved.version==null) &&
-   ((savedExpires && Date.now()>=savedExpires) ||
-    (!savedExpires && savedStarted && Date.now()-savedStarted>=SESSION_TTL))){
+const invalidOldState=saved.version!==APP_STATE_VERSION && saved.version!=null;
+const completedWithoutSession=!!(saved.done1&&saved.done2&&saved.done3&&saved.done4&&!savedStarted);
+if(invalidOldState || completedWithoutSession ||
+   (savedExpires && Date.now()>=savedExpires) ||
+   (!savedExpires && savedStarted && Date.now()-savedStarted>=SESSION_TTL)){
   try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
   saved={};
 }
@@ -219,12 +231,19 @@ function updateClock(){
 
 function checkSessionExpiry(){
   const now=Date.now();
-  const started=Number(state.sessionStarted||0);
-  const expires=Number(state.expiresAt||0) || (started ? started+SESSION_TTL : 0);
+  // Dùng state hiện tại thay vì biến `state` không tồn tại.
+  // Trước đây lỗi ReferenceError tại đây khiến bộ kiểm tra phiên chạy lỗi mỗi giây.
+  const started=Number(sessionStarted||0);
+  const expires=Number(started ? started+SESSION_TTL : 0);
 
   if(expires && now>=expires){
     try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
     try{sessionStorage.removeItem(STORAGE_KEY);}catch(e){}
+    done1=done2=done3=done4=false;
+    pendingStep=0;
+    pendingAt=0;
+    sessionStarted=0;
+    if(adTimer){clearTimeout(adTimer);adTimer=null;}
     window.location.reload();
     return true;
   }
