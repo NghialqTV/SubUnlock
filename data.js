@@ -8,18 +8,6 @@ const pages = {
     like: "https://youtu.be/sdUtuButNfg?si=yZ4eMTnHJqiX_zJd",
     unlock: "https://gofile.io/d/dqDr1WCQ"
   },
-  keyandroidv2: {
-    like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
-    unlock: "https://vnmods.baby/GETKEY/trungnghia04"
-  },
-  hackv2goc: {
-    like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
-    unlock: "https://www.mediafire.com/file/6jqqmzrd6gnf2yx/LQMOD_1.64.1.7.apk/file"
-  },
-  hackv2tachgoc: {
-    like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
-    unlock: "https://www.mediafire.com/file/6jqqmzrd6gnf2yx/LQMOD_1.64.1.7.apk/file"
-  },
   fps: {
     like: "https://youtu.be/DJgeoNOFq_E?si=OEHoTpMmK6oqS6Vc",
     unlock: "https://www.mediafire.com/file/o9mwxdr41y14bxi/120_FPS.zip/file"
@@ -35,10 +23,6 @@ const pages = {
   resources: {
     like: "https://youtu.be/tdlqZSzaXBg?si=1PFi3tHNT-H4QIv-",
     unlock: "https://www.mediafire.com/file/at85hnqx1toiqia/Resources.zip/file"
-  },
-  keymapios: {
-    like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
-    unlock: https://ontops.link/47R3QNj"
   },
   ipaios: {
     like: "https://youtu.be/3GFaSIbM9_w?si=Z0jrpcqVp3JVGOTl",
@@ -56,6 +40,18 @@ const pages = {
     like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
     unlock: "https://ontops.link/47R3QNj"
   },
+  keyandroidv2: {
+    like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
+    unlock: "https://vnmods.baby/GETKEY/trungnghia04"
+  },
+  hackv2goc: {
+    like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
+    unlock: "https://www.mediafire.com/file/6jqqmzrd6gnf2yx/LQMOD_1.64.1.7.apk/file"
+  },
+  hackv2tachgoc: {
+    like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
+    unlock: "https://www.mediafire.com/file/6jqqmzrd6gnf2yx/LQMOD_1.64.1.7.apk/file"
+  }
 };
 
 // Tự động gán link mặc định cho các trang không cấu hình riêng biệt sub/tele
