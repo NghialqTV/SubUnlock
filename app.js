@@ -14,7 +14,7 @@ if(!data){
  * - Sau 3 giây tự động mở 1 quảng cáo và tự đánh dấu bước hoàn thành.
  * - Sau khi bước trước hoàn thành mới được làm bước tiếp theo.
  */
-const APP_STATE_VERSION=9;
+const APP_STATE_VERSION=10;
 const SESSION_TTL=2*60*1000;
 const AD_DELAY=3*1000;
 
@@ -122,6 +122,7 @@ function openAutoAd(){
 }
 
 function completePending(){
+  adTimer=null;
   if(!pendingStep)return;
   if(checkSessionExpiry())return;
 
@@ -129,7 +130,8 @@ function completePending(){
   const elapsed=Date.now()-pendingAt;
   if(elapsed<AD_DELAY){scheduleAutoComplete();return;}
 
-  openAutoAd();
+  // Quảng cáo chỉ là bước phụ; tuyệt đối không để lỗi popup/tab làm kẹt nhiệm vụ.
+  try{ openAutoAd(); }catch(e){}
   setDone(step,true);
   pendingStep=0;
   pendingAt=0;

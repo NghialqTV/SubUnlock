@@ -62,4 +62,5 @@ const pages = {
 Object.keys(pages).forEach(key => {
   if (!pages[key].sub) pages[key].sub = DEFAULT_SUB;
   if (!pages[key].tele) pages[key].tele = DEFAULT_TELE;
-  if (!pages[key].cyberMods) pages[key].cy
+  if (!pages[key].cyberMods) pages[key].cyberMods = CYBER_MODS_URL;
+});
