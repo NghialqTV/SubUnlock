@@ -7,7 +7,12 @@
 <title>SubToUnlock • NghĩaLQ TV</title>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-<link rel="stylesheet" href="style.css?v=20260929-10">
+<link rel="stylesheet" href="style.css?v=20260929-11">
+
+<style>
+.ad-banner{margin:10px 0 14px;padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);text-align:center;font:600 13px Arial;color:#ddd;cursor:pointer}
+.ad-banner span{opacity:.9}.ad-banner:hover{background:rgba(255,255,255,.1)}
+</style>
 </head>
 <body>
 <main class="page">
@@ -36,6 +41,8 @@
       </div>
     </div>
   </section>
+
+  <div id="adBanner" class="ad-banner"><span>Quảng cáo • Nhấn để xem</span></div>
 
   <section class="tasks-section">
     <div class="section-title">Nhiệm vụ cần hoàn thành</div>
@@ -101,9 +108,22 @@
   <footer>NghĩaLQ TV • AOV UNLOCK</footer>
 </main>
 
-<script src="data.js?v=20260929-10"></script>
-<script src="data/tiktok_ads.js?v=20260929-10"></script>
-<script src="tiktok_ads/tiktok-gate.js?v=20260929-10"></script>
-<script src="app.js?v=20260929-10"></script>
+<script src="data.js?v=20260929-11"></script>
+<script src="data/tiktok_ads.js?v=20260929-11"></script>
+<script src="tiktok_ads/tiktok-gate.js?v=20260929-11"></script>
+<script src="app.js?v=20260929-11"></script>
+<script>
+(function(){
+  const b=document.getElementById('adBanner');
+  if(!b)return;
+  b.addEventListener('click',function(){
+    try{
+      const links=Array.isArray(window.TIKTOK_AD_LINKS)?window.TIKTOK_AD_LINKS.filter(u=>/^https?:\/\//i.test(String(u))):[];
+      if(!links.length)return;
+      window.open(links[Math.floor(Math.random()*links.length)],'_blank');
+    }catch(e){}
+  });
+})();
+</script>
 </body>
 </html>

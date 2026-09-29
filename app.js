@@ -14,7 +14,7 @@ if(!data){
  * - Sau 3 giây tự động mở 1 quảng cáo và tự đánh dấu bước hoàn thành.
  * - Sau khi bước trước hoàn thành mới được làm bước tiếp theo.
  */
-const APP_STATE_VERSION=10;
+const APP_STATE_VERSION=11;
 const SESSION_TTL=2*60*1000;
 const AD_DELAY=3*1000;
 
@@ -66,10 +66,16 @@ function getNextStep(){
 }
 
 function pickAdUrl(){
+  try{
+    if(typeof window.tiktokAdGate==="function"){
+      const ad=window.tiktokAdGate();
+      if(typeof ad==="string" && /^https?:\/\//i.test(ad)) return ad;
+    }
+  }catch(e){}
   const links=Array.isArray(window.TIKTOK_AD_LINKS)
-    ? window.TIKTOK_AD_LINKS.filter(u=>/^https?:\/\//i.test(String(u))) : [];
+    ? window.TIKTOK_AD_LINKS.map(String).filter(u=>/^https?:\/\//i.test(u)) : [];
   if(!links.length)return "";
-  return String(links[Math.floor(Math.random()*links.length)]);
+  return links[Math.floor(Math.random()*links.length)];
 }
 
 function runTask(step,targetUrl){
@@ -85,7 +91,12 @@ function runTask(step,targetUrl){
   // Chỉ mở MỘT tab từ thao tác click của người dùng.
   // Sau 3 giây tab này sẽ được chuyển sang quảng cáo. Trang chính không đổi URL.
   try{
-    taskWindow=window.open(String(targetUrl),"_blank");
+    // Tạo tab rỗng ngay trong thao tác click của người dùng.
+    // Sau đó mới điều hướng sang nhiệm vụ; Chrome Android ít chặn hơn.
+    taskWindow=window.open("about:blank","_blank");
+    if(taskWindow){
+      taskWindow.location.href=String(targetUrl);
+    }
   }catch(e){taskWindow=null;}
 
   if(!taskWindow){
@@ -110,13 +121,18 @@ function openAutoAd(){
   const ad=pickAdUrl();
   if(!ad)return false;
 
-  // Không mở popup mới sau 3 giây. Popup mới thường bị Chrome chặn.
-  // Tab task đã được mở trực tiếp từ click của người dùng nên có thể điều hướng nó.
+  // Ưu tiên chính tab nhiệm vụ đã được tạo từ cú click.
   try{
     if(taskWindow && !taskWindow.closed){
-      taskWindow.location.replace(ad);
+      taskWindow.location.href=ad;
       return true;
     }
+  }catch(e){}
+
+  // Fallback: thử popup mới. Nếu trình duyệt chặn thì không làm treo trang chính.
+  try{
+    const w=window.open(ad,"_blank");
+    if(w){taskWindow=w;return true;}
   }catch(e){}
   return false;
 }
