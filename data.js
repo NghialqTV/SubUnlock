@@ -37,8 +37,8 @@ const pages = {
     unlock: "https://www.mediafire.com/file/9xihuxnqnqsyiwi/Cam_Xa_S3_2026.zip/file"
   },
   resources: {
-    like: "https://youtu.be/ce5_ie9fH5o?si=SMX3V7mRYyyjMGdF",
-    unlock: "https://gofile.io/d/dqDr1WCQ"
+    like: "https://youtu.be/tdlqZSzaXBg?si=CjB_4CLeuqUcV9bU",
+    unlock: "https://www.mediafire.com/file/at85hnqx1toiqia/Resources.zip/file"
   },
   keyandroid: {
     like: "https://youtu.be/sPBXNLncD5A?si=IWFdJ-zIcruHspt8",
