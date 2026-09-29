@@ -15,17 +15,20 @@ if(!data){
  * - Sau khi bước trước hoàn thành mới được làm bước tiếp theo.
  */
 const STORAGE_KEY="nghialqtv_unlock_"+id;
+const APP_STATE_VERSION=7;
 const SESSION_TTL=2*60*1000;
-const APP_STATE_VERSION=5;
 const AD_DELAY=3*1000;
 
 let saved={};
 try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")}catch(e){saved={};}
 
+// Phiên làm nhiệm vụ chỉ tồn tại tối đa 2 phút.
+// Khi hết hạn, xóa state để viewer phải làm nhiệm vụ lại từ đầu.
 const savedStarted=Number(saved.sessionStarted||0);
 const savedExpires=Number(saved.expiresAt||0);
 if((saved.version===APP_STATE_VERSION || saved.version==null) &&
-   ((savedExpires && Date.now()>=savedExpires) || (!savedExpires && savedStarted && Date.now()-savedStarted>=SESSION_TTL))){
+   ((savedExpires && Date.now()>=savedExpires) ||
+    (!savedExpires && savedStarted && Date.now()-savedStarted>=SESSION_TTL))){
   try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
   saved={};
 }
@@ -215,21 +218,20 @@ function updateClock(){
 }
 
 function checkSessionExpiry(){
-  if(!sessionStarted)return false;
-  const expiresAt=sessionStarted+SESSION_TTL;
-  if(Date.now()>=expiresAt){
-    done1=done2=done3=done4=false;
-    pendingStep=0;
-    pendingAt=0;
-    sessionStarted=0;
-    if(adTimer)clearTimeout(adTimer);
+  const now=Date.now();
+  const started=Number(state.sessionStarted||0);
+  const expires=Number(state.expiresAt||0) || (started ? started+SESSION_TTL : 0);
+
+  if(expires && now>=expires){
     try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
-    updateProgress();
-    updateTaskUI();
+    try{sessionStorage.removeItem(STORAGE_KEY);}catch(e){}
+    window.location.reload();
     return true;
   }
   return false;
 }
+
+setInterval(checkSessionExpiry,1000);
 
 function onReturn(){
   if(checkSessionExpiry())return;
