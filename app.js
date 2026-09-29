@@ -14,58 +14,34 @@ if(!data){
  * - Sau 3 giây tự động mở 1 quảng cáo và tự đánh dấu bước hoàn thành.
  * - Sau khi bước trước hoàn thành mới được làm bước tiếp theo.
  */
-const STORAGE_KEY="nghialqtv_unlock_"+id;
-const APP_STATE_VERSION=8;
+const APP_STATE_VERSION=9;
 const SESSION_TTL=2*60*1000;
 const AD_DELAY=3*1000;
 
-let saved={};
-try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")}catch(e){saved={};}
-
-// Mỗi lần tải lại trang phải bắt đầu lại nhiệm vụ.
-// Không xóa khi chỉ quay lại từ tab nhiệm vụ/ quảng cáo, vì khi đó
-// trang chính không reload và vẫn giữ nguyên state trong tab hiện tại.
-const navigationEntry=(performance.getEntriesByType&&performance.getEntriesByType("navigation")[0])||null;
-const isRealReload=navigationEntry ? navigationEntry.type==="reload" : false;
-if(isRealReload){
-  try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
-  saved={};
-}
-
-// Đảm bảo state cũng được kiểm tra khi trình duyệt khôi phục trang từ bfcache
-// hoặc khi tab quay lại foreground trên điện thoại.
-let pageBooted=true;
-
-// Xóa state cũ từ các phiên bản trước hoặc state hoàn thành nhưng không có
-// sessionStarted (trạng thái cũ có thể khiến trang bị kẹt ở 4/4).
-const savedStarted=Number(saved.sessionStarted||0);
-const savedExpires=Number(saved.expiresAt||0);
-const invalidOldState=saved.version!==APP_STATE_VERSION && saved.version!=null;
-const completedWithoutSession=!!(saved.done1&&saved.done2&&saved.done3&&saved.done4&&!savedStarted);
-if(invalidOldState || completedWithoutSession ||
-   (savedExpires && Date.now()>=savedExpires) ||
-   (!savedExpires && savedStarted && Date.now()-savedStarted>=SESSION_TTL)){
-  try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
-  saved={};
-}
-
-let done1=!!saved.done1,done2=!!saved.done2,done3=!!saved.done3,done4=!!saved.done4;
-let pendingStep=Number(saved.pendingStep||0);
-let pendingAt=Number(saved.pendingAt||0);
-let sessionStarted=Number(saved.sessionStarted||0);
+// Trạng thái chỉ sống trong tab hiện tại. Reload trang = phiên mới hoàn toàn.
+let sessionStarted=0;
+let pendingStep=0;
+let pendingAt=0;
 let adTimer=null;
+let expiryTimer=null;
 let taskWindow=null;
 
-function stateObject(){
-  return {version:APP_STATE_VERSION,done1,done2,done3,done4,pendingStep,pendingAt,sessionStarted,expiresAt:sessionStarted?sessionStarted+SESSION_TTL:0};
-}
+let done1=false,done2=false,done3=false,done4=false;
+
 function saveState(){
-  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(stateObject()));}catch(e){}
   updateProgress();
   updateTaskUI();
 }
+
+function armExpiryTimer(){
+  if(expiryTimer)clearTimeout(expiryTimer);
+  if(!sessionStarted)return;
+  const remain=Math.max(0,sessionStarted+SESSION_TTL-Date.now());
+  expiryTimer=setTimeout(checkSessionExpiry,remain+50);
+}
 function startSession(){
-  if(!sessionStarted){sessionStarted=Date.now();saveState();}
+  if(!sessionStarted)sessionStarted=Date.now();
+  armExpiryTimer();
 }
 function taskIsDone(step){return [done1,done2,done3,done4][step-1];}
 function setDone(step,value){
@@ -89,30 +65,39 @@ function getNextStep(){
   return 0;
 }
 
+function pickAdUrl(){
+  const links=Array.isArray(window.TIKTOK_AD_LINKS)
+    ? window.TIKTOK_AD_LINKS.filter(u=>/^https?:\/\//i.test(String(u))) : [];
+  if(!links.length)return "";
+  return String(links[Math.floor(Math.random()*links.length)]);
+}
+
 function runTask(step,targetUrl){
-  if(!targetUrl || taskIsDone(step))return;
+  if(!targetUrl || taskIsDone(step) || pendingStep)return;
   const next=getNextStep();
-  if(next!==step || pendingStep)return;
+  if(next!==step)return;
 
   startSession();
   pendingStep=step;
   pendingAt=Date.now();
   saveState();
 
-  // Mở cửa sổ ngay từ thao tác bấm của người dùng. Sau 3 giây,
-  // dùng chính cửa sổ này để chuyển sang quảng cáo -> tránh popup blocker.
+  // Chỉ mở MỘT tab từ thao tác click của người dùng.
+  // Sau 3 giây tab này sẽ được chuyển sang quảng cáo. Trang chính không đổi URL.
   try{
-    taskWindow=window.open("about:blank","_blank");
-    if(taskWindow){
-      taskWindow.location.href=targetUrl;
-    }else{
-      // Nếu trình duyệt chặn popup, vẫn mở nhiệm vụ trong tab hiện tại.
-      window.location.href=targetUrl;
-    }
-  }catch(e){
-    try{window.location.href=targetUrl;}catch(ignore){}
+    taskWindow=window.open(String(targetUrl),"_blank");
+  }catch(e){taskWindow=null;}
+
+  if(!taskWindow){
+    pendingStep=0;
+    pendingAt=0;
+    saveState();
+    const notice=document.getElementById("percent");
+    if(notice)notice.textContent="0 / 4 • Hãy cho phép mở tab mới rồi thử lại";
+    return;
   }
 
+  try{taskWindow.opener=null;}catch(e){}
   scheduleAutoComplete();
 }
 
@@ -122,36 +107,28 @@ function likeVideo(){runTask(3,data.like)}
 function joinTelegram(){runTask(4,data.tele)}
 
 function openAutoAd(){
-  if(typeof window.tiktokAdGate!=="function")return false;
-  let ad="";
-  try{ ad=window.tiktokAdGate()||""; }catch(e){ ad=""; }
+  const ad=pickAdUrl();
   if(!ad)return false;
 
-  // Ưu tiên tab nhiệm vụ đã mở từ thao tác click.
-  // Khi người dùng quay lại trang SubUnlock, chuyển chính tab đó sang quảng cáo TikTok.
+  // Không mở popup mới sau 3 giây. Popup mới thường bị Chrome chặn.
+  // Tab task đã được mở trực tiếp từ click của người dùng nên có thể điều hướng nó.
   try{
     if(taskWindow && !taskWindow.closed){
-      taskWindow.location.href=ad;
+      taskWindow.location.replace(ad);
       return true;
     }
-  }catch(e){}
-
-  // Nếu tab nhiệm vụ không còn khả dụng, mở quảng cáo bằng một popup.
-  try{
-    const w=window.open(ad,"_blank","noopener,noreferrer");
-    if(w){taskWindow=w;return true;}
   }catch(e){}
   return false;
 }
 
 function completePending(){
   if(!pendingStep)return;
+  if(checkSessionExpiry())return;
+
   const step=pendingStep;
   const elapsed=Date.now()-pendingAt;
   if(elapsed<AD_DELAY){scheduleAutoComplete();return;}
 
-  // Sau đúng 3 giây: chuyển tab nhiệm vụ sang quảng cáo TikTok.
-  // Trang SubUnlock chính vẫn được giữ nguyên để người dùng tiếp tục bước kế tiếp.
   openAutoAd();
   setDone(step,true);
   pendingStep=0;
@@ -163,7 +140,7 @@ function scheduleAutoComplete(){
   if(adTimer)clearTimeout(adTimer);
   if(!pendingStep)return;
   const remain=Math.max(0,AD_DELAY-(Date.now()-pendingAt));
-  adTimer=setTimeout(completePending,remain);
+  adTimer=setTimeout(completePending,remain+20);
   updateTaskUI();
 }
 
@@ -234,17 +211,14 @@ function updateClock(){
 }
 
 function resetSessionAndReload(){
-  try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
-  try{sessionStorage.removeItem(STORAGE_KEY);}catch(e){}
   done1=done2=done3=done4=false;
   pendingStep=0;
   pendingAt=0;
   sessionStarted=0;
   if(adTimer){clearTimeout(adTimer);adTimer=null;}
-  saved={};
-  updateProgress();
-  updateTaskUI();
-  // cache-busting giúp tránh trình duyệt giữ state/UI JS cũ.
+  if(expiryTimer){clearTimeout(expiryTimer);expiryTimer=null;}
+  try{if(taskWindow && !taskWindow.closed)taskWindow.close();}catch(e){}
+  taskWindow=null;
   window.location.reload();
 }
 
@@ -261,7 +235,6 @@ function checkSessionExpiry(){
 }
 
 
-setInterval(checkSessionExpiry,1000);
 
 // Mobile Chrome có thể tạm dừng timer khi tab ở nền. Kiểm tra lại ngay
 // khi người dùng quay lại trang để không bị kẹt ở trạng thái cũ.
@@ -301,4 +274,5 @@ setInterval(()=>{
 },1000);
 updateProgress();
 updateTaskUI();
+if(sessionStarted) armExpiryTimer();
 if(pendingStep)scheduleAutoComplete();
