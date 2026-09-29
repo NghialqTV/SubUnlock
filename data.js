@@ -14,11 +14,11 @@ const pages = {
   },
   hackv2goc: {
     like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
-    unlock: "https://www.mediafire.com/file/hi0d7m0zkn0yh7k/M%25C3%25A1p_S%25C3%25A1ng_V2.1_Gop_G%25E1%25BB%2591c.apk/file"
+    unlock: "https://www.mediafire.com/file/6jqqmzrd6gnf2yx/LQMOD_1.64.1.7.apk/file"
   },
   hackv2tachgoc: {
     like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
-    unlock: "https://www.mediafire.com/file/mt6j3ooe0w8v2ol/Map_S%25C3%25A1ng_V2.1_._T%25C3%25A1ch_G%25E1%25BB%2591c.apk/file"
+    unlock: "https://www.mediafire.com/file/6jqqmzrd6gnf2yx/LQMOD_1.64.1.7.apk/file"
   },
   fullfilele: {
     like: "https://youtu.be/1nQrhNtpMYU?si=ihvptkE5dgDGq-HB",
