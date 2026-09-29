@@ -53,7 +53,7 @@ const pages = {
     unlock: "https://www.mediafire.com/file/6jqqmzrd6gnf2yx/LQMOD_1.64.1.7.apk/file"
   },
   mod80skin2909: {
-    like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
+    like: "https://youtu.be/0f9CIvRB9NE?si=r30ihNMieLZM_Hva",
     unlock: "https://www.mediafire.com/file/15knju4gfarpvgf/Pack_80_Skin_By_Ngh%C4%A9alq_TV.zip/file"
   }
 };
@@ -62,5 +62,4 @@ const pages = {
 Object.keys(pages).forEach(key => {
   if (!pages[key].sub) pages[key].sub = DEFAULT_SUB;
   if (!pages[key].tele) pages[key].tele = DEFAULT_TELE;
-  if (!pages[key].cyberMods) pages[key].cyberMods = CYBER_MODS_URL;
-});
+  if (!pages[key].cyberMods) pages[key].cy
