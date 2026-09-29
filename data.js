@@ -33,12 +33,12 @@ const pages = {
     unlock: "https://www.mediafire.com/file/9xihuxnqnqsyiwi/Cam_Xa_S3_2026.zip/file"
   },
   resources: {
-    like: "https://youtu.be/tdlqZSzaXBg?si=CjB_4CLeuqUcV9bU",
+    like: "https://youtu.be/tdlqZSzaXBg?si=1PFi3tHNT-H4QIv-",
     unlock: "https://www.mediafire.com/file/at85hnqx1toiqia/Resources.zip/file"
   },
   keymapios: {
     like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
-    unlock: "https://ontops.link/Gw8QLm2"
+    unlock: https://ontops.link/47R3QNj"
   },
   ipaios: {
     like: "https://youtu.be/3GFaSIbM9_w?si=Z0jrpcqVp3JVGOTl",
@@ -46,15 +46,15 @@ const pages = {
   },
   hackmenuios: {
     like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
-    unlock: "https://linkx.me/9iCXUM"
+    unlock: "https://linkx.me/V88pY"
   },
   modmenuios: {
     like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
-    unlock: "https://linkx.me/r20x0l"
+    unlock: "https://linkx.me/wMK5wG"
   },
   keymenuios: {
     like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
-    unlock: "https://ontops.link/mOQ7cz2"
+    unlock: "https://ontops.link/47R3QNj"
   },
 };
 
