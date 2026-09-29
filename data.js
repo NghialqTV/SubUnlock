@@ -10,7 +10,7 @@ const pages = {
   },
   keyandroidv2: {
     like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
-    unlock: "https://vn.modhack.uk/GETKEY/TrungNghia04"
+    unlock: "https://vnmods.baby/GETKEY/trungnghia04"
   },
   hackv2goc: {
     like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
