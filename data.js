@@ -16,6 +16,10 @@ const pages = {
     like: "https://youtu.be/SEVLK6skI7c?si=6P1n-_OlCjuzBvTy",
     unlock: "https://nghialqtv.github.io/mod/file-le.html"
   },
+  maphok: {
+    like: "https://youtu.be/x4sYExej7dM?si=BDfW0AJGphnSAR_6",
+    unlock: "https://www.mediafire.com/file/b7ti6cbq3mhces9/Mod_Map_Hok_Android.zip/file"
+  },
   camxa: {
     like: "https://youtu.be/3RBcbwpJ3Ww?si=kH5NaIxLc3Qnyxku",
     unlock: "https://www.mediafire.com/file/r72r1znaq4x6tzx/CAMXA_LQ_V1_S4_2026.zip/file"
