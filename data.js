@@ -9,16 +9,16 @@ const pages = {
     unlock: "https://gofile.io/d/dqDr1WCQ"
   },
   fps: {
-    like: "https://youtu.be/DJgeoNOFq_E?si=OEHoTpMmK6oqS6Vc",
-    unlock: "https://www.mediafire.com/file/o9mwxdr41y14bxi/120_FPS.zip/file"
+    like: "https://youtu.be/PyNe0MWbMD8?si=cNc1TS_v0PCuBhqP",
+    unlock: "https://www.mediafire.com/file/pd0c9vpqi6rnbp0/Mod_120_FPS_Cao.zip/file"
   },
   filele: {
     like: "https://youtu.be/SEVLK6skI7c?si=6P1n-_OlCjuzBvTy",
     unlock: "https://nghialqtv.github.io/mod/file-le.html"
   },
   camxa: {
-    like: "https://youtu.be/K5UU7sFOspo?si=6zcNrcNiXuYSyafH",
-    unlock: "https://www.mediafire.com/file/9xihuxnqnqsyiwi/Cam_Xa_S3_2026.zip/file"
+    like: "https://youtu.be/3RBcbwpJ3Ww?si=kH5NaIxLc3Qnyxku",
+    unlock: "https://www.mediafire.com/file/r72r1znaq4x6tzx/CAMXA_LQ_V1_S4_2026.zip/file"
   },
   resources: {
     like: "https://youtu.be/tdlqZSzaXBg?si=1PFi3tHNT-H4QIv-",
