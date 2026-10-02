@@ -22,7 +22,7 @@ const pages = {
   },
   camxa: {
     like: "https://youtu.be/3RBcbwpJ3Ww?si=kH5NaIxLc3Qnyxku",
-    unlock: "https://www.mediafire.com/file/r72r1znaq4x6tzx/CAMXA_LQ_V1_S4_2026.zip/file"
+    unlock: "https://www.mediafire.com/file/hffqcjyyvmzjj2s/Mod_Camera_Si%25C3%25AAu_Xa_LQ_S4.zip/file"
   },
   resources: {
     like: "https://youtu.be/tdlqZSzaXBg?si=1PFi3tHNT-H4QIv-",
