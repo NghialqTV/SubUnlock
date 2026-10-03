@@ -30,7 +30,7 @@ const pages = {
   },
   ipaios: {
     like: "https://youtu.be/3GFaSIbM9_w?si=Z0jrpcqVp3JVGOTl",
-    unlock: "https://linkx.me/JwbO075"
+    unlock: "https://linkx.me/w4gC"
   },
   hackmenuios: {
     like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
