@@ -68,10 +68,14 @@ const pages = {
     like: "https://youtu.be/g4YE8c3IMIg?si=6w-i4Vj7Q-wXUpiV",
     unlock: "https://vi.anotepad.com/notes/gj2tphe6"
   },
-  mod123skin0110: {
+  mod123skin0610: {
     like: "https://youtu.be/w39vNVuMkik?si=JXfZbAl_33lc-ROF",
     unlock: "https://www.mediafire.com/file/arhvpwju2mvneik/Mod_Full_123_Skin_C%25C3%25B3_N%25C3%25BAt_By_Ngh%25C4%25A9a_Lq_TV.zip/file"
-}
+},
+  mod56skin0110: {
+    like: "https://youtu.be/JgzwNetOKds?si=X5_nRXPM2RfUpfhT",
+    unlock: "https://www.mediafire.com/file/xxeer07vcmyd3d1/Pack_56_Skin_Full_HD_C%25C3%25B3_N%25C3%25BAt_B%25E1%25BA%25A5m_Kh%25C3%25B4ng_Tr%25C3%25B9ng.zip/file"
+  }
 };
 
 // Tự động gán link mặc định cho các trang không cấu hình riêng biệt sub/tele
