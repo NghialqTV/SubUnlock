@@ -9,7 +9,7 @@ const pages = {
     unlock: "https://gofile.io/d/dqDr1WCQ"
   },
   fps: {
-    like: "https://youtu.be/PyNe0MWbMD8?si=cNc1TS_v0PCuBhqP",
+    like: "https://youtu.be/PyNe0MWbMD8?si=SymxvVculx1VKV1h",
     unlock: "https://www.mediafire.com/file/pd0c9vpqi6rnbp0/Mod_120_FPS_Cao.zip/file"
   },
   filele: {
@@ -17,43 +17,43 @@ const pages = {
     unlock: "https://nghialqtv.github.io/mod/file-le.html"
   },
   maphok: {
-    like: "https://youtu.be/x4sYExej7dM?si=BDfW0AJGphnSAR_6",
+    like: "https://youtu.be/x4sYExej7dM?si=GsI4iPQ-VlJTetfT",
     unlock: "https://www.mediafire.com/file/br1vw53cq6dchsf/Map_HOK_AOV_S4.zip/file"
   },
   camxa: {
-    like: "https://youtu.be/3RBcbwpJ3Ww?si=kH5NaIxLc3Qnyxku",
+    like: "https://youtu.be/3RBcbwpJ3Ww?si=bMCamclQDxF6h5vZ",
     unlock: "https://www.mediafire.com/file/hffqcjyyvmzjj2s/Mod_Camera_Si%25C3%25AAu_Xa_LQ_S4.zip/file"
   },
   resources: {
-    like: "https://youtu.be/tdlqZSzaXBg?si=1PFi3tHNT-H4QIv-",
+    like: "https://youtu.be/tdlqZSzaXBg?si=gnJamB50NroBQkvG",
     unlock: "https://www.mediafire.com/file/at85hnqx1toiqia/Resources.zip/file"
   },
   ipaios: {
-    like: "https://youtu.be/3GFaSIbM9_w?si=Z0jrpcqVp3JVGOTl",
+    like: "https://youtu.be/g6l0BEjJTV4?si=iJlqj7qdH6_Wvcur",
     unlock: "https://linkx.me/w4gC"
   },
   hackmenuios: {
-    like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
+    like: "https://youtu.be/9OC9VAh11i4?si=NPuX6jLZ8qTIZ9U6",
     unlock: "https://linkx.me/V88pY"
   },
   modmenuios: {
-    like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
+    like: "https://youtu.be/9OC9VAh11i4?si=NPuX6jLZ8qTIZ9U6",
     unlock: "https://linkx.me/wMK5wG"
   },
   keymenuios: {
-    like: "https://youtu.be/KFnaxVcAlIA?si=keZ9xkJkmr4RA8Wd",
+    like: "https://youtu.be/9OC9VAh11i4?si=NPuX6jLZ8qTIZ9U6",
     unlock: "https://ontops.link/47R3QNj"
   },
   keyandroidv2: {
-    like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
+    like: "https://youtu.be/Ej0HUEM1k1Y?si=8Egd0Y-LRrXtx2-I",
     unlock: "https://vnmods.baby/GETKEY/trungnghia04"
   },
   hackv2goc: {
-    like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
+    like: "https://youtu.be/Ej0HUEM1k1Y?si=8Egd0Y-LRrXtx2-I",
     unlock: "https://www.mediafire.com/file/6jqqmzrd6gnf2yx/LQMOD_1.64.1.7.apk/file"
   },
   hackv2tachgoc: {
-    like: "https://youtu.be/GhRB8MCRWjg?si=aewIEDSygdFf6wA-",
+    like: "https://youtu.be/Ej0HUEM1k1Y?si=8Egd0Y-LRrXtx2-I",
     unlock: "https://www.mediafire.com/file/6jqqmzrd6gnf2yx/LQMOD_1.64.1.7.apk/file"
   },
   mod80skin2909: {
