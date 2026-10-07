@@ -46,7 +46,7 @@ const pages = {
   },
   keyandroidv2: {
     like: "https://youtu.be/Ej0HUEM1k1Y?si=8Egd0Y-LRrXtx2-I",
-    unlock: "https://goctool.vn/GETKEY/trungnghia04"
+    unlock: "https://www.vnmods.baby/GETKEY/trungnghia04"
   },
   hackv2goc: {
     like: "https://youtu.be/Ej0HUEM1k1Y?si=8Egd0Y-LRrXtx2-I",
