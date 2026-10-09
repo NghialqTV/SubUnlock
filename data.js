@@ -79,6 +79,10 @@ const pages = {
   mod5skin0710: {
     like: "https://youtu.be/NMU262pngvI?si=cuKRHUKhEiRh-Wdn",
     unlock: "https://www.mediafire.com/file/vhkov4kmmvlkyjx/%255B_N%25C3%25BAt_-_TBH_%255DPack_5_Skin_Full_HD_By_Ngh%25C4%25A9alq_TV.zip/file"
+  },
+  mod7skin1010: {
+    like: "https://youtu.be/QwQCrAS08Cg?si=5BauqfL84JNKKIve",
+    unlock: "https://www.mediafire.com/file/57pgy24m4k9fjn8/%255B_N%25C3%25BAt_-_TBH_%255D_Mod_Full_7_Skin_TNVT.zip/file"
   }
 };
 
