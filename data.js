@@ -66,7 +66,7 @@ const pages = {
   },
   modskinhok: {
     like: "https://youtu.be/g4YE8c3IMIg?si=6w-i4Vj7Q-wXUpiV",
-    unlock: "https://vi.anotepad.com/notes/gj2tphe6"
+    unlock: "https://nghialqtv.github.io/file-le.html"
   },
   mod123skin0610: {
     like: "https://youtu.be/w39vNVuMkik?si=JXfZbAl_33lc-ROF",
