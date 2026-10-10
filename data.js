@@ -45,15 +45,15 @@ const pages = {
     unlock: "https://ontops.link/47R3QNj"
   },
   keyandroidv2: {
-    like: "https://youtu.be/Ej0HUEM1k1Y?si=8Egd0Y-LRrXtx2-I",
+    like: "https://youtu.be/Q1ILAP3DRMg?si=K2e_fLRmdb92Muam",
     unlock: "https://www.vnmods.baby/GETKEY/trungnghia04"
   },
   hackv2goc: {
-    like: "https://youtu.be/Ej0HUEM1k1Y?si=8Egd0Y-LRrXtx2-I",
+    like: "https://youtu.be/Q1ILAP3DRMg?si=K2e_fLRmdb92Muam",
     unlock: "https://www.mediafire.com/file/6jqqmzrd6gnf2yx/LQMOD_1.64.1.7.apk/file"
   },
   hackv2tachgoc: {
-    like: "https://youtu.be/Ej0HUEM1k1Y?si=8Egd0Y-LRrXtx2-I",
+    like: "https://youtu.be/Q1ILAP3DRMg?si=K2e_fLRmdb92Muam",
     unlock: "https://www.mediafire.com/file/6jqqmzrd6gnf2yx/LQMOD_1.64.1.7.apk/file"
   },
   mod80skin2909: {
