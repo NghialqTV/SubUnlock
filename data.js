@@ -13,7 +13,7 @@ const pages = {
     unlock: "https://www.mediafire.com/file/pd0c9vpqi6rnbp0/Mod_120_FPS_Cao.zip/file"
   },
   filele: {
-    like: "https://youtu.be/SEVLK6skI7c?si=6P1n-_OlCjuzBvTy",
+    like: "https://youtu.be/Q1ILAP3DRMg?si=zPHrkH6nZW_aETZl",
     unlock: "https://nghialqtv.github.io/mod/file-le.html"
   },
   maphok: {
