@@ -12,6 +12,14 @@ const pages = {
     like: "https://youtu.be/PyNe0MWbMD8?si=SymxvVculx1VKV1h",
     unlock: "https://www.mediafire.com/file/pd0c9vpqi6rnbp0/Mod_120_FPS_Cao.zip/file"
   },
+  mapiosv2: {
+    like: "https://youtu.be/g6l0BEjJTV4?si=eFQ51hYwBW7E7ylJ",
+    unlock: "https://testflight.apple.com/join/cfzYVv6g"
+  },
+  keymapiosv2: {
+    like: "https://youtu.be/PyNe0MWbMD8?si=SymxvVculx1VKV1h",
+    unlock: "https://ontops.link/BQu4wTn"
+  },
   filele: {
     like: "https://youtu.be/Q1ILAP3DRMg?si=zPHrkH6nZW_aETZl",
     unlock: "https://nghialqtv.github.io/mod/file-le.html"
