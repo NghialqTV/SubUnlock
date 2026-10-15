@@ -50,7 +50,7 @@ const pages = {
   },
   keymenuios: {
     like: "https://youtu.be/9OC9VAh11i4?si=NPuX6jLZ8qTIZ9U6",
-    unlock: "https://ontops.link/47R3QNj"
+    unlock: "https://ontops.link/4-VcsQX"
   },
   keyandroidv2: {
     like: "https://youtu.be/Q1ILAP3DRMg?si=K2e_fLRmdb92Muam",
