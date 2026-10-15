@@ -33,8 +33,8 @@ const pages = {
     unlock: "https://www.mediafire.com/file/hffqcjyyvmzjj2s/Mod_Camera_Si%25C3%25AAu_Xa_LQ_S4.zip/file"
   },
   resources: {
-    like: "https://youtu.be/tdlqZSzaXBg?si=gnJamB50NroBQkvG",
-    unlock: "https://www.mediafire.com/file/at85hnqx1toiqia/Resources.zip/file"
+    like: "https://youtu.be/REhMvy3DY4Q?si=r29L1thnUtswbvOU",
+    unlock: "https://www.mediafire.com/file/tra56b736zj2l1p/Resources_Fix_Reset_Mod_Update_15_Th%25C3%25A1ng_10.zip/file"
   },
   ipaios: {
     like: "https://youtu.be/g6l0BEjJTV4?si=iJlqj7qdH6_Wvcur",
