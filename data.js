@@ -84,7 +84,7 @@ const pages = {
     like: "https://youtu.be/a7_3b92oUzg?si=vHv09sjWkzd7bRp4",
     unlock: "https://www.mediafire.com/file/zy37i6njo9qs8ty/Mod_Pack_80_Skin_3_IN_1.zip/file"
   },
-  mod100skimv2: {
+  mod100skinv2: {
     like: "https://youtu.be/a7_3b92oUzg?si=vHv09sjWkzd7bRp4",
     unlock: "https://www.mediafire.com/file/m4b3it0tunf4w0v/Mod_Pack_100_Skin_Ver_2_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_16_Th%25C3%25A1ng_10.zip/file"
   },
