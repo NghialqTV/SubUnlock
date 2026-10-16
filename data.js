@@ -79,7 +79,7 @@ const pages = {
   mod123skin0610: {
     like: "https://youtu.be/w39vNVuMkik?si=JXfZbAl_33lc-ROF",
     unlock: "https://www.mediafire.com/file/arhvpwju2mvneik/Mod_Full_123_Skin_C%25C3%25B3_N%25C3%25BAt_By_Ngh%25C4%25A9a_Lq_TV.zip/file"
-},
+  },
   mod80skinv3: {
     like: "https://youtu.be/a7_3b92oUzg?si=vHv09sjWkzd7bRp4",
     unlock: "https://www.mediafire.com/file/zy37i6njo9qs8ty/Mod_Pack_80_Skin_3_IN_1.zip/file"
