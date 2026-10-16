@@ -34,7 +34,7 @@ const pages = {
   },
   resources: {
     like: "https://youtu.be/REhMvy3DY4Q?si=r29L1thnUtswbvOU",
-    unlock: "https://www.mediafire.com/file/tra56b736zj2l1p/Resources_Fix_Reset_Mod_Update_15_Th%25C3%25A1ng_10.zip/file"
+    unlock: "https://www.mediafire.com/file/5cwdkfyadr8c795/Resources_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_16_Th%25C3%25A1ng_10.zip/file"
   },
   ipaios: {
     like: "https://youtu.be/g6l0BEjJTV4?si=iJlqj7qdH6_Wvcur",
