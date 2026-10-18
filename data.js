@@ -26,7 +26,7 @@ const pages = {
   },
   maphok: {
     like: "https://youtu.be/x4sYExej7dM?si=GsI4iPQ-VlJTetfT",
-    unlock: "https://www.mediafire.com/file/atujehe5utxbmct/Mod_Map_Hok_Android_-_IOS.zip/file"
+    unlock: "https://www.mediafire.com/file/5yk2hrndq5ybkzs/Mod_Map_Hok_New_%255B_Android_iOS_%255D.zip/file"
   },
   camxa: {
     like: "https://youtu.be/3RBcbwpJ3Ww?si=bMCamclQDxF6h5vZ",
