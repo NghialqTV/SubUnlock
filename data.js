@@ -30,7 +30,7 @@ const pages = {
   },
   camxa: {
     like: "https://youtu.be/3RBcbwpJ3Ww?si=bMCamclQDxF6h5vZ",
-    unlock: "https://www.mediafire.com/file/hffqcjyyvmzjj2s/Mod_Camera_Si%25C3%25AAu_Xa_LQ_S4.zip/file"
+    unlock: "https://www.mediafire.com/file/goq0vjcnb1zkf1a/Mod_Cam_Xa_M%25E1%25BB%259Bi_Nh%25E1%25BA%25A5t.zip/file"
   },
   resources: {
     like: "https://youtu.be/REhMvy3DY4Q?si=r29L1thnUtswbvOU",
