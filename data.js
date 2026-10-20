@@ -76,9 +76,9 @@ const pages = {
     like: "https://youtu.be/g4YE8c3IMIg?si=6w-i4Vj7Q-wXUpiV",
     unlock: "https://nghialqtv.github.io/file-le.html"
   },
-  mod123skin0610: {
-    like: "https://youtu.be/w39vNVuMkik?si=JXfZbAl_33lc-ROF",
-    unlock: "https://www.mediafire.com/file/arhvpwju2mvneik/Mod_Full_123_Skin_C%25C3%25B3_N%25C3%25BAt_By_Ngh%25C4%25A9a_Lq_TV.zip/file"
+  mod105skinv4: {
+    like: "https://youtu.be/0SDXrji3Fp0?si=c8bQ_uixe8CTCozV",
+    unlock: "https://www.mediafire.com/file/rtulsdegl5rvztr/%255B_Full_N%25C3%25BAt_Kh%25C3%25B4ng_Tr%25C3%25B9ng_%255D_Pack_107_Skin_By_Ngh%25C4%25A9alq_TV.zip/file"
   },
   mod80skinv3: {
     like: "https://youtu.be/a7_3b92oUzg?si=vHv09sjWkzd7bRp4",
