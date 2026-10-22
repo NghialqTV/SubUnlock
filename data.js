@@ -68,9 +68,9 @@ const pages = {
     like: "https://youtu.be/0f9CIvRB9NE?si=r30ihNMieLZM_Hva",
     unlock: "https://www.mediafire.com/file/15knju4gfarpvgf/Pack_80_Skin_By_Ngh%C4%A9alq_TV.zip/file"
   },
-  mod35skin0310: {
-    like: "https://youtu.be/Bwq63hPUVLE?si=FHznGoDCbDwJ2Jyg",
-    unlock: "https://www.mediafire.com/file/51lnbiw9muxa1s0/%255B_Nut_-_TBH_%255D_Pack_35_Skin_Full_HD_By_Ngh%25C4%25A9alq_TV.zip/file"
+  mod55skinv5: {
+    like: "https://youtu.be/U5_64XgYv4M?si=saiavjvmC6uBLlTw",
+    unlock: "https://www.mediafire.com/file/kibzqzw6blxjebn/%255BVer5%255D_Mod_Pack_55_Skin_%25E2%2580%25A2_Full_N%25C3%25BAt_%25E2%2580%25A2_TBH_Kh%25C3%25B4ng_Tr%25C3%25B9ng.zip/file"
   },
   modskinhok: {
     like: "https://youtu.be/g4YE8c3IMIg?si=6w-i4Vj7Q-wXUpiV",
