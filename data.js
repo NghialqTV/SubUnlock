@@ -37,19 +37,19 @@ const pages = {
     unlock: "https://www.mediafire.com/file/5cwdkfyadr8c795/Resources_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_16_Th%25C3%25A1ng_10.zip/file"
   },
   ipaios: {
-    like: "https://youtu.be/g6l0BEjJTV4?si=iJlqj7qdH6_Wvcur",
+    like: "https://youtu.be/IOvKa42RmGI?si=1YvfIVdFvf0OX5kj",
     unlock: "https://linkx.me/w4gC"
   },
   hackmenuios: {
-    like: "https://youtu.be/9OC9VAh11i4?si=NPuX6jLZ8qTIZ9U6",
-    unlock: "https://linkx.me/V88pY"
+    like: "https://youtu.be/_n7IbS0SK9Q?si=qpyZpz21lRhkz30A",
+    unlock: "https://linkx.me/wcaCGca1"
   },
   modmenuios: {
-    like: "https://youtu.be/9OC9VAh11i4?si=NPuX6jLZ8qTIZ9U6",
-    unlock: "https://linkx.me/wMK5wG"
+    like: "https://youtu.be/_n7IbS0SK9Q?si=qpyZpz21lRhkz30A",
+    unlock: "https://linkx.me/Dr0J"
   },
   keymenuios: {
-    like: "https://youtu.be/9OC9VAh11i4?si=NPuX6jLZ8qTIZ9U6",
+    like: "https://youtu.be/_n7IbS0SK9Q?si=qpyZpz21lRhkz30A",
     unlock: "https://ontops.link/4-VcsQX"
   },
   keyandroidv2: {
