@@ -64,9 +64,9 @@ const pages = {
     like: "https://youtu.be/Q1ILAP3DRMg?si=K2e_fLRmdb92Muam",
     unlock: "https://www.mediafire.com/file/6jqqmzrd6gnf2yx/LQMOD_1.64.1.7.apk/file"
   },
-  mod80skin2909: {
-    like: "https://youtu.be/0f9CIvRB9NE?si=r30ihNMieLZM_Hva",
-    unlock: "https://www.mediafire.com/file/15knju4gfarpvgf/Pack_80_Skin_By_Ngh%C4%A9alq_TV.zip/file"
+  mod3skin: {
+    like: "https://youtu.be/Lpmwou75a1c?si=rNxovMgC-M1Y1Aw8",
+    unlock: "https://www.mediafire.com/file/7fywgsyy89ubdro/%255BAndroid%25E2%2580%25A2IOS%255D_Mod_Pack_3_Skin_Hot_Pick.zip/file"
   },
   mod55skinv5: {
     like: "https://youtu.be/U5_64XgYv4M?si=saiavjvmC6uBLlTw",
