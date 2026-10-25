@@ -38,7 +38,7 @@ const pages = {
   },
   ipaios: {
     like: "https://youtu.be/IOvKa42RmGI?si=1YvfIVdFvf0OX5kj",
-    unlock: "https://linkx.me/w4gC"
+    unlock: "https://www.mediafire.com/file/6cpbxzovaestmzx/AovMod_1.64.11768577_%25281%2529.ipa/file"
   },
   hackmenuios: {
     like: "https://youtu.be/_n7IbS0SK9Q?si=qpyZpz21lRhkz30A",
