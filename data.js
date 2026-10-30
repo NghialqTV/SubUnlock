@@ -34,7 +34,7 @@ const pages = {
   },
   resources: {
     like: "https://youtu.be/REhMvy3DY4Q?si=r29L1thnUtswbvOU",
-    unlock: "7"
+    unlock: "https://www.mediafire.com/file/gs3o8ol0ucwv1br/Resources_C%25C3%25A2p_Nh%25E1%25BA%25ADt_30_Th%25C3%25A1ng_10.zip/file"
   },
   ipaios: {
     like: "https://youtu.be/IOvKa42RmGI?si=1YvfIVdFvf0OX5kj",
