@@ -1,3 +1,40 @@
+// ==========================================
+// THEME SWITCHER — Dark / Light mode
+// ==========================================
+const THEME_STORAGE_KEY = "subunlock-theme-v1";
+
+function applyTheme(theme) {
+  const isLight = theme === "light";
+  document.body.classList.toggle("light", isLight);
+  document.documentElement.dataset.theme = isLight ? "light" : "dark";
+
+  const button = document.getElementById("themeToggle");
+  if (button) {
+    const icon = button.querySelector("i");
+    if (icon) icon.className = isLight ? "fa-solid fa-moon" : "fa-solid fa-sun";
+    button.setAttribute("aria-label", isLight ? "Chuyển sang giao diện tối" : "Chuyển sang giao diện sáng");
+    button.setAttribute("title", isLight ? "Bật giao diện tối" : "Bật giao diện sáng");
+  }
+
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  if (themeColor) themeColor.setAttribute("content", isLight ? "#f3f7f5" : "#07100c");
+}
+
+function toggleTheme() {
+  const nextTheme = document.body.classList.contains("light") ? "dark" : "light";
+  applyTheme(nextTheme);
+  try { localStorage.setItem(THEME_STORAGE_KEY, nextTheme); } catch (error) {}
+}
+
+(function initTheme() {
+  let savedTheme = "dark";
+  try {
+    const stored = localStorage.getItem(THEME_STORAGE_KEY);
+    if (stored === "light" || stored === "dark") savedTheme = stored;
+  } catch (error) {}
+  applyTheme(savedTheme);
+})();
+
 const params=new URLSearchParams(location.search);
 const id=(params.get("id")||params.get("page")||"hackmenuios").trim();
 const data=pages[id];
@@ -51,10 +88,10 @@ function setDone(step,value){
   if(step===4)done4=value;
 }
 function taskLabel(step){
-  return step===1?"Đăng ký kênh NghĩaLQ TV":step===2?"Đăng ký kênh Cyber Mods":step===3?"Like Video":"Tham gia nhóm Telegram";
+  return step===1?"Đăng ký kênh NghĩaLQ TV":step===2?"Đăng ký kênh Cyber Mods":step===3?"Follow TikTok":"Tham gia nhóm Telegram";
 }
 function taskDescription(step){
-  return step===1?"Nhấn để đăng ký kênh YouTube":step===2?"Nhấn để đăng ký kênh YouTube":step===3?"Mở video và bấm Like":"Nhấn để tham gia nhóm Telegram";
+  return step===1?"Nhấn để đăng ký kênh YouTube":step===2?"Nhấn để đăng ký kênh YouTube":step===3?"Nhấn để Follow TikTok":"Nhấn để tham gia nhóm Telegram";
 }
 
 function getNextStep(){
@@ -114,7 +151,7 @@ function runTask(step,targetUrl){
 
 function subscribeYoutube(){runTask(1,data.sub)}
 function subscribeCyberMods(){runTask(2,data.cyberMods)}
-function likeVideo(){runTask(3,data.like)}
+function followTikTok(){runTask(3,data.followTikTok)}
 function joinTelegram(){runTask(4,data.tele)}
 
 function openAutoAd(){

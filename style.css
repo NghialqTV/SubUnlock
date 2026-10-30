@@ -99,6 +99,7 @@ button{font:inherit}
 .task-icon:after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1px solid #ffffff16}
 .youtube{background:linear-gradient(145deg,#ff2222,#c80000);box-shadow:0 0 22px #ff18182b}
 .like{background:linear-gradient(145deg,#3296ff,#1c64c9);box-shadow:0 0 22px #2489ff2b}
+.tiktok{background:linear-gradient(145deg,#252525,#080808);box-shadow:0 0 22px #fe2c552b;border:1px solid #fe2c55}
 .telegram{background:linear-gradient(145deg,#25a9e6,#117bb0);box-shadow:0 0 22px #159ed12b}
 .task-text{min-width:0}
 .task-text strong{display:block;font-size:17px;line-height:1.25;color:#f0f4f1}
@@ -201,3 +202,123 @@ footer{text-align:center;color:#3f4c44;font-size:11px;letter-spacing:2px;margin-
 .task.locked{opacity:.58;cursor:not-allowed;filter:saturate(.7)}
 .task.pending{border-color:#d9a928;box-shadow:0 0 20px #d9a92818,inset 0 1px #ffffff05}
 .task:disabled{cursor:not-allowed}
+
+/* ==========================================
+   PREMIUM THEME + MOTION REFINEMENT
+   ========================================== */
+:root {
+  color-scheme: dark;
+  --page-text: #f4f7f5;
+  --page-muted: #9aa8a0;
+  --surface: rgba(13, 23, 18, .94);
+  --surface-strong: #101d16;
+  --surface-border: rgba(130, 170, 145, .19);
+  --accent: #55e895;
+  --accent-soft: rgba(85, 232, 149, .16);
+}
+body {
+  color: var(--page-text);
+  transition: background .35s ease, color .3s ease;
+}
+.page { animation: pageEnter .65s cubic-bezier(.2,.75,.25,1) both; }
+.theme-btn {
+  border: 1px solid var(--surface-border);
+  -webkit-tap-highlight-color: transparent;
+}
+.theme-btn:focus-visible, .task:focus-visible, .guide:focus-visible,
+.open-btn:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+.task { animation: taskEnter .55s both; }
+.task:nth-of-type(2) { animation-delay: .05s; }
+.task:nth-of-type(3) { animation-delay: .10s; }
+.task:nth-of-type(4) { animation-delay: .15s; }
+.task:nth-of-type(5) { animation-delay: .20s; }
+.unlock-card { animation: cardEnter .7s .12s both; }
+.task-icon { transition: transform .28s ease, filter .28s ease; }
+.task:hover .task-icon { transform: rotate(-7deg) scale(1.07); filter: saturate(1.2); }
+.progress-track { border: 1px solid rgba(255,255,255,.055); }
+#progress { position: relative; overflow: hidden; }
+#progress:after {
+  content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.42), transparent);
+  animation: progressShine 2.4s ease-in-out infinite;
+}
+.open-btn { background: linear-gradient(115deg,#087b48,#16a66b 52%,#087b48); background-size: 200% 100%; }
+.open-btn:hover { background-position: 100% 0; }
+
+/* Sáng: bảng màu trắng-xám, xanh ngọc; tránh chữ trắng trên nền sáng */
+body.light {
+  color-scheme: light;
+  --page-text: #17251e;
+  --page-muted: #64746b;
+  --surface: rgba(255,255,255,.92);
+  --surface-strong: #ffffff;
+  --surface-border: rgba(35, 87, 59, .16);
+  --accent: #079653;
+  --accent-soft: rgba(9, 150, 83, .10);
+  color: var(--page-text);
+  background:
+    radial-gradient(circle at 50% -8%, rgba(36,190,116,.15), transparent 34%),
+    radial-gradient(circle at 100% 45%, rgba(33,174,160,.09), transparent 28%),
+    linear-gradient(145deg,#f5faf7 0%,#edf5f0 52%,#f8fbf9 100%);
+}
+body.light:before {
+  opacity: .22;
+  background-image: radial-gradient(#4a9b70 .55px, transparent .55px);
+}
+body.light .theme-btn {
+  color: #465b4d;
+  background: linear-gradient(145deg,#fff,#e9f3ed);
+  border-color: #d5e4da;
+  box-shadow: 0 8px 24px rgba(35,75,51,.12), 0 0 0 1px #fff;
+}
+body.light .time-pill {
+  color: #087d49;
+  background: rgba(255,255,255,.88);
+  border-color: #d7e8dd;
+  box-shadow: 0 10px 28px rgba(35,75,51,.09);
+}
+body.light .brand-logo {
+  background: #fff;
+  border-color: #c8dfd0;
+  box-shadow: 0 0 0 4px #edf5f0, 0 8px 24px rgba(35,120,72,.14);
+}
+body.light .title-wrap h1 { color: #172c20; text-shadow: 0 2px 12px rgba(25,75,45,.10); }
+body.light .brand-name { color: #07894e; text-shadow: none; }
+body.light .section-title { color: #52665a; }
+body.light .task {
+  color: #1c2c22;
+  background: linear-gradient(135deg,rgba(255,255,255,.98),rgba(246,251,248,.98));
+  border-color: #dce9e0;
+  box-shadow: 0 9px 24px rgba(32,77,49,.075), inset 0 1px #fff;
+}
+body.light .task:before { background: linear-gradient(100deg,transparent,rgba(15,166,91,.08),transparent); }
+body.light .task-text strong { color: #1b3023; }
+body.light .task-text small { color: #718078; }
+body.light .task-arrow { color: #829188; }
+body.light .task:hover { border-color: #9acdaf; box-shadow: 0 13px 28px rgba(32,100,58,.12); }
+body.light .task.completed { background: linear-gradient(135deg,#e8f8ee,#f7fcf8); border-color: #8bd0a5; }
+body.light .task.locked { opacity: .62; }
+body.light .unlock-card {
+  background: linear-gradient(145deg,#fff,#f0f8f3);
+  border-color: #d8e8dd;
+  box-shadow: 0 12px 30px rgba(35,75,51,.09), inset 0 1px #fff;
+}
+body.light .status-line { color: #34483b; }
+body.light .status-line b { color: #087d49; }
+body.light .progress-track { background: #dce9e0; box-shadow: inset 0 2px 5px rgba(30,70,45,.10); }
+body.light .success { color: #07894e; }
+body.light .guide { color: #087d49; text-shadow: none; }
+body.light footer { color: #83958a; }
+body.light .ad-banner { color: #52665a; background: rgba(255,255,255,.8); border-color: #dce9e0; }
+body.light .ad-banner:hover { background: #fff; }
+
+@keyframes pageEnter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes taskEnter { from { opacity: 0; transform: translateY(13px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes cardEnter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes progressShine { 0%, 35% { transform: translateX(-100%); } 75%, 100% { transform: translateX(110%); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}

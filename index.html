@@ -7,7 +7,7 @@
 <title>SubToUnlock • NghĩaLQ TV</title>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-<link rel="stylesheet" href="style.css?v=20260929-11">
+<link rel="stylesheet" href="style.css?v=20261030-13">
 
 <style>
 .ad-banner{margin:10px 0 14px;padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);text-align:center;font:600 13px Arial;color:#ddd;cursor:pointer}
@@ -17,9 +17,9 @@
 <body>
 <main class="page">
   <section class="hero">
-    <div class="theme-btn" onclick="toggleTheme()" aria-label="Đổi giao diện">
-      <i class="fa-solid fa-sun"></i>
-    </div>
+    <button class="theme-btn" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Chuyển sang giao diện sáng" title="Đổi giao diện">
+      <i class="fa-solid fa-sun" aria-hidden="true"></i>
+    </button>
 
     <div class="time-pill">
       <i class="fa-regular fa-clock"></i>
@@ -65,11 +65,11 @@
       <span class="task-arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </button>
 
-    <button class="task" id="task3" onclick="likeVideo()">
-      <span class="task-icon like"><i class="fa-solid fa-thumbs-up"></i></span>
+    <button class="task" id="task3" onclick="followTikTok()">
+      <span class="task-icon tiktok"><i class="fa-brands fa-tiktok"></i></span>
       <span class="task-text">
-        <strong>Like Video</strong>
-        <small>Mở video và bấm Like</small>
+        <strong>Follow TikTok</strong>
+        <small>Nhấn để Follow TikTok</small>
       </span>
       <span class="task-arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </button>
@@ -108,10 +108,10 @@
   <footer>NghĩaLQ TV • AOV UNLOCK</footer>
 </main>
 
-<script src="data.js?v=20260929-11"></script>
-<script src="data/tiktok_ads.js?v=20260929-11"></script>
-<script src="tiktok_ads/tiktok-gate.js?v=20260929-11"></script>
-<script src="app.js?v=20260929-11"></script>
+<script src="data.js?v=20261030-13"></script>
+<script src="data/tiktok_ads.js?v=20261030-13"></script>
+<script src="tiktok_ads/tiktok-gate.js?v=20261030-13"></script>
+<script src="app.js?v=20261030-13"></script>
 <script>
 (function(){
   const b=document.getElementById('adBanner');
