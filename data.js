@@ -100,8 +100,8 @@ const pages = {
     unlock: "https://www.mediafire.com/file/m4b3it0tunf4w0v/Mod_Pack_100_Skin_Ver_2_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_16_Th%25C3%25A1ng_10.zip/file"
   },
 
-  mod48skinv1: {
-    unlock: "https://www.mediafire.com/file/qhi3cndodd9idu7/Pack_48_Skin_Full_HD_C%25C3%25B3_N%25C3%25BAt_B%25E1%25BA%25A5m_Kh%25C3%25B4ng_Tr%25C3%25B9ng.zip/file"
+  mod60skinv1: {
+    unlock: "https://linkx.me/w01ROn4e"
   }
 };
 
