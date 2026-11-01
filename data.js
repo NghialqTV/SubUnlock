@@ -41,7 +41,7 @@ const pages = {
   },
 
   camxa: {
-    unlock: "https://www.mediafire.com/file/goq0vjcnb1zkf1a/Mod_Cam_Xa_M%25E1%25BB%259Bi_Nh%25E1%25BA%25A5t.zip/file"
+    unlock: "https://www.mediafire.com/file/5drp1sxqfv326ui/Mod_Cam_Xa_By_Ngh%25C4%25A9alq_TV.zip/file"
   },
 
   resources: {
