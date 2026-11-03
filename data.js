@@ -53,7 +53,7 @@ const pages = {
   },
 
   hackmenuios: {
-    unlock: "https://linkx.me/QGBOD"
+    unlock: "https://linkx.me/cJ1u6"
   },
 
   modmenuios: {
