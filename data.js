@@ -24,14 +24,6 @@ const pages = {
     unlock: "https://www.mediafire.com/file/pd0c9vpqi6rnbp0/Mod_120_FPS_Cao.zip/file"
   },
 
-  mapiosv2: {
-    unlock: "https://testflight.apple.com/join/cfzYVv6g"
-  },
-
-  keymapiosv2: {
-    unlock: "https://ctv.ppapikey.xyz/get-api-link?tokenID=134&package_id=478&username=hellophuc"
-  },
-
   filele: {
     unlock: "https://nghialqtv.github.io/mod/file-le.html"
   },
@@ -61,7 +53,7 @@ const pages = {
   },
 
   keymenuios: {
-    unlock: "https://ontops.link/4-VcsQX"
+    unlock: "https://ontops.link/ryQX6nY"
   },
 
   keyandroidv2: {
