@@ -37,7 +37,7 @@ const pages = {
   },
 
   resources: {
-    unlock: "https://www.mediafire.com/file/gs3o8ol0ucwv1br/Resources_C%25C3%25A2p_Nh%25E1%25BA%25ADt_30_Th%25C3%25A1ng_10.zip/file"
+    unlock: "https://www.mediafire.com/file/pistid6s2d7995n/%255BNgh%25C4%25A9alqTV%255D_Resources_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_4_Th%25C3%25A1ng_11.zip/file"
   },
 
   ipaios: {
