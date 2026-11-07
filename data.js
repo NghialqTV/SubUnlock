@@ -80,12 +80,12 @@ const pages = {
     unlock: "https://nghialqtv.github.io/file-le.html"
   },
 
-  mod105skinv4: {
+  mod100v4: {
     unlock: "https://www.mediafire.com/file/rtulsdegl5rvztr/%255B_Full_N%25C3%25BAt_Kh%25C3%25B4ng_Tr%25C3%25B9ng_%255D_Pack_107_Skin_By_Ngh%25C4%25A9alq_TV.zip/file"
   },
 
-  mod80skinv3: {
-    unlock: "https://www.mediafire.com/file/zy37i6njo9qs8ty/Mod_Pack_80_Skin_3_IN_1.zip/file"
+  mod55skinv3: {
+    unlock: "https://www.mediafire.com/file/b9madhdvlg9rorw/%255BFull_N%25C3%25BAt_-_TBH_Kh%25C3%25B4ng_Tr%25C3%25B9ng%255D_Mod_Pack_55_Skin_Ver3_-_Android_IOS.zip/file"
   },
 
   mod10skinv2: {
