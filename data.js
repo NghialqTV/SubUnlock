@@ -76,7 +76,7 @@ const pages = {
     unlock: "https://www.mediafire.com/file/kibzqzw6blxjebn/%255BVer5%255D_Mod_Pack_55_Skin_%25E2%2580%25A2_Full_N%25C3%25BAt_%25E2%2580%25A2_TBH_Kh%25C3%25B4ng_Tr%25C3%25B9ng.zip/file"
   },
 
-  mod124skinv4: {
+  mod124skinv5: {
     unlock: "https://www.mediafire.com/file/vztf7ptfg6wt1ad/%255BAndroid_-_IOS%255D_Mod_Full_124_Skin_Full_N%25C3%25BAt_B%25E1%25BA%25A5m_TBH_-_Kh%25C3%25B4ng_Tr%25C3%25B9ng.zip/file"
   },
 
