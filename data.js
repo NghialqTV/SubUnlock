@@ -72,7 +72,7 @@ const pages = {
     unlock: "https://www.mediafire.com/file/7fywgsyy89ubdro/%255BAndroid%25E2%2580%25A2IOS%255D_Mod_Pack_3_Skin_Hot_Pick.zip/file"
   },
 
-  mod124skinv6: {
+  mod124skinv7: {
     unlock: "https://www.mediafire.com/file/p2r3yk9l3siusuq/Mod_124_Skin_Full_Hi%25E1%25BB%2587u_%25E1%25BB%25A8ng_%255BAndroid_-_IOS%255D.zip/file"
   },
 
