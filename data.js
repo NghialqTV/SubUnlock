@@ -45,11 +45,11 @@ const pages = {
   },
 
   hackmenuios: {
-    unlock: "https://linkx.me/cJ1u6"
+    unlock: "https://linkx.me/xWoyy"
   },
 
   modmenuios: {
-    unlock: "https://linkx.me/c8ZhXRYN"
+    unlock: "https://linkx.me/GxRCa8"
   },
 
   keymenuios: {
