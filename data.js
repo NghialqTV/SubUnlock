@@ -68,8 +68,8 @@ const pages = {
     unlock: "https://www.mediafire.com/file/6jqqmzrd6gnf2yx/LQMOD_1.64.1.7.apk/file"
   },
 
-  mod3skin: {
-    unlock: "https://www.mediafire.com/file/7fywgsyy89ubdro/%255BAndroid%25E2%2580%25A2IOS%255D_Mod_Pack_3_Skin_Hot_Pick.zip/file"
+  mod80skinver10: {
+    unlock: "https://www.mediafire.com/file/n8351ywsaa9kdx8/Mod_80_Skin_%255B_Android_-_IOS_%255D.zip/file"
   },
 
   mod124skinv7: {
