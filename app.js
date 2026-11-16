@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  const THEME_KEY = 'subunlock-theme-v1';
+  const THEME_KEY = 'subunlock-theme-v2';
   const params = new URLSearchParams(window.location.search);
   const id = (params.get('id') || params.get('page') || 'hackmenuios').trim();
   const pageData = typeof pages !== 'undefined' ? pages[id] : null;
@@ -16,6 +16,11 @@
   const AD_DELAY = 3 * 1000;         // Khoảng thời gian tối thiểu cho chặng quảng cáo
   const GUIDE_URL = 'https://youtu.be/kQGxcf2Pdc4?si=te-oGDi81xcU6lLL';
   const $ = id => document.getElementById(id);
+  function clearChildren(node) {
+    if (!node) return;
+    if (typeof node.replaceChildren === 'function') node.replaceChildren();
+    else while (node.firstChild) node.removeChild(node.firstChild);
+  }
 
   function applyTheme(theme) {
     const light = theme === 'light';
@@ -29,7 +34,7 @@
       button.title = light ? 'Bật giao diện tối' : 'Bật giao diện sáng';
     }
     const themeColor = document.querySelector('meta[name="theme-color"]');
-    if (themeColor) themeColor.content = light ? '#f4f8f5' : '#080e0d';
+    if (themeColor) themeColor.content = light ? '#f4f5f7' : '#090a0e';
   }
   function toggleTheme() {
     const next = document.body.classList.contains('light') ? 'dark' : 'light';
@@ -83,12 +88,12 @@
 
   function buildTaskButtons() {
     const list = $('tasksList');
-    list.replaceChildren();
+    clearChildren(list);
     taskDefinitions.forEach((task, index) => {
       const step = index + 1;
       const button = document.createElement('button');
       button.type = 'button';
-      button.className = 'task' + (step > 1 ? ' locked' : '');
+      button.className = 'task task-' + task.type + (step > 1 ? ' locked' : '');
       button.id = 'task' + step;
       button.dataset.step = step;
       button.disabled = step > 1;
@@ -264,7 +269,19 @@
       : count ? 'Sẵn sàng cho nhiệm vụ tiếp theo'
       : 'Hoàn thành các bước theo thứ tự';
 
-    $('unlockBox').hidden = count !== totalTasks;
+    // Keep the destination button visible from the beginning, locked until every task is complete.
+    $('unlockBox').hidden = false;
+    const unlockButton = $('openBtn');
+    const successMessage = $('unlockBox').querySelector('.success');
+    const isUnlocked = count === totalTasks;
+    unlockButton.disabled = !isUnlocked;
+    unlockButton.classList.toggle('is-locked', !isUnlocked);
+    if (successMessage) successMessage.hidden = !isUnlocked;
+    const unlockIcon = unlockButton.querySelector('svg use');
+    if (unlockIcon) unlockIcon.setAttribute('href', isUnlocked ? '#icon-arrow-right' : '#icon-lock');
+    $('unlockBtnLabel').textContent = isUnlocked
+      ? (pageData.title ? 'Mở khóa: ' + pageData.title : 'Mở khóa nội dung')
+      : (pageData.title || 'Mở khóa nội dung');
   }
 
   // Same-tab navigation gives direct access to YouTube/TikTok/etc, including

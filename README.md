@@ -1,6 +1,6 @@
 # SubUnlock Studio · NghĩaLQ TV
 
-Bản Dark Mode có thêm **trang quản trị link bằng giao diện** (`admin.html`) cho GitHub Pages. Giữ nguyên 20 ID/URL mở khóa ban đầu và 14 quảng cáo TikTok trong `data/tiktok_ads.js`. Không cần Node.js, Firebase hay cơ sở dữ liệu.
+Bản Full Premium Dark Mode có thêm **trang quản trị link bằng giao diện** (`admin.html`) cho GitHub Pages. Giữ nguyên 20 ID/URL mở khóa ban đầu và 14 quảng cáo TikTok trong `data/tiktok_ads.js`. Không cần Node.js, Firebase hay cơ sở dữ liệu.
 
 ## 1. Cài đặt lần đầu
 
@@ -40,8 +40,8 @@ Ví dụ nếu repository có tên `SubUnlock` và username là `nghialqtv`, đ�
 - **Thực hiện tác vụ trên nền tảng và trở lại trang SubUnlock** bằng nút Quay lại / Back hoặc chuyển lại trình duyệt. Khi website nhận biết người xem đã rời và quay lại, nó **tự chuyển sang một quảng cáo ngẫu nhiên** trong cùng tab; không có nút xác nhận hay popup.
 - **Trở về từ trang quảng cáo** → tiến độ bước đó được ghi nhận (ít nhất 3 giây từ lúc mở quảng cáo) và bước kế tiếp mở khóa. Mỗi bước có một quảng cáo.
 - Phiên tính thời gian hoạt động 2 phút giữa các nhiệm vụ; một nhiệm vụ đang thực hiện ở ngoài sẽ không tự bị xóa khi người dùng mở YouTube/TikTok lâu hơn 2 phút. Nếu cần thời gian khác, đổi `SESSION_TTL` trong `app.js`.
-- **Quan trọng**: GitHub Pages tĩnh KHÔNG có khả năng xác minh YouTube đã subscribe, TikTok đã follow hay Telegram đã tham gia. Chỉ ghi nhận người dùng đã mở liên kết và quay lại sau khi đi qua quảng cáo. Muốn xác thực thật phải có API và quyền truy cập phù hợp.
-- Nếu trình duyệt tích hợp trong ứng dụng hạn chế chuyển app hoặc tự điều hướng, cách tự động mở quảng cáo khi trở lại có thể bị chặn; không thể đảm bảo 100% trên mọi phiên bản iOS/Android.
+- **Quan trọng**: GitHub Pages tĩnh KHÔNG có khả năng xác minh YouTube đã subscribe, TikTok đã follow hay Telegram đã tham gia. Chỉ ghi nhận người dùng đã mở liên kết nhiệm vụ, quay lại website, đi qua quảng cáo và quay lại lần nữa. Muốn xác thực thật phải có API và quyền truy cập phù hợp.
+- Luồng dùng điều hướng cùng tab (không dùng popup) để giảm bị chặn trên Safari iOS, Chrome Android và trình duyệt trong ứng dụng. Một số trình duyệt tích hợp hoặc chế độ riêng tư có thể hạn chế sessionStorage / universal links; vì vậy không thể cam kết 100% trên mọi phiên bản. Hãy bật JavaScript, cho phép lưu phiên của trang và quay lại đúng tab SubUnlock.
 
 ## 5. Tình trạng kiểm thử
 

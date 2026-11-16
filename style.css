@@ -321,3 +321,89 @@ body.light .hero-tag,body.light .task-disclosure,body.light .guide,body.light .t
 body.light .task{background:linear-gradient(180deg,#ffffff,#f7f7f8);border-color:rgba(0,0,0,.06);box-shadow:0 14px 28px rgba(0,0,0,.07)}
 body.light .unlock-card{background:linear-gradient(180deg,#fff,#f7f7f8);border-color:rgba(0,0,0,.06);box-shadow:0 20px 44px rgba(0,0,0,.08)}
 body.light .open-btn{background:linear-gradient(180deg,#171717,#2b2b2b);color:#fff;border-color:rgba(0,0,0,.4);box-shadow:0 14px 26px rgba(0,0,0,.18)}
+
+
+/* ===== FULL PREMIUM DARK UI · BUTTONS INSPIRED BY REFERENCE IMAGE ===== */
+:root{color-scheme:dark;--bg:#08090d;--text:#f7f8fb;--muted:#c4c9d2;--soft:#9aa2ae;--primary:#8bf0bd;--primary-strong:#35d48f;--primary-ink:#062b1a;--focus:#fff}
+body{background:radial-gradient(ellipse 620px 400px at 50% -10%,rgba(95,115,150,.15),transparent 72%),linear-gradient(180deg,#0b0c11,#050609 64%,#030406);color:#f7f8fb}
+.ambient-one{background:rgba(89,108,143,.13)}.ambient-two{background:rgba(45,93,125,.09)}
+.page{width:min(100% - 30px,570px);padding-top:max(22px,env(safe-area-inset-top));padding-bottom:max(30px,env(safe-area-inset-bottom))}
+.mark-icon{background:linear-gradient(145deg,#303541,#171a22);border-color:rgba(255,255,255,.13);color:#fff;box-shadow:0 12px 25px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.13)}
+.mark-text small{color:#9da5b3}.time-pill{background:linear-gradient(180deg,#20242d,#12151c);border-color:rgba(255,255,255,.11);color:#f2f4f8;box-shadow:0 12px 24px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.06)}.time-pill .icon-svg{color:#fff}
+.theme-btn{background:linear-gradient(180deg,#2b303b,#171a22);border-color:rgba(255,255,255,.12);color:#fff;box-shadow:0 12px 24px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.1)}
+.hero{background:radial-gradient(circle at 50% -12%,rgba(120,143,180,.15),transparent 38%),linear-gradient(145deg,#20232c,#11141b 60%,#0b0d12);border:1px solid rgba(255,255,255,.1);border-radius:30px;box-shadow:0 28px 66px rgba(0,0,0,.44),inset 0 1px 0 rgba(255,255,255,.07)}
+.hero:after{background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent)}.hero-glow{background:rgba(140,157,190,.16)}
+.hero-tag{color:#eef1f7;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.035));border-color:rgba(255,255,255,.13)}.pulse-dot{background:#fff;box-shadow:0 0 0 0 rgba(255,255,255,.35)}
+.brand-logo{background:#151820;border-color:rgba(255,255,255,.14);box-shadow:0 16px 30px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.1)}
+.title-wrap h1{color:#fff;text-shadow:0 2px 18px rgba(255,255,255,.06)}.brand-name{color:#d5dae4;text-shadow:none}.hero-subtitle{color:#b9c0cc}
+.section-kicker{color:#dfe3ea}.steps-pill{color:#f1f3f7;background:linear-gradient(180deg,#292e39,#181c24);border-color:rgba(255,255,255,.11);box-shadow:0 12px 24px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.06)}
+.task-disclosure{color:#c1c7d1;background:linear-gradient(145deg,#1a1e27,#10131a);border-color:rgba(255,255,255,.09);box-shadow:0 12px 26px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.04)}
+.tasks-list{gap:16px}
+.task{
+  grid-template-columns:64px minmax(0,1fr) 30px;gap:14px;min-height:94px;padding:14px 16px;
+  border-radius:27px;border:1px solid rgba(255,255,255,.23);color:#fff;
+  box-shadow:0 15px 28px rgba(0,0,0,.28),inset 0 2px 0 rgba(255,255,255,.28),inset 0 -4px 9px rgba(0,0,0,.12);
+  transition:transform .18s ease,filter .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+.task::before{inset:1px;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.025) 38%,transparent 72%);opacity:.8}
+.task::after{background:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.13) 48%,transparent 72%);transform:translateX(-120%);transition:transform .65s ease;opacity:.7}
+.task:not(:disabled):active{transform:translateY(3px) scale(.985);filter:brightness(.94);box-shadow:0 6px 12px rgba(0,0,0,.25),inset 0 3px 8px rgba(0,0,0,.2)}
+@media(hover:hover){.task:not(:disabled):hover{transform:translateY(-3px);filter:brightness(1.08);box-shadow:0 22px 38px rgba(0,0,0,.34),inset 0 2px 0 rgba(255,255,255,.3),inset 0 -4px 9px rgba(0,0,0,.1)}.task:not(:disabled):hover::after{transform:translateX(120%)}}
+.task-youtube{background:linear-gradient(180deg,#ff4148 0%,#ed101d 58%,#c90015 100%);box-shadow:0 14px 28px rgba(227,18,35,.23),inset 0 2px 0 rgba(255,255,255,.34),inset 0 -4px 9px rgba(0,0,0,.15)}
+.task-telegram{background:linear-gradient(180deg,#32b9eb 0%,#118bd0 58%,#0873b4 100%);box-shadow:0 14px 28px rgba(10,135,205,.24),inset 0 2px 0 rgba(255,255,255,.34),inset 0 -4px 9px rgba(0,0,0,.15)}
+.task-tiktok{background:linear-gradient(180deg,#343a43 0%,#171b22 58%,#080a0e 100%);border-color:rgba(255,255,255,.26);box-shadow:0 14px 28px rgba(0,0,0,.38),inset 0 2px 0 rgba(255,255,255,.2),inset 0 -4px 9px rgba(0,0,0,.22)}
+.task-discord{background:linear-gradient(180deg,#858cff 0%,#6269ef 58%,#444bd1 100%);box-shadow:0 14px 28px rgba(83,91,228,.24),inset 0 2px 0 rgba(255,255,255,.34),inset 0 -4px 9px rgba(0,0,0,.15)}
+.task-facebook{background:linear-gradient(180deg,#4aa1fa 0%,#287be5 58%,#1559bd 100%);box-shadow:0 14px 28px rgba(34,111,218,.24),inset 0 2px 0 rgba(255,255,255,.34),inset 0 -4px 9px rgba(0,0,0,.15)}
+.task-instagram{background:linear-gradient(135deg,#ff9168 0%,#ef477e 55%,#bd247a 100%);box-shadow:0 14px 28px rgba(207,43,124,.24),inset 0 2px 0 rgba(255,255,255,.34),inset 0 -4px 9px rgba(0,0,0,.15)}
+.task-zalo{background:linear-gradient(180deg,#4c9aff 0%,#2676e5 58%,#1554bd 100%);box-shadow:0 14px 28px rgba(31,106,221,.24),inset 0 2px 0 rgba(255,255,255,.34),inset 0 -4px 9px rgba(0,0,0,.15)}
+.task-custom{background:linear-gradient(135deg,#4ee1bb 0%,#1eafaa 58%,#087d82 100%);box-shadow:0 14px 28px rgba(15,165,154,.22),inset 0 2px 0 rgba(255,255,255,.34),inset 0 -4px 9px rgba(0,0,0,.15)}
+.task-icon{width:58px;height:58px;border-radius:19px;background:rgba(255,255,255,.16)!important;border:1px solid rgba(255,255,255,.28);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 8px 17px rgba(0,0,0,.13);font-size:25px}
+.task-icon::after{border-color:rgba(255,255,255,.18)}
+.task-text{text-align:center;z-index:1}.task-text strong{font-size:15px;font-weight:850;line-height:1.32;text-shadow:0 1px 2px rgba(0,0,0,.1)}.task-text small{font-size:11px;color:rgba(255,255,255,.84);margin-top:5px;line-height:1.35}
+.task-end{color:rgba(255,255,255,.9);z-index:2}.task-number{display:none}.task-end .icon-svg{font-size:20px;stroke-width:2.3}
+.task.locked{opacity:.48;filter:saturate(.68) brightness(.78)}.task.pending{opacity:1;filter:brightness(1.06);border-color:rgba(255,255,255,.72);outline:2px solid rgba(255,255,255,.16);outline-offset:3px;animation:taskPulse 1.8s ease-in-out infinite}.task.completed{opacity:1;filter:saturate(.88);border-color:rgba(255,255,255,.35)}.task.completed .task-text small{color:rgba(255,255,255,.92)}.task.completed .task-end{color:#fff}
+.unlock-card{background:radial-gradient(circle at 50% -20%,rgba(255,255,255,.08),transparent 38%),linear-gradient(145deg,#20242d,#11151c);border:1px solid rgba(255,255,255,.11);border-radius:28px;box-shadow:0 25px 52px rgba(0,0,0,.36),inset 0 1px 0 rgba(255,255,255,.06)}
+.unlock-symbol{background:linear-gradient(145deg,#343b49,#1d222c);color:#fff;border:1px solid rgba(255,255,255,.08)}.unlock-heading strong{color:#fff}.unlock-heading small{color:#aeb6c3}.progress-count{color:#fff}
+.progress-track{height:11px;background:linear-gradient(180deg,#343a46,#1b2029);border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 2px 5px rgba(0,0,0,.4)}
+#progress{background:linear-gradient(90deg,#ffffff,#b9c4d5);box-shadow:0 0 16px rgba(255,255,255,.22)}
+.unlock-box{border-color:rgba(255,255,255,.1)}.success{color:#9df3c3}
+.open-btn{width:100%;min-height:78px;border-radius:26px;padding:15px 18px;background:linear-gradient(180deg,#8df2bb,#52d99a 55%,#25b879);border:1px solid rgba(218,255,234,.35);color:#07351f;font-size:16px;font-weight:950;letter-spacing:-.2px;box-shadow:0 17px 30px rgba(31,195,121,.23),inset 0 2px 0 rgba(255,255,255,.55),inset 0 -4px 8px rgba(0,0,0,.1);transition:transform .18s ease,filter .2s ease,box-shadow .2s ease}
+.open-btn:disabled,.open-btn.is-locked{background:linear-gradient(180deg,#b8f6d1,#78e5ad 58%,#48c98c);color:rgba(255,255,255,.95);border-color:rgba(220,255,235,.26);box-shadow:0 13px 26px rgba(41,183,118,.14),inset 0 2px 0 rgba(255,255,255,.45),inset 0 -3px 7px rgba(0,0,0,.08);opacity:.9;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.open-btn:not(:disabled):active{transform:translateY(3px) scale(.988);box-shadow:0 7px 14px rgba(31,195,121,.18),inset 0 3px 8px rgba(0,0,0,.15)}
+@media(hover:hover){.open-btn:not(:disabled):hover{transform:translateY(-3px);filter:brightness(1.05);box-shadow:0 23px 38px rgba(31,195,121,.28),inset 0 2px 0 rgba(255,255,255,.58)}}
+.guide{background:linear-gradient(180deg,#20242d,#12161e);border-color:rgba(255,255,255,.1);color:#e9edf4;box-shadow:0 13px 25px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.06)}
+.notice{background:#29241a;color:#ffe4a8;border-color:rgba(255,210,120,.2)}footer{color:#747d8b}.footer-separator{color:#e6e9ef}
+@keyframes taskPulse{0%,100%{outline-color:rgba(255,255,255,.12)}50%{outline-color:rgba(255,255,255,.34)}}
+@media(max-width:480px){
+  .page{width:calc(100% - 28px);padding-top:max(18px,env(safe-area-inset-top))}
+  .hero{padding:25px 13px 23px;border-radius:25px}.brand-row{grid-template-columns:54px minmax(0,1fr) 54px;gap:9px}.brand-logo{width:54px;height:54px;border-radius:17px}
+  .task{grid-template-columns:54px minmax(0,1fr) 24px;min-height:86px;padding:12px 13px;gap:9px;border-radius:23px}
+  .task-icon{width:50px;height:50px;border-radius:16px;font-size:22px}.task-text strong{font-size:13px}.task-text small{font-size:10px}
+  .open-btn{min-height:70px;border-radius:22px;font-size:14px}
+}
+@media(max-width:350px){.page{width:calc(100% - 22px)}.task{grid-template-columns:46px minmax(0,1fr) 20px;padding:11px 10px}.task-icon{width:44px;height:44px;border-radius:14px}.task-text strong{font-size:12px}.task-text small{font-size:9px}.brand-row{grid-template-columns:45px minmax(0,1fr) 45px}.brand-logo{width:45px;height:45px}}
+@media(prefers-reduced-motion:reduce){.task.pending{animation:none}}
+
+
+/* Keep the brand gradient visible in pending/completed states too. */
+.task.task-youtube{background:linear-gradient(180deg,#ff4148 0%,#ed101d 58%,#c90015 100%)}
+.task.task-telegram{background:linear-gradient(180deg,#32b9eb 0%,#118bd0 58%,#0873b4 100%)}
+.task.task-tiktok{background:linear-gradient(180deg,#343a43 0%,#171b22 58%,#080a0e 100%)}
+.task.task-discord{background:linear-gradient(180deg,#858cff 0%,#6269ef 58%,#444bd1 100%)}
+.task.task-facebook{background:linear-gradient(180deg,#4aa1fa 0%,#287be5 58%,#1559bd 100%)}
+.task.task-instagram{background:linear-gradient(135deg,#ff9168 0%,#ef477e 55%,#bd247a 100%)}
+.task.task-zalo{background:linear-gradient(180deg,#4c9aff 0%,#2676e5 58%,#1554bd 100%)}
+.task.task-custom{background:linear-gradient(135deg,#4ee1bb 0%,#1eafaa 58%,#087d82 100%)}
+.task.pending{border-color:rgba(255,255,255,.82);outline:2px solid rgba(255,255,255,.2);outline-offset:3px}
+.task.completed .task-text small{color:rgba(255,255,255,.92)}
+
+@media(hover:hover){
+  .task.task-youtube:not(:disabled):hover{background:linear-gradient(180deg,#ff5158 0%,#f01828 58%,#d4071d 100%)}
+  .task.task-telegram:not(:disabled):hover{background:linear-gradient(180deg,#48c6f3 0%,#168fd5 58%,#087abd 100%)}
+  .task.task-tiktok:not(:disabled):hover{background:linear-gradient(180deg,#414852 0%,#1d222b 58%,#0a0c11 100%)}
+  .task.task-discord:not(:disabled):hover{background:linear-gradient(180deg,#939aff 0%,#6972f3 58%,#4b52d8 100%)}
+  .task.task-facebook:not(:disabled):hover{background:linear-gradient(180deg,#5aa9fc 0%,#3285ec 58%,#1a62c9 100%)}
+  .task.task-instagram:not(:disabled):hover{background:linear-gradient(135deg,#ffa17e 0%,#f05289 55%,#c52d83 100%)}
+  .task.task-zalo:not(:disabled):hover{background:linear-gradient(180deg,#5ba5ff 0%,#3284ec 58%,#1c60c9 100%)}
+  .task.task-custom:not(:disabled):hover{background:linear-gradient(135deg,#68ebc8 0%,#27bdb7 58%,#0d898e 100%)}
+}

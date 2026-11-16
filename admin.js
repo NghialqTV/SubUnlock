@@ -4,6 +4,11 @@
 (function () {
   'use strict';
   const $ = id => document.getElementById(id);
+  function clearChildren(node) {
+    if (!node) return;
+    if (typeof node.replaceChildren === 'function') node.replaceChildren();
+    else while (node.firstChild) node.removeChild(node.firstChild);
+  }
   const DRAFT_KEY = 'subunlock-admin-draft-v1';
   const KINDS = {
     youtube:  {name:'YouTube',   glyph:'▶', label:'Đăng ký kênh YouTube',   hint:'Nhấn để đăng ký kênh YouTube'},
@@ -62,7 +67,7 @@
   function updateCount() { const count=Object.keys(entries).length; $('linkCount').textContent=String(count); $('sidebarCount').textContent=String(count); }
   function renderSidebar() {
     updateCount(); const term=$('searchLinks').value.trim().toLowerCase();
-    const list=$('linkList'); list.replaceChildren();
+    const list=$('linkList'); clearChildren(list);
     Object.keys(entries).reverse().filter(id => (id+' '+safe(entries[id].title)).toLowerCase().includes(term)).forEach(id => {
       const button=document.createElement('button'); button.type='button'; button.className='link-item'+(id===selectedId?' active':''); button.setAttribute('role','listitem');
       const icon=document.createElement('span'); icon.className='link-bullet'; icon.textContent='↗';
@@ -85,7 +90,7 @@
     }));
   }
   function renderTaskEditor(tasks) {
-    const list=$('taskEditorList');list.replaceChildren();
+    const list=$('taskEditorList');clearChildren(list);
     $('taskCount').textContent=String(tasks.length);
     tasks.forEach((task,index)=>{
       const kind=KINDS[task.type] ? task.type : 'custom';
@@ -147,10 +152,10 @@
     $('previewUnlock').textContent='🔒 '+(title.length>27 ? title.slice(0,27)+'…' : 'Mở khóa · '+title);
     const url=$('linkSlug').value.trim() || selectedId;
     $('shareUrl').value=getPageUrl(url);
-    const list=$('previewList');list.replaceChildren();
+    const list=$('previewList');clearChildren(list);
     tasks.forEach((task,i)=>{
       const kind=KINDS[task.type]?task.type:'custom';
-      const card=document.createElement('div');card.className='preview-task';
+      const card=document.createElement('div');card.className='preview-task preview-'+kind;
       const icon=document.createElement('span');icon.className='preview-task-lock '+kind;icon.textContent=KINDS[kind].glyph;
       const name=document.createElement('span');name.className='preview-task-name';name.textContent=task.label || 'Nhiệm vụ '+(i+1);
       const arrow=document.createElement('span');arrow.className='preview-chevron';arrow.textContent='›';card.append(icon,name,arrow);list.appendChild(card);
