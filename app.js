@@ -1,7 +1,7 @@
-/* SubToUnlock — Cross-browser task flow | 2026-11-16
- * All original destination links remain in data.js.
- * An advertisement opens only on a real user tap. This avoids delayed popup
- * blocking on Safari/iOS, Chrome/Android, Firefox and in-app browsers.
+/* SubToUnlock — Direct-on-tap ad flow | 2026-11-16
+ * Each task tap opens its configured platform URL plus one randomized ad.
+ * No separate ad-confirmation click is required. The 3-second cooldown
+ * completes automatically. On restrictive browsers, the ad has priority.
  */
 (function () {
   'use strict';
@@ -12,7 +12,7 @@
   const pageData = typeof pages !== 'undefined' ? pages[id] : null;
   const STATE_KEY = 'subunlock-session-v12:' + id;
   const SESSION_TTL = 2 * 60 * 1000;  // Giữ thời hạn phiên cũ: 2 phút
-  const AD_DELAY = 3 * 1000;         // Giữ thời gian chờ cũ: 3 giây
+  const AD_DELAY = 3 * 1000;         // Tự xác nhận sau 3 giây, không cần nhấn thêm
   const GUIDE_URL = 'https://youtu.be/kQGxcf2Pdc4?si=te-oGDi81xcU6lLL';
   const $ = id => document.getElementById(id);
 
@@ -64,17 +64,17 @@
   // may define 1–8 tasks in data.js via admin.html.
   const allowedTypes = ['youtube','tiktok','telegram','discord','facebook','instagram','zalo','custom'];
   const legacyTasks = [
-    {type:'youtube',label:'Đăng ký kênh NghĩaLQ TV',url:pageData.sub,description:'Nhấn để đăng ký kênh YouTube'},
-    {type:'youtube',label:'Đăng ký kênh Cyber Mods',url:pageData.cyberMods,description:'Nhấn để đăng ký kênh YouTube'},
-    {type:'tiktok',label:'Follow TikTok',url:pageData.followTikTok,description:'Nhấn để Follow TikTok'},
-    {type:'telegram',label:'Tham gia nhóm Telegram',url:pageData.tele,description:'Nhấn để tham gia nhóm Telegram'}
+    {type:'youtube',label:'Đăng ký kênh NghĩaLQ TV',url:pageData.sub,description:'Nhấn mở kênh và quảng cáo'},
+    {type:'youtube',label:'Đăng ký kênh Cyber Mods',url:pageData.cyberMods,description:'Nhấn mở kênh và quảng cáo'},
+    {type:'tiktok',label:'Follow TikTok',url:pageData.followTikTok,description:'Nhấn mở TikTok và quảng cáo'},
+    {type:'telegram',label:'Tham gia nhóm Telegram',url:pageData.tele,description:'Nhấn mở nhóm và quảng cáo'}
   ];
   const taskDefinitions = (Array.isArray(pageData.tasks) && pageData.tasks.length >= 1 && pageData.tasks.length <= 8
     ? pageData.tasks : legacyTasks).map(task => ({
       type: allowedTypes.includes(task.type) ? task.type : 'custom',
       label: String(task.label || 'Mở liên kết nhiệm vụ'),
       url: task.url,
-      description: task.description || 'Nhấn để mở liên kết nhiệm vụ'
+      description: task.description || 'Nhấn để mở nhiệm vụ và quảng cáo'
     }));
   const totalTasks = taskDefinitions.length;
   const targets = taskDefinitions.map(task => task.url);
@@ -199,11 +199,22 @@
       ? window.TIKTOK_AD_LINKS.filter(validUrl) : [];
     return list.length ? list[Math.floor(Math.random() * list.length)] : '';
   }
+  // Settle a started task without asking the visitor to confirm anything.
+  // This also runs after browser Back / pageshow when the page was suspended.
+  function settlePendingIfReady() {
+    const step = state.pendingStep;
+    if (!step || remainingTime() > 0) return false;
+    state.done[step - 1] = true;
+    state.pendingStep = 0;
+    state.pendingAt = 0;
+    persist();
+    return true;
+  }
   function render() {
+    settlePendingIfReady();
     const count = countDone();
     const next = getNextStep();
     const pending = state.pendingStep;
-    const ready = pending > 0 && remainingTime() <= 0;
 
     for (let step = 1; step <= totalTasks; step++) {
       const el = $('task' + step);
@@ -217,13 +228,13 @@
       el.classList.toggle('completed', isDone);
       el.classList.toggle('pending', isPending);
       el.classList.toggle('locked', isLocked);
-      el.setAttribute('aria-label', `Bước ${step}. ${el.querySelector('.task-text strong').textContent}. ${isDone ? 'Đã hoàn thành' : isPending ? 'Đang chờ quảng cáo' : isLocked ? 'Đang khóa' : 'Sẵn sàng'}`);
+      el.setAttribute('aria-label', `Bước ${step}. ${el.querySelector('.task-text strong').textContent}. ${isDone ? 'Đã hoàn thành' : isPending ? 'Đang tự hoàn tất' : isLocked ? 'Đang khóa' : 'Sẵn sàng'}`);
       if (symbol) symbol.setAttribute('href', '#icon-' + (isDone ? 'check-circle' : isLocked ? 'lock' : isPending ? 'hourglass' : 'chevron-right'));
       if (small) {
         if (isDone) small.textContent = 'Đã hoàn thành ✓';
-        else if (isPending) small.textContent = ready ? 'Nhấn xem quảng cáo ở bên dưới để tiếp tục' : `Đã mở liên kết • chờ ${Math.ceil(remainingTime() / 1000)} giây`;
+        else if (isPending) small.textContent = `Đã mở nhiệm vụ & quảng cáo • tự hoàn tất sau ${Math.ceil(remainingTime() / 1000)} giây`;
         else if (isLocked) small.textContent = 'Hoàn thành bước trước để tiếp tục';
-        else small.textContent = descriptions[step - 1];
+        else small.textContent = descriptions[step - 1] + ' • Kèm quảng cáo';
       }
     }
 
@@ -232,18 +243,26 @@
     $('progressTrack').setAttribute('aria-valuenow', String(count));
     $('progressLabel').textContent = count === totalTasks
       ? 'Tất cả các bước đã hoàn thành'
-      : pending ? `Hoàn tất bước ${pending} để tiếp tục`
+      : pending ? `Tự động hoàn tất bước ${pending}...`
       : count ? 'Sẵn sàng cho nhiệm vụ tiếp theo'
       : 'Hoàn thành các bước theo thứ tự';
 
-    $('adActionBox').hidden = !pending;
     $('unlockBox').hidden = count !== totalTasks;
-    if (pending) {
-      $('adActionDescription').textContent = `Đã mở liên kết của bước ${pending}. Nhấn xem quảng cáo để hoàn tất bước này.`;
-      $('continueAdBtn').disabled = !ready;
-      $('continueAdLabel').textContent = ready
-        ? `Xem quảng cáo & hoàn tất bước ${pending}`
-        : `Vui lòng chờ ${Math.ceil(remainingTime() / 1000)} giây...`;
+  }
+
+  // Run only synchronously inside a real user click. Browsers generally
+  // permit one new tab from one tap, but can block popups in private/in-app
+  // browsing. In that case we still navigate directly to the advertisement.
+  function openTaskAndAd(taskUrl, adUrl) {
+    let adTab = null;
+    try { adTab = window.open(adUrl, '_blank'); } catch (_) {}
+    if (adTab) {
+      try { adTab.opener = null; } catch (_) {}
+      // Keep the selected task URL functioning, as before; ad is a new tab.
+      window.location.assign(taskUrl);
+    } else {
+      // Avoid silently skipping the ad when an iOS/Android popup is blocked.
+      window.location.assign(adUrl);
     }
   }
 
@@ -255,37 +274,20 @@
       notify('Liên kết nhiệm vụ chưa được cấu hình hợp lệ.');
       return;
     }
+    const adUrl = pickAdUrl();
+    if (!adUrl) {
+      notify('Chưa có quảng cáo khả dụng. Hãy kiểm tra data/tiktok_ads.js.');
+      return;
+    }
     if (!state.sessionStarted) state.sessionStarted = Date.now();
     state.pendingStep = step;
     state.pendingAt = Date.now();
     persist();
     render();
-    openExternal(destination);
+    // Both navigations are initiated by this single tap, no modal/confirm.
+    openTaskAndAd(destination, adUrl);
   }
 
-  function completeWithAd() {
-    if (expireIfNeeded()) return;
-    const step = state.pendingStep;
-    if (!step || remainingTime() > 0) return;
-    const adUrl = pickAdUrl();
-    if (!adUrl) {
-      notify('Hiện chưa có liên kết quảng cáo hợp lệ. Hãy kiểm tra cấu hình.');
-      return;
-    }
-    // Complete and persist BEFORE opening, so same-tab fallback survives Back.
-    state.done[step - 1] = true;
-    state.pendingStep = 0;
-    state.pendingAt = 0;
-    persist();
-    render();
-    openExternal(adUrl);
-  }
-
-  function openBannerAd() {
-    const adUrl = pickAdUrl();
-    if (!adUrl) { notify('Chưa có quảng cáo khả dụng.'); return; }
-    openExternal(adUrl);
-  }
   function openUnlock() {
     if (expireIfNeeded() || countDone() !== totalTasks) return;
     if (!validUrl(pageData.unlock)) {
@@ -296,8 +298,6 @@
     window.location.assign(pageData.unlock);
   }
 
-  $('continueAdBtn').addEventListener('click', completeWithAd);
-  $('adBanner').addEventListener('click', openBannerAd);
   $('openBtn').addEventListener('click', openUnlock);
   $('guideBtn').addEventListener('click', () => openExternal(GUIDE_URL));
 
