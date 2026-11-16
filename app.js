@@ -11,7 +11,7 @@
   const params = new URLSearchParams(window.location.search);
   const id = (params.get('id') || params.get('page') || 'hackmenuios').trim();
   const pageData = typeof pages !== 'undefined' ? pages[id] : null;
-  const STATE_KEY = 'subunlock-session-v13-taskfirst:' + id;
+  const STATE_KEY = 'subunlock-session-v14-tap-ad:' + id;
   const SESSION_TTL = 2 * 60 * 1000;  // Giữ thời hạn phiên cũ: 2 phút
   const AD_DELAY = 3 * 1000;         // Khoảng thời gian tối thiểu cho chặng quảng cáo
   const GUIDE_URL = 'https://youtu.be/kQGxcf2Pdc4?si=te-oGDi81xcU6lLL';
@@ -41,13 +41,13 @@
     applyTheme(next);
     try { localStorage.setItem(THEME_KEY, next); } catch (_) { /* Private mode */ }
   }
-  let selectedTheme = 'dark';
-  try {
-    const saved = localStorage.getItem(THEME_KEY);
-    if (saved === 'dark' || saved === 'light') selectedTheme = saved;
-  } catch (_) {}
+  const selectedTheme = 'dark';
   applyTheme(selectedTheme);
-  $('themeToggle').addEventListener('click', toggleTheme);
+  try { localStorage.setItem(THEME_KEY, 'dark'); } catch (_) {}
+  // Public unlock page is intentionally locked to the requested dark theme.
+  // Keep the theme helper defensive in case an older cached page still has the toggle.
+  const themeButton = $('themeToggle');
+  if (themeButton) themeButton.addEventListener('click', toggleTheme);
 
   function clockTick() {
     const el = $('clock');
@@ -120,13 +120,10 @@
     $('stepsPill').textContent = totalTasks + ' BƯỚC';
     $('stepRange').textContent = 'BƯỚC 01—' + String(totalTasks).padStart(2,'0');
     $('progressTrack').setAttribute('aria-valuemax',String(totalTasks));
-    $('heroSubtitle').textContent = pageData.title
-      ? 'Hoàn thành '+totalTasks+' nhiệm vụ để nhận: '+pageData.title
-      : 'Hoàn thành '+totalTasks+' nhiệm vụ để truy cập nội dung của bạn.';
     if (pageData.title) $('unlockBtnLabel').textContent = 'Mở Khóa: '+pageData.title;
   }
   buildTaskButtons();
-  function emptyState() { return {sessionStarted:0,pendingStep:0,pendingStage:'',pendingAt:0,adUrl:'',didLeave:false,adReturned:false,done:Array(totalTasks).fill(false)}; }
+  function emptyState() { return {sessionStarted:0,pendingStep:0,pendingStage:'',pendingAt:0,adUrl:'',didLeave:false,adReturned:false,awaitingAdTap:false,adLaunched:false,done:Array(totalTasks).fill(false)}; }
   let state = emptyState();
 
   function persist() {
@@ -147,6 +144,8 @@
         adUrl: validUrl(parsed.adUrl) ? parsed.adUrl : '',
         didLeave: parsed.didLeave === true,
         adReturned: parsed.adReturned === true,
+        awaitingAdTap: parsed.awaitingAdTap === true,
+        adLaunched: parsed.adLaunched === true,
         done: parsed.done.map(Boolean)
       };
     } catch (_) {}
@@ -223,6 +222,8 @@
     state.adUrl = '';
     state.didLeave = false;
     state.adReturned = false;
+    state.awaitingAdTap = false;
+    state.adLaunched = false;
     // Resume the ordinary 2-minute on-site session after a long app visit.
     if (Date.now() >= state.sessionStarted + SESSION_TTL) state.sessionStarted = Date.now();
     persist();
@@ -252,9 +253,10 @@
       if (symbol) symbol.setAttribute('href', '#icon-' + (isDone ? 'check-circle' : isLocked ? 'lock' : isPending ? 'hourglass' : 'chevron-right'));
       if (small) {
         if (isDone) small.textContent = 'Đã hoàn thành ✓';
-        else if (isPending && state.pendingStage === 'task') small.textContent = 'Thực hiện nhiệm vụ trước, sau đó quay lại để mở quảng cáo';
-        else if (isPending && state.adReturned) small.textContent = `Đã trở lại từ quảng cáo • hoàn tất sau ${Math.ceil(remainingTime() / 1000)} giây`;
-        else if (isPending) small.textContent = 'Quảng cáo đã mở • quay lại trang này để tiếp tục';
+        else if (isPending && state.pendingStage === 'task') small.textContent = 'Đang mở nền tảng nhiệm vụ';
+        else if (isPending && state.adReturned) small.textContent = `Đang hoàn tất • ${Math.ceil(remainingTime() / 1000)} giây`;
+        else if (isPending && state.awaitingAdTap) small.textContent = 'Đã quay lại • chạm bất kỳ đâu để tiếp tục';
+        else if (isPending) small.textContent = 'Quảng cáo đã mở • quay lại để tiếp tục';
         else if (isLocked) small.textContent = 'Hoàn thành bước trước để tiếp tục';
         else small.textContent = descriptions[step - 1];
       }
@@ -265,7 +267,7 @@
     $('progressTrack').setAttribute('aria-valuenow', String(count));
     $('progressLabel').textContent = count === totalTasks
       ? 'Tất cả các bước đã hoàn thành'
-      : pending ? (state.pendingStage === 'task' ? `Bước ${pending}: thực hiện nhiệm vụ trước` : state.adReturned ? `Bước ${pending}: đang hoàn tất...` : `Bước ${pending}: xem quảng cáo sau nhiệm vụ`)
+      : pending ? (state.pendingStage === 'task' ? `Bước ${pending}: đang thực hiện nhiệm vụ` : state.adReturned ? `Bước ${pending}: đang hoàn tất...` : state.awaitingAdTap ? `Bước ${pending}: chạm để tiếp tục` : `Bước ${pending}: đang chờ quay lại` )
       : count ? 'Sẵn sàng cho nhiệm vụ tiếp theo'
       : 'Hoàn thành các bước theo thứ tự';
 
@@ -323,6 +325,8 @@
     state.adUrl = adUrl;
     state.didLeave = false;
     state.adReturned = false;
+    state.awaitingAdTap = false;
+    state.adLaunched = false;
     persist();
     render();
     // FIRST: directly visit the task. Advertisement is not opened yet.
@@ -331,13 +335,17 @@
 
   function recordDeparture() {
     if (!state.pendingStep || state.adReturned) return;
-    state.didLeave = true;
-    persist();
+    // A departure during the task stage means the user visited the platform.
+    // During the ad stage, only count a departure after the ad was actually launched.
+    if (state.pendingStage === 'task' || (state.pendingStage === 'ad' && state.adLaunched)) {
+      state.didLeave = true;
+      persist();
+    }
   }
 
-  // On Back / returning from the YouTube, TikTok or Telegram app, automatically
-  // proceed to the ad. On returning from the ad, complete the active step.
-  // Top-level same-tab navigation is used rather than a blocked auto-popup.
+  // Returning from a task arms the ad gate. The next user tap anywhere on the
+  // page opens one ad in a fresh tab; browsers that block it fall back to same-tab.
+  // Returning from that ad completes the current step after the short minimum delay.
   function advanceOnReturn() {
     if (!state.pendingStep || !state.didLeave) return;
     if (state.pendingStage === 'task') {
@@ -348,14 +356,40 @@
       state.pendingStage = 'ad';
       state.pendingAt = Date.now();
       state.didLeave = false;
+      state.awaitingAdTap = true;
+      state.adLaunched = false;
       persist();
       render();
-      navigateTo(state.adUrl);
-    } else if (state.pendingStage === 'ad') {
+      notify('Đã quay lại. Chạm bất kỳ vị trí nào để tiếp tục.');
+    } else if (state.pendingStage === 'ad' && state.adLaunched) {
       state.adReturned = true;
       state.didLeave = false;
       persist();
       render();
+    }
+  }
+
+  function handleAdTap(event) {
+    if (!state.pendingStep || state.pendingStage !== 'ad' || !state.awaitingAdTap || state.adLaunched) return;
+    if (!validUrl(state.adUrl)) {
+      notify('Liên kết quảng cáo chưa hợp lệ.');
+      return;
+    }
+    // Consume the first tap anywhere so the tap is a trusted gesture for window.open.
+    event.preventDefault();
+    event.stopPropagation();
+    if (typeof event.stopImmediatePropagation === 'function') event.stopImmediatePropagation();
+    state.awaitingAdTap = false;
+    state.adLaunched = true;
+    state.didLeave = false;
+    state.pendingAt = Date.now();
+    persist();
+    render();
+    if (!openExternal(state.adUrl)) {
+      state.awaitingAdTap = true;
+      state.adLaunched = false;
+      persist();
+      notify('Không mở được quảng cáo. Hãy chạm lại để thử.');
     }
   }
 
@@ -371,6 +405,7 @@
 
   $('openBtn').addEventListener('click', openUnlock);
   $('guideBtn').addEventListener('click', () => openExternal(GUIDE_URL));
+  document.addEventListener('click', handleAdTap, true);
 
   function onReturn() {
     if (document.visibilityState === 'hidden') return;
