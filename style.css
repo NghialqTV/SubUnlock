@@ -695,3 +695,45 @@ body.light .theme-btn{background:#fff;color:#777}
   .tasks-panel .task-text strong{font-size:14px}
 }
 @media(prefers-reduced-motion:reduce){.tasks-panel .task,.open-btn{transition:none}}
+
+
+/* ===== TASK CARDS SEPARATED · V5 ===== */
+.tasks-panel{overflow:visible!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+.tasks-list{display:grid!important;gap:11px!important;padding:1px 2px 3px}
+.tasks-panel .task,
+.tasks-panel .task.task-youtube,
+.tasks-panel .task.task-tiktok,
+.tasks-panel .task.task-telegram,
+.tasks-panel .task.task-discord,
+.tasks-panel .task.task-facebook,
+.tasks-panel .task.task-instagram,
+.tasks-panel .task.task-zalo,
+.tasks-panel .task.task-custom{
+  min-height:75px!important;grid-template-columns:46px minmax(0,1fr) 22px!important;gap:13px!important;
+  padding:11px 13px!important;border:1px solid rgba(166,184,211,.17)!important;border-radius:17px!important;
+  border-bottom:1px solid rgba(166,184,211,.17)!important;
+  background:linear-gradient(145deg,#1b2330 0%,#151c27 58%,#111722 100%)!important;
+  box-shadow:0 9px 18px rgba(0,0,0,.27),0 2px 5px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.075)!important;
+  transform:translateZ(0);transition:transform .18s ease,border-color .2s ease,box-shadow .2s ease,background .2s ease,opacity .2s ease!important;
+}
+.tasks-panel .task::before{inset:1px!important;border-radius:16px!important;background:linear-gradient(180deg,rgba(255,255,255,.075),transparent 55%)!important;opacity:1!important}
+.tasks-panel .task::after{inset:0!important;border-radius:inherit!important;background:linear-gradient(110deg,transparent 15%,rgba(255,255,255,.08) 48%,transparent 78%)!important;transform:translateX(-130%);transition:transform .55s ease!important;opacity:.8!important}
+.tasks-panel .task-icon{width:44px!important;height:44px!important;border-radius:13px!important;box-shadow:0 5px 12px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.16)!important}
+.tasks-panel .task-text strong{font-size:14px!important;font-weight:750!important;color:#f4f6fa!important}
+.tasks-panel .task-text small{font-size:10px!important;color:#aab5c5!important}
+.tasks-panel .task-end{color:#9ca8ba!important}
+.tasks-panel .task.locked{opacity:.57!important;border-color:rgba(166,184,211,.09)!important;box-shadow:0 5px 11px rgba(0,0,0,.2)!important}
+.tasks-panel .task.pending{opacity:1!important;border-color:rgba(111,170,255,.65)!important;background:linear-gradient(145deg,#202d42,#151f30)!important;box-shadow:0 0 0 2px rgba(86,151,245,.12),0 12px 24px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.09)!important;outline:0!important;animation:taskCardFocus 1.8s ease-in-out infinite!important}
+.tasks-panel .task.pending .task-end{color:#8bbaff!important}
+.tasks-panel .task.completed{opacity:1!important;border-color:rgba(67,205,139,.42)!important;background:linear-gradient(145deg,#1b302b,#14231f)!important;box-shadow:0 8px 18px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.07)!important}
+.tasks-panel .task.completed .task-text strong{color:#e7fff2!important}
+.tasks-panel .task.completed .task-text small{display:none!important}
+.tasks-panel .task.completed .task-end{color:#56d99b!important}
+@media(hover:hover){
+  .tasks-panel .task:not(:disabled):hover{transform:translateY(-2px)!important;border-color:rgba(143,177,230,.38)!important;box-shadow:0 14px 24px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.1)!important}
+  .tasks-panel .task:not(:disabled):hover::after{transform:translateX(130%)!important}
+}
+.tasks-panel .task:not(:disabled):active{transform:translateY(1px) scale(.988)!important;box-shadow:0 4px 9px rgba(0,0,0,.24),inset 0 2px 5px rgba(0,0,0,.2)!important}
+@keyframes taskCardFocus{0%,100%{box-shadow:0 0 0 2px rgba(86,151,245,.08),0 10px 20px rgba(0,0,0,.27)}50%{box-shadow:0 0 0 3px rgba(86,151,245,.16),0 13px 25px rgba(0,0,0,.32)}}
+@media(max-width:480px){.tasks-list{gap:10px!important}.tasks-panel .task{min-height:70px!important;grid-template-columns:42px minmax(0,1fr) 20px!important;padding:10px 11px!important;gap:11px!important}.tasks-panel .task-icon{width:40px!important;height:40px!important;border-radius:12px!important}.tasks-panel .task-text strong{font-size:13px!important}}
+@media(prefers-reduced-motion:reduce){.tasks-panel .task.pending{animation:none!important}}

@@ -11,7 +11,8 @@
   const params = new URLSearchParams(window.location.search);
   const id = (params.get('id') || params.get('page') || 'hackmenuios').trim();
   const pageData = typeof pages !== 'undefined' ? pages[id] : null;
-  const STATE_KEY = 'subunlock-session-v16-two-ads:' + id;
+  const STATE_KEY = 'subunlock-session-v17-follow-ad-reset:' + id;
+  const SESSION_TTL_MS = 3 * 60 * 1000;
   const GUIDE_URL = 'https://youtu.be/kQGxcf2Pdc4?si=te-oGDi81xcU6lLL';
   const $ = id => document.getElementById(id);
 
@@ -74,11 +75,12 @@
 
   function emptyState() {
     return {
-      sessionStarted: 0,
+      sessionStarted: Date.now(),
       pendingStep: 0,
       pendingAt: 0,
       didLeave: false,
       firstAdLaunched: false,
+      followAdPendingAfterReturn: false,
       unlockAdLaunched: false,
       unlockPendingAfterAd: false,
       done: Array(totalTasks).fill(false)
@@ -88,21 +90,52 @@
   function persist() {
     try { sessionStorage.setItem(STATE_KEY, JSON.stringify(state)); } catch (_) {}
   }
+  function getNavigationType() {
+    try {
+      const entry = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      if (entry && entry.type) return entry.type;
+    } catch (_) {}
+    try {
+      if (performance.navigation) {
+        if (performance.navigation.type === 1) return 'reload';
+        if (performance.navigation.type === 2) return 'back_forward';
+      }
+    } catch (_) {}
+    return 'navigate';
+  }
   function restore() {
+    const navigationType = getNavigationType();
+    // A manual reload or a fresh visit starts a clean task run. Back/forward
+    // navigation is preserved so returning from YouTube/TikTok does not lose progress.
+    if (navigationType === 'reload' || navigationType === 'navigate') {
+      state = emptyState();
+      persist();
+      return;
+    }
     try {
       const parsed = JSON.parse(sessionStorage.getItem(STATE_KEY) || 'null');
-      if (!parsed || !Array.isArray(parsed.done) || parsed.done.length !== totalTasks) return;
+      if (!parsed || !Array.isArray(parsed.done) || parsed.done.length !== totalTasks) {
+        state = emptyState();
+        persist();
+        return;
+      }
       state = {
-        sessionStarted: Number(parsed.sessionStarted) || 0,
+        sessionStarted: Number(parsed.sessionStarted) || Date.now(),
         pendingStep: Math.max(0, Math.min(totalTasks, Number(parsed.pendingStep) || 0)),
         pendingAt: Number(parsed.pendingAt) || 0,
         didLeave: parsed.didLeave === true,
         firstAdLaunched: parsed.firstAdLaunched === true,
+        followAdPendingAfterReturn: parsed.followAdPendingAfterReturn === true,
         unlockAdLaunched: parsed.unlockAdLaunched === true,
         unlockPendingAfterAd: parsed.unlockPendingAfterAd === true,
         done: parsed.done.map(Boolean)
       };
-    } catch (_) {}
+      if (Date.now() - state.sessionStarted >= SESSION_TTL_MS) state = emptyState();
+      persist();
+    } catch (_) {
+      state = emptyState();
+      persist();
+    }
   }
   restore();
 
@@ -276,6 +309,7 @@
   function runTask(step) {
     if (getNextStep() !== step || state.done[step - 1]) return;
     if (state.pendingStep && state.pendingStep !== step) return;
+    const task = taskDefinitions[step - 1];
     const destination = targets[step - 1];
     if (!validUrl(destination)) {
       notify('Liên kết nhiệm vụ chưa được cấu hình hợp lệ.');
@@ -288,12 +322,17 @@
       navigateTo(destination);
       return;
     }
-    if (!state.sessionStarted) state.sessionStarted = Date.now();
     state.pendingStep = step;
     state.pendingAt = Date.now();
     state.didLeave = false;
     persist();
     render();
+
+    // The first ad is opened only when the TikTok task is clicked.
+    if (task.type === 'tiktok' && !state.firstAdLaunched) {
+      const adResult = launchFollowTaskAd();
+      if (adResult === 'same-tab') return;
+    }
     navigateTo(destination);
   }
 
@@ -311,6 +350,14 @@
       window.location.assign(pageData.unlock);
       return true;
     }
+    if (state.followAdPendingAfterReturn && state.pendingStep) {
+      state.followAdPendingAfterReturn = false;
+      state.didLeave = false;
+      state.pendingAt = Date.now();
+      persist();
+      navigateTo(targets[state.pendingStep - 1]);
+      return true;
+    }
     if (!state.pendingStep || !state.didLeave) return false;
     completePendingStep();
     render();
@@ -318,36 +365,43 @@
     return true;
   }
 
-  // Ad #1: the first tap anywhere opens one ad in a new tab. If popups are
-  // blocked, the ad opens in this tab; the tap is consumed and tasks remain safe.
-  function handleFirstPageAd(event) {
-    if (state.firstAdLaunched) return;
-    const taskButton = event.target && event.target.closest ? event.target.closest('.task') : null;
-    const guideButton = event.target && event.target.closest ? event.target.closest('#guideBtn') : null;
+  let sessionResetTimer = null;
+  function resetExpiredSession(showMessage) {
+    if (Date.now() - state.sessionStarted < SESSION_TTL_MS) return false;
+    state = emptyState();
+    persist();
+    render();
+    if (showMessage) notify('Phiên nhiệm vụ đã được làm mới sau 3 phút. Hãy bắt đầu lại từ bước 1.');
+    scheduleSessionReset();
+    return true;
+  }
+  function scheduleSessionReset() {
+    if (sessionResetTimer) clearTimeout(sessionResetTimer);
+    const remaining = Math.max(50, state.sessionStarted + SESSION_TTL_MS - Date.now());
+    sessionResetTimer = setTimeout(() => {
+      if (!resetExpiredSession(true)) scheduleSessionReset();
+    }, remaining);
+  }
+
+  // Ad #1 is tied only to the Follow TikTok task, never to arbitrary page taps.
+  function launchFollowTaskAd() {
+    if (state.firstAdLaunched) return 'already';
     const adUrl = pickAdUrl();
     if (!validUrl(adUrl)) {
       notify('Chưa có link quảng cáo hợp lệ trong data/tiktok_ads.js.');
-      return;
+      return 'missing';
     }
     state.firstAdLaunched = true;
-    if (!state.sessionStarted) state.sessionStarted = Date.now();
+    if (openAdPopup(adUrl)) {
+      persist();
+      return 'popup';
+    }
+    // Popup blocked: show the ad in this tab, then open TikTok automatically
+    // when the user returns to the task page.
+    state.followAdPendingAfterReturn = true;
     persist();
-    const opened = openAdPopup(adUrl);
-    if (!opened) {
-      event.preventDefault();
-      event.stopPropagation();
-      if (typeof event.stopImmediatePropagation === 'function') event.stopImmediatePropagation();
-      window.location.assign(adUrl);
-      return;
-    }
-    // A tap on a task is allowed to continue to YouTube/TikTok/Telegram in
-    // the current tab while the ad is opened separately. Other first taps
-    // only open the ad; they do not accidentally open a second popup (guide).
-    if (guideButton) {
-      event.preventDefault();
-      event.stopPropagation();
-      if (typeof event.stopImmediatePropagation === 'function') event.stopImmediatePropagation();
-    }
+    navigateTo(adUrl);
+    return 'same-tab';
   }
 
   function openUnlock() {
@@ -389,10 +443,10 @@
   if (openButton) openButton.addEventListener('click', openUnlock);
   const guideButton = $('guideBtn');
   if (guideButton) guideButton.addEventListener('click', () => openExternal(GUIDE_URL));
-  document.addEventListener('click', handleFirstPageAd, true);
 
   function onReturn() {
     if (document.visibilityState === 'hidden') return;
+    if (resetExpiredSession(true)) return;
     advanceOnReturn();
     render();
   }
@@ -404,4 +458,5 @@
     else onReturn();
   });
   render();
+  scheduleSessionReset();
 })();

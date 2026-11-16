@@ -35,12 +35,12 @@ Ví dụ nếu repository có tên `SubUnlock` và username là `nghialqtv`, đ�
 
 ## 4. Trang mở khóa cho khách – HAI LƯỢT QUẢNG CÁO CỐ ĐỊNH
 
-- Giao diện công khai theo mẫu GET KEY AOV: nền đen Dark Mode, logo Liên Quân, thanh tiến độ, một khung nhiệm vụ dạng danh sách và nút Mở Khóa Link Chính.
+- Giao diện công khai theo mẫu GET KEY AOV: nền đen Dark Mode, logo Liên Quân, thanh tiến độ, các thẻ nhiệm vụ Dark Mode tách biệt bằng khoảng cách, viền và bóng nổi; nút Mở Khóa Link Chính.
 - Mặc định có 4 nhiệm vụ theo thứ tự: Đăng Kí Kênh NghĩaLQ TV → Đăng Kí Kênh Cyber Mods → Follow TikTok → Tham Gia Telegram.
-- **Quảng cáo lần 1:** mở một link quảng cáo ở tab mới khi người dùng chạm lần đầu vào trang. Nếu trình duyệt chặn tab mới, quảng cáo mở trong tab hiện tại; người dùng quay lại rồi tiếp tục nhiệm vụ.
+- **Quảng cáo lần 1:** chỉ mở khi người dùng nhấn nhiệm vụ Follow TikTok. Quảng cáo mở ở tab mới trước khi website điều hướng sang TikTok; nếu popup bị chặn, quảng cáo mở trong tab hiện tại rồi khi quay lại website sẽ tự mở link Follow TikTok.
 - Các nhiệm vụ mở trực tiếp YouTube, TikTok hoặc Telegram; quay lại website thì nhiệm vụ được ghi nhận. **Không có quảng cáo chen giữa các nhiệm vụ.**
 - **Quảng cáo lần 2:** chỉ xuất hiện khi người dùng đã hoàn thành tất cả nhiệm vụ và nhấn **Mở Khóa Link Chính**. Nếu mở được tab quảng cáo, link chính tiếp tục mở ở tab hiện tại. Nếu trình duyệt chặn popup, quảng cáo mở ở tab hiện tại và website tự tiếp tục đến link chính khi người dùng quay lại.
-- Tiến độ được lưu trong `sessionStorage` của tab hiện tại; đóng hẳn tab sẽ bắt đầu phiên mới.
+- Tiến độ được lưu trong `sessionStorage` của tab hiện tại để giữ bước khi quay lại từ nền tảng bên ngoài. Tải lại trang sẽ reset về 0/4; phiên cũng tự reset sau 3 phút kể từ lúc tải trang. Quay lại từ YouTube/TikTok/Telegram trong vòng 3 phút vẫn giữ tiến độ.
 - **Quan trọng:** GitHub Pages tĩnh không thể xác minh YouTube đã subscribe, TikTok đã follow hay Telegram đã tham gia. Website chỉ ghi nhận người dùng đã mở liên kết nhiệm vụ và quay lại. Muốn xác thực thật cần API và quyền truy cập phù hợp.
 - Một số trình duyệt tích hợp hoặc chế độ riêng tư có thể hạn chế popup, sessionStorage hoặc universal links; không thể cam kết 100% trên mọi phiên bản.
 
@@ -51,8 +51,8 @@ Ví dụ nếu repository có tên `SubUnlock` và username là `nghialqtv`, đ�
 ## 6. Cập nhật bản GET KEY AOV – hai lượt quảng cáo
 
 - `index.html`: bố cục GET KEY AOV và danh sách nhiệm vụ dạng hàng.
-- `style.css`: giao diện Dark Mode đen/xám, màu hoàn thành xanh lá, thanh tiến độ xanh dương.
-- `app.js`: xử lý 4 nhiệm vụ tuần tự và đúng hai lượt quảng cáo theo quy tắc ở mục 4.
+- `style.css`: giao diện Dark Mode đen/xám, thẻ nhiệm vụ tách biệt, màu hoàn thành xanh lá, thanh tiến độ xanh dương.
+- `app.js`: xử lý 4 nhiệm vụ tuần tự, quảng cáo lần 1 tại Follow TikTok, quảng cáo lần 2 tại nút mở khóa và reset phiên khi tải lại hoặc đủ 3 phút.
 - `data.js`: cấu hình link nhiệm vụ và link mở khóa; `data/tiktok_ads.js`: danh sách link quảng cáo.
 - Giải nén ZIP và upload toàn bộ nội dung `SubUnlock-main/` lên GitHub Pages, ghi đè các file tương ứng.
 - Nếu website vẫn chạy phiên bản cũ, kiểm tra GitHub Pages đã triển khai và làm mới cache trình duyệt.
