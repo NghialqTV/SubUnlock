@@ -50,10 +50,10 @@
   }
   function fallbackTasks(page) {
     return [
-      {type:'youtube',label:'Đăng ký kênh NghĩaLQ TV',url:page.sub || DEFAULTS.sub},
-      {type:'youtube',label:'Đăng ký kênh Cyber Mods',url:page.cyberMods || DEFAULTS.cyberMods},
+      {type:'youtube',label:'Đăng Kí Kênh NghĩaLQ TV',url:page.sub || DEFAULTS.sub},
+      {type:'youtube',label:'Đăng Kí Kênh Cyber Mods',url:page.cyberMods || DEFAULTS.cyberMods},
       {type:'tiktok',label:'Follow TikTok',url:page.followTikTok || DEFAULTS.followTikTok},
-      {type:'telegram',label:'Tham gia nhóm Telegram',url:page.tele || DEFAULTS.tele}
+      {type:'telegram',label:'Tham Gia Telegram',url:page.tele || DEFAULTS.tele}
     ];
   }
   function getTasks(page) { return Array.isArray(page.tasks) ? page.tasks.map(t => ({type: KINDS[t.type] ? t.type : 'custom', label:safe(t.label), url:safe(t.url)})) : fallbackTasks(page); }

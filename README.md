@@ -33,24 +33,26 @@ Ví dụ nếu repository có tên `SubUnlock` và username là `nghialqtv`, đ�
 - Khi đăng trực tiếp, trước tiên GitHub API lấy SHA mới nhất của `data.js`. Nếu nội dung GitHub đã thay đổi từ lúc mở quản trị, hệ thống **cảnh báo trước khi ghi đè**, phòng tránh mất dữ liệu.
 - Các file quảng cáo TikTok tiếp tục là `data/tiktok_ads.js` và `tiktok_ads/tiktok-gate.js`. Chúng **không** bị chỉnh sửa bởi trang quản trị link.
 
-## 4. Trang mở khóa cho khách – NHIỆM VỤ TRƯỚC, QUẢNG CÁO SAU
+## 4. Trang mở khóa cho khách – HAI LƯỢT QUẢNG CÁO CỐ ĐỊNH
 
-- Mỗi link hỗ trợ 1–8 nhiệm vụ. Link cũ vẫn hoạt động và dữ liệu giữ nguyên.
-- **Bấm một nhiệm vụ → mở trực tiếp liên kết nền tảng** (YouTube, TikTok, Telegram...). Không mở quảng cáo trước hoặc cùng lúc.
-- **Thực hiện tác vụ trên nền tảng và trở lại trang SubUnlock** bằng nút Quay lại / Back hoặc chuyển lại trình duyệt. Khi website nhận biết người xem đã rời và quay lại, nó **tự chuyển sang một quảng cáo ngẫu nhiên** trong cùng tab; không có nút xác nhận hay popup.
-- **Trở về từ trang quảng cáo** → tiến độ bước đó được ghi nhận (ít nhất 3 giây từ lúc mở quảng cáo) và bước kế tiếp mở khóa. Mỗi bước có một quảng cáo.
-- Phiên tính thời gian hoạt động 2 phút giữa các nhiệm vụ; một nhiệm vụ đang thực hiện ở ngoài sẽ không tự bị xóa khi người dùng mở YouTube/TikTok lâu hơn 2 phút. Nếu cần thời gian khác, đổi `SESSION_TTL` trong `app.js`.
-- **Quan trọng**: GitHub Pages tĩnh KHÔNG có khả năng xác minh YouTube đã subscribe, TikTok đã follow hay Telegram đã tham gia. Chỉ ghi nhận người dùng đã mở liên kết nhiệm vụ, quay lại website, đi qua quảng cáo và quay lại lần nữa. Muốn xác thực thật phải có API và quyền truy cập phù hợp.
-- Luồng dùng điều hướng cùng tab (không dùng popup) để giảm bị chặn trên Safari iOS, Chrome Android và trình duyệt trong ứng dụng. Một số trình duyệt tích hợp hoặc chế độ riêng tư có thể hạn chế sessionStorage / universal links; vì vậy không thể cam kết 100% trên mọi phiên bản. Hãy bật JavaScript, cho phép lưu phiên của trang và quay lại đúng tab SubUnlock.
+- Giao diện công khai theo mẫu GET KEY AOV: nền đen Dark Mode, logo Liên Quân, thanh tiến độ, một khung nhiệm vụ dạng danh sách và nút Mở Khóa Link Chính.
+- Mặc định có 4 nhiệm vụ theo thứ tự: Đăng Kí Kênh NghĩaLQ TV → Đăng Kí Kênh Cyber Mods → Follow TikTok → Tham Gia Telegram.
+- **Quảng cáo lần 1:** mở một link quảng cáo ở tab mới khi người dùng chạm lần đầu vào trang. Nếu trình duyệt chặn tab mới, quảng cáo mở trong tab hiện tại; người dùng quay lại rồi tiếp tục nhiệm vụ.
+- Các nhiệm vụ mở trực tiếp YouTube, TikTok hoặc Telegram; quay lại website thì nhiệm vụ được ghi nhận. **Không có quảng cáo chen giữa các nhiệm vụ.**
+- **Quảng cáo lần 2:** chỉ xuất hiện khi người dùng đã hoàn thành tất cả nhiệm vụ và nhấn **Mở Khóa Link Chính**. Nếu mở được tab quảng cáo, link chính tiếp tục mở ở tab hiện tại. Nếu trình duyệt chặn popup, quảng cáo mở ở tab hiện tại và website tự tiếp tục đến link chính khi người dùng quay lại.
+- Tiến độ được lưu trong `sessionStorage` của tab hiện tại; đóng hẳn tab sẽ bắt đầu phiên mới.
+- **Quan trọng:** GitHub Pages tĩnh không thể xác minh YouTube đã subscribe, TikTok đã follow hay Telegram đã tham gia. Website chỉ ghi nhận người dùng đã mở liên kết nhiệm vụ và quay lại. Muốn xác thực thật cần API và quyền truy cập phù hợp.
+- Một số trình duyệt tích hợp hoặc chế độ riêng tư có thể hạn chế popup, sessionStorage hoặc universal links; không thể cam kết 100% trên mọi phiên bản.
 
 ## 5. Tình trạng kiểm thử
 
-Đã kiểm tra bằng Chromium ở viewport 1440px, 390px và 320px; tạo/sửa/đổi thứ tự nhiệm vụ, xuất `data.js` và xác minh 20 link cũ vẫn còn sau khi thêm link mới. **Chưa** đăng GitHub thật (không có token) và **chưa** kiểm thử trực tiếp trên thiết bị iOS/Android thực tế. Nếu GitHub Pages chưa hiển thị thay đổi, cần kiểm tra trạng thái triển khai và làm mới trang (có thể gặp cache).
+Đã kiểm tra cú pháp JavaScript bằng `node --check` cho `app.js`, `data.js`, `tiktok-gate.js` và `admin.js`. Chưa đăng GitHub thật và chưa kiểm thử trực tiếp trên thiết bị iOS/Android thực tế. Hãy thử trên trình duyệt điện thoại sau khi GitHub Pages triển khai; popup có thể bị chặn tùy cài đặt trình duyệt, khi đó website dùng điều hướng cùng tab làm phương án dự phòng.
 
-## 6. Cập nhật bản nhiệm vụ trước – quảng cáo sau
+## 6. Cập nhật bản GET KEY AOV – hai lượt quảng cáo
 
-- `admin.html`: trang quản trị.
-- `index.html`: trang người truy cập.
-- Không có banner hay nút “Nhấn để xem quảng cáo”; luồng là **nhiệm vụ → trở lại → quảng cáo → trở lại → hoàn tất**.
+- `index.html`: bố cục GET KEY AOV và danh sách nhiệm vụ dạng hàng.
+- `style.css`: giao diện Dark Mode đen/xám, màu hoàn thành xanh lá, thanh tiến độ xanh dương.
+- `app.js`: xử lý 4 nhiệm vụ tuần tự và đúng hai lượt quảng cáo theo quy tắc ở mục 4.
+- `data.js`: cấu hình link nhiệm vụ và link mở khóa; `data/tiktok_ads.js`: danh sách link quảng cáo.
 - Giải nén ZIP và upload toàn bộ nội dung `SubUnlock-main/` lên GitHub Pages, ghi đè các file tương ứng.
-- Nếu website vẫn chạy phiên bản cũ, kiểm tra GitHub Pages đã triển khai và xóa cache trình duyệt.
+- Nếu website vẫn chạy phiên bản cũ, kiểm tra GitHub Pages đã triển khai và làm mới cache trình duyệt.
