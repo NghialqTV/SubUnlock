@@ -1,7 +1,8 @@
-/* SubToUnlock — Direct-on-tap ad flow | 2026-11-16
- * Each task tap opens its configured platform URL plus one randomized ad.
- * No separate ad-confirmation click is required. The 3-second cooldown
- * completes automatically. On restrictive browsers, the ad has priority.
+/* SubToUnlock — Task-first flow | 2026-11-16
+ * 1. Tap a task -> navigate directly to YouTube/TikTok/etc (same tab).
+ * 2. When visitor comes back -> automatically navigate to one ad (same tab).
+ * 3. When visitor comes back from ad -> credit the step, after 3s minimum.
+ * No second confirmation or popups. No claim of externally verified follows.
  */
 (function () {
   'use strict';
@@ -10,9 +11,9 @@
   const params = new URLSearchParams(window.location.search);
   const id = (params.get('id') || params.get('page') || 'hackmenuios').trim();
   const pageData = typeof pages !== 'undefined' ? pages[id] : null;
-  const STATE_KEY = 'subunlock-session-v12:' + id;
+  const STATE_KEY = 'subunlock-session-v13-taskfirst:' + id;
   const SESSION_TTL = 2 * 60 * 1000;  // Giữ thời hạn phiên cũ: 2 phút
-  const AD_DELAY = 3 * 1000;         // Tự xác nhận sau 3 giây, không cần nhấn thêm
+  const AD_DELAY = 3 * 1000;         // Khoảng thời gian tối thiểu cho chặng quảng cáo
   const GUIDE_URL = 'https://youtu.be/kQGxcf2Pdc4?si=te-oGDi81xcU6lLL';
   const $ = id => document.getElementById(id);
 
@@ -64,17 +65,17 @@
   // may define 1–8 tasks in data.js via admin.html.
   const allowedTypes = ['youtube','tiktok','telegram','discord','facebook','instagram','zalo','custom'];
   const legacyTasks = [
-    {type:'youtube',label:'Đăng ký kênh NghĩaLQ TV',url:pageData.sub,description:'Nhấn mở kênh và quảng cáo'},
-    {type:'youtube',label:'Đăng ký kênh Cyber Mods',url:pageData.cyberMods,description:'Nhấn mở kênh và quảng cáo'},
-    {type:'tiktok',label:'Follow TikTok',url:pageData.followTikTok,description:'Nhấn mở TikTok và quảng cáo'},
-    {type:'telegram',label:'Tham gia nhóm Telegram',url:pageData.tele,description:'Nhấn mở nhóm và quảng cáo'}
+    {type:'youtube',label:'Đăng ký kênh NghĩaLQ TV',url:pageData.sub,description:'Mở kênh YouTube để thực hiện nhiệm vụ'},
+    {type:'youtube',label:'Đăng ký kênh Cyber Mods',url:pageData.cyberMods,description:'Mở kênh YouTube để thực hiện nhiệm vụ'},
+    {type:'tiktok',label:'Follow TikTok',url:pageData.followTikTok,description:'Mở TikTok để thực hiện nhiệm vụ'},
+    {type:'telegram',label:'Tham gia nhóm Telegram',url:pageData.tele,description:'Mở nhóm Telegram để tham gia'}
   ];
   const taskDefinitions = (Array.isArray(pageData.tasks) && pageData.tasks.length >= 1 && pageData.tasks.length <= 8
     ? pageData.tasks : legacyTasks).map(task => ({
       type: allowedTypes.includes(task.type) ? task.type : 'custom',
       label: String(task.label || 'Mở liên kết nhiệm vụ'),
       url: task.url,
-      description: task.description || 'Nhấn để mở nhiệm vụ và quảng cáo'
+      description: task.description || 'Nhấn để mở liên kết nhiệm vụ'
     }));
   const totalTasks = taskDefinitions.length;
   const targets = taskDefinitions.map(task => task.url);
@@ -120,7 +121,7 @@
     if (pageData.title) $('unlockBtnLabel').textContent = 'Mở Khóa: '+pageData.title;
   }
   buildTaskButtons();
-  function emptyState() { return {sessionStarted:0,pendingStep:0,pendingAt:0,done:Array(totalTasks).fill(false)}; }
+  function emptyState() { return {sessionStarted:0,pendingStep:0,pendingStage:'',pendingAt:0,adUrl:'',didLeave:false,adReturned:false,done:Array(totalTasks).fill(false)}; }
   let state = emptyState();
 
   function persist() {
@@ -130,12 +131,17 @@
     try {
       const parsed = JSON.parse(sessionStorage.getItem(STATE_KEY) || 'null');
       if (!parsed || !Array.isArray(parsed.done) || parsed.done.length !== totalTasks) return;
-      if (Date.now() >= Number(parsed.sessionStarted) + SESSION_TTL) return;
+      // Do not drop a task that is still being performed in an external app.
+      if (Date.now() >= Number(parsed.sessionStarted) + SESSION_TTL && !Number(parsed.pendingStep)) return;
       if (!Number.isFinite(Number(parsed.sessionStarted)) || !Number(parsed.sessionStarted)) return;
       state = {
         sessionStarted: Number(parsed.sessionStarted),
         pendingStep: Math.max(0, Math.min(totalTasks, Number(parsed.pendingStep) || 0)),
+        pendingStage: ['task','ad'].includes(parsed.pendingStage) ? parsed.pendingStage : '',
         pendingAt: Number(parsed.pendingAt) || 0,
+        adUrl: validUrl(parsed.adUrl) ? parsed.adUrl : '',
+        didLeave: parsed.didLeave === true,
+        adReturned: parsed.adReturned === true,
         done: parsed.done.map(Boolean)
       };
     } catch (_) {}
@@ -152,7 +158,8 @@
     toastTimer = setTimeout(() => { el.hidden = true; }, 5500);
   }
   function expireIfNeeded() {
-    if (!state.sessionStarted || Date.now() < state.sessionStarted + SESSION_TTL) return false;
+    // Time spent inside YouTube/TikTok/advertisement must not erase an in-flight step.
+    if (state.pendingStep || !state.sessionStarted || Date.now() < state.sessionStarted + SESSION_TTL) return false;
     state = emptyState();
     try { sessionStorage.removeItem(STATE_KEY); } catch (_) {}
     render();
@@ -199,14 +206,20 @@
       ? window.TIKTOK_AD_LINKS.filter(validUrl) : [];
     return list.length ? list[Math.floor(Math.random() * list.length)] : '';
   }
-  // Settle a started task without asking the visitor to confirm anything.
-  // This also runs after browser Back / pageshow when the page was suspended.
+  // Credit only after BOTH external visits: task first, advertisement second.
+  // This tracks returns to the site, not actual YouTube subscriptions/follows.
   function settlePendingIfReady() {
     const step = state.pendingStep;
-    if (!step || remainingTime() > 0) return false;
+    if (!step || state.pendingStage !== 'ad' || !state.adReturned || remainingTime() > 0) return false;
     state.done[step - 1] = true;
     state.pendingStep = 0;
+    state.pendingStage = '';
     state.pendingAt = 0;
+    state.adUrl = '';
+    state.didLeave = false;
+    state.adReturned = false;
+    // Resume the ordinary 2-minute on-site session after a long app visit.
+    if (Date.now() >= state.sessionStarted + SESSION_TTL) state.sessionStarted = Date.now();
     persist();
     return true;
   }
@@ -224,17 +237,21 @@
       const isLocked = !isDone && !isPending && next !== step;
       const small = el.querySelector('.task-text small');
       const symbol = el.querySelector('.task-end svg use');
-      el.disabled = isDone || isLocked || Boolean(pending);
+      // Allow retry if a platform/ad redirect was blocked without leaving the page.
+      const retryable = isPending && !state.didLeave && !state.adReturned;
+      el.disabled = isDone || isLocked || (Boolean(pending) && !retryable);
       el.classList.toggle('completed', isDone);
       el.classList.toggle('pending', isPending);
       el.classList.toggle('locked', isLocked);
-      el.setAttribute('aria-label', `Bước ${step}. ${el.querySelector('.task-text strong').textContent}. ${isDone ? 'Đã hoàn thành' : isPending ? 'Đang tự hoàn tất' : isLocked ? 'Đang khóa' : 'Sẵn sàng'}`);
+      el.setAttribute('aria-label', `Bước ${step}. ${el.querySelector('.task-text strong').textContent}. ${isDone ? 'Đã hoàn thành' : isPending ? 'Đang chờ quay lại' : isLocked ? 'Đang khóa' : 'Sẵn sàng'}`);
       if (symbol) symbol.setAttribute('href', '#icon-' + (isDone ? 'check-circle' : isLocked ? 'lock' : isPending ? 'hourglass' : 'chevron-right'));
       if (small) {
         if (isDone) small.textContent = 'Đã hoàn thành ✓';
-        else if (isPending) small.textContent = `Đã mở nhiệm vụ & quảng cáo • tự hoàn tất sau ${Math.ceil(remainingTime() / 1000)} giây`;
+        else if (isPending && state.pendingStage === 'task') small.textContent = 'Thực hiện nhiệm vụ trước, sau đó quay lại để mở quảng cáo';
+        else if (isPending && state.adReturned) small.textContent = `Đã trở lại từ quảng cáo • hoàn tất sau ${Math.ceil(remainingTime() / 1000)} giây`;
+        else if (isPending) small.textContent = 'Quảng cáo đã mở • quay lại trang này để tiếp tục';
         else if (isLocked) small.textContent = 'Hoàn thành bước trước để tiếp tục';
-        else small.textContent = descriptions[step - 1] + ' • Kèm quảng cáo';
+        else small.textContent = descriptions[step - 1];
       }
     }
 
@@ -243,35 +260,38 @@
     $('progressTrack').setAttribute('aria-valuenow', String(count));
     $('progressLabel').textContent = count === totalTasks
       ? 'Tất cả các bước đã hoàn thành'
-      : pending ? `Tự động hoàn tất bước ${pending}...`
+      : pending ? (state.pendingStage === 'task' ? `Bước ${pending}: thực hiện nhiệm vụ trước` : state.adReturned ? `Bước ${pending}: đang hoàn tất...` : `Bước ${pending}: xem quảng cáo sau nhiệm vụ`)
       : count ? 'Sẵn sàng cho nhiệm vụ tiếp theo'
       : 'Hoàn thành các bước theo thứ tự';
 
     $('unlockBox').hidden = count !== totalTasks;
   }
 
-  // Run only synchronously inside a real user click. Browsers generally
-  // permit one new tab from one tap, but can block popups in private/in-app
-  // browsing. In that case we still navigate directly to the advertisement.
-  function openTaskAndAd(taskUrl, adUrl) {
-    let adTab = null;
-    try { adTab = window.open(adUrl, '_blank'); } catch (_) {}
-    if (adTab) {
-      try { adTab.opener = null; } catch (_) {}
-      // Keep the selected task URL functioning, as before; ad is a new tab.
-      window.location.assign(taskUrl);
-    } else {
-      // Avoid silently skipping the ad when an iOS/Android popup is blocked.
-      window.location.assign(adUrl);
-    }
+  // Same-tab navigation gives direct access to YouTube/TikTok/etc, including
+  // mobile deep-links. No window.open() is used for task or advertisement.
+  function navigateTo(url) {
+    try { window.location.assign(url); return true; }
+    catch (_) { notify('Không thể mở liên kết. Hãy nhấn nhiệm vụ để thử lại.'); return false; }
   }
 
   function runTask(step) {
     if (expireIfNeeded()) return;
-    if (state.pendingStep || getNextStep() !== step || state.done[step - 1]) return;
+    if (getNextStep() !== step || state.done[step - 1]) return;
+    if (state.pendingStep && state.pendingStep !== step) return;
     const destination = targets[step - 1];
     if (!validUrl(destination)) {
       notify('Liên kết nhiệm vụ chưa được cấu hình hợp lệ.');
+      return;
+    }
+    // If Safari / a built-in browser refused an earlier redirect, a tap retries
+    // the current stage. It never skips directly to an advertisement.
+    if (state.pendingStep === step) {
+      if (state.adReturned) return;
+      const retryUrl = state.pendingStage === 'ad' ? state.adUrl : destination;
+      if (!validUrl(retryUrl)) return;
+      state.didLeave = false;
+      persist();
+      navigateTo(retryUrl);
       return;
     }
     const adUrl = pickAdUrl();
@@ -281,11 +301,45 @@
     }
     if (!state.sessionStarted) state.sessionStarted = Date.now();
     state.pendingStep = step;
+    state.pendingStage = 'task';
     state.pendingAt = Date.now();
+    state.adUrl = adUrl;
+    state.didLeave = false;
+    state.adReturned = false;
     persist();
     render();
-    // Both navigations are initiated by this single tap, no modal/confirm.
-    openTaskAndAd(destination, adUrl);
+    // FIRST: directly visit the task. Advertisement is not opened yet.
+    navigateTo(destination);
+  }
+
+  function recordDeparture() {
+    if (!state.pendingStep || state.adReturned) return;
+    state.didLeave = true;
+    persist();
+  }
+
+  // On Back / returning from the YouTube, TikTok or Telegram app, automatically
+  // proceed to the ad. On returning from the ad, complete the active step.
+  // Top-level same-tab navigation is used rather than a blocked auto-popup.
+  function advanceOnReturn() {
+    if (!state.pendingStep || !state.didLeave) return;
+    if (state.pendingStage === 'task') {
+      if (!validUrl(state.adUrl)) {
+        notify('Không có đường dẫn quảng cáo hợp lệ.');
+        return;
+      }
+      state.pendingStage = 'ad';
+      state.pendingAt = Date.now();
+      state.didLeave = false;
+      persist();
+      render();
+      navigateTo(state.adUrl);
+    } else if (state.pendingStage === 'ad') {
+      state.adReturned = true;
+      state.didLeave = false;
+      persist();
+      render();
+    }
   }
 
   function openUnlock() {
@@ -302,14 +356,18 @@
   $('guideBtn').addEventListener('click', () => openExternal(GUIDE_URL));
 
   function onReturn() {
+    if (document.visibilityState === 'hidden') return;
     clockTick();
     if (expireIfNeeded()) return;
+    advanceOnReturn();
     render();
   }
+  window.addEventListener('pagehide', recordDeparture);
   window.addEventListener('pageshow', onReturn);
   window.addEventListener('focus', onReturn);
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') onReturn();
+    if (document.visibilityState === 'hidden') recordDeparture();
+    else onReturn();
   });
   setInterval(() => {
     if (document.visibilityState !== 'visible') return;

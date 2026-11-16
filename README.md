@@ -33,22 +33,24 @@ Ví dụ nếu repository có tên `SubUnlock` và username là `nghialqtv`, đ�
 - Khi đăng trực tiếp, trước tiên GitHub API lấy SHA mới nhất của `data.js`. Nếu nội dung GitHub đã thay đổi từ lúc mở quản trị, hệ thống **cảnh báo trước khi ghi đè**, phòng tránh mất dữ liệu.
 - Các file quảng cáo TikTok tiếp tục là `data/tiktok_ads.js` và `tiktok_ads/tiktok-gate.js`. Chúng **không** bị chỉnh sửa bởi trang quản trị link.
 
-## 4. Trang mở khóa cho khách
+## 4. Trang mở khóa cho khách – NHIỆM VỤ TRƯỚC, QUẢNG CÁO SAU
 
-- Mỗi link hỗ trợ 1–8 nhiệm vụ và các nền tảng nêu trên.
-- Link cũ vẫn hoạt động; link mới dùng `?id=<ID đã tạo>`.
-- **Một lần nhấn vào nhiệm vụ**: trang thử mở **quảng cáo TikTok ngẫu nhiên ở thẻ mới** và **liên kết nhiệm vụ ở thẻ hiện tại**. Không có nút “Xem quảng cáo”, không cần nhấn xác nhận lần hai. Nếu trình duyệt chặn thẻ quảng cáo, sẽ ưu tiên mở quảng cáo tại thẻ hiện tại thay vì âm thầm bỏ qua quảng cáo; trong trường hợp đó, liên kết nhiệm vụ có thể không tự mở.
-- Tiến độ nhiệm vụ tự hoàn tất sau 3 giây (kể cả sau khi quay lại bằng nút Back). Phiên vẫn hết hạn sau 2 phút như phiên bản trước. Tiến độ chỉ xác nhận **đã nhấn mở liên kết**, không chứng minh đã đăng ký/follow thật.
-- Việc mở link và xem quảng cáo **không chứng minh** người xem đã thật sự đăng ký/follow trên nền tảng bên ngoài; muốn xác thực bắt buộc cần API/backend phù hợp.
-- Với website tĩnh, không thể bảo đảm 100% hai liên kết mở đồng thời trên mọi trình duyệt. Safari/Chrome và trình duyệt tích hợp ứng dụng có thể chặn thẻ quảng cáo hoặc mở sâu trong ứng dụng. Không có giải pháp frontend nào đảm bảo vượt được chính sách chặn popup của trình duyệt.
+- Mỗi link hỗ trợ 1–8 nhiệm vụ. Link cũ vẫn hoạt động và dữ liệu giữ nguyên.
+- **Bấm một nhiệm vụ → mở trực tiếp liên kết nền tảng** (YouTube, TikTok, Telegram...). Không mở quảng cáo trước hoặc cùng lúc.
+- **Thực hiện tác vụ trên nền tảng và trở lại trang SubUnlock** bằng nút Quay lại / Back hoặc chuyển lại trình duyệt. Khi website nhận biết người xem đã rời và quay lại, nó **tự chuyển sang một quảng cáo ngẫu nhiên** trong cùng tab; không có nút xác nhận hay popup.
+- **Trở về từ trang quảng cáo** → tiến độ bước đó được ghi nhận (ít nhất 3 giây từ lúc mở quảng cáo) và bước kế tiếp mở khóa. Mỗi bước có một quảng cáo.
+- Phiên tính thời gian hoạt động 2 phút giữa các nhiệm vụ; một nhiệm vụ đang thực hiện ở ngoài sẽ không tự bị xóa khi người dùng mở YouTube/TikTok lâu hơn 2 phút. Nếu cần thời gian khác, đổi `SESSION_TTL` trong `app.js`.
+- **Quan trọng**: GitHub Pages tĩnh KHÔNG có khả năng xác minh YouTube đã subscribe, TikTok đã follow hay Telegram đã tham gia. Chỉ ghi nhận người dùng đã mở liên kết và quay lại sau khi đi qua quảng cáo. Muốn xác thực thật phải có API và quyền truy cập phù hợp.
+- Nếu trình duyệt tích hợp trong ứng dụng hạn chế chuyển app hoặc tự điều hướng, cách tự động mở quảng cáo khi trở lại có thể bị chặn; không thể đảm bảo 100% trên mọi phiên bản iOS/Android.
 
 ## 5. Tình trạng kiểm thử
 
 Đã kiểm tra bằng Chromium ở viewport 1440px, 390px và 320px; tạo/sửa/đổi thứ tự nhiệm vụ, xuất `data.js` và xác minh 20 link cũ vẫn còn sau khi thêm link mới. **Chưa** đăng GitHub thật (không có token) và **chưa** kiểm thử trực tiếp trên thiết bị iOS/Android thực tế. Nếu GitHub Pages chưa hiển thị thay đổi, cần kiểm tra trạng thái triển khai và làm mới trang (có thể gặp cache).
 
-## 6. Cập nhật bản tự mở quảng cáo
+## 6. Cập nhật bản nhiệm vụ trước – quảng cáo sau
 
-- **Trang admin**: file `admin.html`, ví dụ `https://nghialqtv.github.io/SubUnlock/admin.html` nếu repository có tên `SubUnlock`. Trang khách là `index.html`.
-- Phiên bản này **không có phần “Nhấn để xem quảng cáo”**, cả banner trên đầu lẫn nút bên dưới tiến độ đều đã bỏ.
-- Cập nhật toàn bộ nội dung thư mục `SubUnlock-main/` trong bản ZIP, không phải upload riêng file ZIP.
-- Sau khi cập nhật, thử bấm nhiệm vụ ở Safari/Chrome. Popup blocker và in-app browsers có thể chỉ cho phép điều hướng một trang; xử lý dự phòng sẽ ưu tiên quảng cáo.
+- `admin.html`: trang quản trị.
+- `index.html`: trang người truy cập.
+- Không có banner hay nút “Nhấn để xem quảng cáo”; luồng là **nhiệm vụ → trở lại → quảng cáo → trở lại → hoàn tất**.
+- Giải nén ZIP và upload toàn bộ nội dung `SubUnlock-main/` lên GitHub Pages, ghi đè các file tương ứng.
+- Nếu website vẫn chạy phiên bản cũ, kiểm tra GitHub Pages đã triển khai và xóa cache trình duyệt.
