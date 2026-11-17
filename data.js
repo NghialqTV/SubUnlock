@@ -523,9 +523,9 @@ const pages = {
     "tele": "https://t.me/+gI22PHmUi5xhMDA9",
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
-  "aov-map": {
-    "title": "AOV MAP",
-    "unlock": "https://linkx.me/7Vwv7vi",
+  "aov-mod": {
+    "title": "AOV MOD",
+    "unlock": "https://linkx.me/4XhY",
     "tasks": [
       {
         "type": "youtube",
