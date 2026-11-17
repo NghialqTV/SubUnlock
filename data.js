@@ -343,9 +343,9 @@ const pages = {
     "tele": "https://t.me/+gI22PHmUi5xhMDA9",
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
-  "ios-billow-anh-vu-lan-hon": {
-    "title": "[IOS] Billow Ảnh Vụ Lan Hồn",
-    "unlock": "https://linkx.me/97EGDh6a",
+  "android-amily-dong-hai-long-vuong": {
+    "title": "[Android] Amily Đông Hải Long Vương",
+    "unlock": "https://linkx.me/ZNxs7D",
     "tasks": [
       {
         "type": "youtube",
