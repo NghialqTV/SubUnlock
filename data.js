@@ -525,7 +525,7 @@ const pages = {
   },
   "aov-map": {
     "title": "AOV MAP",
-    "unlock": "https://linkx.me/4XhY",
+    "unlock": "https://linkx.me/7Vwv7vi",
     "tasks": [
       {
         "type": "youtube",
