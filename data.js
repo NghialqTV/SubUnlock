@@ -523,9 +523,9 @@ const pages = {
     "tele": "https://t.me/+gI22PHmUi5xhMDA9",
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
-  "aov-mod": {
-    "title": "AOV MOD",
-    "unlock": "https://linkx.me/4XhY",
+  "pack-90-skin-ver-1": {
+    "title": "Pack 90 skin Ver 1",
+    "unlock": "https://linkx.me/WV50L",
     "tasks": [
       {
         "type": "youtube",
