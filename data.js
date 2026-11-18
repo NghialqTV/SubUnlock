@@ -613,9 +613,9 @@ const pages = {
     "tele": "https://t.me/+gI22PHmUi5xhMDA9",
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
-  "android-ios-mod-map-hok": {
-    "title": "[Android - IOS] Mod Map HOK",
-    "unlock": "https://linkx.me/KXL3E",
+  "android-ios-mod-map-mien-dat-hua": {
+    "title": "[Android - IOS] Mod Map Miền Đất Hứa",
+    "unlock": "https://linkx.me/MXzJ12o",
     "tasks": [
       {
         "type": "youtube",
