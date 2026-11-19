@@ -727,7 +727,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "ios-flo-benmaru": {
     "title": "[IOS] Flo Benmaru",
@@ -753,7 +757,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "android-edras-full-new-20-11": {
     "title": "[Android ] Edras Full New 20.11",
@@ -779,11 +787,15 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
-  "ios-edras-vtk-full-20-11": {
-    "title": "[IOS] Edras VTK Full 20.11",
-    "unlock": "https://linkx.me/XhOtg",
+  "android-tamyn-than-ki": {
+    "title": "[Android] Tamyn Thần Kí",
+    "unlock": "https://linkx.me/vBNbUpUg",
     "tasks": [
       {
         "type": "youtube",
