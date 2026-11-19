@@ -793,9 +793,9 @@ const pages = {
     "tele": "https://t.me/+gI22PHmUi5xhMDA9",
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
-  "android-tamyn-than-ki": {
-    "title": "[Android] Tamyn Thần Kí",
-    "unlock": "https://linkx.me/vBNbUpUg",
+  "ios-tamyn-than-ky": {
+    "title": "[IOS] Tamyn Thần Ký",
+    "unlock": "https://linkx.me/SaHY",
     "tasks": [
       {
         "type": "youtube",
