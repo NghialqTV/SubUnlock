@@ -703,9 +703,9 @@ const pages = {
     "tele": "https://t.me/+gI22PHmUi5xhMDA9",
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
-  "android-ios-mod-map-hok": {
-    "title": "[Android - IOS] Mod Map HOK",
-    "unlock": "https://linkx.me/KXL3E",
+  "android-mod-skin-flo-benmarufull": {
+    "title": "[Android] Mod Skin Flo BenmaruFull",
+    "unlock": "https://linkx.me/vaHTBzfi",
     "tasks": [
       {
         "type": "youtube",
