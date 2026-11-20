@@ -998,6 +998,32 @@ const pages = {
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
     ]
+  },
+  "maphok-full-android-ios": {
+    "title": "MapHOK Full Android IOS",
+    "unlock": "https://linkx.me/KXL3E",
+    "tasks": [
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh NghĩaLQ TV",
+        "url": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg"
+      },
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh Cyber Mods",
+        "url": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+      },
+      {
+        "type": "tiktok",
+        "label": "Follow TikTok",
+        "url": "https://www.tiktok.com/@ytb_nghialq_tv"
+      },
+      {
+        "type": "telegram",
+        "label": "Tham Gia Telegram",
+        "url": "https://t.me/+gI22PHmUi5xhMDA9"
+      }
+    ]
   }
 };
 
