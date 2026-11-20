@@ -56,3 +56,17 @@ Ví dụ nếu repository có tên `SubUnlock` và username là `nghialqtv`, đ�
 - `data.js`: cấu hình link nhiệm vụ và link mở khóa; `data/tiktok_ads.js`: danh sách link quảng cáo.
 - Giải nén ZIP và upload toàn bộ nội dung `SubUnlock-main/` lên GitHub Pages, ghi đè các file tương ứng.
 - Nếu website vẫn chạy phiên bản cũ, kiểm tra GitHub Pages đã triển khai và làm mới cache trình duyệt.
+
+
+## Bản vá an toàn dữ liệu (20/11/2026)
+- Admin tự lưu bản nháp vào IndexedDB (không phụ thuộc giới hạn localStorage nhỏ); có nút khôi phục sau khi tải lại.
+- Chặn ghi đè nếu dữ liệu GitHub khác với bản đã tải, hoặc không tải được bản gốc.
+- Cảnh báo giới hạn GitHub Contents API ~1 MB cho một file; không tuyên bố hỗ trợ dữ liệu vô hạn.
+- Giữ nguyên toàn bộ link hiện tại và không lưu GitHub token vào bất kỳ file nào.
+- Nên thường xuyên xuất data.js để có bản sao ngoài trình duyệt; IndexedDB vẫn có thể bị xóa khi xóa dữ liệu website.
+
+## Dữ liệu lớn (sharded data)
+
+Phiên bản này tải `data/manifest.json` và các file `data/part-00001.json`, ...; nếu chưa có manifest, trang vẫn sử dụng `data.js` cũ. Admin đăng nhiều file trong **một Git commit nguyên tử** thông qua Git Data API; tránh lỗi giới hạn 1 MB/file của Contents API. Mỗi phần dưới khoảng 750 KB. Trước lần đăng, hãy nhấn **Kiểm tra kết nối** để ghi nhận SHA manifest hiện tại; sau mỗi lần đăng hãy tải lại trang và kiểm tra kết nối lại. Chỉ dùng một admin tại một thời điểm; GitHub từ chối cập nhật non-fast-forward nếu có thay đổi đồng thời.
+
+**Triển khai:** Upload tất cả file mã nguồn mới (đặc biệt `data-loader.js`, `admin.js`, `admin.html`, `index.html` và `data.js`) lên GitHub trước; sau đó vào admin, kiểm tra kết nối rồi đăng. Không đặt GitHub token vào repository hoặc trong các file JS. Dữ liệu phân mảnh được tải song song khi mở website; rất nhiều file có thể ảnh hưởng tốc độ tải. Nên sao lưu repository trước khi dùng.

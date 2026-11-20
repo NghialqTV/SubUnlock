@@ -9,7 +9,7 @@
   <title>Quản trị liên kết · SubUnlock Studio</title>
   <link rel="stylesheet" href="admin.css?v=20261117-studio-v5">
 </head>
-<body>
+<body data-admin-page="yes">
   <div class="backglow" aria-hidden="true"></div>
   <div class="admin-shell">
     <aside class="sidebar" aria-label="Quản lý liên kết">
@@ -71,10 +71,10 @@
           <section class="panel publish-panel" aria-labelledby="publishHeader">
             <div class="panel-heading"><div class="panel-icon gold">⌁</div><div><h2 id="publishHeader">Lưu & đăng lên website</h2><p>Xuất dữ liệu thủ công hoặc cập nhật thẳng lên GitHub.</p></div><span class="step-number">03</span></div>
             <div class="panel-body">
-              <div class="save-actions"><button id="draftBtn" type="button" class="btn btn-muted">▤ Lưu bản nháp</button><button id="downloadBtn" type="button" class="btn btn-soft">↓ Tải data.js</button></div>
+              <div class="save-actions"><button id="draftBtn" type="button" class="btn btn-muted">▤ Lưu bản nháp</button><button id="downloadBtn" type="button" class="btn btn-soft">↓ Tải bản sao data.js</button></div>
               <div class="publish-divider"><span>HOẶC ĐĂNG TRỰC TIẾP LÊN GITHUB</span></div>
               <div class="github-fields"><div class="field"><label for="repoOwner">GitHub username</label><input id="repoOwner" type="text" placeholder="nghialqtv" autocapitalize="off" spellcheck="false"></div><div class="field"><label for="repoName">Tên repository</label><input id="repoName" type="text" placeholder="SubUnlock" autocapitalize="off" spellcheck="false"></div><div class="field"><label for="repoBranch">Branch</label><input id="repoBranch" type="text" value="main" placeholder="main" autocapitalize="off" spellcheck="false"></div></div>
-              <div class="field"><label for="githubToken">GitHub fine-grained token <span class="required">*</span></label><div class="token-row"><input id="githubToken" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="github_pat_..."><button id="showToken" type="button" class="show-token" aria-label="Hiện hoặc ẩn token">Hiện</button></div><small>Token chỉ nằm trong bộ nhớ của trang đang mở, không được lưu vào file, localStorage hay mã nguồn. Giới hạn token vào repository này và quyền <strong>Contents: Read and write</strong>.</small></div>
+              <div class="field"><label for="githubToken">GitHub fine-grained token <span class="required">*</span></label><div class="token-row"><input id="githubToken" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="github_pat_..."><button id="showToken" type="button" class="show-token" aria-label="Hiện hoặc ẩn token">Hiện</button></div><small>Không dán token vào mã nguồn. Token chỉ nằm trong bộ nhớ của trang đang mở, không được lưu vào file, localStorage hay mã nguồn. Giới hạn token vào repository này và quyền <strong>Contents: Read and write</strong>.</small></div>
               <div class="github-actions"><button id="testGithubBtn" class="btn btn-muted" type="button">Kiểm tra kết nối</button><button id="publishBtn" class="btn btn-primary" type="button">↗ Đăng lên GitHub</button></div>
               <p class="publish-note"><strong>Quan trọng:</strong> GitHub Pages không có cơ sở dữ liệu tự ghi. Bạn phải có quyền quản lý repository để đăng. Sau khi cập nhật, GitHub Pages có thể cần một lúc để phát hành phiên bản mới.</p>
             </div>
@@ -101,6 +101,6 @@
     </main>
   </div>
   <script src="data.js?v=20261117-studio-v5"></script>
-  <script src="admin.js?v=20261117-studio-v5"></script>
+  <script src="data-loader.js?v=shards-v1"></script>
 </body>
 </html>

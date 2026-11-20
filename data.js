@@ -6,7 +6,7 @@ const DEFAULT_TIKTOK = "https://www.tiktok.com/@ytb_nghialq_tv";
 const DEFAULT_TELE = "https://t.me/+gI22PHmUi5xhMDA9";
 const CYBER_MODS_URL = "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb";
 
-const pages = {
+let pages = {
   "tainguyen": {
     "unlock": "https://gofile.io/d/dqDr1WCQ",
     "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
