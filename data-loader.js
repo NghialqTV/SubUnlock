@@ -24,6 +24,6 @@
     }
   } catch(e) { console.error('Data shards could not be loaded. Using legacy fallback.',e); }
   const script=document.createElement('script');
-  script.src=document.body.dataset.adminPage==='yes'?'admin.js?v=shards-v1':'app.js?v=shards-v1';
+  script.src=document.body.dataset.adminPage==='yes'?'admin.js?v=shards-v2':'app.js?v=shards-v2';
   document.body.appendChild(script);
 })();

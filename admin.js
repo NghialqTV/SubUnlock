@@ -222,8 +222,8 @@
   }
   function b64Utf8(value){const bin=atob(value.replace(/\s/g,''));const bytes=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);return new TextDecoder().decode(bytes);}
   async function githubApi(method,config,path,body){
-    const url='https://api.github.com/repos/'+encodeURIComponent(config.owner)+'/'+encodeURIComponent(config.repo)+'/'+path;
-    const resp=await fetch(url,{method,headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+config.token,'X-GitHub-Api-Version':'2022-11-28',...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{}) ,cache:'no-store'});
+    const url='https://api.github.com/repos/'+encodeURIComponent(config.owner)+'/'+encodeURIComponent(config.repo)+(path?'/'+path:'');
+    let resp;try{resp=await fetch(url,{method,headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+config.token,'X-GitHub-Api-Version':'2022-11-28',...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{}) ,cache:'no-store'});}catch(e){throw Error('Không kết nối được GitHub API ('+method+' '+(path||'repository')+'). Kiểm tra mạng, trình duyệt hoặc tiện ích chặn kết nối. Chi tiết: '+e.message);}
     const result=await resp.json().catch(()=>({}));
     if(!resp.ok){
       const hint=resp.status===404?'Không tìm thấy repository, branch hoặc tài nguyên API. Kiểm tra GitHub username, tên repository, branch và quyền truy cập token (Contents: Read and write).':resp.status===401?'Token không hợp lệ hoặc đã hết hạn.':resp.status===403?'Token thiếu quyền hoặc bị giới hạn API.':resp.status===409?'Có xung đột dữ liệu; tải lại trang trước khi đăng.':'';
@@ -248,39 +248,43 @@
     return {files,parts:result};
   }
   async function publishShards(config){
-    // One atomic Git commit: readers never see a half-published manifest and shards.
-    const refPath='git/ref/heads/'+config.branch.split('/').map(encodeURIComponent).join('/');
-    // Check repository and branch separately so a 404 is actionable.
+    // Validate remote state first. A single atomic commit updates both legacy and sharded data.
     await githubApi('GET',config,'');
-    await githubApi('GET',config,'branches/'+encodeURIComponent(config.branch));
-    const oldRef=await githubApi('GET',config,refPath);
-    const oldCommit=await githubApi('GET',config,'git/commits/'+oldRef.object.sha);
+    const branch=await githubApi('GET',config,'branches/'+encodeURIComponent(config.branch));
+    const refPath='git/refs/heads/'+config.branch.split('/').map(encodeURIComponent).join('/');
+    const oldSha=branch.commit.sha;
+    const oldCommit=await githubApi('GET',config,'git/commits/'+oldSha);
     const oldTree=await githubApi('GET',config,'git/trees/'+oldCommit.tree.sha+'?recursive=1');
-    if(oldTree.truncated)throw Error('Repository tree too large for safe publishing.');
+    if(oldTree.truncated)throw Error('Repository quá lớn; dừng để tránh ghi đè dữ liệu.');
     const oldManifest=oldTree.tree.find(item=>item.path==='data/manifest.json');
     const shardPaths=oldTree.tree.filter(item=>/^data\/part-[0-9]{5}\.json$/.test(item.path));
-    // Ensure the remote data state has not changed since page load.
     const remote=await requestGitHub('GET',config);
-    if(!remote.content || !baselineText || b64Utf8(remote.content).replace(/\r\n/g,'\n').trim()!==baselineText.replace(/\r\n/g,'\n').trim())
-      throw Error('data.js changed remotely. Reload before publishing.');
+    if(!remote.content)throw Error('Không đọc được data.js trên GitHub. Dừng để bảo vệ dữ liệu.');
+    const remoteText=b64Utf8(remote.content).replace(/\r\n/g,'\n').trim();
+    const localText=(baselineText||'').replace(/\r\n/g,'\n').trim();
+    if(!oldManifest && (!localText || remoteText!==localText))
+      throw Error('data.js trên GitHub khác bản website đang mở. Hãy đồng bộ website hoặc tải bản sao trước; không tự ghi đè dữ liệu cũ.');
     if(oldManifest){
-      const response=await githubApi('GET',config,'contents/data/manifest.json?ref='+encodeURIComponent(config.branch));
-      if(response.sha!==loadedManifestSha)throw Error('Dữ liệu phân mảnh trên GitHub đã thay đổi. Tải lại trang trước khi đăng.');
-    }else if(loadedManifestSha)throw Error('Manifest has been removed remotely.');
+      const manifestResponse=await githubApi('GET',config,'contents/data/manifest.json?ref='+encodeURIComponent(config.branch));
+      if(!loadedManifestSha)throw Error('Đã có dữ liệu phân mảnh trên GitHub. Hãy nhấn KIỂM TRA KẾT NỐI trước khi đăng để xác nhận phiên bản mới nhất.');
+      if(manifestResponse.sha!==loadedManifestSha)throw Error('Dữ liệu GitHub đã thay đổi từ lần kiểm tra gần nhất. Hãy tải lại trang, kiểm tra kết nối rồi đăng lại.');
+      const manifest=JSON.parse(b64Utf8(manifestResponse.content));
+      if(manifest.count!==Object.keys(initialPages).length)
+        throw Error('Số link trên GitHub ('+manifest.count+') khác dữ liệu trang đang mở ('+Object.keys(initialPages).length+'). Dừng để tránh mất link; hãy tải lại trang.');
+    }
     const shards=makeShards();
     const version=Date.now().toString();
     const changes=[];
     for(let i=0;i<shards.files.length;i++)changes.push({path:'data/'+shards.files[i],mode:'100644',type:'blob',content:JSON.stringify(shards.parts[i])});
     const manifest={version,count:Object.keys(entries).length,files:shards.files};
     changes.push({path:'data/manifest.json',mode:'100644',type:'blob',content:JSON.stringify(manifest,null,2)+'\n'});
+    changes.push({path:'data.js',mode:'100644',type:'blob',content:sourceCode()});
     for(const old of shardPaths)if(!shards.files.includes(old.path.slice(5)))changes.push({path:old.path,mode:'100644',type:'blob',sha:null});
-    // Retain legacy data.js as fallback for old links and when network is unavailable.
-    // New installations use the sharded manifest as the source of truth.
     const tree=await githubApi('POST',config,'git/trees',{base_tree:oldCommit.tree.sha,tree:changes});
-    const commit=await githubApi('POST',config,'git/commits',{message:'Admin: cập nhật '+manifest.count+' link (sharded data)',tree:tree.sha,parents:[oldRef.object.sha]});
-    // GitHub rejects a non-fast-forward update if another admin pushed meanwhile.
+    const commit=await githubApi('POST',config,'git/commits',{message:'SubUnlock: cập nhật đồng bộ '+manifest.count+' link',tree:tree.sha,parents:[oldSha]});
     await githubApi('PATCH',config,refPath,{sha:commit.sha,force:false});
-    loadedManifestSha=null; // reload is required before the next publish
+    loadedManifestSha=null;
+    baselineText=sourceCode();
     return manifest;
   }
   let loadedManifestSha=null;
@@ -306,7 +310,7 @@
       // Validate against the live manifest when publishing from this session.
       const manifest=await publishShards(config);
       await clearDraft().catch(()=>{});
-      alertUser('Đã đăng '+manifest.count+' link trong '+manifest.files.length+' file dữ liệu. Tải lại Admin trước lần đăng tiếp theo.');
+      alertUser('Đã đăng đồng bộ '+manifest.count+' link (data.js và '+manifest.files.length+' file dữ liệu). Tải lại Admin trước lần đăng tiếp theo.');
     }catch(e){alertUser('Không thể đăng: '+e.message,'error');}finally{setBusy(false);}
   }
   async function copyShareUrl(){
