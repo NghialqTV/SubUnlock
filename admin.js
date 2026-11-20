@@ -225,7 +225,10 @@
     const url='https://api.github.com/repos/'+encodeURIComponent(config.owner)+'/'+encodeURIComponent(config.repo)+'/'+path;
     const resp=await fetch(url,{method,headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+config.token,'X-GitHub-Api-Version':'2022-11-28',...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{}) ,cache:'no-store'});
     const result=await resp.json().catch(()=>({}));
-    if(!resp.ok)throw Error('GitHub HTTP '+resp.status+': '+(result.message||'Unknown error'));
+    if(!resp.ok){
+      const hint=resp.status===404?'Không tìm thấy repository, branch hoặc tài nguyên API. Kiểm tra GitHub username, tên repository, branch và quyền truy cập token (Contents: Read and write).':resp.status===401?'Token không hợp lệ hoặc đã hết hạn.':resp.status===403?'Token thiếu quyền hoặc bị giới hạn API.':resp.status===409?'Có xung đột dữ liệu; tải lại trang trước khi đăng.':'';
+      throw Error('GitHub HTTP '+resp.status+' tại '+method+' /'+path.split('?')[0]+': '+(result.message||'Unknown error')+(hint?' — '+hint:''));
+    }
     return result;
   }
   async function requestGitHub(method,config,body){
@@ -247,6 +250,9 @@
   async function publishShards(config){
     // One atomic Git commit: readers never see a half-published manifest and shards.
     const refPath='git/ref/heads/'+config.branch.split('/').map(encodeURIComponent).join('/');
+    // Check repository and branch separately so a 404 is actionable.
+    await githubApi('GET',config,'');
+    await githubApi('GET',config,'branches/'+encodeURIComponent(config.branch));
     const oldRef=await githubApi('GET',config,refPath);
     const oldCommit=await githubApi('GET',config,'git/commits/'+oldRef.object.sha);
     const oldTree=await githubApi('GET',config,'git/trees/'+oldCommit.tree.sha+'?recursive=1');
@@ -255,7 +261,7 @@
     const shardPaths=oldTree.tree.filter(item=>/^data\/part-[0-9]{5}\.json$/.test(item.path));
     // Ensure the remote data state has not changed since page load.
     const remote=await requestGitHub('GET',config);
-    if(!remote.content || b64Utf8(remote.content).replace(/\r\n/g,'\n').trim()!==baselineText.replace(/\r\n/g,'\n').trim())
+    if(!remote.content || !baselineText || b64Utf8(remote.content).replace(/\r\n/g,'\n').trim()!==baselineText.replace(/\r\n/g,'\n').trim())
       throw Error('data.js changed remotely. Reload before publishing.');
     if(oldManifest){
       const response=await githubApi('GET',config,'contents/data/manifest.json?ref='+encodeURIComponent(config.branch));
@@ -288,7 +294,7 @@
   function setBusy(on){busy=on;['publishBtn','testGithubBtn','downloadBtn','draftBtn'].forEach(id=>{$(id).disabled=on;});}
   async function testGitHub(){
     if(busy)return;let config;try{config=getRepoParts();}catch(e){alertUser(e.message,'error');return;}
-    setBusy(true);try{const result=await requestGitHub('GET',config);await checkManifestBaseline();alertUser('Kết nối thành công! Tìm thấy data.js tại '+config.owner+'/'+config.repo+' · '+config.branch+' (SHA '+result.sha.slice(0,8)+').');}
+    setBusy(true);try{await githubApi('GET',config,'');await githubApi('GET',config,'branches/'+encodeURIComponent(config.branch));const result=await requestGitHub('GET',config);await checkManifestBaseline();alertUser('Kết nối thành công! Tìm thấy data.js tại '+config.owner+'/'+config.repo+' · '+config.branch+' (SHA '+result.sha.slice(0,8)+').');}
     catch(e){alertUser(e.message,'error');}finally{setBusy(false);}
   }
   async function publishGithub(){
