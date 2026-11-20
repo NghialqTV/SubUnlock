@@ -6,7 +6,7 @@ const DEFAULT_TIKTOK = "https://www.tiktok.com/@ytb_nghialq_tv";
 const DEFAULT_TELE = "https://t.me/+gI22PHmUi5xhMDA9";
 const CYBER_MODS_URL = "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb";
 
-let pages = {
+const pages = {
   "tainguyen": {
     "unlock": "https://gofile.io/d/dqDr1WCQ",
     "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
@@ -946,6 +946,36 @@ let pages = {
   "ios-van-tam-kiem": {
     "title": "Ios vấn tâm kiếm",
     "unlock": "https://linkx.me/XhOtg",
+    "tasks": [
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh NghĩaLQ TV",
+        "url": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg"
+      },
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh Cyber Mods",
+        "url": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+      },
+      {
+        "type": "tiktok",
+        "label": "Follow TikTok",
+        "url": "https://www.tiktok.com/@ytb_nghialq_tv"
+      },
+      {
+        "type": "telegram",
+        "label": "Tham Gia Telegram",
+        "url": "https://t.me/+gI22PHmUi5xhMDA9"
+      }
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+  },
+  "hihhaha": {
+    "title": "Hihhaha",
+    "unlock": "https://linkx.me/KXL3E",
     "tasks": [
       {
         "type": "youtube",
