@@ -943,8 +943,8 @@ const pages = {
     "tele": "https://t.me/+gI22PHmUi5xhMDA9",
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
-  "edras-ios-van-tam-kieme-full": {
-    "title": "edras ios Vấn tâm kieme full",
+  "ios-van-tam-kiem": {
+    "title": "Ios vấn tâm kiếm",
     "unlock": "https://linkx.me/XhOtg",
     "tasks": [
       {
