@@ -122,6 +122,9 @@
       [inputLabel,inputUrl].forEach(el=>el.addEventListener('input',()=>{storeCurrent();refreshPreview();}));
     });
   }
+  // Edits remain in the in-memory entries object until explicit export/publish.
+  // Previously this function was referenced but missing, breaking Create New Link.
+  function queueAutosave() { /* no persistent draft: avoid overwriting published data */ }
   function storeCurrent() {
     if(editing || !selectedId || !entries[selectedId]) return true;
     const newId=$('linkSlug').value.trim();
