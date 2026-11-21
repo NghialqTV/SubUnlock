@@ -1237,7 +1237,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "link-moi": {
     "title": "[Android] Billow Trục Hoa",
@@ -1263,7 +1267,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "ios-billow-truc-hoa": {
     "title": "[IOS] Billow Trục Hoa",
@@ -1289,7 +1297,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "android-allain-benmaru": {
     "title": "[ Android ] Allain Benmaru",
@@ -1315,7 +1327,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "ios-allain-benimaru": {
     "title": "[IOS] Allain Benimaru",
@@ -1341,7 +1357,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "android-tamyn-vo-song-phi-tuong": {
     "title": "[Android] Tamyn Vô Song Phi Tướng",
@@ -1367,7 +1387,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "ios-tamyn-vo-song-phi-tuong": {
     "title": "[IOS] Tamyn Vô Song Phi Tướng",
@@ -1393,7 +1417,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "android-ellandooor-ly-hann-yen": {
     "title": "[Android] Ellandooor Lý Hânn Yên",
@@ -1419,7 +1447,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "ios-ellandooor-ly-han-yen": {
     "title": "[ IOS ] Ellandooor Lý Hận Yên",
@@ -1445,7 +1477,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "android-amily-than-toi": {
     "title": "[ Android ] Amily Thần Tội",
@@ -1471,7 +1507,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "ios-amily-than-toi": {
     "title": "[ IOS ] Amily Thần Tội",
@@ -1497,7 +1537,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "android-amily-bach-ngan": {
     "title": "[Android] Amily Bạch Ngân",
@@ -1523,11 +1567,45 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "ios-amily-bach-ngan": {
     "title": "[IOS] Amily Bạch Ngân",
     "unlock": "https://linkx.me/oQkheH6y",
+    "tasks": [
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh NghĩaLQ TV",
+        "url": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg"
+      },
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh Cyber Mods",
+        "url": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+      },
+      {
+        "type": "tiktok",
+        "label": "Follow TikTok",
+        "url": "https://www.tiktok.com/@ytb_nghialq_tv"
+      },
+      {
+        "type": "telegram",
+        "label": "Tham Gia Telegram",
+        "url": "https://t.me/+gI22PHmUi5xhMDA9"
+      }
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+  },
+  "android-tamyn-robot-edras-vtk": {
+    "title": "[Android] Tamyn Robot + Edras VTK",
+    "unlock": "https://linkx.me/WE3ZFzo0",
     "tasks": [
       {
         "type": "youtube",
