@@ -33,7 +33,7 @@
   let initialPages = typeof pages === 'object' && pages !== null ? JSON.parse(JSON.stringify(pages)) : {};
   const published=getPublished();
   // Pages deployment may lag behind the confirmed Git commit.
-  const pendingPublished=published && published.pages && String(window.__subunlockManifestVersion||'')!==String(published.version) && Object.keys(published.pages).length>=Object.keys(initialPages).length && Date.now()-published.savedAt<86400000;
+  const pendingPublished=published && published.pages && published.owner === (location.hostname.endsWith('.github.io') ? location.hostname.split('.')[0] : 'nghialqtv') && String(window.__subunlockManifestVersion||'')!==String(published.version) && Object.keys(published.pages).length>=Object.keys(initialPages).length && Date.now()-published.savedAt<86400000;
   if(pendingPublished)initialPages=JSON.parse(JSON.stringify(published.pages));
   let entries = JSON.parse(JSON.stringify(initialPages));
   let selectedId = Object.hasOwn ? (Object.hasOwn(entries,'hackmenuios') ? 'hackmenuios' : Object.keys(entries)[0]) : (entries.hackmenuios ? 'hackmenuios' : Object.keys(entries)[0]);
@@ -51,9 +51,9 @@
     return safe(input).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'d')
       .toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,62) || 'link-moi';
   }
-  function makeUniqueSlug(value) {
+  function makeUniqueSlug(value, excludeId) {
     let slug = slugify(value); let n = 2;
-    while (Object.prototype.hasOwnProperty.call(entries,slug)) slug = slugify(value).slice(0,55) + '-' + n++;
+    while (Object.prototype.hasOwnProperty.call(entries,slug) && slug !== excludeId) slug = slugify(value).slice(0,55) + '-' + n++;
     return slug;
   }
   function fallbackTasks(page) {
@@ -311,7 +311,7 @@
       const manifest=await publishShards(config);
       rememberPublished(manifest);
       initialPages=copyPages();
-      loadedManifestSha=await githubApi('GET',config,'contents/data/manifest.json?ref='+encodeURIComponent(config.branch)).then(x=>x.sha);
+      try { loadedManifestSha=await githubApi('GET',config,'contents/data/manifest.json?ref='+encodeURIComponent(config.branch)).then(x=>x.sha); } catch (_) { loadedManifestSha=null; }
       alertUser('Đã đăng đồng bộ '+manifest.count+' link (data.js và '+manifest.files.length+' file dữ liệu). Có thể tạo và đăng link tiếp ngay; GitHub Pages cần thời gian cập nhật.');
     }catch(e){alertUser('Không thể đăng: '+e.message,'error');}finally{setBusy(false);}
   }
@@ -335,7 +335,7 @@
   $('deleteLinkBtn').addEventListener('click',removeCurrent);
   $('searchLinks').addEventListener('input',renderSidebar);
   $('linkTitle').addEventListener('input',()=>{
-    if(autoSlug){$('linkSlug').value=makeUniqueSlug($('linkTitle').value);}
+    if(autoSlug){$('linkSlug').value=makeUniqueSlug($('linkTitle').value,selectedId);}
     if(storeCurrent()){renderSidebar();refreshPreview();}
   });
   $('linkSlug').addEventListener('input',()=>{autoSlug=false;if(validSlug($('linkSlug').value.trim())){hideNotice();if(storeCurrent())renderSidebar();}refreshPreview();});
