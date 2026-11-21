@@ -9,14 +9,10 @@
     if (typeof node.replaceChildren === 'function') node.replaceChildren();
     else while (node.firstChild) node.removeChild(node.firstChild);
   }
-  const DRAFT_KEY = 'subunlock-admin-draft-v2';
-  const DB_NAME = 'subunlock-admin-storage';
-  let autosaveTimer;
-  function openDraftDb(){return new Promise((resolve,reject)=>{const req=indexedDB.open(DB_NAME,1);req.onupgradeneeded=()=>req.result.createObjectStore('drafts');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});}
-  async function putDraft(value){const db=await openDraftDb();try{await new Promise((resolve,reject)=>{const tx=db.transaction('drafts','readwrite');tx.objectStore('drafts').put(value,'latest');tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}finally{db.close();}}
-  async function getDraft(){const db=await openDraftDb();try{return await new Promise((resolve,reject)=>{const tx=db.transaction('drafts','readonly');const req=tx.objectStore('drafts').get('latest');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});}finally{db.close();}}
-  async function clearDraft(){const db=await openDraftDb();try{await new Promise((resolve,reject)=>{const tx=db.transaction('drafts','readwrite');tx.objectStore('drafts').delete('latest');tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}finally{db.close();}}
-  function queueAutosave(){clearTimeout(autosaveTimer);autosaveTimer=setTimeout(()=>{if(!editing&&storeCurrent())putDraft({pages:copyPages(),selectedId,createdAt:Date.now()}).catch(()=>{});},900);}
+  // Keep only a verified publication snapshot until GitHub Pages catches up.
+  const PUBLISHED_KEY='subunlock-last-published-v3';
+  function getPublished(){try{return JSON.parse(localStorage.getItem(PUBLISHED_KEY)||'null');}catch(_){return null;}}
+  function rememberPublished(manifest){try{localStorage.setItem(PUBLISHED_KEY,JSON.stringify({pages:copyPages(),version:manifest.version,owner:document.getElementById('repoOwner').value.trim(),repo:document.getElementById('repoName').value.trim(),branch:document.getElementById('repoBranch').value.trim(),savedAt:Date.now()}));}catch(_){}}
 
   const KINDS = {
     youtube:  {name:'YouTube',   glyph:'▶', label:'Đăng ký kênh YouTube',   hint:'Nhấn để đăng ký kênh YouTube'},
@@ -34,7 +30,11 @@
     followTikTok: typeof DEFAULT_TIKTOK === 'string' ? DEFAULT_TIKTOK : '',
     tele: typeof DEFAULT_TELE === 'string' ? DEFAULT_TELE : ''
   };
-  const initialPages = typeof pages === 'object' && pages !== null ? JSON.parse(JSON.stringify(pages)) : {};
+  let initialPages = typeof pages === 'object' && pages !== null ? JSON.parse(JSON.stringify(pages)) : {};
+  const published=getPublished();
+  // Pages deployment may lag behind the confirmed Git commit.
+  const pendingPublished=published && published.pages && String(window.__subunlockManifestVersion||'')!==String(published.version) && Object.keys(published.pages).length>=Object.keys(initialPages).length && Date.now()-published.savedAt<86400000;
+  if(pendingPublished)initialPages=JSON.parse(JSON.stringify(published.pages));
   let entries = JSON.parse(JSON.stringify(initialPages));
   let selectedId = Object.hasOwn ? (Object.hasOwn(entries,'hackmenuios') ? 'hackmenuios' : Object.keys(entries)[0]) : (entries.hackmenuios ? 'hackmenuios' : Object.keys(entries)[0]);
   let autoSlug = false;
@@ -215,7 +215,6 @@
     const blob=new Blob([content],{type:type||'text/javascript;charset=utf-8'});
     const url=URL.createObjectURL(blob); const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
   }
-  async function saveDraft(){if(!storeCurrent())return;try{await putDraft({pages:copyPages(),selectedId,createdAt:Date.now()});alertUser('Đã lưu bản nháp bằng IndexedDB trên thiết bị này. Chưa thay đổi website công khai.');}catch(e){alertUser('Không lưu được bản nháp: '+e.message+'. Hãy tải bản sao dữ liệu.','error');}}
   function exportFile(){if(!validateAll())return;downloadFile('data.js',sourceCode());alertUser('Đã tải data.js. Hãy tải file này lên đúng vị trí data.js trong repository GitHub Pages để cập nhật website.');}
   function utf8B64(value) {
     const bytes=new TextEncoder().encode(value);let binary='';for(let i=0;i<bytes.length;i+=8192)binary+=String.fromCharCode.apply(null,bytes.subarray(i,i+8192));return btoa(binary);
@@ -295,7 +294,7 @@
       loadedManifestSha=response.sha;
     }catch(e){loadedManifestSha=null;}
   }
-  function setBusy(on){busy=on;['publishBtn','testGithubBtn','downloadBtn','draftBtn'].forEach(id=>{$(id).disabled=on;});}
+  function setBusy(on){busy=on;['publishBtn','testGithubBtn','downloadBtn'].forEach(id=>{$(id).disabled=on;});}
   async function testGitHub(){
     if(busy)return;let config;try{config=getRepoParts();}catch(e){alertUser(e.message,'error');return;}
     setBusy(true);try{await githubApi('GET',config,'');await githubApi('GET',config,'branches/'+encodeURIComponent(config.branch));const result=await requestGitHub('GET',config);await checkManifestBaseline();alertUser('Kết nối thành công! Tìm thấy data.js tại '+config.owner+'/'+config.repo+' · '+config.branch+' (SHA '+result.sha.slice(0,8)+').');}
@@ -307,10 +306,13 @@
     if(!window.confirm('Đăng '+Object.keys(entries).length+' link lên GitHub dưới dạng nhiều file dữ liệu?'))return;
     setBusy(true);
     try{
-      // Validate against the live manifest when publishing from this session.
+      // Recheck GitHub version before every publish.
+      if(!loadedManifestSha)await checkManifestBaseline();
       const manifest=await publishShards(config);
-      await clearDraft().catch(()=>{});
-      alertUser('Đã đăng đồng bộ '+manifest.count+' link (data.js và '+manifest.files.length+' file dữ liệu). Tải lại Admin trước lần đăng tiếp theo.');
+      rememberPublished(manifest);
+      initialPages=copyPages();
+      loadedManifestSha=await githubApi('GET',config,'contents/data/manifest.json?ref='+encodeURIComponent(config.branch)).then(x=>x.sha);
+      alertUser('Đã đăng đồng bộ '+manifest.count+' link (data.js và '+manifest.files.length+' file dữ liệu). Có thể tạo và đăng link tiếp ngay; GitHub Pages cần thời gian cập nhật.');
     }catch(e){alertUser('Không thể đăng: '+e.message,'error');}finally{setBusy(false);}
   }
   async function copyShareUrl(){
@@ -328,17 +330,6 @@
     }else{$('repoOwner').value='nghialqtv';$('repoName').value='SubUnlock';}
   }
   async function loadBaseline(){try{const response=await fetch('data.js?_admin_source='+Date.now(),{cache:'no-store'});if(response.ok)baselineText=await response.text();}catch(_){} }
-  async function maybeRestoreDraft(){
-    try{
-      const saved=await getDraft() || JSON.parse(localStorage.getItem('subunlock-admin-draft-v1')||'null');
-      if(!saved || !saved.pages || !Object.keys(saved.pages).length)return;
-      const notice=$('notice');notice.replaceChildren();notice.className='notice warn';notice.hidden=false;
-      const msg=document.createTextNode('Có bản nháp tự động trên thiết bị ('+Object.keys(saved.pages).length+' link). ');
-      const btn=document.createElement('button');btn.type='button';btn.textContent='Khôi phục bản nháp';btn.style.cssText='border:1px solid #9f8a57;border-radius:7px;background:#544121;color:#fff2c4;padding:5px 10px;font-weight:800';
-      btn.addEventListener('click',()=>{if(!window.confirm('Khôi phục sẽ thay thế bản chỉnh sửa đang hiển thị trên thiết bị. Tiếp tục?'))return;entries=saved.pages;selectedId=saved.selectedId&&entries[saved.selectedId]?saved.selectedId:Object.keys(entries)[0];autoSlug=false;displaySelected();alertUser('Đã khôi phục bản nháp. Hãy kiểm tra trước khi đăng.');});
-      notice.append(msg,btn);
-    }catch(e){alertUser('Không đọc được bản nháp: '+e.message,'warn');}
-  }
   $('newLinkBtn').addEventListener('click',makeNew);
   $('duplicateLinkBtn').addEventListener('click',duplicate);
   $('deleteLinkBtn').addEventListener('click',removeCurrent);
@@ -356,7 +347,6 @@
     tasks.push({type:kind,label:KINDS[kind].label,url:''});renderTaskEditor(tasks);storeCurrent();refreshPreview();
     const last=$('taskEditorList').lastElementChild;last.scrollIntoView({block:'nearest',behavior:'smooth'});last.querySelector('.task-url').focus();
   });
-  $('draftBtn').addEventListener('click',saveDraft);
   $('downloadBtn').addEventListener('click',exportFile);
   $('testGithubBtn').addEventListener('click',testGitHub);
   $('publishBtn').addEventListener('click',publishGithub);
@@ -364,5 +354,5 @@
   $('showToken').addEventListener('click',()=>{const token=$('githubToken');token.type=token.type==='password'?'text':'password';$('showToken').textContent=token.type==='password'?'Hiện':'Ẩn';});
   setupRepoDefaults();
   if(!selectedId){entries['link-moi']={unlock:'',tasks:fallbackTasks(DEFAULTS)};selectedId='link-moi';}
-  displaySelected();loadBaseline();maybeRestoreDraft();
+  displaySelected();loadBaseline();if(pendingPublished)alertUser('Đã giữ dữ liệu đăng thành công gần nhất trên thiết bị để tránh mất link khi GitHub Pages chưa cập nhật.','warn');
 })();

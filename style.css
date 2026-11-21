@@ -737,3 +737,16 @@ body.light .theme-btn{background:#fff;color:#777}
 @keyframes taskCardFocus{0%,100%{box-shadow:0 0 0 2px rgba(86,151,245,.08),0 10px 20px rgba(0,0,0,.27)}50%{box-shadow:0 0 0 3px rgba(86,151,245,.16),0 13px 25px rgba(0,0,0,.32)}}
 @media(max-width:480px){.tasks-list{gap:10px!important}.tasks-panel .task{min-height:70px!important;grid-template-columns:42px minmax(0,1fr) 20px!important;padding:10px 11px!important;gap:11px!important}.tasks-panel .task-icon{width:40px!important;height:40px!important;border-radius:12px!important}.tasks-panel .task-text strong{font-size:13px!important}}
 @media(prefers-reduced-motion:reduce){.tasks-panel .task.pending{animation:none!important}}
+
+/* GET KEY AOV — subtle performance-friendly motion */
+@keyframes keyEntrance{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes keyGlow{0%,100%{filter:drop-shadow(0 0 0 transparent)}50%{filter:drop-shadow(0 0 12px rgba(90,150,255,.28))}}
+@keyframes keyShimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+.topbar-getkey{animation:keyEntrance .55s ease both}
+.progress-section{animation:keyEntrance .6s .08s ease both}
+.task-card{animation:keyEntrance .48s ease both;transition:transform .22s ease,box-shadow .22s ease}
+.task-card:active{transform:scale(.985)}
+.getkey-brand .mark-game-logo{animation:keyGlow 3.8s ease-in-out infinite}
+#progress{background-image:linear-gradient(110deg,#4389f9,#7ed8ff,#4389f9);background-size:200% 100%;animation:keyShimmer 3s linear infinite;transition:width .45s cubic-bezier(.2,.8,.2,1)}
+#openBtn:not(:disabled){animation:keyGlow 2.6s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.topbar-getkey,.progress-section,.task-card,.getkey-brand .mark-game-logo,#progress,#openBtn:not(:disabled){animation:none!important;transition:none!important}}

@@ -292,7 +292,7 @@
       const unlockIcon = unlockButton.querySelector('svg use');
       if (unlockIcon) unlockIcon.setAttribute('href', isUnlocked ? '#icon-arrow-right' : '#icon-lock');
       const label = $('unlockBtnLabel');
-      if (label) label.textContent = 'Mở Khóa Link Chính';
+      if (label) label.textContent = 'Mở Khóa ' + (pageData.title || 'Liên Kết');
     }
   }
 
