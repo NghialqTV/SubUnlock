@@ -11,7 +11,7 @@
   const params = new URLSearchParams(window.location.search);
   const id = (params.get('id') || params.get('page') || 'hackmenuios').trim();
   const pageData = typeof pages !== 'undefined' ? pages[id] : null;
-  const STATE_KEY = 'subunlock-session-v17-follow-ad-reset:' + id;
+  const STATE_KEY = 'subunlock-session-v18-cyber-download-gates:' + id;
   const SESSION_TTL_MS = 3 * 60 * 1000;
   const GUIDE_URL = 'https://youtu.be/kQGxcf2Pdc4?si=te-oGDi81xcU6lLL';
   const $ = id => document.getElementById(id);
@@ -80,8 +80,10 @@
       pendingAt: 0,
       didLeave: false,
       firstAdLaunched: false,
+      cyberAdReady: false,
       followAdPendingAfterReturn: false,
       unlockAdLaunched: false,
+      unlockAdReady: false,
       unlockPendingAfterAd: false,
       done: Array(totalTasks).fill(false)
     };
@@ -107,11 +109,8 @@
     const navigationType = getNavigationType();
     // A manual reload or a fresh visit starts a clean task run. Back/forward
     // navigation is preserved so returning from YouTube/TikTok does not lose progress.
-    if (navigationType === 'reload' || navigationType === 'navigate') {
-      state = emptyState();
-      persist();
-      return;
-    }
+    // Keep progress on return from an advertisement, including full reloads.
+    // Session expiration still resets the workflow.
     try {
       const parsed = JSON.parse(sessionStorage.getItem(STATE_KEY) || 'null');
       if (!parsed || !Array.isArray(parsed.done) || parsed.done.length !== totalTasks) {
@@ -125,8 +124,10 @@
         pendingAt: Number(parsed.pendingAt) || 0,
         didLeave: parsed.didLeave === true,
         firstAdLaunched: parsed.firstAdLaunched === true,
+        cyberAdReady: parsed.cyberAdReady === true,
         followAdPendingAfterReturn: parsed.followAdPendingAfterReturn === true,
         unlockAdLaunched: parsed.unlockAdLaunched === true,
+        unlockAdReady: parsed.unlockAdReady === true,
         unlockPendingAfterAd: parsed.unlockPendingAfterAd === true,
         done: parsed.done.map(Boolean)
       };
@@ -315,6 +316,21 @@
       notify('Liên kết nhiệm vụ chưa được cấu hình hợp lệ.');
       return;
     }
+    // Cyber Mods: first press opens one ad; second press opens YouTube.
+    const isCyber = /cyber\s*mods?/i.test(task.label) ||
+      (task.type === 'youtube' && validUrl(pageData.cyberMods) && destination === pageData.cyberMods);
+    if (isCyber && !state.cyberAdReady) {
+      const adUrl = pickAdUrl();
+      if (validUrl(adUrl)) {
+        state.cyberAdReady = true;
+        persist();
+        notify('Quảng cáo đã mở. Quay lại trang và bấm lần nữa để thực hiện nhiệm vụ Cyber Mods.');
+        navigateTo(adUrl);
+        return;
+      }
+      notify('Chưa có liên kết quảng cáo hợp lệ.');
+      return;
+    }
     if (state.pendingStep === step) {
       if (state.didLeave) return;
       state.pendingAt = Date.now();
@@ -327,12 +343,6 @@
     state.didLeave = false;
     persist();
     render();
-
-    // The first ad is opened only when the TikTok task is clicked.
-    if (task.type === 'tiktok' && !state.firstAdLaunched) {
-      const adResult = launchFollowTaskAd();
-      if (adResult === 'same-tab') return;
-    }
     navigateTo(destination);
   }
 
@@ -342,22 +352,8 @@
     persist();
   }
   function advanceOnReturn() {
-    if (state.unlockPendingAfterAd) {
-      state.unlockPendingAfterAd = false;
-      persist();
-      // The user already pressed Unlock. If popups were blocked, show the ad
-      // in this tab first, then continue to the requested destination on return.
-      window.location.assign(pageData.unlock);
-      return true;
-    }
-    if (state.followAdPendingAfterReturn && state.pendingStep) {
-      state.followAdPendingAfterReturn = false;
-      state.didLeave = false;
-      state.pendingAt = Date.now();
-      persist();
-      navigateTo(targets[state.pendingStep - 1]);
-      return true;
-    }
+    // Ad return never automatically opens the download or a task.
+    // The user must press the same button again.
     if (!state.pendingStep || !state.didLeave) return false;
     completePendingStep();
     render();
@@ -416,25 +412,20 @@
     const button = $('openBtn');
     if (button) button.disabled = true;
 
-    // Ad #2: only when the completed user presses the main unlock button.
-    if (!state.unlockAdLaunched) {
+    // First press: one advertisement in this tab. Second press: actual link.
+    if (!state.unlockAdReady) {
       const adUrl = pickAdUrl();
-      if (validUrl(adUrl)) {
-        state.unlockAdLaunched = true;
-        persist();
-        const opened = openAdPopup(adUrl);
-        if (opened) {
-          window.location.assign(pageData.unlock);
-          return;
-        }
-        // Popup blocked: use the current tab for the ad, then automatically
-        // continue to the unlock URL when the user returns with Back.
-        state.unlockPendingAfterAd = true;
-        persist();
-        window.location.assign(adUrl);
+      if (!validUrl(adUrl)) {
+        if (button) button.disabled = false;
+        notify('Chưa có liên kết quảng cáo hợp lệ.');
         return;
       }
-      notify('Không có link quảng cáo hợp lệ. Đang mở link chính.');
+      state.unlockAdReady = true;
+      state.unlockAdLaunched = true;
+      persist();
+      if (button) button.disabled = false;
+      navigateTo(adUrl);
+      return;
     }
     window.location.assign(pageData.unlock);
   }
