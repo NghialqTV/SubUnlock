@@ -1777,6 +1777,36 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+  },
+  "android-wukong-nhoc-ti-co-hop": {
+    "title": "[Android] Wukong Nhóc Tì Có Hộp",
+    "unlock": "https://linkx.me/p50YrKvB",
+    "tasks": [
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh NghĩaLQ TV",
+        "url": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg"
+      },
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh Cyber Mods",
+        "url": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+      },
+      {
+        "type": "tiktok",
+        "label": "Follow TikTok",
+        "url": "https://www.tiktok.com/@ytb_nghialq_tv"
+      },
+      {
+        "type": "telegram",
+        "label": "Tham Gia Telegram",
+        "url": "https://t.me/+gI22PHmUi5xhMDA9"
+      }
     ]
   }
 };
