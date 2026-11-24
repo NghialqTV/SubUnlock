@@ -1178,7 +1178,7 @@ const pages = {
   },
   "android-ios-mod-pack-30-skin-ver4": {
     "title": "[ Android - IOS ] Mod Pack 30 Skin Ver4",
-    "unlock": "https://linkx.me/l66QN93h",
+    "unlock": "https://vuotlink.xyz/VpX5e",
     "tasks": [
       {
         "type": "youtube",
