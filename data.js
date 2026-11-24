@@ -638,7 +638,7 @@ const pages = {
   },
   "android-ios-mod-map-mien-dat-hua": {
     "title": "[Android - IOS] Mod Map Miền Đất Hứa",
-    "unlock": "https://linkx.me/MXzJ12o",
+    "unlock": "https://vuotlink.xyz/pC7Khk",
     "tasks": [
       {
         "type": "youtube",
