@@ -1854,7 +1854,7 @@ const pages = {
   },
   "android-wukong-nhoc-ti-co-hop": {
     "title": "[Android] Wukong Nhóc Tì Có Hộp",
-    "unlock": "https://linkx.me/p50YrKvB",
+    "unlock": "https://vuotlink.xyz/PmTn",
     "tasks": [
       {
         "type": "youtube",
