@@ -66,34 +66,11 @@ const pages = {
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "resources": {
-    "unlock": "https://www.mediafire.com/file/0fyqgz83qg1cbjj/%255BFull_Resources%255D_2026-11-17.zip/fileTh%25C3%25A1ng_11.zip/file",
+    "unlock": "https://www.mediafire.com/file/pistid6s2d7995n/%255BNgh%25C4%25A9alqTV%255D_Resources_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_4_Th%25C3%25A1ng_11.zip/file",
     "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
     "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
     "tele": "https://t.me/+gI22PHmUi5xhMDA9",
-    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb",
-    "title": "",
-    "tasks": [
-      {
-        "type": "youtube",
-        "label": "Đăng Kí Kênh NghĩaLQ TV",
-        "url": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg"
-      },
-      {
-        "type": "youtube",
-        "label": "Đăng Kí Kênh Cyber Mods",
-        "url": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
-      },
-      {
-        "type": "tiktok",
-        "label": "Follow TikTok",
-        "url": "https://www.tiktok.com/@ytb_nghialq_tv"
-      },
-      {
-        "type": "telegram",
-        "label": "Tham Gia Telegram",
-        "url": "https://t.me/+gI22PHmUi5xhMDA9"
-      }
-    ]
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "ipaios": {
     "unlock": "https://linkx.me/VQxmGUP",
@@ -114,30 +91,7 @@ const pages = {
     "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
     "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
     "tele": "https://t.me/+gI22PHmUi5xhMDA9",
-    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb",
-    "title": "",
-    "tasks": [
-      {
-        "type": "youtube",
-        "label": "Đăng Kí Kênh NghĩaLQ TV",
-        "url": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg"
-      },
-      {
-        "type": "youtube",
-        "label": "Đăng Kí Kênh Cyber Mods",
-        "url": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
-      },
-      {
-        "type": "tiktok",
-        "label": "Follow TikTok",
-        "url": "https://www.tiktok.com/@ytb_nghialq_tv"
-      },
-      {
-        "type": "telegram",
-        "label": "Tham Gia Telegram",
-        "url": "https://t.me/+gI22PHmUi5xhMDA9"
-      }
-    ]
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "keyandroidv2": {
     "unlock": "https://www.vnmods.baby/GETKEY/trungnghia04",
@@ -264,7 +218,7 @@ const pages = {
   },
   "resources-update-17-11": {
     "title": "Resources Update 17/11",
-    "unlock": "https://www.mediafire.com/file/0fyqgz83qg1cbjj/%255BFull_Resources%255D_2026-11-17.zip/file",
+    "unlock": "https://www.mediafire.com/file/vepm8y6wa4f46w9/Resources_%255B17.11.2026%255D.zip/file",
     "tasks": [
       {
         "type": "youtube",
@@ -594,7 +548,7 @@ const pages = {
   },
   "pack-90-skin-ver-1": {
     "title": "Pack 90 skin Ver 1",
-    "unlock": "https://linkx.me/WV50L",
+    "unlock": "https://vuotlink.xyz/vz8R",
     "tasks": [
       {
         "type": "youtube",
@@ -1794,7 +1748,7 @@ const pages = {
   },
   "android-nakroth-vu-anh-lang-hon": {
     "title": "[Android] Nakroth Vụ Ảnh Lang Hồn",
-    "unlock": "https://vuotlink.xyz/WQcjz",
+    "unlock": "https://linkx.me/bMpDc",
     "tasks": [
       {
         "type": "youtube",
@@ -1824,7 +1778,7 @@ const pages = {
   },
   "android-ios-file-fix-reset-an": {
     "title": "[Android - IOS] File Fix Reset Ẩn",
-    "unlock": "https://vuotlink.xyz/f7k4s",
+    "unlock": "https://linkx.me/KLID",
     "tasks": [
       {
         "type": "youtube",
@@ -1854,7 +1808,7 @@ const pages = {
   },
   "android-wukong-nhoc-ti-co-hop": {
     "title": "[Android] Wukong Nhóc Tì Có Hộp",
-    "unlock": "https://vuotlink.xyz/PmTn",
+    "unlock": "https://linkx.me/p50YrKvB",
     "tasks": [
       {
         "type": "youtube",
@@ -1884,7 +1838,7 @@ const pages = {
   },
   "ios-wukong-nhoc-ti-co-hop": {
     "title": "[IOS] Wukong Nhóc Tì Có Hộp",
-    "unlock": "https://vuotlink.xyz/VH06AN",
+    "unlock": "https://linkx.me/WnEDDvSu",
     "tasks": [
       {
         "type": "youtube",
