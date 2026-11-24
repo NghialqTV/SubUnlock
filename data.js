@@ -1794,7 +1794,7 @@ const pages = {
   },
   "android-nakroth-vu-anh-lang-hon": {
     "title": "[Android] Nakroth Vụ Ảnh Lang Hồn",
-    "unlock": "https://linkx.me/bMpDc",
+    "unlock": "https://vuotlink.xyz/WQcjz",
     "tasks": [
       {
         "type": "youtube",
