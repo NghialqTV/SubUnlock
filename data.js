@@ -66,11 +66,34 @@ const pages = {
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "resources": {
-    "unlock": "https://www.mediafire.com/file/pistid6s2d7995n/%255BNgh%25C4%25A9alqTV%255D_Resources_C%25E1%25BA%25ADp_Nh%25E1%25BA%25ADt_4_Th%25C3%25A1ng_11.zip/file",
+    "unlock": "https://www.mediafire.com/file/0fyqgz83qg1cbjj/%255BFull_Resources%255D_2026-11-17.zip/fileTh%25C3%25A1ng_11.zip/file",
     "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
     "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
     "tele": "https://t.me/+gI22PHmUi5xhMDA9",
-    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb",
+    "title": "",
+    "tasks": [
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh NghĩaLQ TV",
+        "url": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg"
+      },
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh Cyber Mods",
+        "url": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+      },
+      {
+        "type": "tiktok",
+        "label": "Follow TikTok",
+        "url": "https://www.tiktok.com/@ytb_nghialq_tv"
+      },
+      {
+        "type": "telegram",
+        "label": "Tham Gia Telegram",
+        "url": "https://t.me/+gI22PHmUi5xhMDA9"
+      }
+    ]
   },
   "ipaios": {
     "unlock": "https://linkx.me/VQxmGUP",
