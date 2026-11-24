@@ -488,7 +488,7 @@ const pages = {
   },
   "android-billow-anh-vu-lang-hon": {
     "title": "[Android] Billow Ảnh Vụ Lang Hồn",
-    "unlock": "https://linkx.me/HMR4eDwK",
+    "unlock": "https://vuotlink.xyz/SXDft",
     "tasks": [
       {
         "type": "youtube",
