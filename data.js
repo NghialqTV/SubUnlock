@@ -915,7 +915,7 @@ const pages = {
   },
   "mod-aov": {
     "title": "Mod AOV",
-    "unlock": "https://linkx.me/4XhY",
+    "unlock": "https://vuotlink.net/2PzSsw",
     "tasks": [
       {
         "type": "youtube",
