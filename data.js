@@ -1688,7 +1688,7 @@ const pages = {
   },
   "amdroid-tamyn-ki-nguyen-edras-van-tam-kiem": {
     "title": "[Amdroid] Tamyn Kỉ Nguyên - Edras Vấn Tâm Kiếm",
-    "unlock": "https://linkx.me/u3rLE6t",
+    "unlock": "https://vuotlink.xyz/Cac2c",
     "tasks": [
       {
         "type": "youtube",
