@@ -278,7 +278,7 @@ const pages = {
   },
   "ios-edras-van-tam-kiem": {
     "title": "[IOS] Edras Vấn Tâm Kiếm",
-    "unlock": "https://linkx.me/CoRnFmt",
+    "unlock": "https://vuotlink.xyz/HZu",
     "tasks": [
       {
         "type": "youtube",
