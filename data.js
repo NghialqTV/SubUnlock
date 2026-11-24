@@ -1028,7 +1028,7 @@ const pages = {
   },
   "maphok-full-android-ios": {
     "title": "MapHOK Full Android IOS",
-    "unlock": "https://linkx.me/KXL3E",
+    "unlock": "https://vuotlink.xyz/iKnsvJ",
     "tasks": [
       {
         "type": "youtube",
