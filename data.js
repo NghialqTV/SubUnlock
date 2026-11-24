@@ -578,7 +578,7 @@ const pages = {
   },
   "camera-xa-update-17-11": {
     "title": "Camera Xa Update 17.11",
-    "unlock": "https://linkx.me/fZGUlk95",
+    "unlock": "https://vuotlink.xyz/GA26Kg",
     "tasks": [
       {
         "type": "youtube",
