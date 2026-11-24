@@ -878,7 +878,7 @@ const pages = {
   },
   "camxa-android-ios-2": {
     "title": "CAMXA [ANDROID - IOS]",
-    "unlock": "https://linkx.me/GwFzrg",
+    "unlock": "https://vuotlink.xyz/GA26Kg",
     "tasks": [
       {
         "type": "youtube",
