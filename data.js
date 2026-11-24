@@ -1884,7 +1884,7 @@ const pages = {
   },
   "ios-wukong-nhoc-ti-co-hop": {
     "title": "[IOS] Wukong Nhóc Tì Có Hộp",
-    "unlock": "https://linkx.me/WnEDDvSu",
+    "unlock": "https://vuotlink.xyz/VH06AN",
     "tasks": [
       {
         "type": "youtube",
