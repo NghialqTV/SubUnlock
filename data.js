@@ -1125,7 +1125,7 @@ const pages = {
   },
   "aov-mod": {
     "title": "AoV Mod",
-    "unlock": "https://linkx.me/2JIdJA",
+    "unlock": "https://vuotlink.net/2PzSsw",
     "tasks": [
       {
         "type": "youtube",
@@ -1807,7 +1807,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "ios-wukong-nhoc-ti-co-hop": {
     "title": "[IOS] Wukong Nhóc Tì Có Hộp",
@@ -1833,7 +1837,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   }
 };
 
