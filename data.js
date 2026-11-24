@@ -98,7 +98,30 @@ const pages = {
     "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
     "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
     "tele": "https://t.me/+gI22PHmUi5xhMDA9",
-    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb",
+    "title": "",
+    "tasks": [
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh NghĩaLQ TV",
+        "url": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg"
+      },
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh Cyber Mods",
+        "url": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+      },
+      {
+        "type": "tiktok",
+        "label": "Follow TikTok",
+        "url": "https://www.tiktok.com/@ytb_nghialq_tv"
+      },
+      {
+        "type": "telegram",
+        "label": "Tham Gia Telegram",
+        "url": "https://t.me/+gI22PHmUi5xhMDA9"
+      }
+    ]
   },
   "hackv2goc": {
     "unlock": "https://www.mediafire.com/file/6jqqmzrd6gnf2yx/LQMOD_1.64.1.7.apk/file",
@@ -885,7 +908,7 @@ const pages = {
   },
   "map-aov": {
     "title": "MAP AOV",
-    "unlock": "https://linkx.me/7Vwv7vi",
+    "unlock": "https://vuotlink.xyz/wf2fgH",
     "tasks": [
       {
         "type": "youtube",
