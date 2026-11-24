@@ -608,7 +608,7 @@ const pages = {
   },
   "android-ios-pack-50-skin-nghialq-tv": {
     "title": "[ Android - IOS ] PACK 50 SKIN NGHIALQ TV",
-    "unlock": "https://linkx.me/TgtUr",
+    "unlock": "https://vuotlink.xyz/iKH",
     "tasks": [
       {
         "type": "youtube",
