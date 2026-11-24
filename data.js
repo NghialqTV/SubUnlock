@@ -1824,7 +1824,7 @@ const pages = {
   },
   "android-ios-file-fix-reset-an": {
     "title": "[Android - IOS] File Fix Reset Ẩn",
-    "unlock": "https://linkx.me/KLID",
+    "unlock": "https://vuotlink.xyz/f7k4s",
     "tasks": [
       {
         "type": "youtube",
