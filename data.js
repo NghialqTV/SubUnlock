@@ -668,7 +668,7 @@ const pages = {
   },
   "144-fps-cao": {
     "title": "144 FPS CAO",
-    "unlock": "https://linkx.me/a90en4",
+    "unlock": "https://vuotlink.xyz/AoHq",
     "tasks": [
       {
         "type": "youtube",
