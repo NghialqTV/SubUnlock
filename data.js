@@ -1925,6 +1925,32 @@ const pages = {
     "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
     "tele": "https://t.me/+gI22PHmUi5xhMDA9",
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+  },
+  "pack-30-skin-ver1-update-27-11": {
+    "title": "Pack 30 Skin Ver1 Update 27.11",
+    "unlock": "https://vuotlink.xyz/Bc5",
+    "tasks": [
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh NghĩaLQ TV",
+        "url": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg"
+      },
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh Cyber Mods",
+        "url": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+      },
+      {
+        "type": "tiktok",
+        "label": "Follow TikTok",
+        "url": "https://www.tiktok.com/@ytb_nghialq_tv"
+      },
+      {
+        "type": "telegram",
+        "label": "Tham Gia Telegram",
+        "url": "https://t.me/+gI22PHmUi5xhMDA9"
+      }
+    ]
   }
 };
 
