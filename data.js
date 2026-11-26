@@ -277,8 +277,8 @@ const pages = {
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "ios-edras-van-tam-kiem": {
-    "title": "[IOS] Edras Vấn Tâm Kiếm Full New",
-    "unlock": "https://vuotlink.xyz/IVCd",
+    "title": "[IOS] Edras Vấn Tâm Kiếm",
+    "unlock": "https://vuotlink.xyz/HZu",
     "tasks": [
       {
         "type": "youtube",
@@ -487,8 +487,8 @@ const pages = {
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "android-billow-anh-vu-lang-hon": {
-    "title": "[Android] Billow Ảnh Vụ Lang Hồn",
-    "unlock": "https://vuotlink.xyz/SXDft",
+    "title": "[Android] Billow Ảnh Vụ Lang Hồn 27.11",
+    "unlock": "https://vuotlink.xyz/IFlKq5",
     "tasks": [
       {
         "type": "youtube",
