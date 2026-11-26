@@ -577,8 +577,8 @@ const pages = {
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "camera-xa-update-17-11": {
-    "title": "Camera Xa Update 17.11",
-    "unlock": "https://vuotlink.xyz/GA26Kg",
+    "title": "Camera Xa Update 26.11",
+    "unlock": "https://vuotlink.xyz/kQdKLK",
     "tasks": [
       {
         "type": "youtube",
