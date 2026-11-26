@@ -787,8 +787,8 @@ const pages = {
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "android-edras-full-new-20-11": {
-    "title": "[Android ] Edras Full New 20.11",
-    "unlock": "https://linkx.me/daSk",
+    "title": "[Android ] Edras Full New 26.11",
+    "unlock": "https://vuotlink.xyz/CQf4",
     "tasks": [
       {
         "type": "youtube",
