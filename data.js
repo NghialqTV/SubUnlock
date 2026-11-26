@@ -667,8 +667,8 @@ const pages = {
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "144-fps-cao": {
-    "title": "144 FPS CAO",
-    "unlock": "https://vuotlink.xyz/AoHq",
+    "title": "144 FPS CAO 27.11",
+    "unlock": "https://vuotlink.xyz/qKD",
     "tasks": [
       {
         "type": "youtube",
@@ -1950,7 +1950,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   }
 };
 
