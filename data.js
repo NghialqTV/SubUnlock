@@ -1778,7 +1778,7 @@ const pages = {
   },
   "android-ios-file-fix-reset-an": {
     "title": "[Android - IOS] File Fix Reset Ẩn",
-    "unlock": "https://linkx.me/KLID",
+    "unlock": "https://vuotlink.xyz/f7k4s",
     "tasks": [
       {
         "type": "youtube",
@@ -1920,7 +1920,11 @@ const pages = {
         "label": "Tham Gia Telegram",
         "url": "https://t.me/+gI22PHmUi5xhMDA9"
       }
-    ]
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   }
 };
 
