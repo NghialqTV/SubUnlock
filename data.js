@@ -277,8 +277,8 @@ const pages = {
     "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
   },
   "ios-edras-van-tam-kiem": {
-    "title": "[IOS] Edras Vấn Tâm Kiếm",
-    "unlock": "https://vuotlink.xyz/HZu",
+    "title": "[IOS] Edras Vấn Tâm Kiếm Full New",
+    "unlock": "https://vuotlink.xyz/IVCd",
     "tasks": [
       {
         "type": "youtube",
