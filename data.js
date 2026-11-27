@@ -77,7 +77,30 @@ const pages = {
     "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
     "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
     "tele": "https://t.me/+gI22PHmUi5xhMDA9",
-    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb",
+    "title": "",
+    "tasks": [
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh NghĩaLQ TV",
+        "url": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg"
+      },
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh Cyber Mods",
+        "url": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+      },
+      {
+        "type": "tiktok",
+        "label": "Follow TikTok",
+        "url": "https://www.tiktok.com/@ytb_nghialq_tv"
+      },
+      {
+        "type": "telegram",
+        "label": "Tham Gia Telegram",
+        "url": "https://t.me/+gI22PHmUi5xhMDA9"
+      }
+    ]
   },
   "modmenuios": {
     "unlock": "https://linkx.me/GxRCa8",
@@ -1982,6 +2005,36 @@ const pages = {
   "pack-55-skin-ver2-27-11": {
     "title": "Pack 55 skin ver2 27.11",
     "unlock": "https://vuotlink.xyz/JLIO0n",
+    "tasks": [
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh NghĩaLQ TV",
+        "url": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg"
+      },
+      {
+        "type": "youtube",
+        "label": "Đăng Kí Kênh Cyber Mods",
+        "url": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+      },
+      {
+        "type": "tiktok",
+        "label": "Follow TikTok",
+        "url": "https://www.tiktok.com/@ytb_nghialq_tv"
+      },
+      {
+        "type": "telegram",
+        "label": "Tham Gia Telegram",
+        "url": "https://t.me/+gI22PHmUi5xhMDA9"
+      }
+    ],
+    "sub": "https://youtube.com/@nghiatv_04?si=as_Caho0FZASI8Yg",
+    "followTikTok": "https://www.tiktok.com/@ytb_nghialq_tv",
+    "tele": "https://t.me/+gI22PHmUi5xhMDA9",
+    "cyberMods": "https://youtube.com/@cyber_aov?si=bHs6leUzcdTxPpPb"
+  },
+  "ipa-nokey": {
+    "title": "IPA NOKEY",
+    "unlock": "https://vuotlink.xyz/ACxebc",
     "tasks": [
       {
         "type": "youtube",
